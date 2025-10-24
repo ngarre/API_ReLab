@@ -13,7 +13,9 @@ public class UsuarioService {
     @Autowired                                     // Así hacemos que la capa Service pueda comunicarse con la Repository.  Crea una instancia de la clase en repository cada vez que llame a metodos de la capa service
     private UsuarioRepository usuarioRepository;
 
-    public void agregar(Usuario usuario) {}
+    public void agregar(Usuario usuario) {
+        usuarioRepository.save(usuario);
+    }
 
     public void eliminar(Usuario usuario) {}
 
