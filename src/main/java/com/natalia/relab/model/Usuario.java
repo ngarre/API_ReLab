@@ -36,4 +36,6 @@ public class Usuario {
     private Date fechaAlta;
     @Column(name = "tipo_usuario") //Particular, empresa o centro de investigación
     private String tipoUsuario;
+    @Column
+    private boolean admin;
 }
