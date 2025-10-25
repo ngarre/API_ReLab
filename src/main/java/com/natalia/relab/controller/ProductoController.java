@@ -3,11 +3,10 @@ package com.natalia.relab.controller;
 import com.natalia.relab.model.Producto;
 import com.natalia.relab.model.Usuario;
 import com.natalia.relab.service.ProductoService;
+import exception.ProductoNoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +25,12 @@ public class ProductoController {
     @PostMapping("/productos")
     public void agregarProductos(@RequestBody Producto producto) {
        productoService.agregar(producto);
+    }
+
+    @PutMapping("/productos({id}")
+    public ResponseEntity<Producto> actualizarProducto(@RequestBody Producto producto, @PathVariable long id) throws ProductoNoEncontradoException {
+        Producto nuevoProducto = productoService.modificar(id, producto);
+        return ResponseEntity.ok(nuevoProducto);
     }
 
 }
