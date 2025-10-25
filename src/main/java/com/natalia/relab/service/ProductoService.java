@@ -37,4 +37,10 @@ public class ProductoService {
         return productoRepository.save(productoAnterior);
     }
 
+    public void eliminar(long id) throws ProductoNoEncontradoException {
+        Producto producto = productoRepository.findById(id)
+                .orElseThrow(ProductoNoEncontradoException::new);
+        productoRepository.delete(producto);
+    }
+
 }
