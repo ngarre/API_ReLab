@@ -3,9 +3,11 @@ package com.natalia.relab.controller;
 import com.natalia.relab.model.Producto;
 import com.natalia.relab.model.Usuario;
 import com.natalia.relab.service.ProductoService;
+import exception.ErrorResponse;
 import exception.ProductoNoEncontradoException;
 import exception.UsuarioNoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,4 +48,9 @@ public class ProductoController {
         return ResponseEntity.noContent().build();
     }
 
+    @ExceptionHandler(ProductoNoEncontradoException.class)
+    public ResponseEntity<ErrorResponse> handleExcpetion(ProductoNoEncontradoException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(404, "no-encontrado", "El producto no existe");
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
 }

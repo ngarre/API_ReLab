@@ -3,8 +3,10 @@ package com.natalia.relab.controller;
 import com.natalia.relab.model.Usuario;
 import com.natalia.relab.repository.UsuarioRepository;
 import com.natalia.relab.service.UsuarioService;
+import exception.ErrorResponse;
 import exception.UsuarioNoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,4 +46,11 @@ public class UsuarioController {
         usuarioService.eliminar(id);
         return ResponseEntity.noContent().build();
     }
+
+    @ExceptionHandler(UsuarioNoEncontradoException.class)
+    public ResponseEntity<ErrorResponse> handleExcpetion(UsuarioNoEncontradoException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(404, "no-encontrado", "El usuario no existe");
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
 }
