@@ -31,8 +31,9 @@ public class UsuarioController {
     }
 
     @PostMapping("/usuarios")
-    public void agregarUsuarios(@RequestBody Usuario usuario) {
-        usuarioService.agregar(usuario);
+    public ResponseEntity<Usuario> agregarUsuario(@RequestBody Usuario usuario) {
+       Usuario nuevoUsuario = usuarioService.agregar(usuario);
+       return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);
     }
 
     @PutMapping("/usuarios/{id}")
