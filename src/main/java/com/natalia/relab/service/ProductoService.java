@@ -17,8 +17,8 @@ public class ProductoService {
     @Autowired
     private ProductoRepository productoRepository;
 
-    public void agregar(Producto producto) {
-        productoRepository.save(producto);
+    public Producto agregar(Producto producto) {
+        return productoRepository.save(producto);
     }
 
     public List<Producto> listarTodos() {
