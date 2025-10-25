@@ -49,4 +49,10 @@ public class UsuarioService {
 
     }
 
+    public void eliminar(long id) throws UsuarioNoEncontradoException {
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(UsuarioNoEncontradoException::new);
+        usuarioRepository.delete(usuario);
+    }
+
 }

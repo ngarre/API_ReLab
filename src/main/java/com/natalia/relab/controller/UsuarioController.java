@@ -28,8 +28,14 @@ public class UsuarioController {
     }
 
     @PutMapping("/usuarios/{id}")
-    public ResponseEntity<Usuario> editarUsuarios(@PathVariable long id, @RequestBody Usuario usuario) throws UsuarioNoEncontradoException {
+    public ResponseEntity<Usuario> editarUsuario(@PathVariable long id, @RequestBody Usuario usuario) throws UsuarioNoEncontradoException {
         Usuario nuevoUsuario = usuarioService.modificar(id, usuario);
         return ResponseEntity.ok(nuevoUsuario);
+    }
+
+    @DeleteMapping("/usuarios/{id}")
+    public ResponseEntity<Void> eliminarUsuario(@PathVariable long id) throws UsuarioNoEncontradoException {
+        usuarioService.eliminar(id);
+        return ResponseEntity.noContent().build();
     }
 }

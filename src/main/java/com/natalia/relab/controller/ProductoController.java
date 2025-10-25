@@ -27,10 +27,16 @@ public class ProductoController {
        productoService.agregar(producto);
     }
 
-    @PutMapping("/productos({id}")
+    @PutMapping("/productos/{id}")
     public ResponseEntity<Producto> actualizarProducto(@RequestBody Producto producto, @PathVariable long id) throws ProductoNoEncontradoException {
         Producto nuevoProducto = productoService.modificar(id, producto);
         return ResponseEntity.ok(nuevoProducto);
+    }
+
+    @DeleteMapping("/productos/{id}")
+    public ResponseEntity<Void> eliminarProducto(@PathVariable long id) throws ProductoNoEncontradoException {
+        productoService.eliminar(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
