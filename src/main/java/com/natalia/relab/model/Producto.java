@@ -27,4 +27,6 @@ public class Producto {
     @Column(name = "fecha_actualizacion")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date fechaActualizacion;
+    @Column
+    private boolean activo;
 }

@@ -2,6 +2,7 @@ package com.natalia.relab.service;
 
 import com.natalia.relab.model.Usuario;
 import com.natalia.relab.repository.UsuarioRepository;
+import exception.UsuarioNoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,24 @@ public class UsuarioService {
         return null;
     }
 
-    public void modificar(Usuario usuario) {}
+    public Usuario modificar(long id, Usuario usuario) throws UsuarioNoEncontradoException {
+        Usuario usuarioAnterior = usuarioRepository.findById(id) //Tal y como estaba en la BBDD
+                .orElseThrow(UsuarioNoEncontradoException::new);
+
+        // TODO usar ModelMapper para mapear atributos entre objetos
+        usuarioAnterior.setNickname(usuario.getNickname());
+        usuarioAnterior.setPassword(usuario.getPassword());
+        usuarioAnterior.setNombre(usuario.getNombre());
+        usuarioAnterior.setApellido(usuario.getApellido());
+        usuarioAnterior.setEmail(usuario.getEmail());
+        usuarioAnterior.setFechaNacimiento(usuario.getFechaNacimiento());
+        usuarioAnterior.setCuentaActiva(usuario.isCuentaActiva());
+        usuarioAnterior.setFechaAlta(usuario.getFechaAlta());
+        usuarioAnterior.setTipoUsuario(usuario.getTipoUsuario());
+        usuarioAnterior.setAdmin(usuario.isAdmin());
+
+        return usuarioRepository.save(usuarioAnterior);
+
+    }
 
 }
