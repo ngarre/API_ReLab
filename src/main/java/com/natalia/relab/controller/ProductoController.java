@@ -20,9 +20,9 @@ public class ProductoController {
     private ProductoService productoService;
 
     @GetMapping("/productos")
-    public List<Producto> listarTodos() {
+    public ResponseEntity<List<Producto>> listarTodos() {
         List<Producto> todosProductos = productoService.listarTodos();
-        return todosProductos;
+        return ResponseEntity.ok(todosProductos);
     }
 
     @GetMapping("/productos/{id}")
