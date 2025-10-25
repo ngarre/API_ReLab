@@ -1,8 +1,10 @@
 package com.natalia.relab.service;
 
 import com.natalia.relab.model.Producto;
+import com.natalia.relab.model.Usuario;
 import com.natalia.relab.repository.ProductoRepository;
 import exception.ProductoNoEncontradoException;
+import exception.UsuarioNoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,11 @@ public class ProductoService {
     public List<Producto> listarTodos() {
         List<Producto> todosProductos = productoRepository.findAll();
         return todosProductos;
+    }
+
+    public Producto buscarPorId(long id) throws ProductoNoEncontradoException {
+        return productoRepository.findById(id)
+                .orElseThrow(ProductoNoEncontradoException::new);
     }
 
     public Producto modificar(long id, Producto producto) throws ProductoNoEncontradoException {

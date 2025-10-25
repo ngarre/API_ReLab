@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
 public class UsuarioService {
 
@@ -18,16 +19,17 @@ public class UsuarioService {
         usuarioRepository.save(usuario);
     }
 
-    public void eliminar(Usuario usuario) {}
 
     public List<Usuario> listarTodos() {
         List<Usuario> todosUsuarios = usuarioRepository.findAll();
         return todosUsuarios;
     }
 
-    public Usuario buscarPorId(long id) {
-        return null;
+    public Usuario buscarPorId(long id) throws UsuarioNoEncontradoException {
+        return usuarioRepository.findById(id)
+                .orElseThrow(UsuarioNoEncontradoException::new);
     }
+
 
     public Usuario modificar(long id, Usuario usuario) throws UsuarioNoEncontradoException {
         Usuario usuarioAnterior = usuarioRepository.findById(id) //Tal y como estaba en la BBDD
