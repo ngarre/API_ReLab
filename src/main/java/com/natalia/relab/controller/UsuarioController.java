@@ -22,6 +22,12 @@ public class UsuarioController {
         return todosUsuarios;
     }
 
+    @GetMapping("/usuarios/{id}")
+    public ResponseEntity<Usuario> ListarPorId(@PathVariable long id) throws UsuarioNoEncontradoException {
+        Usuario usuario = usuarioService.buscarPorId(id);
+        return ResponseEntity.ok(usuario);
+    }
+
     @PostMapping("/usuarios")
     public void agregarUsuarios(@RequestBody Usuario usuario) {
         usuarioService.agregar(usuario);
