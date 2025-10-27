@@ -26,7 +26,7 @@ public class ProductoController {
     }
 
     @GetMapping("/productos/{id}")
-    public ResponseEntity<Producto> ListarPorId(@PathVariable long id) throws ProductoNoEncontradoException {
+    public ResponseEntity<Producto> listarPorId(@PathVariable long id) throws ProductoNoEncontradoException {
         Producto producto = productoService.buscarPorId(id);
         return ResponseEntity.ok(producto);
     }
