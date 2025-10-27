@@ -29,4 +29,9 @@ public class Producto {
     private Date fechaActualizacion;
     @Column
     private boolean activo;
+
+    // RELACIÓN CON TABLA CATEGORIA
+    @ManyToOne // Cada producto tiene una sola categoría asociada, mientras que cada categoría puede aplicarse a varios productos.  Muchos productos se relacionan con una categoría.
+    @JoinColumn(name = "categoria_id") // FK
+    private Categoria categoria;
 }

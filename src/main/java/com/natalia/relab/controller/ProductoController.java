@@ -1,8 +1,13 @@
 package com.natalia.relab.controller;
 
+import com.natalia.relab.dto.ProductoInDto;
+import com.natalia.relab.dto.ProductoOutDto;
+import com.natalia.relab.model.Categoria;
 import com.natalia.relab.model.Producto;
 import com.natalia.relab.model.Usuario;
+import com.natalia.relab.service.CategoriaService;
 import com.natalia.relab.service.ProductoService;
+import exception.CategoriaNoEncontradaException;
 import exception.ErrorResponse;
 import exception.ProductoNoEncontradoException;
 import exception.UsuarioNoEncontradoException;
@@ -18,29 +23,33 @@ public class ProductoController {
 
     @Autowired
     private ProductoService productoService;
+    @Autowired
+    private CategoriaService categoriaService;
 
     @GetMapping("/productos")
-    public ResponseEntity<List<Producto>> listarTodos() {
-        List<Producto> todosProductos = productoService.listarTodos();
+    public ResponseEntity<List<ProductoOutDto>> listarTodos() {
+        List<ProductoOutDto> todosProductos = productoService.listarTodos();
         return ResponseEntity.ok(todosProductos);
     }
 
     @GetMapping("/productos/{id}")
-    public ResponseEntity<Producto> listarPorId(@PathVariable long id) throws ProductoNoEncontradoException {
-        Producto producto = productoService.buscarPorId(id);
-        return ResponseEntity.ok(producto);
+    public ResponseEntity<ProductoOutDto> listarPorId(@PathVariable long id) throws ProductoNoEncontradoException {
+        ProductoOutDto dto = productoService.buscarPorId(id);
+        return ResponseEntity.ok(dto);
     }
 
     @PostMapping("/productos")
-    public ResponseEntity<Producto> agregarProductos(@RequestBody Producto producto) {
-        Producto nuevoProducto = productoService.agregar(producto);
-       return new ResponseEntity<>(nuevoProducto, HttpStatus.CREATED);
+    public ResponseEntity<ProductoOutDto> agregarProductos(@RequestBody ProductoInDto productoInDto)
+            throws CategoriaNoEncontradaException {
+
+        ProductoOutDto nuevoProducto = productoService.agregar(productoInDto);
+        return new ResponseEntity<>(nuevoProducto, HttpStatus.CREATED);
     }
 
     @PutMapping("/productos/{id}")
-    public ResponseEntity<Producto> actualizarProducto(@RequestBody Producto producto, @PathVariable long id) throws ProductoNoEncontradoException {
-        Producto nuevoProducto = productoService.modificar(id, producto);
-        return ResponseEntity.ok(nuevoProducto);
+    public ResponseEntity<ProductoOutDto> actualizarProducto(@RequestBody ProductoInDto productoInDto, @PathVariable long id) throws ProductoNoEncontradoException, CategoriaNoEncontradaException {
+        ProductoOutDto actualizado = productoService.modificar(id, productoInDto);
+        return ResponseEntity.ok(actualizado);
     }
 
     @DeleteMapping("/productos/{id}")
