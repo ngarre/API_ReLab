@@ -38,4 +38,6 @@ public class Usuario {
     private String tipoUsuario;
     @Column
     private boolean admin;
+    @Column
+    private float saldo;
 }
