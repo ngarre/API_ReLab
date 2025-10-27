@@ -1,10 +1,14 @@
 package com.natalia.relab.service;
 
+import com.natalia.relab.dto.CategoriaSimpleDto;
+import com.natalia.relab.dto.ProductoInDto;
+import com.natalia.relab.dto.ProductoOutDto;
+import com.natalia.relab.model.Categoria;
 import com.natalia.relab.model.Producto;
-import com.natalia.relab.model.Usuario;
+import com.natalia.relab.repository.CategoriaRepository;
 import com.natalia.relab.repository.ProductoRepository;
+import exception.CategoriaNoEncontradaException;
 import exception.ProductoNoEncontradoException;
-import exception.UsuarioNoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,37 +21,97 @@ public class ProductoService {
     @Autowired
     private ProductoRepository productoRepository;
 
-    public Producto agregar(Producto producto) {
-        return productoRepository.save(producto);
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
+    // --- POST
+    public ProductoOutDto agregar(ProductoInDto productoInDto) throws CategoriaNoEncontradaException {
+        // Busco categoria en la BBDD
+        Categoria categoria = categoriaRepository.findById(productoInDto.getCategoriaId())
+                .orElseThrow(CategoriaNoEncontradaException::new);
+
+        // Creo producto
+        Producto producto = new Producto();
+        producto.setNombre(productoInDto.getNombre());
+        producto.setDescripcion(productoInDto.getDescripcion());
+        producto.setPrecio(productoInDto.getPrecio());
+        producto.setFechaActualizacion(productoInDto.getFechaActualizacion());
+        producto.setActivo(productoInDto.isActivo());
+        producto.setCategoria(categoria);
+
+        Producto guardado = productoRepository.save(producto);
+
+        // Mapear a ProductoOutDto
+        CategoriaSimpleDto categoriaSimple = new CategoriaSimpleDto(
+                categoria.getId(), categoria.getNombre()
+        );
+
+        return mapToOutDto(guardado);
     }
 
-    public List<Producto> listarTodos() {
-        List<Producto> todosProductos = productoRepository.findAll();
-        return todosProductos;
+    // --- GET todos
+    public List<ProductoOutDto> listarTodos() {
+        return productoRepository.findAll()
+                .stream()
+                .map(this::mapToOutDto) // Coge producto a producto y lo convierte al formato que me interesa, utilizando el metodo que he dejado abajo
+                .toList();
     }
 
-    public Producto buscarPorId(long id) throws ProductoNoEncontradoException {
-        return productoRepository.findById(id)
+
+    // --- GET por id
+    public ProductoOutDto buscarPorId(long id) throws ProductoNoEncontradoException {
+        Producto producto = productoRepository.findById(id)
                 .orElseThrow(ProductoNoEncontradoException::new);
+        return mapToOutDto(producto);
     }
 
-    public Producto modificar(long id, Producto producto) throws ProductoNoEncontradoException {
+
+    // --- PUT / modificar
+    public ProductoOutDto modificar(long id, ProductoInDto productoInDto) throws ProductoNoEncontradoException, CategoriaNoEncontradaException {
         Producto productoAnterior = productoRepository.findById(id)
                 .orElseThrow(ProductoNoEncontradoException::new);
 
-        productoAnterior.setNombre(producto.getNombre());
-        productoAnterior.setDescripcion(producto.getDescripcion());
-        productoAnterior.setPrecio(producto.getPrecio());
-        productoAnterior.setFechaActualizacion(producto.getFechaActualizacion());
-        productoAnterior.setActivo(producto.isActivo());
+        Categoria categoria = categoriaRepository.findById(productoInDto.getCategoriaId())
+                .orElseThrow(CategoriaNoEncontradaException::new);
 
-        return productoRepository.save(productoAnterior);
+        productoAnterior.setNombre(productoInDto.getNombre());
+        productoAnterior.setDescripcion(productoInDto.getDescripcion());
+        productoAnterior.setPrecio(productoInDto.getPrecio());
+        productoAnterior.setFechaActualizacion(productoInDto.getFechaActualizacion());
+        productoAnterior.setActivo(productoInDto.isActivo());
+
+        Producto actualizado = productoRepository.save(productoAnterior);
+        return mapToOutDto(actualizado);
     }
 
+    // --- DELETE
     public void eliminar(long id) throws ProductoNoEncontradoException {
         Producto producto = productoRepository.findById(id)
                 .orElseThrow(ProductoNoEncontradoException::new);
         productoRepository.delete(producto);
     }
 
+
+    // --- Metodo auxiliar privado para mapear y no repetir código
+    private ProductoOutDto mapToOutDto(Producto producto) {
+        CategoriaSimpleDto categoriaSimple = null;  // Para que no salte el NullPointerException en caso de que la categoria sea NULL
+        if (producto.getCategoria() != null) {
+            categoriaSimple = new CategoriaSimpleDto(
+                    producto.getCategoria().getId(),
+                    producto.getCategoria().getNombre()
+            );
+        }
+
+        return new ProductoOutDto(
+                producto.getId(),
+                producto.getNombre(),
+                producto.getDescripcion(),
+                producto.getPrecio(),
+                producto.getFechaActualizacion(),
+                producto.isActivo(),
+                categoriaSimple
+        );
+
+    }
 }
+

@@ -1,6 +1,8 @@
 package com.natalia.relab.controller;
 
 
+import com.natalia.relab.dto.CategoriaInDto;
+import com.natalia.relab.dto.CategoriaOutDto;
 import com.natalia.relab.model.Categoria;
 import com.natalia.relab.model.Producto;
 import com.natalia.relab.service.CategoriaService;
@@ -21,28 +23,28 @@ public class CategoriaController {
     CategoriaService categoriaService;
 
     @GetMapping("/categorias")
-    public ResponseEntity<List<Categoria>> listarTodas() {
-        List<Categoria> todasCategorias = categoriaService.listarTodas();
+    public ResponseEntity<List<CategoriaOutDto>> listarTodas() {
+        List<CategoriaOutDto> todasCategorias = categoriaService.listarTodas();
         return ResponseEntity.ok(todasCategorias);
     }
 
     @GetMapping("/categorias/{id}")
-    public ResponseEntity<Categoria> listarPorId(@PathVariable long id) throws CategoriaNoEncontradaException {
-        Categoria categoria = categoriaService.buscarPorId(id);
-        return ResponseEntity.ok(categoria);
+    public ResponseEntity<CategoriaOutDto> listarPorId(@PathVariable long id) throws CategoriaNoEncontradaException {
+        CategoriaOutDto dto = categoriaService.buscarPorId(id);
+        return ResponseEntity.ok(dto);
 
     }
 
     @PostMapping("/categorias")
-    public ResponseEntity<Categoria> agregarCategorias(@RequestBody Categoria categoria) {
-        Categoria nuevaCategoria = categoriaService.agregar(categoria);
+    public ResponseEntity<CategoriaOutDto> agregarCategorias(@RequestBody CategoriaInDto categoriaInDto) {
+        CategoriaOutDto nuevaCategoria = categoriaService.agregar(categoriaInDto);
         return new ResponseEntity<>(nuevaCategoria, HttpStatus.CREATED);
     }
 
     @PutMapping("/categorias/{id}")
-    public ResponseEntity<Categoria> actualizarCategoria(@RequestBody Categoria categoria, @PathVariable long id) throws CategoriaNoEncontradaException {
-        Categoria nuevaCategoria = categoriaService.modificar(id, categoria);
-        return ResponseEntity.ok(nuevaCategoria);
+    public ResponseEntity<CategoriaOutDto> actualizarCategoria(@RequestBody CategoriaInDto categoriaInDto, @PathVariable long id) throws CategoriaNoEncontradaException {
+        CategoriaOutDto actualizada = categoriaService.modificar(id, categoriaInDto);
+        return ResponseEntity.ok(actualizada);
     }
 
     @DeleteMapping("/categorias/{id}")
