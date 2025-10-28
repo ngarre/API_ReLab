@@ -1,12 +1,14 @@
 package com.natalia.relab.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -44,4 +46,8 @@ public class Usuario {
     private Double latitud;
     @Column
     private Double longitud;
+
+    // RELACIÓN CON LA TABLA PRODUCTO
+    @OneToMany(mappedBy = "usuario") // Un usuario puede tener muchos productos, pero un producto solo puede pertenecer a un usuario.
+    private List<Producto> productos;
 }

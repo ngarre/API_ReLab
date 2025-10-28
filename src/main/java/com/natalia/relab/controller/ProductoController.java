@@ -40,14 +40,14 @@ public class ProductoController {
 
     @PostMapping("/productos")
     public ResponseEntity<ProductoOutDto> agregarProductos(@RequestBody ProductoInDto productoInDto)
-            throws CategoriaNoEncontradaException {
+            throws CategoriaNoEncontradaException, UsuarioNoEncontradoException {
 
         ProductoOutDto nuevoProducto = productoService.agregar(productoInDto);
         return new ResponseEntity<>(nuevoProducto, HttpStatus.CREATED);
     }
 
     @PutMapping("/productos/{id}")
-    public ResponseEntity<ProductoOutDto> actualizarProducto(@RequestBody ProductoInDto productoInDto, @PathVariable long id) throws ProductoNoEncontradoException, CategoriaNoEncontradaException {
+    public ResponseEntity<ProductoOutDto> actualizarProducto(@RequestBody ProductoInDto productoInDto, @PathVariable long id) throws ProductoNoEncontradoException, CategoriaNoEncontradaException, UsuarioNoEncontradoException {
         ProductoOutDto actualizado = productoService.modificar(id, productoInDto);
         return ResponseEntity.ok(actualizado);
     }

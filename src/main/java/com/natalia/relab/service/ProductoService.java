@@ -3,12 +3,16 @@ package com.natalia.relab.service;
 import com.natalia.relab.dto.CategoriaSimpleDto;
 import com.natalia.relab.dto.ProductoInDto;
 import com.natalia.relab.dto.ProductoOutDto;
+import com.natalia.relab.dto.UsuarioSimpleDto;
 import com.natalia.relab.model.Categoria;
 import com.natalia.relab.model.Producto;
+import com.natalia.relab.model.Usuario;
 import com.natalia.relab.repository.CategoriaRepository;
 import com.natalia.relab.repository.ProductoRepository;
+import com.natalia.relab.repository.UsuarioRepository;
 import exception.CategoriaNoEncontradaException;
 import exception.ProductoNoEncontradoException;
+import exception.UsuarioNoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,29 +28,32 @@ public class ProductoService {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
     // --- POST
-    public ProductoOutDto agregar(ProductoInDto productoInDto) throws CategoriaNoEncontradaException {
+    public ProductoOutDto agregar(ProductoInDto productoInDto) throws CategoriaNoEncontradaException, UsuarioNoEncontradoException {
+
         // Busco categoria en la BBDD
-        Categoria categoria = categoriaRepository.findById(productoInDto.getCategoriaId())
-                .orElseThrow(CategoriaNoEncontradaException::new);
+            Categoria categoria = categoriaRepository.findById(productoInDto.getCategoriaId())
+                    .orElseThrow(CategoriaNoEncontradaException::new);
+            // Busco el usuario en la BBDD
+            Usuario usuario = usuarioRepository.findById(productoInDto.getUsuarioId())
+                    .orElseThrow(UsuarioNoEncontradoException::new);
 
-        // Creo producto
-        Producto producto = new Producto();
-        producto.setNombre(productoInDto.getNombre());
-        producto.setDescripcion(productoInDto.getDescripcion());
-        producto.setPrecio(productoInDto.getPrecio());
-        producto.setFechaActualizacion(productoInDto.getFechaActualizacion());
-        producto.setActivo(productoInDto.isActivo());
-        producto.setCategoria(categoria);
+            // Creo producto
+            Producto producto = new Producto();
+            producto.setNombre(productoInDto.getNombre());
+            producto.setDescripcion(productoInDto.getDescripcion());
+            producto.setPrecio(productoInDto.getPrecio());
+            producto.setFechaActualizacion(productoInDto.getFechaActualizacion());
+            producto.setActivo(productoInDto.isActivo());
+            producto.setCategoria(categoria);
+            producto.setUsuario(usuario);
 
-        Producto guardado = productoRepository.save(producto);
+            Producto guardado = productoRepository.save(producto);
 
-        // Mapear a ProductoOutDto
-        CategoriaSimpleDto categoriaSimple = new CategoriaSimpleDto(
-                categoria.getId(), categoria.getNombre()
-        );
-
-        return mapToOutDto(guardado);
+            return mapToOutDto(guardado);
     }
 
     // --- GET todos
@@ -67,18 +74,23 @@ public class ProductoService {
 
 
     // --- PUT / modificar
-    public ProductoOutDto modificar(long id, ProductoInDto productoInDto) throws ProductoNoEncontradoException, CategoriaNoEncontradaException {
+    public ProductoOutDto modificar(long id, ProductoInDto productoInDto) throws ProductoNoEncontradoException, CategoriaNoEncontradaException, UsuarioNoEncontradoException {
         Producto productoAnterior = productoRepository.findById(id)
                 .orElseThrow(ProductoNoEncontradoException::new);
 
         Categoria categoria = categoriaRepository.findById(productoInDto.getCategoriaId())
                 .orElseThrow(CategoriaNoEncontradaException::new);
 
+        Usuario usuario = usuarioRepository.findById(productoInDto.getUsuarioId())
+                .orElseThrow(UsuarioNoEncontradoException::new);
+
         productoAnterior.setNombre(productoInDto.getNombre());
         productoAnterior.setDescripcion(productoInDto.getDescripcion());
         productoAnterior.setPrecio(productoInDto.getPrecio());
         productoAnterior.setFechaActualizacion(productoInDto.getFechaActualizacion());
         productoAnterior.setActivo(productoInDto.isActivo());
+        productoAnterior.setCategoria(categoria);
+        productoAnterior.setUsuario(usuario);
 
         Producto actualizado = productoRepository.save(productoAnterior);
         return mapToOutDto(actualizado);
@@ -102,6 +114,14 @@ public class ProductoService {
             );
         }
 
+        UsuarioSimpleDto usuarioSimple = null;
+        if (producto.getUsuario() != null) {
+            usuarioSimple = new UsuarioSimpleDto(
+                    producto.getUsuario().getId(),
+                    producto.getUsuario().getNickname()
+            );
+        }
+
         return new ProductoOutDto(
                 producto.getId(),
                 producto.getNombre(),
@@ -109,7 +129,8 @@ public class ProductoService {
                 producto.getPrecio(),
                 producto.getFechaActualizacion(),
                 producto.isActivo(),
-                categoriaSimple
+                categoriaSimple,
+                usuarioSimple
         );
 
     }

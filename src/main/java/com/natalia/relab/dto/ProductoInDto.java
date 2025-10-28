@@ -1,5 +1,6 @@
 package com.natalia.relab.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,4 +17,5 @@ public class ProductoInDto { // Es un objeto que utilizaré para mandar informac
     private Date fechaActualizacion;
     private boolean activo;
     private long categoriaId;
+    private long usuarioId;
 }
