@@ -1,5 +1,7 @@
 package com.natalia.relab.controller;
 
+import com.natalia.relab.dto.UsuarioInDto;
+import com.natalia.relab.dto.UsuarioOutDto;
 import com.natalia.relab.model.Usuario;
 import com.natalia.relab.repository.UsuarioRepository;
 import com.natalia.relab.service.UsuarioService;
@@ -19,26 +21,26 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @GetMapping("/usuarios")
-    public ResponseEntity<List<Usuario>> listarTodos() {
-        List<Usuario> todosUsuarios = usuarioService.listarTodos();
+    public ResponseEntity<List<UsuarioOutDto>> listarTodos() {
+        List<UsuarioOutDto> todosUsuarios = usuarioService.listarTodos();
         return ResponseEntity.ok(todosUsuarios);
     }
 
     @GetMapping("/usuarios/{id}")
-    public ResponseEntity<Usuario> ListarPorId(@PathVariable long id) throws UsuarioNoEncontradoException {
-        Usuario usuario = usuarioService.buscarPorId(id);
-        return ResponseEntity.ok(usuario);
+    public ResponseEntity<UsuarioOutDto> ListarPorId(@PathVariable long id) throws UsuarioNoEncontradoException {
+        UsuarioOutDto dto = usuarioService.buscarPorId(id);
+        return ResponseEntity.ok(dto);
     }
 
     @PostMapping("/usuarios")
-    public ResponseEntity<Usuario> agregarUsuario(@RequestBody Usuario usuario) {
-       Usuario nuevoUsuario = usuarioService.agregar(usuario);
+    public ResponseEntity<UsuarioOutDto> agregarUsuario(@RequestBody UsuarioInDto usuarioInDto) {
+       UsuarioOutDto nuevoUsuario = usuarioService.agregar(usuarioInDto);
        return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);
     }
 
     @PutMapping("/usuarios/{id}")
-    public ResponseEntity<Usuario> editarUsuario(@PathVariable long id, @RequestBody Usuario usuario) throws UsuarioNoEncontradoException {
-        Usuario nuevoUsuario = usuarioService.modificar(id, usuario);
+    public ResponseEntity<UsuarioOutDto> editarUsuario(@PathVariable long id, @RequestBody UsuarioInDto usuarioInDto) throws UsuarioNoEncontradoException {
+        UsuarioOutDto nuevoUsuario = usuarioService.modificar(id, usuarioInDto);
         return ResponseEntity.ok(nuevoUsuario);
     }
 

@@ -18,4 +18,5 @@ public class ProductoOutDto {
     private Date fechaActualizacion;
     private boolean activo;
     private CategoriaSimpleDto categoria;
+    private UsuarioSimpleDto usuario;
 }

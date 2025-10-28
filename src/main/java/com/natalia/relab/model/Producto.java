@@ -34,4 +34,9 @@ public class Producto {
     @ManyToOne // Cada producto tiene una sola categoría asociada, mientras que cada categoría puede aplicarse a varios productos.  Muchos productos se relacionan con una categoría.
     @JoinColumn(name = "categoria_id") // FK
     private Categoria categoria;
+
+    // RELACIÓN CON TABLA USUARIOS
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 }

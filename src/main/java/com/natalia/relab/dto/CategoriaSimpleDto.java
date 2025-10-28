@@ -13,4 +13,5 @@ public class CategoriaSimpleDto {
 }
 
 
-//VERSIÓN REDUCIDA DE LA CATEGORÍA: solo con los campos básicos que te interesa mostrar junto al PRODUCTO al devolver productos.
+//VERSIÓN REDUCIDA DE LA CATEGORÍA: solo con los campos básicos que te interesa
+// mostrar junto al PRODUCTO al devolver productos.
