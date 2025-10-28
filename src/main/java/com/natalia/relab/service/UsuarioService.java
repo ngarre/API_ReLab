@@ -46,6 +46,9 @@ public class UsuarioService {
         usuarioAnterior.setFechaAlta(usuario.getFechaAlta());
         usuarioAnterior.setTipoUsuario(usuario.getTipoUsuario());
         usuarioAnterior.setAdmin(usuario.isAdmin());
+        usuarioAnterior.setSaldo(usuario.getSaldo());
+        usuarioAnterior.setLatitud(usuario.getLatitud());
+        usuarioAnterior.setLongitud(usuario.getLongitud());
 
         return usuarioRepository.save(usuarioAnterior);
 

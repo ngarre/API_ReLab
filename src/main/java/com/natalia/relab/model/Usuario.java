@@ -39,5 +39,9 @@ public class Usuario {
     @Column
     private boolean admin;
     @Column
-    private float saldo;
+    private Float saldo; // Cambio estos atributos a objetos envoltorio (de float y double a Float y Double para evitar los errores de campo vacío en la BBDD)
+    @Column
+    private Double latitud;
+    @Column
+    private Double longitud;
 }
