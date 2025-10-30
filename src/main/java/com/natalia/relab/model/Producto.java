@@ -39,4 +39,8 @@ public class Producto {
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+//    // RELACIÓN CON LA TABLA COMPRAVENTA -> No hace falta porque no necesito conocer las compraventas de un producto
+//    @OneToOne(mappedBy = "producto")
+//    private Compraventa compraventa;
 }
