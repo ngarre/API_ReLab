@@ -1,9 +1,6 @@
 package com.natalia.relab.service;
 
-import com.natalia.relab.dto.CategoriaSimpleDto;
-import com.natalia.relab.dto.ProductoInDto;
-import com.natalia.relab.dto.ProductoOutDto;
-import com.natalia.relab.dto.UsuarioSimpleDto;
+import com.natalia.relab.dto.*;
 import com.natalia.relab.model.Categoria;
 import com.natalia.relab.model.Producto;
 import com.natalia.relab.model.Usuario;
@@ -74,23 +71,21 @@ public class ProductoService {
 
 
     // --- PUT / modificar
-    public ProductoOutDto modificar(long id, ProductoInDto productoInDto) throws ProductoNoEncontradoException, CategoriaNoEncontradaException, UsuarioNoEncontradoException {
+    public ProductoOutDto modificar(long id, ProductoUpdateDto productoUpdateDto) throws ProductoNoEncontradoException, CategoriaNoEncontradaException {
         Producto productoAnterior = productoRepository.findById(id)
                 .orElseThrow(ProductoNoEncontradoException::new);
 
-        Categoria categoria = categoriaRepository.findById(productoInDto.getCategoriaId())
+        Categoria categoria = categoriaRepository.findById(productoUpdateDto.getCategoriaId())
                 .orElseThrow(CategoriaNoEncontradaException::new);
 
-        Usuario usuario = usuarioRepository.findById(productoInDto.getUsuarioId())
-                .orElseThrow(UsuarioNoEncontradoException::new);
 
-        productoAnterior.setNombre(productoInDto.getNombre());
-        productoAnterior.setDescripcion(productoInDto.getDescripcion());
-        productoAnterior.setPrecio(productoInDto.getPrecio());
-        productoAnterior.setFechaActualizacion(productoInDto.getFechaActualizacion());
-        productoAnterior.setActivo(productoInDto.isActivo());
+        productoAnterior.setNombre(productoUpdateDto.getNombre());
+        productoAnterior.setDescripcion(productoUpdateDto.getDescripcion());
+        productoAnterior.setPrecio(productoUpdateDto.getPrecio());
+        productoAnterior.setFechaActualizacion(productoUpdateDto.getFechaActualizacion());
+        productoAnterior.setActivo(productoUpdateDto.isActivo());
         productoAnterior.setCategoria(categoria);
-        productoAnterior.setUsuario(usuario);
+        // El campo UsuarioId no quiero que se pueda modificar
 
         Producto actualizado = productoRepository.save(productoAnterior);
         return mapToOutDto(actualizado);
