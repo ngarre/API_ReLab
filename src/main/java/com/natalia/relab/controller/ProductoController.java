@@ -2,6 +2,7 @@ package com.natalia.relab.controller;
 
 import com.natalia.relab.dto.ProductoInDto;
 import com.natalia.relab.dto.ProductoOutDto;
+import com.natalia.relab.dto.ProductoUpdateDto;
 import com.natalia.relab.model.Categoria;
 import com.natalia.relab.model.Producto;
 import com.natalia.relab.model.Usuario;
@@ -45,8 +46,8 @@ public class ProductoController {
     }
 
     @PutMapping("/productos/{id}")
-    public ResponseEntity<ProductoOutDto> actualizarProducto(@RequestBody ProductoInDto productoInDto, @PathVariable long id) throws ProductoNoEncontradoException, CategoriaNoEncontradaException, UsuarioNoEncontradoException {
-        ProductoOutDto actualizado = productoService.modificar(id, productoInDto);
+    public ResponseEntity<ProductoOutDto> actualizarProducto(@RequestBody ProductoUpdateDto productoUpdateDto, @PathVariable long id) throws ProductoNoEncontradoException, CategoriaNoEncontradaException {
+        ProductoOutDto actualizado = productoService.modificar(id, productoUpdateDto);
         return ResponseEntity.ok(actualizado);
     }
 
