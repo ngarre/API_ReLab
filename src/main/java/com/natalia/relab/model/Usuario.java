@@ -50,4 +50,12 @@ public class Usuario {
     // RELACIÓN CON LA TABLA PRODUCTO
     @OneToMany(mappedBy = "usuario") // Un usuario puede tener muchos productos, pero un producto solo puede pertenecer a un usuario.
     private List<Producto> productos;
+
+    // RELACIÓN CON LA TABLA COMPRAVENTA - COMPRAS
+    @OneToMany(mappedBy = "comprador")
+    private List <Compraventa> compras;
+
+    // RELACIÓN CON LA TABLA COMPRAVENTA - VENTAS
+    @OneToMany(mappedBy = "vendedor")
+    private List <Compraventa> ventas;
 }

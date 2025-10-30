@@ -23,8 +23,6 @@ public class ProductoController {
 
     @Autowired
     private ProductoService productoService;
-    @Autowired
-    private CategoriaService categoriaService;
 
     @GetMapping("/productos")
     public ResponseEntity<List<ProductoOutDto>> listarTodos() {
