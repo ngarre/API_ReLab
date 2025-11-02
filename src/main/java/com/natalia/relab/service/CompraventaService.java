@@ -4,7 +4,6 @@ import com.natalia.relab.dto.*;
 import com.natalia.relab.model.Compraventa;
 import com.natalia.relab.model.Producto;
 import com.natalia.relab.model.Usuario;
-import com.natalia.relab.repository.CategoriaRepository;
 import com.natalia.relab.repository.CompraventaRepository;
 import com.natalia.relab.repository.ProductoRepository;
 import com.natalia.relab.repository.UsuarioRepository;
@@ -92,7 +91,6 @@ public class CompraventaService {
 
     }
 
-    // --- DELETE
     public void eliminar(long id) throws CompraventaNoEncontradaException {
         Compraventa compraventa = compraventaRepository.findById(id)
                 .orElseThrow(CompraventaNoEncontradaException::new);

@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 
 @Data
@@ -26,7 +26,7 @@ public class Producto {
     private float precio;
     @Column(name = "fecha_actualizacion")
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date fechaActualizacion;
+    private LocalDate fechaActualizacion;
     @Column
     private boolean activo;
 

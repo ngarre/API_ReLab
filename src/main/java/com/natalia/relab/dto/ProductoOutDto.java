@@ -1,11 +1,12 @@
 package com.natalia.relab.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -15,7 +16,8 @@ public class ProductoOutDto {
     private String nombre;
     private String descripcion;
     private float precio;
-    private Date fechaActualizacion;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate fechaActualizacion;
     private boolean activo;
     private CategoriaSimpleDto categoria;
     private UsuarioSimpleDto usuario;

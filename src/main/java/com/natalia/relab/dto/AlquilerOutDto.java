@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -13,9 +13,9 @@ import java.util.Date;
 public class AlquilerOutDto {
     private Long id;
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date fechaInicio;
+    private LocalDate fechaInicio;
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date fechaFin;
+    private LocalDate fechaFin;
     private int meses;
     private float precio;
     private String comentario;
