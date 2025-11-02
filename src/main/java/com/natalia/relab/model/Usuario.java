@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -30,12 +30,12 @@ public class Usuario {
     private String email;
     @Column(name = "fecha_nacimiento")
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
     @Column(name = "cuenta_activa")
     private boolean cuentaActiva;
     @Column(name = "fecha_alta")
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date fechaAlta;
+    private LocalDate fechaAlta;
     @Column(name = "tipo_usuario") //Particular, empresa o centro de investigación
     private String tipoUsuario;
     @Column

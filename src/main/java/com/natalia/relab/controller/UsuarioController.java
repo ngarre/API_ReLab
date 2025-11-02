@@ -2,6 +2,7 @@ package com.natalia.relab.controller;
 
 import com.natalia.relab.dto.UsuarioInDto;
 import com.natalia.relab.dto.UsuarioOutDto;
+import com.natalia.relab.dto.UsuarioUpdateDto;
 import com.natalia.relab.model.Usuario;
 import com.natalia.relab.repository.UsuarioRepository;
 import com.natalia.relab.service.UsuarioService;
@@ -39,8 +40,8 @@ public class UsuarioController {
     }
 
     @PutMapping("/usuarios/{id}")
-    public ResponseEntity<UsuarioOutDto> editarUsuario(@PathVariable long id, @RequestBody UsuarioInDto usuarioInDto) throws UsuarioNoEncontradoException {
-        UsuarioOutDto nuevoUsuario = usuarioService.modificar(id, usuarioInDto);
+    public ResponseEntity<UsuarioOutDto> editarUsuario(@PathVariable long id, @RequestBody UsuarioUpdateDto usuarioUpdateDto) throws UsuarioNoEncontradoException {
+        UsuarioOutDto nuevoUsuario = usuarioService.modificar(id, usuarioUpdateDto);
         return ResponseEntity.ok(nuevoUsuario);
     }
 

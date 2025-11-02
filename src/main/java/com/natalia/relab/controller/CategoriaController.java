@@ -3,6 +3,7 @@ package com.natalia.relab.controller;
 
 import com.natalia.relab.dto.CategoriaInDto;
 import com.natalia.relab.dto.CategoriaOutDto;
+import com.natalia.relab.dto.CategoriaUpdateDto;
 import com.natalia.relab.model.Categoria;
 import com.natalia.relab.model.Producto;
 import com.natalia.relab.service.CategoriaService;
@@ -42,8 +43,8 @@ public class CategoriaController {
     }
 
     @PutMapping("/categorias/{id}")
-    public ResponseEntity<CategoriaOutDto> actualizarCategoria(@RequestBody CategoriaInDto categoriaInDto, @PathVariable long id) throws CategoriaNoEncontradaException {
-        CategoriaOutDto actualizada = categoriaService.modificar(id, categoriaInDto);
+    public ResponseEntity<CategoriaOutDto> actualizarCategoria(@RequestBody CategoriaUpdateDto categoriaUpdateDto, @PathVariable long id) throws CategoriaNoEncontradaException {
+        CategoriaOutDto actualizada = categoriaService.modificar(id, categoriaUpdateDto);
         return ResponseEntity.ok(actualizada);
     }
 

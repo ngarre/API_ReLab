@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -24,7 +24,7 @@ public class Categoria {
     private String descripcion;
     @Column(name = "fecha_creacion")
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date fechaCreacion;
+    private LocalDate fechaCreacion;
     @Column
     private boolean activo;
     @Column(name = "tasa_comision")

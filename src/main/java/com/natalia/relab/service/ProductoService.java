@@ -13,6 +13,7 @@ import exception.UsuarioNoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -43,7 +44,9 @@ public class ProductoService {
             producto.setNombre(productoInDto.getNombre());
             producto.setDescripcion(productoInDto.getDescripcion());
             producto.setPrecio(productoInDto.getPrecio());
-            producto.setFechaActualizacion(productoInDto.getFechaActualizacion());
+
+            producto.setFechaActualizacion(LocalDate.now());
+
             producto.setActivo(productoInDto.isActivo());
             producto.setCategoria(categoria);
             producto.setUsuario(usuario);
@@ -82,7 +85,7 @@ public class ProductoService {
         productoAnterior.setNombre(productoUpdateDto.getNombre());
         productoAnterior.setDescripcion(productoUpdateDto.getDescripcion());
         productoAnterior.setPrecio(productoUpdateDto.getPrecio());
-        productoAnterior.setFechaActualizacion(productoUpdateDto.getFechaActualizacion());
+//        productoAnterior.setFechaActualizacion(productoUpdateDto.getFechaActualizacion());
         productoAnterior.setActivo(productoUpdateDto.isActivo());
         productoAnterior.setCategoria(categoria);
         // El campo UsuarioId no quiero que se pueda modificar

@@ -1,10 +1,11 @@
 package com.natalia.relab.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -15,9 +16,11 @@ public class UsuarioInDto {
     private String nombre;
     private String apellido;
     private String email;
-    private Date fechaNacimiento;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate fechaNacimiento;
     private boolean cuentaActiva;
-    private Date fechaAlta;
+//    @JsonFormat(pattern = "yyyy-MM-dd") --> Al cogerse del sistema ya no la pido en el POST
+//    private LocalDate fechaAlta;
     private String tipoUsuario;
     private boolean admin;
     private Float saldo;

@@ -2,14 +2,12 @@ package com.natalia.relab.service;
 
 import com.natalia.relab.dto.*;
 import com.natalia.relab.model.Alquiler;
-import com.natalia.relab.model.Compraventa;
 import com.natalia.relab.model.Producto;
 import com.natalia.relab.model.Usuario;
 import com.natalia.relab.repository.AlquilerRepository;
 import com.natalia.relab.repository.ProductoRepository;
 import com.natalia.relab.repository.UsuarioRepository;
 import exception.AlquilerNoEncontradoException;
-import exception.CompraventaNoEncontradaException;
 import exception.ProductoNoEncontradoException;
 import exception.UsuarioNoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;

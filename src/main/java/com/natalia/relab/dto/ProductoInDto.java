@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -14,7 +13,8 @@ public class ProductoInDto { // Es un objeto que utilizaré para mandar informac
     private String nombre;
     private String descripcion;
     private float precio;
-    private Date fechaActualizacion;
+//    @JsonFormat(pattern = "yyyy-MM-dd")
+//    private LocalDate fechaActualizacion;
     private boolean activo;
     private long categoriaId;
     private long usuarioId;

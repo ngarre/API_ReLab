@@ -7,23 +7,22 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsuarioOutDto {
-    private long id;
+public class UsuarioUpdateDto {
     private String nickname;
+    private String password;
     private String nombre;
     private String apellido;
     private String email;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaNacimiento;
     private boolean cuentaActiva;
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate fechaAlta;
     private String tipoUsuario;
-    private boolean admin;
-    private Float saldo;
+//    private boolean admin;
+//    private Float saldo;
     private Double latitud;
     private Double longitud;
 }

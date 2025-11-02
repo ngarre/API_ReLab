@@ -1,18 +1,13 @@
 package com.natalia.relab.service;
 
-import com.natalia.relab.dto.CategoriaInDto;
-import com.natalia.relab.dto.CategoriaOutDto;
-import com.natalia.relab.dto.CategoriaSimpleDto;
-import com.natalia.relab.dto.ProductoOutDto;
+import com.natalia.relab.dto.*;
 import com.natalia.relab.model.Categoria;
-import com.natalia.relab.model.Producto;
 import com.natalia.relab.repository.CategoriaRepository;
-import com.natalia.relab.repository.ProductoRepository;
 import exception.CategoriaNoEncontradaException;
-import exception.ProductoNoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -28,7 +23,9 @@ public class CategoriaService {
         Categoria categoria = new Categoria();
         categoria.setNombre(categoriaInDto.getNombre());
         categoria.setDescripcion(categoriaInDto.getDescripcion());
-        categoria.setFechaCreacion(categoriaInDto.getFechaCreacion());
+
+        categoria.setFechaCreacion(LocalDate.now());
+
         categoria.setActivo(categoriaInDto.isActivo());
         categoria.setTasaComision(categoriaInDto.getTasaComision());
 
@@ -53,15 +50,14 @@ public class CategoriaService {
     }
 
     // --- PUT / modificar
-    public CategoriaOutDto modificar(long id, CategoriaInDto categoriaInDto) throws CategoriaNoEncontradaException {
+    public CategoriaOutDto modificar(long id, CategoriaUpdateDto categoriaUpdateDto) throws CategoriaNoEncontradaException {
         Categoria categoriaAnterior = categoriaRepository.findById(id)
                 .orElseThrow(CategoriaNoEncontradaException::new);
 
-        categoriaAnterior.setNombre(categoriaInDto.getNombre());
-        categoriaAnterior.setDescripcion(categoriaInDto.getDescripcion());
-        categoriaAnterior.setFechaCreacion(categoriaInDto.getFechaCreacion());
-        categoriaAnterior.setActivo(categoriaInDto.isActivo());
-        categoriaAnterior.setTasaComision(categoriaInDto.getTasaComision());
+        categoriaAnterior.setNombre(categoriaUpdateDto.getNombre());
+        categoriaAnterior.setDescripcion(categoriaUpdateDto.getDescripcion());
+        categoriaAnterior.setActivo(categoriaUpdateDto.isActivo());
+        categoriaAnterior.setTasaComision(categoriaUpdateDto.getTasaComision());
 
         Categoria actualizada = categoriaRepository.save(categoriaAnterior);
         return mapToOutDto(actualizada);

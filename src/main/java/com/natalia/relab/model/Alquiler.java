@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -17,9 +17,9 @@ public class Alquiler {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date fechaInicio;
+    private LocalDate fechaInicio;
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date fechaFin; // Me ayudará para saber si un producto está disponible o no de forma más sencilla.
+    private LocalDate fechaFin; // Me ayudará para saber si un producto está disponible o no de forma más sencilla.
     private int meses;
     private float precio;
     private String comentario;

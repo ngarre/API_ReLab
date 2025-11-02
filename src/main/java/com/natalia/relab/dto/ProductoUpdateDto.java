@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -13,7 +12,7 @@ public class ProductoUpdateDto {
     private String nombre;
     private String descripcion;
     private float precio;
-    private Date fechaActualizacion;
+//    private LocalDate fechaActualizacion;
     private boolean activo;
     private long categoriaId;
 }
