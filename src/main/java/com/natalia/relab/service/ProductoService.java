@@ -85,7 +85,7 @@ public class ProductoService {
         productoAnterior.setNombre(productoUpdateDto.getNombre());
         productoAnterior.setDescripcion(productoUpdateDto.getDescripcion());
         productoAnterior.setPrecio(productoUpdateDto.getPrecio());
-//        productoAnterior.setFechaActualizacion(productoUpdateDto.getFechaActualizacion());
+        productoAnterior.setFechaActualizacion(LocalDate.now()); // La cojo cada vez que se realizan modificaciones sobre el producto
         productoAnterior.setActivo(productoUpdateDto.isActivo());
         productoAnterior.setCategoria(categoria);
         // El campo UsuarioId no quiero que se pueda modificar
