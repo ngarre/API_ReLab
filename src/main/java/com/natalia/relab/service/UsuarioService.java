@@ -78,9 +78,17 @@ public class UsuarioService {
         return mapToOutDto(usuario);
     }
 
-    // --- GET con FILTRADO por tipo de Usuario
+    // --- GET con FILTRADO por Tipo de Usuario
     public List<UsuarioOutDto> buscarPorTipoUsuario(String tipoUsuario) {
         return usuarioRepository.findByTipoUsuario(tipoUsuario)
+                .stream()
+                .map(this::mapToOutDto)
+                .toList();
+    }
+
+    // --- GET con FILTRADO por Cuenta Activa
+    public List<UsuarioOutDto> filtrarPorCuentaActiva(boolean cuentaActiva) {
+        return usuarioRepository.findByCuentaActiva(cuentaActiva)
                 .stream()
                 .map(this::mapToOutDto)
                 .toList();
