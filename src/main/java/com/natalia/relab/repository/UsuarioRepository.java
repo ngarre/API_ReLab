@@ -12,4 +12,5 @@ public interface UsuarioRepository extends CrudRepository<Usuario,Long> {
 
     List<Usuario> findAll();
     Optional<Usuario> findByNickname(String nickname);
+    Optional<Usuario> findByNicknameAndPassword(String nickname, String password);
 }

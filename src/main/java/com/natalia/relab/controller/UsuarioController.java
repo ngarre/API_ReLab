@@ -23,20 +23,25 @@ public class UsuarioController {
 
     @GetMapping("/usuarios")
     public ResponseEntity<?> listarTodos(
-            @RequestParam(value = "nickname", required = false) String nickname)
+            @RequestParam(value = "nickname", required = false) String nickname,
+            @RequestParam(value = "password", required = false) String password)
             throws UsuarioNoEncontradoException {
 
+        // Login: nickname + password
+        if (nickname != null && !nickname.isEmpty() && password != null && !password.isEmpty()) {
+            UsuarioOutDto usuario = usuarioService.login(nickname, password);
+            return ResponseEntity.ok(usuario);
+        }
+
+        // Filtrado solo por nickname
         if (nickname != null && !nickname.isEmpty()) {
             UsuarioOutDto usuario = usuarioService.buscarPorNickname(nickname);
-            if (usuario != null) {
-                return ResponseEntity.ok(usuario);
-            } else {
-                return ResponseEntity.notFound().build(); // Genera una respuesta HTTP 404
-            }
-        } else {
-            List<UsuarioOutDto> todosUsuarios = usuarioService.listarTodos();
-            return ResponseEntity.ok(todosUsuarios); // Devuelve un 200 OK con la respuesta del usuario
+            return ResponseEntity.ok(usuario);
         }
+
+        // Todos los usuarios
+        List<UsuarioOutDto> todosUsuarios = usuarioService.listarTodos();
+        return ResponseEntity.ok(todosUsuarios);
     }
 
 

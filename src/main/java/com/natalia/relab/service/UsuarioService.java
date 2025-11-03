@@ -71,6 +71,13 @@ public class UsuarioService {
         return mapToOutDto(usuario);
     }
 
+    // --- GET con FILTRADO por nickname y password para LOGIN ReLab
+    public UsuarioOutDto login(String nickname, String password) throws UsuarioNoEncontradoException {
+        Usuario usuario = usuarioRepository.findByNicknameAndPassword(nickname, password)
+                .orElseThrow(UsuarioNoEncontradoException::new);
+        return mapToOutDto(usuario);
+    }
+
     // --- PUT / modificar
     public UsuarioOutDto modificar(long id, UsuarioUpdateDto usuarioUpdateDto) throws UsuarioNoEncontradoException {
         Usuario usuarioAnterior = usuarioRepository.findById(id) //Tal y como estaba en la BBDD
