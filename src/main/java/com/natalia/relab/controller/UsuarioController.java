@@ -24,7 +24,8 @@ public class UsuarioController {
     @GetMapping("/usuarios")
     public ResponseEntity<?> listarTodos(
             @RequestParam(value = "nickname", required = false) String nickname,
-            @RequestParam(value = "password", required = false) String password)
+            @RequestParam(value = "password", required = false) String password,
+            @RequestParam(value = "tipoUsuario", required = false) String tipoUsuario)
             throws UsuarioNoEncontradoException {
 
         // Login: nickname + password
@@ -37,6 +38,12 @@ public class UsuarioController {
         if (nickname != null && !nickname.isEmpty()) {
             UsuarioOutDto usuario = usuarioService.buscarPorNickname(nickname);
             return ResponseEntity.ok(usuario);
+        }
+
+        // Filtrado solo por tipoUsuario
+        if (tipoUsuario != null && !tipoUsuario.isEmpty()) {
+            List<UsuarioOutDto> usuarios = usuarioService.buscarPorTipoUsuario(tipoUsuario);
+            return ResponseEntity.ok(usuarios);
         }
 
         // Todos los usuarios

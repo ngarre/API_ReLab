@@ -11,6 +11,7 @@ import java.util.Optional;
 public interface UsuarioRepository extends CrudRepository<Usuario,Long> {
 
     List<Usuario> findAll();
-    Optional<Usuario> findByNickname(String nickname);
+    Optional<Usuario> findByNickname(String nickname); // Se pone Optional porque puede existir un usuario con ese nickname o ninguno
     Optional<Usuario> findByNicknameAndPassword(String nickname, String password);
+    List<Usuario> findByTipoUsuario(String tipoUsuario);
 }

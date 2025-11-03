@@ -78,6 +78,14 @@ public class UsuarioService {
         return mapToOutDto(usuario);
     }
 
+    // --- GET con FILTRADO por tipo de Usuario
+    public List<UsuarioOutDto> buscarPorTipoUsuario(String tipoUsuario) {
+        return usuarioRepository.findByTipoUsuario(tipoUsuario)
+                .stream()
+                .map(this::mapToOutDto)
+                .toList();
+    }
+
     // --- PUT / modificar
     public UsuarioOutDto modificar(long id, UsuarioUpdateDto usuarioUpdateDto) throws UsuarioNoEncontradoException {
         Usuario usuarioAnterior = usuarioRepository.findById(id) //Tal y como estaba en la BBDD
