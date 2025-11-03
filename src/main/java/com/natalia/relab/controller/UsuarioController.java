@@ -25,7 +25,8 @@ public class UsuarioController {
     public ResponseEntity<?> listarTodos(
             @RequestParam(value = "nickname", required = false) String nickname,
             @RequestParam(value = "password", required = false) String password,
-            @RequestParam(value = "tipoUsuario", required = false) String tipoUsuario)
+            @RequestParam(value = "tipoUsuario", required = false) String tipoUsuario,
+            @RequestParam(value = "cuentaActiva", required = false) Boolean cuentaActiva)
             throws UsuarioNoEncontradoException {
 
         // Login: nickname + password
@@ -43,6 +44,12 @@ public class UsuarioController {
         // Filtrado solo por tipoUsuario
         if (tipoUsuario != null && !tipoUsuario.isEmpty()) {
             List<UsuarioOutDto> usuarios = usuarioService.buscarPorTipoUsuario(tipoUsuario);
+            return ResponseEntity.ok(usuarios);
+        }
+
+        // Filtrado por cuentaActiva
+        if  (cuentaActiva != null) {
+            List<UsuarioOutDto> usuarios = usuarioService.filtrarPorCuentaActiva(cuentaActiva);
             return ResponseEntity.ok(usuarios);
         }
 

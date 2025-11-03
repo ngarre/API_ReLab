@@ -14,4 +14,5 @@ public interface UsuarioRepository extends CrudRepository<Usuario,Long> {
     Optional<Usuario> findByNickname(String nickname); // Se pone Optional porque puede existir un usuario con ese nickname o ninguno
     Optional<Usuario> findByNicknameAndPassword(String nickname, String password);
     List<Usuario> findByTipoUsuario(String tipoUsuario);
+    List<Usuario> findByCuentaActiva(boolean cuentaActiva);
 }
