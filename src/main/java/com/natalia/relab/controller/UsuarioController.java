@@ -22,10 +22,23 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @GetMapping("/usuarios")
-    public ResponseEntity<List<UsuarioOutDto>> listarTodos() {
-        List<UsuarioOutDto> todosUsuarios = usuarioService.listarTodos();
-        return ResponseEntity.ok(todosUsuarios);
+    public ResponseEntity<?> listarTodos(
+            @RequestParam(value = "nickname", required = false) String nickname)
+            throws UsuarioNoEncontradoException {
+
+        if (nickname != null && !nickname.isEmpty()) {
+            UsuarioOutDto usuario = usuarioService.buscarPorNickname(nickname);
+            if (usuario != null) {
+                return ResponseEntity.ok(usuario);
+            } else {
+                return ResponseEntity.notFound().build(); // Genera una respuesta HTTP 404
+            }
+        } else {
+            List<UsuarioOutDto> todosUsuarios = usuarioService.listarTodos();
+            return ResponseEntity.ok(todosUsuarios); // Devuelve un 200 OK con la respuesta del usuario
+        }
     }
+
 
     @GetMapping("/usuarios/{id}")
     public ResponseEntity<UsuarioOutDto> ListarPorId(@PathVariable long id) throws UsuarioNoEncontradoException {
@@ -35,8 +48,8 @@ public class UsuarioController {
 
     @PostMapping("/usuarios")
     public ResponseEntity<UsuarioOutDto> agregarUsuario(@RequestBody UsuarioInDto usuarioInDto) {
-       UsuarioOutDto nuevoUsuario = usuarioService.agregar(usuarioInDto);
-       return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);
+        UsuarioOutDto nuevoUsuario = usuarioService.agregar(usuarioInDto);
+        return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);
     }
 
     @PutMapping("/usuarios/{id}")
@@ -58,3 +71,5 @@ public class UsuarioController {
     }
 
 }
+
+
