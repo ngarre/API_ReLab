@@ -26,7 +26,7 @@ public class CategoriaService {
 
         categoria.setFechaCreacion(LocalDate.now());
 
-        categoria.setActivo(categoriaInDto.isActivo());
+        categoria.setActiva(categoriaInDto.isActiva());
         categoria.setTasaComision(categoriaInDto.getTasaComision());
 
         Categoria guardada  = categoriaRepository.save(categoria);
@@ -49,6 +49,36 @@ public class CategoriaService {
         return mapToOutDto(categoria);
     }
 
+    // --- GET con FILTRADO por nombre
+    public CategoriaOutDto buscarPorNombre(String nombre) throws CategoriaNoEncontradaException {
+        Categoria categoria = categoriaRepository.findByNombre(nombre)
+                .orElseThrow(CategoriaNoEncontradaException::new);
+        return mapToOutDto(categoria);
+    }
+
+    // --- GET con FILTRADO según si la categoría está activa o no
+    public List<CategoriaOutDto> buscarActivos(boolean activa) {
+        return categoriaRepository.findByActiva(activa)
+                .stream()
+                .map(this::mapToOutDto)
+                .toList();
+    }
+
+    // -- GET con FILTRADO por fecha de creación EXACTA o RANGO
+    public List<CategoriaOutDto> buscarPorFecha(LocalDate fechaCreacion, LocalDate desde, LocalDate hasta) {
+        List<Categoria> lista;
+        if (fechaCreacion != null) {
+            lista = categoriaRepository.findByFechaCreacion(fechaCreacion);
+        } else if (desde != null && hasta != null) {
+            lista = categoriaRepository.findByFechaCreacionBetween(desde, hasta);
+        } else if (desde != null){
+            lista = categoriaRepository.findByFechaCreacionBetween(desde, LocalDate.now());
+        } else {
+            return listarTodas(); // Si no me dan parámetros de fecha listo todas las categorias.
+        }
+        return lista.stream().map(this::mapToOutDto).toList();
+    }
+
     // --- PUT / modificar
     public CategoriaOutDto modificar(long id, CategoriaUpdateDto categoriaUpdateDto) throws CategoriaNoEncontradaException {
         Categoria categoriaAnterior = categoriaRepository.findById(id)
@@ -56,7 +86,7 @@ public class CategoriaService {
 
         categoriaAnterior.setNombre(categoriaUpdateDto.getNombre());
         categoriaAnterior.setDescripcion(categoriaUpdateDto.getDescripcion());
-        categoriaAnterior.setActivo(categoriaUpdateDto.isActivo());
+        categoriaAnterior.setActiva(categoriaUpdateDto.isActiva());
         categoriaAnterior.setTasaComision(categoriaUpdateDto.getTasaComision());
 
         Categoria actualizada = categoriaRepository.save(categoriaAnterior);
@@ -79,7 +109,7 @@ public class CategoriaService {
                 categoria.getNombre(),
                 categoria.getDescripcion(),
                 categoria.getFechaCreacion(),
-                categoria.isActivo(),
+                categoria.isActiva(),
                 categoria.getTasaComision()
         );
 

@@ -26,7 +26,7 @@ public class Categoria {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaCreacion;
     @Column
-    private boolean activo;
+    private boolean activa;
     @Column(name = "tasa_comision")
     private float tasaComision; // Habrá que validar que esté entre 0 y 1
 
