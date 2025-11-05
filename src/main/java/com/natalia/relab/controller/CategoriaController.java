@@ -11,10 +11,12 @@ import exception.CategoriaNoEncontradaException;
 import exception.ErrorResponse;
 import exception.ProductoNoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -24,9 +26,37 @@ public class CategoriaController {
     CategoriaService categoriaService;
 
     @GetMapping("/categorias")
-    public ResponseEntity<List<CategoriaOutDto>> listarTodas() {
-        List<CategoriaOutDto> todasCategorias = categoriaService.listarTodas();
-        return ResponseEntity.ok(todasCategorias);
+    public ResponseEntity<?> listarTodas(
+            @RequestParam(value = "nombre", required = false) String nombre,
+            @RequestParam(value = "activa", required = false) Boolean activa,
+            // @DateTimeFormat indica a Spring cómo parsear fechas desde la URL
+            // ISO.DATE obliga al formato estándar yyyy-MM-dd
+            @RequestParam(value = "fechaCreacion", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaCreacion,
+            @RequestParam(value = "desde", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate desde,
+            @RequestParam(value = "hasta", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate hasta)
+            throws CategoriaNoEncontradaException {
+
+            // Filtrado por nombre
+            if (nombre != null && !nombre.isEmpty()) {
+                CategoriaOutDto categoria = categoriaService.buscarPorNombre(nombre);
+                return ResponseEntity.ok(categoria);
+            }
+
+            // Filtrado por activo
+            if (activa!= null) {
+                List<CategoriaOutDto> categorias = categoriaService.buscarActivos(activa);
+                return ResponseEntity.ok(categorias);
+            }
+
+            // Filtrado por fecha exacta o rango ("Desde-hasta" o "desde-hasta fecha actual")
+                if (fechaCreacion != null || desde != null || hasta != null) {
+                List<CategoriaOutDto> categorias = categoriaService.buscarPorFecha(fechaCreacion, desde, hasta);
+                return ResponseEntity.ok(categorias);
+            }
+
+            // Todas las categorias
+            List<CategoriaOutDto> todasCategorias = categoriaService.listarTodas();
+            return ResponseEntity.ok(todasCategorias);
     }
 
     @GetMapping("/categorias/{id}")

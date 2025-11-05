@@ -14,6 +14,6 @@ public class CategoriaInDto {
     private String descripcion;
 //    @JsonFormat(pattern = "yyyy-MM-dd")
 //    private LocalDate fechaCreacion;
-    private boolean activo;
+    private boolean activa;
     private float tasaComision;
 }

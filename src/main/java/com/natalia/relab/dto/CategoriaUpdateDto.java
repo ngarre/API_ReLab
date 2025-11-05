@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class CategoriaUpdateDto {
     private String nombre;
     private String descripcion;
-    private boolean activo;
+    private boolean activa;
     private float tasaComision;
 }
