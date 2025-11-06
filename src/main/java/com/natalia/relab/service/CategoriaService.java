@@ -50,10 +50,11 @@ public class CategoriaService {
     }
 
     // --- GET con FILTRADO por nombre
-    public CategoriaOutDto buscarPorNombre(String nombre) throws CategoriaNoEncontradaException {
-        Categoria categoria = categoriaRepository.findByNombre(nombre)
-                .orElseThrow(CategoriaNoEncontradaException::new);
-        return mapToOutDto(categoria);
+    public List<CategoriaOutDto> buscarPorNombreParcial(String nombre)  {
+        return categoriaRepository.findByNombreContainingIgnoreCase(nombre)
+                .stream()
+                .map(this::mapToOutDto)
+                .toList();
     }
 
     // --- GET con FILTRADO según si la categoría está activa o no
