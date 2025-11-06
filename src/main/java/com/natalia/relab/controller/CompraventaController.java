@@ -4,6 +4,8 @@ import com.natalia.relab.dto.CompraventaInDto;
 import com.natalia.relab.dto.CompraventaOutDto;
 import com.natalia.relab.dto.CompraventaUpdateDto;
 import com.natalia.relab.service.CompraventaService;
+import com.natalia.relab.service.ProductoService;
+import com.natalia.relab.service.UsuarioService;
 import exception.CompraventaNoEncontradaException;
 import exception.ErrorResponse;
 import exception.ProductoNoEncontradoException;
@@ -20,9 +22,42 @@ public class CompraventaController {
 
     @Autowired
     private CompraventaService compraventaService;
+    @Autowired
+    private UsuarioService usuarioService;
+    @Autowired
+    private ProductoService productoService;
 
     @GetMapping("/compraventas")
-    public ResponseEntity<List<CompraventaOutDto>> verTodas() {
+    public ResponseEntity<List<CompraventaOutDto>> verTodas(
+            @RequestParam(value="compradorId", required = false) Long compradorId,
+            @RequestParam(value="vendedorId", required = false) Long vendedorId,
+            @RequestParam(value="productoId", required = false) Long productoId)
+        throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
+
+        if (compradorId !=null){
+            // Se verifica que el usuario comprador exista
+            usuarioService.buscarPorId(compradorId);
+
+            List<CompraventaOutDto> compraventas = compraventaService.buscarPorCompradorId(compradorId);
+            return ResponseEntity.ok(compraventas);
+        }
+
+        if (vendedorId !=null){
+            // Se verifica que el usuario vendedor exista
+            usuarioService.buscarPorId(vendedorId);
+
+            List<CompraventaOutDto> compraventas = compraventaService.buscarPorVendedorId(vendedorId);
+            return ResponseEntity.ok(compraventas);
+        }
+
+        if (productoId !=null){
+            // Se verifica que el producto exista
+            productoService.buscarPorId(productoId);
+
+            List<CompraventaOutDto> compraventas = compraventaService.buscarPorProductoId(productoId);
+            return ResponseEntity.ok(compraventas);
+        }
+
         List<CompraventaOutDto> todasCompraventas = compraventaService.listarTodas();
         return ResponseEntity.ok(todasCompraventas);
     }
@@ -61,6 +96,18 @@ public class CompraventaController {
     @ExceptionHandler(CompraventaNoEncontradaException.class)
     public ResponseEntity<ErrorResponse> handleExcpetion(CompraventaNoEncontradaException ex) {
         ErrorResponse errorResponse = new ErrorResponse(404, "no-encontrado", "El registro de compraventa no existe");
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(UsuarioNoEncontradoException.class)
+    public ResponseEntity<ErrorResponse> handleExcpetion(UsuarioNoEncontradoException uex) {
+        ErrorResponse errorResponse = new ErrorResponse(404, "no-encontrado", "El usuario no existe");
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ProductoNoEncontradoException.class)
+    public ResponseEntity<ErrorResponse> handleExcpetion(ProductoNoEncontradoException pex) {
+        ErrorResponse errorResponse = new ErrorResponse(404, "no-encontrado", "El producto no existe");
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
