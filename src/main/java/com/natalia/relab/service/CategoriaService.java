@@ -57,7 +57,7 @@ public class CategoriaService {
     }
 
     // --- GET con FILTRADO según si la categoría está activa o no
-    public List<CategoriaOutDto> buscarActivos(boolean activa) {
+    public List<CategoriaOutDto> buscarActivas(boolean activa) {
         return categoriaRepository.findByActiva(activa)
                 .stream()
                 .map(this::mapToOutDto)

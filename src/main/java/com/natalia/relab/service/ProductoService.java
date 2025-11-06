@@ -72,6 +72,29 @@ public class ProductoService {
         return mapToOutDto(producto);
     }
 
+    // --- GET con FILTRADO por nombre (coincidencias parciales y sin tener en cuenta mayúsculas y minúsculas)
+    public List<ProductoOutDto> buscarPorNombreParcial(String nombre) {
+        return productoRepository.findByNombreContainingIgnoreCase(nombre)
+                .stream()
+                .map(this::mapToOutDto)
+                .toList();
+    }
+
+    // --- GET con FILTRADO según si el producto está activo o no
+    public List<ProductoOutDto> buscarActivos (boolean activo) {
+        return productoRepository.findByActivo(activo)
+                .stream()
+                .map(this::mapToOutDto)
+                .toList();
+    }
+
+    // --- GET con FILTRADO según la categoría a la que pertenezca el producto (filtrado por id de la categoría)
+    public List<ProductoOutDto> buscarPorCategoriaId(Long categoriaId) {
+        return productoRepository.findByCategoriaId(categoriaId)
+                .stream()
+                .map(this::mapToOutDto)
+                .toList();
+    }
 
     // --- PUT / modificar
     public ProductoOutDto modificar(long id, ProductoUpdateDto productoUpdateDto) throws ProductoNoEncontradoException, CategoriaNoEncontradaException {

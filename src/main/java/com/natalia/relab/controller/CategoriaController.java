@@ -44,7 +44,7 @@ public class CategoriaController {
 
             // Filtrado por activo
             if (activa!= null) {
-                List<CategoriaOutDto> categorias = categoriaService.buscarActivos(activa);
+                List<CategoriaOutDto> categorias = categoriaService.buscarActivas(activa);
                 return ResponseEntity.ok(categorias);
             }
 
