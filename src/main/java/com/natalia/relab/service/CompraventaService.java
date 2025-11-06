@@ -72,6 +72,29 @@ public class CompraventaService {
         return mapToOutDto(compraventa);
     }
 
+    // --- GET con FILTRADO por CompradorId
+    public List<CompraventaOutDto> buscarPorCompradorId(Long compradorId) {
+        return compraventaRepository.findByCompradorId(compradorId)
+                .stream()
+                .map(this::mapToOutDto)
+                .toList();
+    }
+
+    // --- GET con FILTRADO por VendedorId
+    public List<CompraventaOutDto> buscarPorVendedorId(Long vendedorId) {
+        return compraventaRepository.findByVendedorId(vendedorId)
+                .stream()
+                .map(this::mapToOutDto)
+                .toList();
+    }
+
+    // --- GET con FILTRADO por ProductoId
+    public List<CompraventaOutDto> buscarPorProductoId(Long productoId) {
+        return compraventaRepository.findByProductoId(productoId)
+                .stream()
+                .map(this::mapToOutDto)
+                .toList();
+    }
 
     // --- PUT / modificar
     public CompraventaOutDto modificar(long id, CompraventaUpdateDto compraventaUpdateDto) throws CompraventaNoEncontradaException {

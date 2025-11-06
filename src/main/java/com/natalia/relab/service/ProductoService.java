@@ -88,7 +88,7 @@ public class ProductoService {
                 .toList();
     }
 
-    // --- GET con FILTRADO según la categoría a la que pertenezca el producto (filtrado por id de la categoría)
+    // --- GET con FILTRADO según la categoría a la que pertenezca el producto (filtrado por categoriaId)
     public List<ProductoOutDto> buscarPorCategoriaId(Long categoriaId) {
         return productoRepository.findByCategoriaId(categoriaId)
                 .stream()

@@ -9,4 +9,7 @@ import java.util.List;
 @Repository
 public interface CompraventaRepository extends CrudRepository<Compraventa, Long> {
     List<Compraventa> findAll();
+    List<Compraventa> findByCompradorId(Long id);
+    List<Compraventa> findByVendedorId(Long id);
+    List<Compraventa> findByProductoId(Long id);
 }
