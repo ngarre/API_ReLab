@@ -24,9 +24,38 @@ public class ProductoController {
 
     @Autowired
     private ProductoService productoService;
+    @Autowired
+    private CategoriaService categoriaService;
 
     @GetMapping("/productos")
-    public ResponseEntity<List<ProductoOutDto>> listarTodos() {
+    public ResponseEntity<?> listarTodos(
+            @RequestParam(value="nombre", required = false) String nombre,
+            @RequestParam(value = "activo", required = false) Boolean activo,
+            @RequestParam(value = "categoriaId", required = false) Long categoriaId)
+            throws CategoriaNoEncontradaException{
+
+        // Filtrado por nombre --> Coincidencias parciales y sin distinguir mayúsculas y minúsculas
+        if (nombre != null && !nombre.isEmpty()) {
+            List<ProductoOutDto> productos = productoService.buscarPorNombreParcial(nombre);
+            return ResponseEntity.ok(productos);
+        }
+
+        // Filtrado por activo
+        if (activo != null) {
+            List<ProductoOutDto> productos = productoService.buscarActivos(activo);
+            return ResponseEntity.ok(productos);
+        }
+
+        // Filtrado por categoría (id de la categoría a la que pertenece el producto)
+        if (categoriaId != null) {
+            // Se verifica que la categoría exista
+            categoriaService.buscarPorId(categoriaId); // Esto lanza la excepción de Categoría no Encontrada si no existe.
+
+            List<ProductoOutDto> productos = productoService.buscarPorCategoriaId(categoriaId);
+            return ResponseEntity.ok(productos);
+        }
+
+        // Todos los productos
         List<ProductoOutDto> todosProductos = productoService.listarTodos();
         return ResponseEntity.ok(todosProductos);
     }
@@ -60,6 +89,12 @@ public class ProductoController {
     @ExceptionHandler(ProductoNoEncontradoException.class)
     public ResponseEntity<ErrorResponse> handleExcpetion(ProductoNoEncontradoException ex) {
         ErrorResponse errorResponse = new ErrorResponse(404, "no-encontrado", "El producto no existe");
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(CategoriaNoEncontradaException.class)
+    public ResponseEntity<ErrorResponse> handleExcpetion(CategoriaNoEncontradaException cex) {
+        ErrorResponse errorResponse = new ErrorResponse(404, "no-encontrada", "La categoría no existe");
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 }
