@@ -36,10 +36,10 @@ public class CategoriaController {
             @RequestParam(value = "hasta", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate hasta)
             throws CategoriaNoEncontradaException {
 
-            // Filtrado por nombre
+            // Filtrado por nombre --> Coincidencias parciales y sin distinguir mayúsculas y minúsculas
             if (nombre != null && !nombre.isEmpty()) {
-                CategoriaOutDto categoria = categoriaService.buscarPorNombre(nombre);
-                return ResponseEntity.ok(categoria);
+                List<CategoriaOutDto> categorias = categoriaService.buscarPorNombreParcial(nombre);
+                return ResponseEntity.ok(categorias);
             }
 
             // Filtrado por activo

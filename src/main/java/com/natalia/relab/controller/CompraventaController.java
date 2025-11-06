@@ -28,11 +28,11 @@ public class CompraventaController {
     private ProductoService productoService;
 
     @GetMapping("/compraventas")
-    public ResponseEntity<List<CompraventaOutDto>> verTodas(
+    public ResponseEntity<?> verTodas(
             @RequestParam(value="compradorId", required = false) Long compradorId,
             @RequestParam(value="vendedorId", required = false) Long vendedorId,
             @RequestParam(value="productoId", required = false) Long productoId)
-        throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
+        throws UsuarioNoEncontradoException, ProductoNoEncontradoException, CompraventaNoEncontradaException {
 
         if (compradorId !=null){
             // Se verifica que el usuario comprador exista
@@ -54,8 +54,8 @@ public class CompraventaController {
             // Se verifica que el producto exista
             productoService.buscarPorId(productoId);
 
-            List<CompraventaOutDto> compraventas = compraventaService.buscarPorProductoId(productoId);
-            return ResponseEntity.ok(compraventas);
+            CompraventaOutDto compraventa = compraventaService.buscarPorProductoId(productoId);
+            return ResponseEntity.ok(compraventa);
         }
 
         List<CompraventaOutDto> todasCompraventas = compraventaService.listarTodas();

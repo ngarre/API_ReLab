@@ -88,12 +88,11 @@ public class CompraventaService {
                 .toList();
     }
 
-    // --- GET con FILTRADO por ProductoId
-    public List<CompraventaOutDto> buscarPorProductoId(Long productoId) {
-        return compraventaRepository.findByProductoId(productoId)
-                .stream()
-                .map(this::mapToOutDto)
-                .toList();
+    // --- GET con FILTRADO por ProductoId --> Solo una compraventa por producto
+    public CompraventaOutDto buscarPorProductoId(Long productoId) throws CompraventaNoEncontradaException {
+        Compraventa compraventa = compraventaRepository.findByProductoId(productoId)
+                .orElseThrow(CompraventaNoEncontradaException::new);
+        return mapToOutDto(compraventa);
     }
 
     // --- PUT / modificar
