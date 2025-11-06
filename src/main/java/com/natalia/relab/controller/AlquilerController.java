@@ -2,6 +2,8 @@ package com.natalia.relab.controller;
 
 import com.natalia.relab.dto.*;
 import com.natalia.relab.service.AlquilerService;
+import com.natalia.relab.service.ProductoService;
+import com.natalia.relab.service.UsuarioService;
 import exception.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,9 +17,43 @@ public class AlquilerController {
 
     @Autowired
     private AlquilerService alquilerService;
+    @Autowired
+    private UsuarioService usuarioService;
+    @Autowired
+    private ProductoService productoService;
 
     @GetMapping("/alquileres")
-    public ResponseEntity<List<AlquilerOutDto>> verTodos(){
+    public ResponseEntity<List<AlquilerOutDto>> verTodos(
+            @RequestParam(value="arrendadorId", required = false) Long arrendadorId,
+            @RequestParam(value="arrendatarioId", required = false) Long arrendatarioId,
+            @RequestParam(value="productoId", required = false) Long productoId)
+            throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
+
+        if (arrendadorId !=null){
+            // Se verifica que el usuario arrendador exista
+            usuarioService.buscarPorId(arrendadorId);
+
+            List<AlquilerOutDto> alquileres = alquilerService.buscarPorArrendadorId(arrendadorId);
+            return ResponseEntity.ok(alquileres);
+        }
+
+        if (arrendatarioId !=null){
+            // Se verifica que el usuario arrendatario exista
+            usuarioService.buscarPorId(arrendatarioId);
+
+            List<AlquilerOutDto> alquileres = alquilerService.buscarPorArrendatarioId(arrendatarioId);
+            return ResponseEntity.ok(alquileres);
+        }
+
+        if (productoId !=null){
+            // Se verifica que el producto exista
+            productoService.buscarPorId(productoId);
+
+            List<AlquilerOutDto> alquileres = alquilerService.buscarPorProductoId(productoId);
+            return ResponseEntity.ok(alquileres);
+        }
+
+
         List<AlquilerOutDto> todosAlquileres = alquilerService.listarTodos();
         return ResponseEntity.ok(todosAlquileres);
     }
@@ -55,6 +91,18 @@ public class AlquilerController {
     @ExceptionHandler(AlquilerNoEncontradoException.class)
     public ResponseEntity<ErrorResponse> handleExcpetion(AlquilerNoEncontradoException ex) {
         ErrorResponse errorResponse = new ErrorResponse(404, "no-encontrado", "El registro de alquiler no existe");
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(UsuarioNoEncontradoException.class)
+    public ResponseEntity<ErrorResponse> handleExcpetion(UsuarioNoEncontradoException uex) {
+        ErrorResponse errorResponse = new ErrorResponse(404, "no-encontrado", "El usuario no existe");
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ProductoNoEncontradoException.class)
+    public ResponseEntity<ErrorResponse> handleExcpetion(ProductoNoEncontradoException pex) {
+        ErrorResponse errorResponse = new ErrorResponse(404, "no-encontrado", "El producto no existe");
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 }
