@@ -86,15 +86,20 @@ public class ProductoController {
         return ResponseEntity.noContent().build();
     }
 
+
+    // --- EXCEPCIONES PERSONALIZADAS ---
+
+    // El producto no existe
     @ExceptionHandler(ProductoNoEncontradoException.class)
-    public ResponseEntity<ErrorResponse> handleExcpetion(ProductoNoEncontradoException ex) {
-        ErrorResponse errorResponse = new ErrorResponse(404, "no-encontrado", "El producto no existe");
+    public ResponseEntity<ErrorResponse> handleExcpetion(ProductoNoEncontradoException pex) {
+        ErrorResponse errorResponse = ErrorResponse.notFound("El producto no existe");
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
+    // La categoría no existe
     @ExceptionHandler(CategoriaNoEncontradaException.class)
     public ResponseEntity<ErrorResponse> handleExcpetion(CategoriaNoEncontradaException cex) {
-        ErrorResponse errorResponse = new ErrorResponse(404, "no-encontrada", "La categoría no existe");
+        ErrorResponse errorResponse = ErrorResponse.notFound("La categoría no existe");
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 }

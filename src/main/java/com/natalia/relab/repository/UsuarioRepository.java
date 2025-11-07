@@ -15,4 +15,5 @@ public interface UsuarioRepository extends CrudRepository<Usuario,Long> {
     Optional<Usuario> findByNicknameAndPassword(String nickname, String password);
     List<Usuario> findByTipoUsuario(String tipoUsuario);
     List<Usuario> findByCuentaActiva(boolean cuentaActiva);
+    boolean existsByNickname(String nickname); // Lanza consulta a la BBDD para comprabar si ya existe usuario con ese nickname
 }

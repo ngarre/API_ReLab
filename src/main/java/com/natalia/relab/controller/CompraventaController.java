@@ -93,21 +93,27 @@ public class CompraventaController {
         return ResponseEntity.noContent().build();
     }
 
+
+    // --- EXCEPCIONES PERSONALIZADAS ---
+
+    // La compraventa no existe
     @ExceptionHandler(CompraventaNoEncontradaException.class)
-    public ResponseEntity<ErrorResponse> handleExcpetion(CompraventaNoEncontradaException ex) {
-        ErrorResponse errorResponse = new ErrorResponse(404, "no-encontrado", "El registro de compraventa no existe");
+    public ResponseEntity<ErrorResponse> handleExcpetion(CompraventaNoEncontradaException cvex) {
+        ErrorResponse errorResponse = ErrorResponse.notFound("El registro de compraventa no existe");
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
+    // El usuario no existe
     @ExceptionHandler(UsuarioNoEncontradoException.class)
     public ResponseEntity<ErrorResponse> handleExcpetion(UsuarioNoEncontradoException uex) {
-        ErrorResponse errorResponse = new ErrorResponse(404, "no-encontrado", "El usuario no existe");
+        ErrorResponse errorResponse = ErrorResponse.notFound("El usuario no existe");
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
+    // El producto no existe
     @ExceptionHandler(ProductoNoEncontradoException.class)
     public ResponseEntity<ErrorResponse> handleExcpetion(ProductoNoEncontradoException pex) {
-        ErrorResponse errorResponse = new ErrorResponse(404, "no-encontrado", "El producto no existe");
+        ErrorResponse errorResponse = ErrorResponse.notFound("El producto no existe");
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 

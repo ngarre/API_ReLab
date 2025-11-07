@@ -84,9 +84,13 @@ public class CategoriaController {
         return ResponseEntity.noContent().build();
     }
 
-    @ExceptionHandler(ProductoNoEncontradoException.class)
-    public ResponseEntity<ErrorResponse> handleExcpetion(CategoriaNoEncontradaException ex) {
-        ErrorResponse errorResponse = new ErrorResponse(404, "no-encontrada", "La categoria no existe");
+
+    // --- EXCEPCIONES PERSONALIZADAS ---
+
+    // El producto no existe
+    @ExceptionHandler(CategoriaNoEncontradaException.class)
+    public ResponseEntity<ErrorResponse> handleExcpetion(CategoriaNoEncontradaException cex) {
+        ErrorResponse errorResponse = ErrorResponse.notFound("La categoria no existe");
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 

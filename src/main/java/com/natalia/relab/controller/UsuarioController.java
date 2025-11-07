@@ -7,13 +7,18 @@ import com.natalia.relab.model.Usuario;
 import com.natalia.relab.repository.UsuarioRepository;
 import com.natalia.relab.service.UsuarioService;
 import exception.ErrorResponse;
+import exception.NicknameYaExisteException;
 import exception.UsuarioNoEncontradoException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class UsuarioController {
@@ -66,13 +71,13 @@ public class UsuarioController {
     }
 
     @PostMapping("/usuarios")
-    public ResponseEntity<UsuarioOutDto> agregarUsuario(@RequestBody UsuarioInDto usuarioInDto) {
+    public ResponseEntity<UsuarioOutDto> agregarUsuario(@Valid @RequestBody UsuarioInDto usuarioInDto) {
         UsuarioOutDto nuevoUsuario = usuarioService.agregar(usuarioInDto);
         return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);
     }
 
     @PutMapping("/usuarios/{id}")
-    public ResponseEntity<UsuarioOutDto> editarUsuario(@PathVariable long id, @RequestBody UsuarioUpdateDto usuarioUpdateDto) throws UsuarioNoEncontradoException {
+    public ResponseEntity<UsuarioOutDto> editarUsuario(@Valid @PathVariable long id, @RequestBody UsuarioUpdateDto usuarioUpdateDto) throws UsuarioNoEncontradoException {
         UsuarioOutDto nuevoUsuario = usuarioService.modificar(id, usuarioUpdateDto);
         return ResponseEntity.ok(nuevoUsuario);
     }
@@ -83,12 +88,48 @@ public class UsuarioController {
         return ResponseEntity.noContent().build();
     }
 
+
+    // --- EXCEPCIONES PERSONALIZADAS ---
+
+    // El usuario no existe
     @ExceptionHandler(UsuarioNoEncontradoException.class)
-    public ResponseEntity<ErrorResponse> handleExcpetion(UsuarioNoEncontradoException ex) {
-        ErrorResponse errorResponse = new ErrorResponse(404, "no-encontrado", "El usuario no existe");
+    public ResponseEntity<ErrorResponse> handleExcpetion(UsuarioNoEncontradoException uex) {
+        ErrorResponse errorResponse = ErrorResponse.notFound("El usuario no existe");
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
+
+    // Manejo la excepción de que un nickname ya esté en uso
+    @ExceptionHandler(NicknameYaExisteException.class)
+    public ResponseEntity<ErrorResponse> handleExcpetion(NicknameYaExisteException nye) {
+        ErrorResponse errorResponse = ErrorResponse.generalError(400, "nickname-duplicado", "El nickname ya está en uso");
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+
+    // Para gestionar errores de validación en usuario (Bean Validation)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleValidationErrors(MethodArgumentNotValidException mane) {
+        // Creo un mapa donde guardaré los errores de validación.
+        // La clave será el nombre del campo (por ejemplo "email")
+        // y el valor será el mensaje de error definido en la anotación (por ejemplo "Debe tener formato de email válido").
+        Map<String, String> errors = new HashMap<>();
+
+        // Recorro todos los errores de campo capturados por la validación (@Valid).
+        // Por cada error, obtengo el nombre del campo y su mensaje de validación,
+        // y lo añado al mapa 'errors'.
+        mane.getBindingResult().getFieldErrors().forEach(error ->
+                errors.put(error.getField(), error.getDefaultMessage())
+        );
+
+        // Creo un objeto ErrorResponse con el listado de errores.
+        // El metodo 'validationError' es un constructor estático que prepara una respuesta 400 (Bad Request)
+        // con el mapa de errores de validación.
+        ErrorResponse errorResponse = ErrorResponse.validationError(errors);
+
+        // Devuelvo la respuesta con el estado HTTP 400 y el cuerpo con los detalles de los errores.
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
 }
 
 
