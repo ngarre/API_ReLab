@@ -6,6 +6,7 @@ import com.natalia.relab.dto.UsuarioOutDto;
 import com.natalia.relab.dto.UsuarioUpdateDto;
 import com.natalia.relab.model.Usuario;
 import com.natalia.relab.repository.UsuarioRepository;
+import exception.NicknameYaExisteException;
 import exception.UsuarioNoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,11 @@ public class UsuarioService {
 
     // --- POST
     public UsuarioOutDto agregar(UsuarioInDto usuarioInDto) {
+
+        // Valido que el nickname no esté en uso
+        if (usuarioRepository.existsByNickname(usuarioInDto.getNickname())) {
+            throw new NicknameYaExisteException();
+        }
 
         // Creo usuario
         Usuario usuario = new Usuario();
@@ -43,7 +49,7 @@ public class UsuarioService {
         usuario.setLongitud(usuarioInDto.getLongitud());
 
 
-
+        // Guardar y devolver DTO
         Usuario guardado = usuarioRepository.save(usuario);
         return mapToOutDto(guardado);
     }

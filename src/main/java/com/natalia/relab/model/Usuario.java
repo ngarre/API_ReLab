@@ -18,9 +18,9 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column
+    @Column(nullable = false, unique = true) // No puede existir más de un usuario con un mismo nickname.  También garantizo que el nickname no pueda ser null, incluso si nos saltamos la validación del InDTO.
     private String nickname;
-    @Column
+    @Column(nullable = false)
     private String password;
     @Column
     private String nombre;
