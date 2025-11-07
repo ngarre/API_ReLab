@@ -5,12 +5,16 @@ import com.natalia.relab.service.AlquilerService;
 import com.natalia.relab.service.ProductoService;
 import com.natalia.relab.service.UsuarioService;
 import exception.*;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class AlquilerController {
@@ -65,7 +69,7 @@ public class AlquilerController {
     }
 
     @PostMapping("/alquileres")
-    public ResponseEntity<AlquilerOutDto> agregarAlquiler(@RequestBody AlquilerInDto alquilerInDto)
+    public ResponseEntity<AlquilerOutDto> agregarAlquiler(@Valid @RequestBody AlquilerInDto alquilerInDto)
         throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
 
         AlquilerOutDto nuevoAlquiler = alquilerService.agregar(alquilerInDto);
@@ -74,6 +78,7 @@ public class AlquilerController {
 
     @PutMapping("/alquileres/{id}")
     public ResponseEntity<AlquilerOutDto> actualizarAlquiler(
+            @Valid
             @RequestBody AlquilerUpdateDto alquilerUpdateDto,
             @PathVariable long id) throws
             AlquilerNoEncontradoException {
@@ -110,5 +115,16 @@ public class AlquilerController {
     public ResponseEntity<ErrorResponse> handleExcpetion(ProductoNoEncontradoException pex) {
         ErrorResponse errorResponse = ErrorResponse.notFound("El producto no existe");
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    // Para gestionar errores de validación en alquiler
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleValidationErrors(MethodArgumentNotValidException mane) {
+        Map<String, String> errors = new HashMap<>();
+        mane.getBindingResult().getFieldErrors().forEach(error ->
+                errors.put(error.getField(), error.getDefaultMessage())
+        );
+        ErrorResponse errorResponse = ErrorResponse.validationError(errors);
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 }

@@ -27,17 +27,17 @@ public class Alquiler {
 
     // RELACIÓN CON LA TABLA PRODUCTO
     @ManyToOne //  Muchos registros de alquiler apuntan a un mismo producto.
-    @JoinColumn(name = "producto_id")
+    @JoinColumn(name = "producto_id", nullable = false)
     private Producto producto;
 
     // RELACIÓN CON LA TABLA USUARIOS - ARRENDADOR
     @ManyToOne // Un usuario puede realizar varios alquileres, pero un alquiler solo es hecho por un usuario a la vez.  Sería ManyToMany si en cada registro de alquiler aparecieran varios productos alquilados.
-    @JoinColumn(name = "arrendador_id")
+    @JoinColumn(name = "arrendador_id", nullable = false)
     private Usuario arrendador;
 
     // RELACIÓN CON LA TABLA USUARIOS - ARRENDATARIO
     @ManyToOne
-    @JoinColumn(name = "arrendatario_id")
+    @JoinColumn(name = "arrendatario_id", nullable = false)
     private Usuario arrendatario;
 
 }
