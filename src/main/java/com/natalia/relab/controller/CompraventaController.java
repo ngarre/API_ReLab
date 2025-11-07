@@ -10,12 +10,16 @@ import exception.CompraventaNoEncontradaException;
 import exception.ErrorResponse;
 import exception.ProductoNoEncontradoException;
 import exception.UsuarioNoEncontradoException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class CompraventaController {
@@ -69,7 +73,7 @@ public class CompraventaController {
     }
 
     @PostMapping("/compraventas")
-    public ResponseEntity<CompraventaOutDto> agregarCompraventa(@RequestBody CompraventaInDto compraventaInDto)
+    public ResponseEntity<CompraventaOutDto> agregarCompraventa(@Valid @RequestBody CompraventaInDto compraventaInDto)
         throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
 
         CompraventaOutDto nuevaCompraventa = compraventaService.agregar(compraventaInDto);
@@ -78,6 +82,7 @@ public class CompraventaController {
 
     @PutMapping("/compraventas/{id}")
     public ResponseEntity<CompraventaOutDto> actualizarCompraventa(
+            @Valid
             @RequestBody CompraventaUpdateDto compraventaUpdateDto,
             @PathVariable long id) throws
             CompraventaNoEncontradaException {
@@ -115,6 +120,17 @@ public class CompraventaController {
     public ResponseEntity<ErrorResponse> handleExcpetion(ProductoNoEncontradoException pex) {
         ErrorResponse errorResponse = ErrorResponse.notFound("El producto no existe");
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    // Para gestionar errores de validación en compraventa
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleValidationErrors(MethodArgumentNotValidException mane) {
+        Map<String, String> errors = new HashMap<>();
+        mane.getBindingResult().getFieldErrors().forEach(error ->
+                errors.put(error.getField(), error.getDefaultMessage())
+        );
+        ErrorResponse errorResponse = ErrorResponse.validationError(errors);
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
 }

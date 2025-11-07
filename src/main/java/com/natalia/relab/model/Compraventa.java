@@ -24,16 +24,16 @@ public class Compraventa {
 
     // RELACIÓN CON LA TABLA PRODUCTO
     @OneToOne // Cada producto puede aparecer en una única operación de compraventa
-    @JoinColumn(name = "producto_id") // FK
+    @JoinColumn(name = "producto_id", nullable = false) // FK
     private Producto producto;
 
     // RELACIÓN CON LA TABLA USUARIOS - COMPRADOR
     @ManyToOne // Un usuario puede hacer varias compras, pero una compra solo es hecha por un usuario.
-    @JoinColumn(name = "comprador_id")
+    @JoinColumn(name = "comprador_id", nullable = false)
     private Usuario comprador;
 
     // RELACIÓN CON LA TABLA USUARIOS - VENDEDOR
     @ManyToOne // Un usuario puede hacer varias ventas, pero una venta solo es hecha por un usuario
-    @JoinColumn(name = "vendedor_id")
+    @JoinColumn(name = "vendedor_id", nullable = false)
     private Usuario vendedor;
 }
