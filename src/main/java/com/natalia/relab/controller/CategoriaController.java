@@ -7,17 +7,19 @@ import com.natalia.relab.dto.CategoriaUpdateDto;
 import com.natalia.relab.model.Categoria;
 import com.natalia.relab.model.Producto;
 import com.natalia.relab.service.CategoriaService;
-import exception.CategoriaNoEncontradaException;
-import exception.ErrorResponse;
-import exception.ProductoNoEncontradoException;
+import exception.*;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class CategoriaController {
@@ -67,13 +69,13 @@ public class CategoriaController {
     }
 
     @PostMapping("/categorias")
-    public ResponseEntity<CategoriaOutDto> agregarCategorias(@RequestBody CategoriaInDto categoriaInDto) {
+    public ResponseEntity<CategoriaOutDto> agregarCategorias(@Valid @RequestBody CategoriaInDto categoriaInDto) {
         CategoriaOutDto nuevaCategoria = categoriaService.agregar(categoriaInDto);
         return new ResponseEntity<>(nuevaCategoria, HttpStatus.CREATED);
     }
 
     @PutMapping("/categorias/{id}")
-    public ResponseEntity<CategoriaOutDto> actualizarCategoria(@RequestBody CategoriaUpdateDto categoriaUpdateDto, @PathVariable long id) throws CategoriaNoEncontradaException {
+    public ResponseEntity<CategoriaOutDto> actualizarCategoria(@Valid @RequestBody CategoriaUpdateDto categoriaUpdateDto, @PathVariable long id) throws CategoriaNoEncontradaException {
         CategoriaOutDto actualizada = categoriaService.modificar(id, categoriaUpdateDto);
         return ResponseEntity.ok(actualizada);
     }
@@ -87,11 +89,29 @@ public class CategoriaController {
 
     // --- EXCEPCIONES PERSONALIZADAS ---
 
-    // El producto no existe
+    // La categoría no existe
     @ExceptionHandler(CategoriaNoEncontradaException.class)
     public ResponseEntity<ErrorResponse> handleExcpetion(CategoriaNoEncontradaException cex) {
         ErrorResponse errorResponse = ErrorResponse.notFound("La categoria no existe");
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    // Manejo la excepción de que el nombre de la categoría ya esté en uso
+    @ExceptionHandler(NombreYaExisteException.class)
+    public ResponseEntity<ErrorResponse> handleExcpetion(NombreYaExisteException noye) {
+        ErrorResponse errorResponse = ErrorResponse.generalError(400, "nombre-duplicado", "El nombre ya está en uso");
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    // Para gestionar errores de validación en categoria
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleValidationErrors(MethodArgumentNotValidException mane) {
+        Map<String, String> errors = new HashMap<>();
+        mane.getBindingResult().getFieldErrors().forEach(error ->
+                errors.put(error.getField(), error.getDefaultMessage())
+        );
+        ErrorResponse errorResponse = ErrorResponse.validationError(errors);
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
 }

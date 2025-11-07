@@ -105,6 +105,12 @@ public class UsuarioService {
         Usuario usuarioAnterior = usuarioRepository.findById(id) //Tal y como estaba en la BBDD
                 .orElseThrow(UsuarioNoEncontradoException::new);
 
+        // Verifico si el nickname del nuevo está en uso por OTRO usuario
+        if (usuarioRepository.existsByNickname(usuarioUpdateDto.getNickname()) // Revisamos si el nickname ya está en la BBDD
+                && !usuarioAnterior.getNickname().equals(usuarioUpdateDto.getNickname())) { // Nos aseguramos de que quien tiene ese nickname no sea el mismo usuario que estamos modificando
+            throw new NicknameYaExisteException();
+        }
+
         // TODO usar ModelMapper para mapear atributos entre objetos
         usuarioAnterior.setNickname(usuarioUpdateDto.getNickname());
         usuarioAnterior.setPassword(usuarioUpdateDto.getPassword());

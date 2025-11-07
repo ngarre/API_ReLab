@@ -4,6 +4,8 @@ import com.natalia.relab.dto.*;
 import com.natalia.relab.model.Categoria;
 import com.natalia.relab.repository.CategoriaRepository;
 import exception.CategoriaNoEncontradaException;
+import exception.NicknameYaExisteException;
+import exception.NombreYaExisteException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,11 @@ public class CategoriaService {
 
     // --- POST
     public CategoriaOutDto agregar(CategoriaInDto categoriaInDto) {
+
+        // Valido que el nombre no esté en uso
+        if (categoriaRepository.existsByNombre(categoriaInDto.getNombre())) {
+            throw new NombreYaExisteException();
+        }
 
         // Creo categoria
         Categoria categoria = new Categoria();
@@ -84,6 +91,12 @@ public class CategoriaService {
     public CategoriaOutDto modificar(long id, CategoriaUpdateDto categoriaUpdateDto) throws CategoriaNoEncontradaException {
         Categoria categoriaAnterior = categoriaRepository.findById(id)
                 .orElseThrow(CategoriaNoEncontradaException::new);
+
+        // Verifico si el nombre de la categoría no esté en uso por OTRA categoría
+        if (categoriaRepository.existsByNombre(categoriaUpdateDto.getNombre())
+                && !categoriaAnterior.getNombre().equals(categoriaUpdateDto.getNombre())) {
+            throw new NombreYaExisteException();
+        }
 
         categoriaAnterior.setNombre(categoriaUpdateDto.getNombre());
         categoriaAnterior.setDescripcion(categoriaUpdateDto.getDescripcion());
