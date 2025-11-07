@@ -12,12 +12,16 @@ import exception.CategoriaNoEncontradaException;
 import exception.ErrorResponse;
 import exception.ProductoNoEncontradoException;
 import exception.UsuarioNoEncontradoException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class ProductoController {
@@ -67,7 +71,7 @@ public class ProductoController {
     }
 
     @PostMapping("/productos")
-    public ResponseEntity<ProductoOutDto> agregarProductos(@RequestBody ProductoInDto productoInDto)
+    public ResponseEntity<ProductoOutDto> agregarProductos(@Valid @RequestBody ProductoInDto productoInDto)
             throws CategoriaNoEncontradaException, UsuarioNoEncontradoException {
 
         ProductoOutDto nuevoProducto = productoService.agregar(productoInDto);
@@ -75,7 +79,7 @@ public class ProductoController {
     }
 
     @PutMapping("/productos/{id}")
-    public ResponseEntity<ProductoOutDto> actualizarProducto(@RequestBody ProductoUpdateDto productoUpdateDto, @PathVariable long id) throws ProductoNoEncontradoException, CategoriaNoEncontradaException {
+    public ResponseEntity<ProductoOutDto> actualizarProducto(@Valid @RequestBody ProductoUpdateDto productoUpdateDto, @PathVariable long id) throws ProductoNoEncontradoException, CategoriaNoEncontradaException {
         ProductoOutDto actualizado = productoService.modificar(id, productoUpdateDto);
         return ResponseEntity.ok(actualizado);
     }
@@ -101,5 +105,16 @@ public class ProductoController {
     public ResponseEntity<ErrorResponse> handleExcpetion(CategoriaNoEncontradaException cex) {
         ErrorResponse errorResponse = ErrorResponse.notFound("La categoría no existe");
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    // Para gestionar errores de validación en producto
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleValidationErrors(MethodArgumentNotValidException mane) {
+        Map<String, String> errors = new HashMap<>();
+        mane.getBindingResult().getFieldErrors().forEach(error ->
+                errors.put(error.getField(), error.getDefaultMessage())
+        );
+        ErrorResponse errorResponse = ErrorResponse.validationError(errors);
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 }
