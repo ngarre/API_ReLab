@@ -16,4 +16,5 @@ public interface CategoriaRepository  extends CrudRepository<Categoria,Long> {
     List<Categoria> findByActiva(boolean activa);
     List<Categoria> findByFechaCreacion(LocalDate fechaCreacion); // Permite filtrar por una fecha exacta
     List<Categoria> findByFechaCreacionBetween(LocalDate desde, LocalDate hasta); // Permite filtrar por rango de fecha
+    boolean existsByNombre(String nombre);
 }

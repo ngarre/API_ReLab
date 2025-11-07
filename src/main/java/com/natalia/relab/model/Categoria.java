@@ -18,9 +18,9 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column
+    @Column(nullable = false, unique = true) // No pueden existir dos categorías con el mismo nombre
     private String nombre;
-    @Column
+    @Column(nullable = false)
     private String descripcion;
     @Column(name = "fecha_creacion")
     @JsonFormat(pattern = "yyyy-MM-dd")
