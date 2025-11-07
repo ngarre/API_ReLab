@@ -1,5 +1,7 @@
 package com.natalia.relab.dto;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,8 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductoUpdateDto {
+    // No es obligatorio actualizar el nombre, pero si se envía, que no esté vacío
+    @Size(min = 1, message = "El nombre no puede estar vacío")
     private String nombre;
     private String descripcion;
+    @Min(value=0, message = "El precio tiene que ser mayor que cero" )
     private float precio;
 //    private LocalDate fechaActualizacion;
     private boolean activo;

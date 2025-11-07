@@ -18,7 +18,7 @@ public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column
+    @Column(nullable = false)
     private String nombre;
     @Column
     private String descripcion;
@@ -37,7 +37,7 @@ public class Producto {
 
     // RELACIÓN CON TABLA USUARIOS
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "usuario_id", nullable = false) // Cada producto tiene un usuario asociado
     private Usuario usuario;
 
 //    // RELACIÓN CON LA TABLA COMPRAVENTA -> No hace falta porque no necesito conocer las compraventas de un producto
