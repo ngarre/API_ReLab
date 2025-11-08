@@ -3,9 +3,6 @@ package com.natalia.relab.controller;
 import com.natalia.relab.dto.ProductoInDto;
 import com.natalia.relab.dto.ProductoOutDto;
 import com.natalia.relab.dto.ProductoUpdateDto;
-import com.natalia.relab.model.Categoria;
-import com.natalia.relab.model.Producto;
-import com.natalia.relab.model.Usuario;
 import com.natalia.relab.service.CategoriaService;
 import com.natalia.relab.service.ProductoService;
 import exception.CategoriaNoEncontradaException;
@@ -90,31 +87,5 @@ public class ProductoController {
         return ResponseEntity.noContent().build();
     }
 
-
-    // --- EXCEPCIONES PERSONALIZADAS ---
-
-    // El producto no existe
-    @ExceptionHandler(ProductoNoEncontradoException.class)
-    public ResponseEntity<ErrorResponse> handleExcpetion(ProductoNoEncontradoException pex) {
-        ErrorResponse errorResponse = ErrorResponse.notFound("El producto no existe");
-        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
-    }
-
-    // La categoría no existe
-    @ExceptionHandler(CategoriaNoEncontradaException.class)
-    public ResponseEntity<ErrorResponse> handleExcpetion(CategoriaNoEncontradaException cex) {
-        ErrorResponse errorResponse = ErrorResponse.notFound("La categoría no existe");
-        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
-    }
-
-    // Para gestionar errores de validación en producto
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ErrorResponse> handleValidationErrors(MethodArgumentNotValidException mane) {
-        Map<String, String> errors = new HashMap<>();
-        mane.getBindingResult().getFieldErrors().forEach(error ->
-                errors.put(error.getField(), error.getDefaultMessage())
-        );
-        ErrorResponse errorResponse = ErrorResponse.validationError(errors);
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-    }
+// --- Me llevo excepciones a GlobalExceptionHandler
 }

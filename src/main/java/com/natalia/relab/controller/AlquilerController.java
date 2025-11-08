@@ -93,38 +93,5 @@ public class AlquilerController {
         return ResponseEntity.noContent().build();
     }
 
-
-    // --- EXCEPCIONES PERSONALIZADAS ---
-
-    // Alquiler no existe
-    @ExceptionHandler(AlquilerNoEncontradoException.class)
-    public ResponseEntity<ErrorResponse> handleExcpetion(AlquilerNoEncontradoException aex) {
-        ErrorResponse errorResponse = ErrorResponse.notFound("El registro de alquiler no existe");
-        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
-    }
-
-    // El usuario no existe
-    @ExceptionHandler(UsuarioNoEncontradoException.class)
-    public ResponseEntity<ErrorResponse> handleExcpetion(UsuarioNoEncontradoException uex) {
-        ErrorResponse errorResponse = ErrorResponse.notFound("El usuario no existe");
-        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
-    }
-
-    // El producto no existe
-    @ExceptionHandler(ProductoNoEncontradoException.class)
-    public ResponseEntity<ErrorResponse> handleExcpetion(ProductoNoEncontradoException pex) {
-        ErrorResponse errorResponse = ErrorResponse.notFound("El producto no existe");
-        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
-    }
-
-    // Para gestionar errores de validación en alquiler
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ErrorResponse> handleValidationErrors(MethodArgumentNotValidException mane) {
-        Map<String, String> errors = new HashMap<>();
-        mane.getBindingResult().getFieldErrors().forEach(error ->
-                errors.put(error.getField(), error.getDefaultMessage())
-        );
-        ErrorResponse errorResponse = ErrorResponse.validationError(errors);
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-    }
+    // --- Me llevo excepciones a GlobalExceptionHandler
 }
