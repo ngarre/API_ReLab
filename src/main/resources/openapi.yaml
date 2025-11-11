@@ -1,0 +1,324 @@
+openapi: 3.1.0
+info:
+  title: ReLab API
+  description: API para gestionar usuarios, productos, categorías, alquileres y compraventas de ReLab
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8080'
+    description: Servidor local de desarrollo
+paths:
+  /usuarios:
+
+    # ---------------- GET ----------------
+    get:
+      summary: Listar todos los usuarios
+      description: |
+        Este endpoint permite obtener la lista de usuarios registrados o aplicar distintos filtros según los parámetros proporcionados.
+
+        **Posibles usos:**
+        - Sin parámetros → devuelve todos los usuarios (200, array vacío si no hay usuarios)  
+        - `nickname` + `password` → login del usuario (404 si no existe)
+        - `nickname` → buscar un usuario por su nickname (404 si no existe)
+        - `tipoUsuario` → filtrar usuarios por su tipo (200, array vacío si no hay coincidencias) 
+        - `cuentaActiva` → filtrar usuarios según su estado de cuenta (200, array vacío si no hay coincidencias)
+      operationId: listarUsuarios
+
+      parameters:
+        - name: nickname
+          in: query
+          description: Nickname del usuario
+          required: false
+          schema:
+            type: string
+        - name: password
+          in: query
+          description: Contraseña (solo se usa con nickname para login)
+          required: false
+          schema:
+            type: string
+        - name: tipoUsuario
+          in: query
+          description: Tipo de usuario (particular, empresa, centro público)
+          required: false
+          schema:
+            type: string
+        - name: cuentaActiva
+          in: query
+          description: Filtra por usuarios con cuenta activa o inactiva
+          required: false
+          schema:
+            type: boolean
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UsuarioOutDto'
+
+        '404':
+          description: Usuario no encontrado (solo si se busca por nickname o login, nickname + passoword)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+    # ---------------- POST ----------------
+    post:
+      summary: Dar de alta un nuevo usuario
+      description: |
+        Este endpoint permite registrar un nuevo usuario en la plataforma.
+
+        **Reglas:**
+        - El nickname debe ser único.
+        - La contraseña no puede estar vacía y debe tener un mínimo de 4 caracteres.
+        - El email debe tener un formato valido.
+        - El saldo debe ser mayor que cero.
+      operationId: crearUsuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                $ref: '#/components/schemas/UsuarioInDto'
+
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/UsuarioOutDto'
+
+        '400':
+          description: Bad request por validación o datos duplicados.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/NicknameYaExiste'
+                  - $ref: '#/components/schemas/ValidationError'
+
+
+
+components:
+  schemas:
+    UsuarioOutDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: identificador del usuario
+          format: int64 # OpenAPI utiliza tipos primitivos genéricos basados en JSON Schema, int32 es un int de JAVA e int 64 un long en JAVA
+          example: 1
+        nickname:
+          type: string
+          description: apodo del usuario
+          example: "juan23"
+        nombre:
+          type: string
+          description: nombre del usuario
+          example: "Juan"
+        apellido:
+          type: string
+          description: apellido del usuario
+          example: "Pérez"
+        email:
+          type: string
+          description: email del usuario
+          format: email
+          example: juan@example.com
+        fechaNacimiento:
+          type: string
+          description: fecha de nacimiento del usuario.
+          format: date
+          example: "1990-05-10"
+        cuentaActiva:
+          type: boolean
+          description: especifica si la cuenta está activa o si ha sido desactivada
+          example: true
+        fechaAlta:
+          type: string
+          description: es la fecha en la que el usuario ha sido dado de alta en la aplicación.
+          format: date
+          example: "2024-11-10"
+        tipoUsuario:
+          type: string
+          description: es el rol del usuario dentro de la aplicación.  Puede ser un particular, una empresa un un centro público.
+          enum: [ particular, empresa, centro_publico ]
+          example: "particular"
+        admin:
+          type: boolean
+          description: especifica si el usuario es administrador de la aplicación o no.
+          example: false
+        saldo:
+          type: number
+          description: saldo que aporta el usuario para operar en la aplicación
+          format: float
+          example: 125.50
+        latitud:
+          type: number
+          description: latitud en la que se encuentra el usuario
+          format: double
+          example: 40.4168
+        longitud:
+          type: number
+          description: longitud en la que se encuentra el usuario
+          format: double
+          example: -3.7038
+
+    UsuarioInDto:
+      type: object
+      properties:
+        nickname:
+          type: string
+          description: apodo del usuario
+          example: "juan23"
+        password:
+          type: string
+          description: contraseña del usuario
+          format: password
+          example: "1234"
+        nombre:
+          type: string
+          description: nombre del usuario
+          example: "Juan"
+        apellido:
+          type: string
+          description: apellido del usuario
+          example: "Pérez"
+        email:
+          type: string
+          description: email del usuario
+          format: email
+          example: juan@example.com
+        fechaNacimiento:
+          type: string
+          description: fecha de nacimiento del usuario
+          format: date
+          example: "1990-05-10"
+        cuentaActiva:
+          type: boolean
+          description: estado de la cuenta del usuario, puede ser activa o no
+          example: true
+        tipoUsuario:
+          type: string
+          description: rol del usuario dentro de la aplicación (particular, empresa, centro público)
+          enum: [ particular, empresa, centro_publico ]
+          example: "particular"
+        admin:
+          type: boolean
+          description: especifica si el usuario es administrador de la aplicación o no.
+          example: false
+        saldo:
+          type: number
+          description: saldo que aporta el usuario para operar en la aplicación
+          format: float
+          example: 125.50
+        latitud:
+          type: number
+          description: latitud en la que se encuentra el usuario
+          format: double
+          example: 40.4168
+        longitud:
+          type: number
+          description: longitud en la que se encuentra el usuario
+          format: double
+          example: -3.7038
+      required:
+        - nickname
+        - password
+
+    InternalServerError:
+      type: object
+      properties:
+        code:
+          type: number
+          format: int
+          description: código de estado
+          example: 500
+        title:
+          type: string
+          description: tipo de error
+          example: error-interno
+        message:
+          type: string
+          description: mensaje de error
+          example: Error interno del servidor
+
+
+    NotFound:
+      type: object
+      properties:
+        code:
+          type: number
+          format: int
+          description: código de estado
+          example: 404
+        title:
+          type: String
+          description: tipo de error
+          example: not-found
+        message:
+          type: string
+          description: mensaje de error
+          example: El usuario no existe
+
+
+    NicknameYaExiste:
+      type: object
+      properties:
+        code:
+          type: number
+          format: int
+          description: código de estado
+          example: 400
+        title:
+          type: string
+          description: tipo de error
+          example: bad-request
+        message:
+          type: string
+          description: mensaje de error
+          example: El nickname ya está en uso
+
+
+    ValidationError:
+      type: object
+      properties:
+        code:
+          type: number
+          format: int
+          description: código de estado
+          example: 400
+        title:
+          type: string
+          description: tipo de error
+          example: bad-request
+        message:
+          type: string
+          description: mensaje general de validación
+          example: Error de validación
+        errors:
+          type: object
+          description: Mapa de campos con sus mensajes de validación
+          additionalProperties:
+            type: string
+            example: "El saldo tiene que ser mayor que cero"
+
+
+
+
+
+
