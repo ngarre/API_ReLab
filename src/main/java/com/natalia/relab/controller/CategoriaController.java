@@ -38,27 +38,27 @@ public class CategoriaController {
             @RequestParam(value = "hasta", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate hasta)
             throws CategoriaNoEncontradaException {
 
-            // Filtrado por nombre --> Coincidencias parciales y sin distinguir mayúsculas y minúsculas
-            if (nombre != null && !nombre.isEmpty()) {
-                List<CategoriaOutDto> categorias = categoriaService.buscarPorNombreParcial(nombre);
-                return ResponseEntity.ok(categorias);
-            }
+        // Filtrado por nombre --> Coincidencias parciales y sin distinguir mayúsculas y minúsculas
+        if (nombre != null && !nombre.isEmpty()) {
+            List<CategoriaOutDto> categorias = categoriaService.buscarPorNombreParcial(nombre);
+            return ResponseEntity.ok(categorias);
+        }
 
-            // Filtrado por activo
-            if (activa!= null) {
-                List<CategoriaOutDto> categorias = categoriaService.buscarActivas(activa);
-                return ResponseEntity.ok(categorias);
-            }
+        // Filtrado por activo
+        if (activa != null) {
+            List<CategoriaOutDto> categorias = categoriaService.buscarActivas(activa);
+            return ResponseEntity.ok(categorias);
+        }
 
-            // Filtrado por fecha exacta o rango ("Desde-hasta" o "desde-hasta fecha actual")
-                if (fechaCreacion != null || desde != null || hasta != null) {
-                List<CategoriaOutDto> categorias = categoriaService.buscarPorFecha(fechaCreacion, desde, hasta);
-                return ResponseEntity.ok(categorias);
-            }
+        // Filtrado por fecha exacta o rango ("Desde-hasta" o "desde-hasta fecha actual")
+        if (fechaCreacion != null || desde != null || hasta != null) {
+            List<CategoriaOutDto> categorias = categoriaService.buscarPorFecha(fechaCreacion, desde, hasta);
+            return ResponseEntity.ok(categorias);
+        }
 
-            // Todas las categorias
-            List<CategoriaOutDto> todasCategorias = categoriaService.listarTodas();
-            return ResponseEntity.ok(todasCategorias);
+        // Todas las categorias
+        List<CategoriaOutDto> todasCategorias = categoriaService.listarTodas();
+        return ResponseEntity.ok(todasCategorias);
     }
 
     @GetMapping("/categorias/{id}")
@@ -86,33 +86,6 @@ public class CategoriaController {
         return ResponseEntity.noContent().build();
     }
 
-
-    // --- EXCEPCIONES PERSONALIZADAS ---
-
-    // La categoría no existe
-    @ExceptionHandler(CategoriaNoEncontradaException.class)
-    public ResponseEntity<ErrorResponse> handleExcpetion(CategoriaNoEncontradaException cex) {
-        ErrorResponse errorResponse = ErrorResponse.notFound("La categoria no existe");
-        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
-    }
-
-    // Manejo la excepción de que el nombre de la categoría ya esté en uso
-    @ExceptionHandler(NombreYaExisteException.class)
-    public ResponseEntity<ErrorResponse> handleExcpetion(NombreYaExisteException noye) {
-        ErrorResponse errorResponse = ErrorResponse.generalError(400, "nombre-duplicado", "El nombre ya está en uso");
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-    }
-
-    // Para gestionar errores de validación en categoria
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ErrorResponse> handleValidationErrors(MethodArgumentNotValidException mane) {
-        Map<String, String> errors = new HashMap<>();
-        mane.getBindingResult().getFieldErrors().forEach(error ->
-                errors.put(error.getField(), error.getDefaultMessage())
-        );
-        ErrorResponse errorResponse = ErrorResponse.validationError(errors);
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-    }
-
+    // --- Me llevo excepciones a GlobalExceptionHandler
 }
 
