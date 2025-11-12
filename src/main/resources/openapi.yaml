@@ -7,6 +7,11 @@ servers:
   - url: 'http://localhost:8080'
     description: Servidor local de desarrollo
 paths:
+
+  # ======================
+  #        USUARIOS
+  # ======================
+
   /usuarios:
 
     # ---------------- GET ----------------
@@ -110,10 +115,226 @@ paths:
                   - $ref: '#/components/schemas/NicknameYaExiste'
                   - $ref: '#/components/schemas/ValidationError'
 
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/InternalServerError'
 
 
+
+  /usuarios/{id}:
+
+  # ---------------- GET BY ID ----------------
+    get:
+      summary: Obtener usuario por su ID
+      description: |
+        Este endpoint permite obtener los datos de un usuario específico a partir de su identificador único.
+      operationId: obtenerUsuarioPorId
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único del usuario.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsuarioOutDto'
+
+        '404':
+            description: usuario no encontrado.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+  # ---------------- PUT ----------------
+    put:
+      summary: Editar usuario que tiene un determinado ID
+      description: |
+        Este endpoint permite modificar ciertos datos de un usuario cuyo ID ha sido proporcionado.
+        
+        **Reglas:**
+        - El nickname debe ser único.
+        - La contraseña no puede estar vacía y debe tener un mínimo de 4 caracteres.
+        - El email debe tener un formato valido.
+      operationId: editarUsuario
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único del usuario.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsuarioUpdateDto'
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsuarioOutDto'
+
+        '400':
+          description: Bad request por validación o datos duplicados.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/NicknameYaExiste'
+                  - $ref: '#/components/schemas/ValidationError'
+
+        '404':
+          description: usuario no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+  # ---------------- DELETE ----------------
+    delete:
+      summary: Eliminar usuario por su ID
+      description: |
+        Este endpoint permite eliminar un usuario existente en la base de datos a partir de su identificador único (**ID**).
+
+        **Reglas:**
+        - Si el usuario no existe, devuelve un error `404`.
+        - Si la eliminación se realiza correctamente, no se devuelve contenido (`204 No Content`).Permite eliminar un determinado usuario cuyo ID ha sido proporcionado.
+      operationId: eliminarUsuario
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único del usuario.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      responses:
+        '204':
+          description: Usuario eliminado correctamente.  No se devuelve contenido.
+
+        '404':
+          description: usuario no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+  # ======================
+  #        PRODUCTOS
+  # ======================
+
+  /productos:
+    # ---------------- GET ----------------
+    get:
+      summary: Listar todos los productos
+      description: |
+        Este endpoint permite obtener la lista de productos registrados o aplicar distintos filtros según los parámetros proporcionados.
+
+        **Posibles usos:**
+        - Sin parámetros → devuelve todos los productos (200, array vacío si no hay usuarios)  
+        - `nombre` → buscar un producto por coincidencia parcial del nombre (sin considerar mayúsculas ni minúsculas), devuelve todos los productos si se pasa vacío
+        - `categoriaId` → filtrar producto por ID de la categoría a la que pertenece (404, si no existe la categoría) 
+        - `activo` → filtrar productos según su estado (200, array vacío si no hay coincidencias)
+      operationId: listarProductos
+
+      parameters:
+        - name: nombre
+          in: query
+          description: Nombre del producto
+          required: false
+          schema:
+            type: string
+        - name: activo
+          in: query
+          description: Filtra por productos según su estado (activos o inactivos)
+          required: false
+          schema:
+            type: string
+        - name: categoriaId
+          in: query
+          description: ID de la categoría a la cual puede pertenecer un producto
+          required: false
+          schema:
+            type: int
+            format: int64
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductoOutDto'
+
+        '404':
+          description: Not found por categoría no encontrada, al filtrar por categoriaId.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+  # ======================
+  #       COMPONENTES
+  # ======================
 components:
   schemas:
+    # ---------- USUARIOS ----------
     UsuarioOutDto:
       type: object
       properties:
@@ -236,10 +457,126 @@ components:
           description: longitud en la que se encuentra el usuario
           format: double
           example: -3.7038
-      required:
-        - nickname
-        - password
 
+    UsuarioUpdateDto:
+      type: object
+      properties:
+        nickname:
+          type: string
+          description: apodo del usuario
+          example: "Carolina23"
+        password:
+          type: string
+          description: contraseña del usuario
+          format: password
+          example: "9876"
+        nombre:
+          type: string
+          description: nombre del usuario
+          example: "Carolina"
+        apellido:
+          type: string
+          description: apellido del usuario
+          example: "López"
+        email:
+          type: string
+          description: email del usuario
+          format: email
+          example: carolina@example.com
+        fechaNacimiento:
+          type: string
+          description: fecha de nacimiento del usuario
+          format: date
+          example: "1977-09-01"
+        cuentaActiva:
+          type: boolean
+          description: estado de la cuenta del usuario, puede ser activa o no
+          example: true
+        tipoUsuario:
+          type: string
+          description: rol del usuario dentro de la aplicación (particular, empresa, centro público)
+          enum: [ particular, empresa, centro_publico ]
+          example: "particular"
+        latitud:
+          type: number
+          description: latitud en la que se encuentra el usuario
+          format: double
+          example: 40.4168
+        longitud:
+          type: number
+          description: longitud en la que se encuentra el usuario
+          format: double
+          example: -3.7038
+
+
+    # ---------- PRODUCTOS ----------
+    ProductoOutDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: identificador del producto
+          format: int64
+          example: 1
+        nombre:
+          type: string
+          description: nombre del producto
+          example: "ChemiDoc"
+        descripcion:
+          type: string
+          description: es la descripción del producto
+          example: "Permite capturar imágenes y datos de experimentos de laboratorio como los geles de ADN/proteínas y las transferencias Western"
+        precio:
+          type: number
+          description: precio inicial del producto, fijado por el vendedor
+          format: float
+          example: 10000
+        fechaActualizacion:
+          type: string
+          description: fecha de la última actualización del producto
+          format: date
+          example: "2025-09-01"
+        activo:
+          type: boolean
+          description: estado del producto, activo o no.
+          example: true
+        categoria:
+          $ref: '#/components/schemas/CategoriaSimpleDto'
+        usuario:
+          $ref: '#/components/schemas/UsuarioSimpleDto'
+
+
+
+    CategoriaSimpleDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Identificador de la categoría
+          example: 1
+        nombre:
+          type: string
+          description: Nombre de la categoría
+          example: "Sistemas de imagen"
+
+    UsuarioSimpleDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Identificador del usuario
+          example: 12
+        nickname:
+          type: string
+          description: Apodo del usuario propietario del producto
+          example: "maria_lab"
+
+
+
+
+    # ---------- RESPUESTAS HTTP ----------
     InternalServerError:
       type: object
       properties:
@@ -273,7 +610,7 @@ components:
         message:
           type: string
           description: mensaje de error
-          example: El usuario no existe
+          example: El usuario no existe/La categoria no existe
 
 
     NicknameYaExiste:
@@ -315,7 +652,7 @@ components:
           description: Mapa de campos con sus mensajes de validación
           additionalProperties:
             type: string
-            example: "El saldo tiene que ser mayor que cero"
+            example: "El saldo tiene que ser mayor que cero (ejemplo para usuario)"
 
 
 
