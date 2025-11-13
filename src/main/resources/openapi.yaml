@@ -126,7 +126,7 @@ paths:
 
   /usuarios/{id}:
 
-  # ---------------- GET BY ID ----------------
+    # ---------------- GET BY ID ----------------
     get:
       summary: Obtener usuario por su ID
       description: |
@@ -152,7 +152,7 @@ paths:
                 $ref: '#/components/schemas/UsuarioOutDto'
 
         '404':
-            description: usuario no encontrado.
+            description: Usuario no encontrado.
             content:
               application/json:
                 schema:
@@ -271,6 +271,7 @@ paths:
   # ======================
 
   /productos:
+
     # ---------------- GET ----------------
     get:
       summary: Listar todos los productos
@@ -328,6 +329,199 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
+
+
+    # ---------------- POST ----------------
+    post:
+      summary: Dar de alta un nuevo producto
+      description: |
+        Este endpoint permite registrar un nuevo producto.
+
+        **Reglas:**
+        - El nombre es un campo obligatorio.
+        - El precio tiene que ser mayor que cero.
+        - El ID del usuario que publica el producto es obligatorio.
+      operationId: crearProducto
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductoInDto'
+
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductoOutDto'
+
+        '400':
+          description: Bad request por validación.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+        '404':
+          description: usuario/categoria no encontrado/a.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+
+  /productos/{id}:
+
+    # ---------------- GET BY ID ----------------
+    get:
+      summary: Obtener producto por su ID
+      description: |
+        Este endpoint permite obtener los datos de un producto específico a partir de su identificador único.
+        operationId: obtenerProductoPorId
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único del producto.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductoOutDto'
+
+        '404':
+          description: producto no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+    # ---------------- PUT ----------------
+    put:
+      summary: Editar producto que tiene un determinado ID
+      description: |
+        Este endpoint permite modificar ciertos datos de un producto cuyo ID ha sido proporcionado.
+        
+        **Reglas:**
+        - El nombre no puede dejarse vacío.
+        - El precio tiene que ser mayor que cero.
+      operationId: editarProducto
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único del producto.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductoUpdateDto'
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductoOutDto'
+
+        '400':
+          description: Bad request por validación.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+        '404':
+          description: producto/categoría no encontrada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+    # ---------------- DELETE ----------------
+    delete:
+      summary: Eliminar producto por su ID
+      description: |
+        Este endpoint permite eliminar un producto existente en la base de datos a partir de su identificador único (**ID**).
+          
+        **Reglas:**
+        - Si el producto no existe, devuelve un error `404`.
+        - Si la eliminación se realiza correctamente, no se devuelve contenido (`204 No Content`).Permite eliminar un determinado producto cuyo ID ha sido proporcionado.
+
+      operationId: eliminarProducto
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único del producto.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      responses:
+        '204':
+          description: Producto eliminado correctamente.  No se devuelve contenido.
+
+        '404':
+          description: Producto no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+
 
   # ======================
   #       COMPONENTES
@@ -546,6 +740,62 @@ components:
           $ref: '#/components/schemas/UsuarioSimpleDto'
 
 
+    ProductoInDto:
+      type: object
+      properties:
+        nombre:
+          type: string
+          description: nombre del producto
+          example: "ChemiDoc"
+        descripcion:
+          type: string
+          description: es la descripción del producto
+          example: "Permite capturar imágenes y datos de experimentos de laboratorio como los geles de ADN/proteínas y las transferencias Western"
+        precio:
+          type: number
+          description: precio inicial del producto, fijado por el vendedor
+          format: float
+          example: 10000
+        activo:
+          type: boolean
+          description: estado del producto, activo o no.
+          example: true
+        categoriaId:
+          type: integer
+          description: identificador de la categoria
+          format: int64
+          example: 1
+        usuarioId:
+          type: integer
+          description: identificador del usuario
+          format: int64
+          example: 1
+
+    ProductoUpdateDto:
+      type: object
+      properties:
+        nombre:
+          type: string
+          description: nombre del producto
+          example: "ChemiDoc"
+        descripcion:
+          type: string
+          description: es la descripción del producto
+          example: "Permite capturar imágenes y datos de experimentos de laboratorio como los geles de ADN/proteínas y las transferencias Western"
+        precio:
+          type: number
+          description: precio inicial del producto, fijado por el vendedor
+          format: float
+          example: 10000
+        activo:
+          type: boolean
+          description: estado del producto, activo o no.
+          example: true
+        categoriaId:
+          type: integer
+          description: identificador de la categoria
+          format: int64
+          example: 1
 
     CategoriaSimpleDto:
       type: object
@@ -610,7 +860,7 @@ components:
         message:
           type: string
           description: mensaje de error
-          example: El usuario no existe/La categoria no existe
+          example: La entidad (usuario, producto, categoría, compraventa o alquiler) no existe.
 
 
     NicknameYaExiste:
