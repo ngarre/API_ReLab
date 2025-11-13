@@ -9,7 +9,7 @@ servers:
 paths:
 
   # ======================
-  #        USUARIOS
+  #        USUARIO
   # ======================
 
   /usuarios:
@@ -267,7 +267,7 @@ paths:
 
 
   # ======================
-  #        PRODUCTOS
+  #        PRODUCTO
   # ======================
 
   /productos:
@@ -489,7 +489,7 @@ paths:
           
         **Reglas:**
         - Si el producto no existe, devuelve un error `404`.
-        - Si la eliminación se realiza correctamente, no se devuelve contenido (`204 No Content`).Permite eliminar un determinado producto cuyo ID ha sido proporcionado.
+        - Si la eliminación se realiza correctamente, no se devuelve contenido (`204 No Content`). Permite eliminar un determinado producto cuyo ID ha sido proporcionado.
 
       operationId: eliminarProducto
       parameters:
@@ -520,6 +520,247 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
 
+
+  # ======================
+  #        CATEGORIA
+  # ======================
+
+    # ---------------- GET ----------------
+  /categorias:
+
+    get:
+      summary: Listar todas las categorías
+      description: |
+        Este endpoint permite obtener la lista de categorías registradas o aplicar distintos filtros según los parámetros proporcionados.
+        
+        **Posibles usos:**
+        - Sin parámetros → devuelve todas las categorías (200, array vacío si no hay categorías)  
+        
+        - `nombre` → buscar una categoría por coincidencia parcial del nombre (sin considerar mayúsculas ni minúsculas), devuelve todas las categorías si se pasa vacío
+        - `activa` → filtrar categorías según su estado (200, array vacío si no hay coincidencias)
+        - `fechaCreación` → filtrado por fecha exacta o rango ("Desde-hasta" o "desde-hasta fecha actual)
+      operationId: listarCategorias
+
+      parameters:
+        - name: nombre
+          in: query
+          description: nombre de la categoría
+          required: false
+          schema:
+            type: string
+        - name: activa
+          in: query
+          description: Filtra por categorías activas o inactivas
+          required: false
+          schema:
+            type: boolean
+        - name: fechaCreación
+          in: query
+          description: fecha de creación de la categoría
+          required: false
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CategoriaOutDto'
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+    # ---------------- POST ----------------
+
+    post:
+      summary: Dar de alta una nueva categoría
+      description: |
+        Este endpoint permite registrar una nueva categoría.
+          
+        **Reglas:**
+        - El nombre es un campo obligatorio.
+        - La descripción es un campo obligatorio y debe tener al menos 10 caracteres.
+        - La tasa de comisión es un número comprendido entre 0 y 1.
+      operationId: crearCategoria
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoriaInDto'
+
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoriaOutDto'
+
+        '400':
+          description: Bad request por validación.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+  /categorias/{id}:
+
+  # ---------------- GET BY ID ----------------
+    get:
+      summary: Obtener una categoría por su ID.
+      description: |
+        Este endpoint permite obtener los datos de una categoría específica a partir de su identificador único.
+      operationId: obtenerCategoriaPorId
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único de la categoría.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoriaOutDto'
+
+        '404':
+          description: Categoría no encontrada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+  # ---------------- PUT ----------------
+    put:
+      summary: Editar categoría que tiene un determinado ID
+      description: |
+        Este endpoint permite modificar ciertos datos de una categoría cuyo ID ha sido proporcionado.
+          
+        **Reglas:**
+        - El nombre no puede dejarse vacío.
+        - La descripción debe tener al menos 10 caracteres.
+        - La tasa de comisión debe ser un número comprendido entre 0 y 1.
+      operationId: editarCategoria.
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único de la categoría.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoriaUpdateDto'
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoriaOutDto'
+
+        '400':
+          description: Bad request por validación.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+        '404':
+          description: Categoría no encontrada.
+          content:
+            application/json:
+              schema:
+                 $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+                
+  # ---------------- DELETE ----------------
+
+    delete:
+      summary: Eliminar categoria por su ID
+      description: |
+          Este endpoint permite eliminar una categoría existente en la base de datos a partir de su identificador único (**ID**).
+          
+          **Reglas:**
+          - Si la categoría no existe, devuelve un error `404`.
+          - Si la eliminación se realiza correctamente, no se devuelve contenido (`204 No Content`). Permite eliminar una determinada categoría cuyo ID ha sido proporcionado.
+        
+
+      operationId: eliminarCategoria
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único de la categoría
+          schema:
+            type: integer
+            format: int64
+            example: 1
+      
+      responses:
+        '204':
+          description: Categoría eliminada correctamente.  No se devuelve contenido.
+
+        '404':
+          description: Categoría no encontrada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
 
 
 
@@ -824,6 +1065,79 @@ components:
           example: "maria_lab"
 
 
+    # ---------- CATEGORÍAS ----------
+    CategoriaOutDto:
+      type: Object
+      properties:
+        id:
+          type: integer
+          description: Nombre identificativo de la categoría. Permite clasificar los productos dentro de un grupo temático común.
+          format: int64
+          example: 1
+        nombre:
+          type: string
+          description: Nombre de la categoría
+          example: "Microscopios Ópticos"
+        descripcion:
+          type: string
+          description: Descripción detallada de la categoría, utilizada para especificar qué tipo de productos agrupa.
+          example: "Categoría que incluye todos los productos relacionados con microscopios ópticos y sus accesorios."
+        fechaCreacion:
+          type: string
+          description: Fecha de creación de la categoría
+          format: date
+          example: "2024-06-22"
+        activa:
+          type: boolean
+          description: estado de la categoría, activa o no.
+          example: true
+        tasaComision:
+          type: number
+          description: Comisión que se lleva ReLab por la venta de un producto perteneciente a esa categoría
+          format: float
+          example: 0.3
+
+    CategoriaInDto:
+      type: Object
+      properties:
+        nombre:
+          type: string
+          description: Nombre de la categoría
+          example: "Microscopios Ópticos"
+        descripcion:
+          type: string
+          description: Descripción detallada de la categoría, utilizada para especificar qué tipo de productos agrupa.
+          example: "Categoría que incluye todos los productos relacionados con microscopios ópticos y sus accesorios."
+        activa:
+          type: boolean
+          description: estado de la categoría, activa o no.
+          example: true
+        tasaComision:
+          type: number
+          description: Comisión que se lleva ReLab por la venta de un producto perteneciente a esa categoría
+          format: float
+          example: 0.3
+
+    CategoriaUpdateDto: #Realmente es igual que CategoriaInDto, pero lo pongo por documentar que utilizan DTOs distintos
+      type: Object
+      properties:
+        nombre:
+          type: string
+          description: Nombre de la categoría
+          example: "Microscopios Ópticos"
+        descripcion:
+          type: string
+          description: Descripción detallada de la categoría, utilizada para especificar qué tipo de productos agrupa.
+          example: "Categoría que incluye todos los productos relacionados con microscopios ópticos y sus accesorios."
+        activa:
+          type: boolean
+          description: estado de la categoría, activa o no.
+          example: true
+        tasaComision:
+          type: number
+          description: Comisión que se lleva ReLab por la venta de un producto perteneciente a esa categoría
+          format: float
+          example: 0.3
 
 
     # ---------- RESPUESTAS HTTP ----------
