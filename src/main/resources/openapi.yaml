@@ -763,7 +763,498 @@ paths:
                 $ref: '#/components/schemas/InternalServerError'
 
 
+  # ======================
+  #        COMPRAVENTAS
+  # ======================
+  /compraventas:
+  # ---------------- GET ----------------
+    get:
+      summary: Listar todas las compraventas
+      description: |
+        Este endpoint permite obtener la lista de compraventas registradas o aplicar distintos filtros según los parámetros proporcionados.
 
+        **Posibles usos:**
+        - Sin parámetros → devuelve todas las compraventas (200, array vacío si no hay compraventas)  
+        - `compradorId` → buscar registros de compraventa dado un ID de comprador (404 si no existe usuario o 200 y array vacío si no hay registros para el mismo)
+        - `vendedorId` → buscar registros de compraventa dado un ID de vendedor (404 si no existe usuario o 200 y array vacío si no hay registros para el mismo)
+        - `productoId` → buscar registros de compraventa dado un ID de producto (404 si no existe producto o 200 y array vacío si no hay registros para el mismo)
+
+      operationId: listarCompraventas
+
+      parameters:
+        - name: compradorId
+          in: query
+          description: ID del comprador involucrado en la acción de compraventa.
+          required: false
+          schema:
+            type: int
+            format: int64
+        - name: vendedorId
+          in: query
+          description: ID del vendedor involucrado en la acción de compraventa.
+          required: false
+          schema:
+            type: int
+            format: int64
+        - name: productoId
+          in: query
+          description: ID del producto comprado-vendido
+          required: false
+          schema:
+            type: int
+            format: int64
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UsuarioOutDto'
+
+        '404':
+          description: Usuario/Producto no encontrado (solo si se busca por compradorId, vendedorId o productoId)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+  # ---------------- POST ----------------
+    post:
+      summary: Dar de alta un nuevo registro de compraventa
+      description: |
+          Este endpoint permite registrar una nueva compraventa.
+          
+          **Reglas:**
+          - Debe especificarse el producto comprado-vendido.
+          - Debe especificarse el usuario comprador.
+          - Debe especificarse el usuario vendedor.
+          - El precio final debe ser mayor que cero.
+      operationId: crearCompraventa
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompraventaInDto'
+
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompraventaOutDto'
+
+        '400':
+          description: Bad request por validación.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+  /compraventas/{id}:
+
+  # ---------------- GET BY ID ----------------
+    get:
+      summary: Obtener una compraventa por su ID.
+      description: |
+        Este endpoint permite obtener los datos de una compraventa específica a partir de su identificador único.
+      operationId: obtenerCompraventaPorId
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único de la compraventa.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompraventaOutDto'
+
+        '404':
+          description: Compraventa no encontrada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+    # ---------------- PUT ----------------
+    put:
+      summary: Editar compraventa que tiene un determinado ID
+      description: |
+        Este endpoint permite modificar ciertos campos de un registro de compraventa cuyo ID ha sido proporcionado.
+
+        **Regla:**
+        - El precio debe ser mayor que cero.
+      operationId: editarCompraventa.
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único de la compraventa.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompraventaUpdateDto'
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompraventaOutDto'
+
+        '400':
+          description: Bad request por validación.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+        '404':
+          description: Compraventa no encontrada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+    # ---------------- DELETE ----------------
+    delete:
+      summary: Eliminar compraventa por su ID
+      description: |
+        Este endpoint permite eliminar una compraventa existente en la base de datos a partir de su identificador único (**ID**).
+        
+        **Reglas:**
+        - Si la compraventa no existe, devuelve un error `404`.
+        - Si la eliminación se realiza correctamente, no se devuelve contenido (`204 No Content`). Permite eliminar una determinada compraventa cuyo ID ha sido proporcionado.
+      operationId: eliminarCompraventa
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único de la compraventa.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      responses:
+        '204':
+          description: Compraventa eliminada correctamente.  No se devuelve contenido.
+
+        '404':
+          description: Compraventa no encontrada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+
+  # ======================
+  #        ALQUILERES
+  # ======================
+  /alquileres:
+  # ---------------- GET ----------------
+    get:
+      summary: Listar todos los alquileres
+      description: |
+        Este endpoint permite obtener la lista de alquileres registradas o aplicar distintos filtros según los parámetros proporcionados.
+          
+        **Posibles usos:**
+        - Sin parámetros → devuelve todas los alquileres (200, array vacío si no hay alquileres)  
+        - `arrendadorId` → buscar registros de alquiler dado un ID de arrendador (404 si no existe usuario o 200 y array vacío si no hay registros para el mismo)
+        - `arrendatarioId` → buscar registros de alquiler dado un ID de arrendatario (404 si no existe usuario o 200 y array vacío si no hay registros para el mismo)
+        - `productoId` → buscar registros de alquiler dado un ID de producto (404 si no existe producto o 200 y array vacío si no hay registros para el mismo)
+      operationId: listarAlquileres
+
+      parameters:
+        - name: arrendadorId
+          in: query
+          description: ID del arrendador involucrado en el alquiler.
+          required: false
+          schema:
+            type: int
+            format: int64
+        - name: arrendatarioId
+          in: query
+          description: ID del arrendatario involucrado en la acción de alquiler.
+          required: false
+          schema:
+            type: int
+            format: int64
+        - name: productoId
+          in: query
+          description: ID del producto comprado-vendido
+          required: false
+          schema:
+            type: int
+            format: int64
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AlquilerOutDto'
+
+        '404':
+          description: Usuario/Producto no encontrado (solo si se busca por arrendadorId, arrendatarioId o productoId)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+  # ---------------- POST ----------------
+    post:
+      summary: Dar de alta un nuevo registro de alquiler
+      description: |
+        Este endpoint permite registrar un nuevo alquiler.
+          
+        **Reglas:**
+        - Debe especificarse el producto alquilado.
+        - Debe especificarse el usuario arrendador.
+        - Debe especificarse el usuario arrendatario.
+        - El precio final debe ser mayor que cero.
+
+      operationId: crearAlquiler
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlquilerInDto'
+
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlquilerOutDto'
+          
+        '400':
+          description: Bad request por validación.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError' 
+  
+  /alquileres/{id}:
+  
+  # ---------------- GET BY ID ----------------
+    get:
+      summary: Obtener un alquiler por su ID
+      description: |
+        Este endpoint permite obtener los datos de un alquiler específico a partir de su identificador único.
+      operationId: obtenerAlquilerPorId
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único al alquiler.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlquilerOutDto'
+
+        '404':
+          description: Alquiler no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+    # ---------------- PUT ----------------
+    put:
+      summary: Editar alquiler que tiene un determinado ID
+      description: |
+        Este endpoint permite modificar ciertos campos de un registro de alquiler cuyo ID ha sido proporcionado.
+        
+        **Regla:**
+        - El precio debe ser mayor que cero.
+      operationId: editarAlquiler.
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único del alquiler.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlquilerUpdateDto'
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlquilerOutDto'
+
+        '400':
+          description: Bad request por validación.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+        '404':
+          description: Alquiler no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+  # ---------------- DELETE ----------------
+    delete:
+      summary: Eliminar alquiler por su ID
+      description: |
+        Este endpoint permite eliminar un alquiler existente en la base de datos a partir de su identificador único (**ID**).
+  
+        **Reglas:**
+        - Si el alquiler no existe, devuelve un error `404`.
+        - Si la eliminación se realiza correctamente, no se devuelve contenido (`204 No Content`). Permite eliminar una determinada compraventa cuyo ID ha sido proporcionado.
+      operationId: eliminarAlquiler
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único del alquiler.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      responses:
+        '204':
+          description: Alquiler eliminado correctamente.  No se devuelve contenido.
+
+        '404':
+          description: Alquiler no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+  
   # ======================
   #       COMPONENTES
   # ======================
@@ -950,7 +1441,7 @@ components:
       properties:
         id:
           type: integer
-          description: identificador del producto
+          description: Identificador único del producto
           format: int64
           example: 1
         nombre:
@@ -1071,7 +1562,7 @@ components:
       properties:
         id:
           type: integer
-          description: Nombre identificativo de la categoría. Permite clasificar los productos dentro de un grupo temático común.
+          description: Identificador único de la categoría. Permite clasificar los productos dentro de un grupo temático común.
           format: int64
           example: 1
         nombre:
@@ -1139,7 +1630,215 @@ components:
           format: float
           example: 0.3
 
+    # ---------- COMPRAVENTAS ----------
+    CompraventaOutDto:
+      type: Object
+      properties:
+        id:
+          type: integer
+          description: Identificador único de la compraventa
+          format: int64
+          example: 1
+        fecha:
+          type: string
+          description: Fecha en la que se efectúa la compraventa.
+          format: date
+          example: "2024-06-22"
+        precioFinal:
+          type: number
+          description: Precio final del producto, acordado entre comprador y vendedor
+          format: float
+          example: 2000
+        comentario:
+          type: string
+          description: Es el comentario que deja el comprador sobre la transacción
+          example: "Vendedor muy profesional y buen precio."
+        devuelto:
+          type: boolean
+          description: Si el producto ha sido devuelto o no.
+          example: true
+        producto:
+          $ref: '#/components/schemas/ProductoSimpleDto'
+        comprador:
+          $ref: '#/components/schemas/UsuarioSimpleDto'
+        vendedor:
+          $ref: '#/components/schemas/UsuarioSimpleDto'
 
+    CompraventaInDto:
+      type: Object
+      properties:
+        compradorId:
+          type: integer
+          description: Identificador único del usuario comprador.
+          format: int64
+          example: 1
+        vendedorId:
+          type: integer
+          description: Identificador único del usuario vendedor.
+          format: int64
+          example: 1
+        productoId:
+          type: integer
+          description: Identificador único del producto comprado-vendido.
+          format: int64
+          example: 1
+        devuelto:
+          type: boolean
+          description: Si el producto ha sido devuelto o no.
+          example: true
+        comentario:
+          type: string
+          description: Es el comentario que deja el comprador sobre la transacción
+          example: "Vendedor muy profesional y buen precio."
+        precioFinal:
+          type: number
+          description: Precio final del producto, acordado entre comprador y vendedor
+          format: float
+          example: 2000
+
+    ProductoSimpleDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Identificador del producto.
+          example: 12
+        nombre:
+          type: string
+          description: Nombre del producto
+          example: "Ultrasonic processor 500W"
+
+    CompraventaUpdateDto:
+      type: object
+      properties:
+        devuelto:
+          type: boolean
+          description: Si el producto ha sido devuelto o no.
+          example: true
+        comentario:
+          type: string
+          description: Es el comentario que deja el comprador sobre la transacción
+          example: "Vendedor muy profesional y buen precio."
+        precioFinal:
+          type: number
+          description: Precio final del producto, acordado entre comprador y vendedor
+          format: float
+          example: 2000
+
+
+    # ---------- ALQUILERES ----------
+
+    AlquilerOutDto:
+      type: Object
+      properties:
+        id:
+          type: integer
+          description: Identificador único del alquiler
+          format: int64
+          example: 1
+        fechaInicio:
+          type: string
+          description: Fecha en la que se inicia el alquiler.
+          format: date
+          example: "2024-01-22"
+        fechaFin:
+          type: string
+          description: Fecha en la que finaliza el alquiler.
+          format: date
+          example: "2025-01-22"
+        meses:
+          type: number
+          format: int
+          description: número de meses que está alquilado
+          example: 12
+        precio:
+          type: number
+          description: Precio del alquiler
+          format: float
+          example: 300
+        comentario:
+          type: string
+          description: Es el comentario que deja el comprador sobre la transacción
+          example: "El equipo estaba en perfecto estado"
+        cancelado:
+          type: boolean
+          description: Si el alquiler se cancela antes de que finalice el periodo acordado.
+          example: false
+        producto:
+          $ref: '#/components/schemas/ProductoSimpleDto'
+        arrendador:
+          $ref: '#/components/schemas/UsuarioSimpleDto'
+        arrendatario:
+          $ref: '#/components/schemas/UsuarioSimpleDto'
+
+    AlquilerInDto:
+      type: Object
+      properties:
+        arrendadorId:
+          type: integer
+          description: Identificador único del usuario arrendador.
+          format: int64
+          example: 1
+        arrendatarioId:
+          type: integer
+          description: Identificador único del usuario arrendatario.
+          format: int64
+          example: 1
+        productoId:
+          type: integer
+          description: Identificador único del producto alquilado.
+          format: int64
+          example: 1
+        fechaInicio:
+          type: string
+          description: Fecha en la que se inicia el alquiler.
+          format: date
+          example: "2024-01-22"
+        fechaFin:
+          type: string
+          description: Fecha en la que finaliza el alquiler.
+          format: date
+          example: "2025-01-22"
+        meses:
+          type: number
+          format: int
+          description: número de meses que está alquilado
+          example: 12
+        precio:
+          type: number
+          description: Precio del alquiler
+          format: float
+          example: 300
+        comentario:
+          type: string
+          description: Es el comentario que deja el comprador sobre la transacción
+          example: "El equipo estaba en perfecto estado"
+        cancelado:
+          type: boolean
+          description: Si el alquiler se cancela antes de que finalice el periodo acordado.
+          example: false
+      
+    AlquilerUpdateDto:
+      type: Object
+      properties:
+        precio:
+          type: number
+          description: Precio del alquiler
+          format: float
+          example: 300
+        comentario:
+          type: string
+          description: Es el comentario que deja el comprador sobre la transacción
+          example: "El equipo estaba en perfecto estado"
+        cancelado:
+          type: boolean
+          description: Si el alquiler se cancela antes de que finalice el periodo acordado.
+          example: false
+    
+    
+    
+    
     # ---------- RESPUESTAS HTTP ----------
     InternalServerError:
       type: object
