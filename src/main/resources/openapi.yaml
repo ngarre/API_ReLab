@@ -1,0 +1,1924 @@
+openapi: 3.1.0
+info:
+  title: ReLab API
+  description: API para gestionar usuarios, productos, categorías, alquileres y compraventas de ReLab
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8080'
+    description: Servidor local de desarrollo
+paths:
+
+  # ======================
+  #        USUARIO
+  # ======================
+
+  /usuarios:
+
+    # ---------------- GET ----------------
+    get:
+      summary: Listar todos los usuarios
+      description: |
+        Este endpoint permite obtener la lista de usuarios registrados o aplicar distintos filtros según los parámetros proporcionados.
+
+        **Posibles usos:**
+        - Sin parámetros → devuelve todos los usuarios (200, array vacío si no hay usuarios)  
+        - `nickname` + `password` → login del usuario (404 si no existe)
+        - `nickname` → buscar un usuario por su nickname (404 si no existe)
+        - `tipoUsuario` → filtrar usuarios por su tipo (200, array vacío si no hay coincidencias) 
+        - `cuentaActiva` → filtrar usuarios según su estado de cuenta (200, array vacío si no hay coincidencias)
+      operationId: listarUsuarios
+
+      parameters:
+        - name: nickname
+          in: query
+          description: Nickname del usuario
+          required: false
+          schema:
+            type: string
+        - name: password
+          in: query
+          description: Contraseña (solo se usa con nickname para login)
+          required: false
+          schema:
+            type: string
+        - name: tipoUsuario
+          in: query
+          description: Tipo de usuario (particular, empresa, centro público)
+          required: false
+          schema:
+            type: string
+        - name: cuentaActiva
+          in: query
+          description: Filtra por usuarios con cuenta activa o inactiva
+          required: false
+          schema:
+            type: boolean
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UsuarioOutDto'
+
+        '404':
+          description: Usuario no encontrado (solo si se busca por nickname o login, nickname + passoword)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+    # ---------------- POST ----------------
+    post:
+      summary: Dar de alta un nuevo usuario
+      description: |
+        Este endpoint permite registrar un nuevo usuario en la plataforma.
+
+        **Reglas:**
+        - El nickname debe ser único.
+        - La contraseña no puede estar vacía y debe tener un mínimo de 4 caracteres.
+        - El email debe tener un formato valido.
+        - El saldo debe ser mayor que cero.
+      operationId: crearUsuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                $ref: '#/components/schemas/UsuarioInDto'
+
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/UsuarioOutDto'
+
+        '400':
+          description: Bad request por validación o datos duplicados.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/NicknameYaExiste'
+                  - $ref: '#/components/schemas/ValidationError'
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/InternalServerError'
+
+
+
+  /usuarios/{id}:
+
+    # ---------------- GET BY ID ----------------
+    get:
+      summary: Obtener usuario por su ID
+      description: |
+        Este endpoint permite obtener los datos de un usuario específico a partir de su identificador único.
+      operationId: obtenerUsuarioPorId
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único del usuario.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsuarioOutDto'
+
+        '404':
+            description: Usuario no encontrado.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+  # ---------------- PUT ----------------
+    put:
+      summary: Editar usuario que tiene un determinado ID
+      description: |
+        Este endpoint permite modificar ciertos datos de un usuario cuyo ID ha sido proporcionado.
+        
+        **Reglas:**
+        - El nickname debe ser único.
+        - La contraseña no puede estar vacía y debe tener un mínimo de 4 caracteres.
+        - El email debe tener un formato valido.
+      operationId: editarUsuario
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único del usuario.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsuarioUpdateDto'
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsuarioOutDto'
+
+        '400':
+          description: Bad request por validación o datos duplicados.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/NicknameYaExiste'
+                  - $ref: '#/components/schemas/ValidationError'
+
+        '404':
+          description: usuario no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+  # ---------------- DELETE ----------------
+    delete:
+      summary: Eliminar usuario por su ID
+      description: |
+        Este endpoint permite eliminar un usuario existente en la base de datos a partir de su identificador único (**ID**).
+
+        **Reglas:**
+        - Si el usuario no existe, devuelve un error `404`.
+        - Si la eliminación se realiza correctamente, no se devuelve contenido (`204 No Content`).Permite eliminar un determinado usuario cuyo ID ha sido proporcionado.
+      operationId: eliminarUsuario
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único del usuario.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      responses:
+        '204':
+          description: Usuario eliminado correctamente.  No se devuelve contenido.
+
+        '404':
+          description: usuario no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+  # ======================
+  #        PRODUCTO
+  # ======================
+
+  /productos:
+
+    # ---------------- GET ----------------
+    get:
+      summary: Listar todos los productos
+      description: |
+        Este endpoint permite obtener la lista de productos registrados o aplicar distintos filtros según los parámetros proporcionados.
+
+        **Posibles usos:**
+        - Sin parámetros → devuelve todos los productos (200, array vacío si no hay usuarios)  
+        - `nombre` → buscar un producto por coincidencia parcial del nombre (sin considerar mayúsculas ni minúsculas), devuelve todos los productos si se pasa vacío
+        - `categoriaId` → filtrar producto por ID de la categoría a la que pertenece (404, si no existe la categoría) 
+        - `activo` → filtrar productos según su estado (200, array vacío si no hay coincidencias)
+      operationId: listarProductos
+
+      parameters:
+        - name: nombre
+          in: query
+          description: Nombre del producto
+          required: false
+          schema:
+            type: string
+        - name: activo
+          in: query
+          description: Filtra por productos según su estado (activos o inactivos)
+          required: false
+          schema:
+            type: string
+        - name: categoriaId
+          in: query
+          description: ID de la categoría a la cual puede pertenecer un producto
+          required: false
+          schema:
+            type: int
+            format: int64
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductoOutDto'
+
+        '404':
+          description: Not found por categoría no encontrada, al filtrar por categoriaId.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+    # ---------------- POST ----------------
+    post:
+      summary: Dar de alta un nuevo producto
+      description: |
+        Este endpoint permite registrar un nuevo producto.
+
+        **Reglas:**
+        - El nombre es un campo obligatorio.
+        - El precio tiene que ser mayor que cero.
+        - El ID del usuario que publica el producto es obligatorio.
+      operationId: crearProducto
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductoInDto'
+
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductoOutDto'
+
+        '400':
+          description: Bad request por validación.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+        '404':
+          description: usuario/categoria no encontrado/a.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+
+  /productos/{id}:
+
+    # ---------------- GET BY ID ----------------
+    get:
+      summary: Obtener producto por su ID
+      description: |
+        Este endpoint permite obtener los datos de un producto específico a partir de su identificador único.
+        operationId: obtenerProductoPorId
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único del producto.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductoOutDto'
+
+        '404':
+          description: producto no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+    # ---------------- PUT ----------------
+    put:
+      summary: Editar producto que tiene un determinado ID
+      description: |
+        Este endpoint permite modificar ciertos datos de un producto cuyo ID ha sido proporcionado.
+        
+        **Reglas:**
+        - El nombre no puede dejarse vacío.
+        - El precio tiene que ser mayor que cero.
+      operationId: editarProducto
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único del producto.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductoUpdateDto'
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductoOutDto'
+
+        '400':
+          description: Bad request por validación.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+        '404':
+          description: producto/categoría no encontrada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+    # ---------------- DELETE ----------------
+    delete:
+      summary: Eliminar producto por su ID
+      description: |
+        Este endpoint permite eliminar un producto existente en la base de datos a partir de su identificador único (**ID**).
+          
+        **Reglas:**
+        - Si el producto no existe, devuelve un error `404`.
+        - Si la eliminación se realiza correctamente, no se devuelve contenido (`204 No Content`). Permite eliminar un determinado producto cuyo ID ha sido proporcionado.
+
+      operationId: eliminarProducto
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único del producto.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      responses:
+        '204':
+          description: Producto eliminado correctamente.  No se devuelve contenido.
+
+        '404':
+          description: Producto no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+  # ======================
+  #        CATEGORIA
+  # ======================
+
+    # ---------------- GET ----------------
+  /categorias:
+
+    get:
+      summary: Listar todas las categorías
+      description: |
+        Este endpoint permite obtener la lista de categorías registradas o aplicar distintos filtros según los parámetros proporcionados.
+        
+        **Posibles usos:**
+        - Sin parámetros → devuelve todas las categorías (200, array vacío si no hay categorías)  
+        
+        - `nombre` → buscar una categoría por coincidencia parcial del nombre (sin considerar mayúsculas ni minúsculas), devuelve todas las categorías si se pasa vacío
+        - `activa` → filtrar categorías según su estado (200, array vacío si no hay coincidencias)
+        - `fechaCreación` → filtrado por fecha exacta o rango ("Desde-hasta" o "desde-hasta fecha actual)
+      operationId: listarCategorias
+
+      parameters:
+        - name: nombre
+          in: query
+          description: nombre de la categoría
+          required: false
+          schema:
+            type: string
+        - name: activa
+          in: query
+          description: Filtra por categorías activas o inactivas
+          required: false
+          schema:
+            type: boolean
+        - name: fechaCreación
+          in: query
+          description: fecha de creación de la categoría
+          required: false
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CategoriaOutDto'
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+    # ---------------- POST ----------------
+
+    post:
+      summary: Dar de alta una nueva categoría
+      description: |
+        Este endpoint permite registrar una nueva categoría.
+          
+        **Reglas:**
+        - El nombre es un campo obligatorio.
+        - La descripción es un campo obligatorio y debe tener al menos 10 caracteres.
+        - La tasa de comisión es un número comprendido entre 0 y 1.
+      operationId: crearCategoria
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoriaInDto'
+
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoriaOutDto'
+
+        '400':
+          description: Bad request por validación.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+  /categorias/{id}:
+
+  # ---------------- GET BY ID ----------------
+    get:
+      summary: Obtener una categoría por su ID.
+      description: |
+        Este endpoint permite obtener los datos de una categoría específica a partir de su identificador único.
+      operationId: obtenerCategoriaPorId
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único de la categoría.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoriaOutDto'
+
+        '404':
+          description: Categoría no encontrada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+  # ---------------- PUT ----------------
+    put:
+      summary: Editar categoría que tiene un determinado ID
+      description: |
+        Este endpoint permite modificar ciertos datos de una categoría cuyo ID ha sido proporcionado.
+          
+        **Reglas:**
+        - El nombre no puede dejarse vacío.
+        - La descripción debe tener al menos 10 caracteres.
+        - La tasa de comisión debe ser un número comprendido entre 0 y 1.
+      operationId: editarCategoria.
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único de la categoría.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoriaUpdateDto'
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoriaOutDto'
+
+        '400':
+          description: Bad request por validación.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+        '404':
+          description: Categoría no encontrada.
+          content:
+            application/json:
+              schema:
+                 $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+                
+  # ---------------- DELETE ----------------
+
+    delete:
+      summary: Eliminar categoria por su ID
+      description: |
+          Este endpoint permite eliminar una categoría existente en la base de datos a partir de su identificador único (**ID**).
+          
+          **Reglas:**
+          - Si la categoría no existe, devuelve un error `404`.
+          - Si la eliminación se realiza correctamente, no se devuelve contenido (`204 No Content`). Permite eliminar una determinada categoría cuyo ID ha sido proporcionado.
+        
+
+      operationId: eliminarCategoria
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único de la categoría
+          schema:
+            type: integer
+            format: int64
+            example: 1
+      
+      responses:
+        '204':
+          description: Categoría eliminada correctamente.  No se devuelve contenido.
+
+        '404':
+          description: Categoría no encontrada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+  # ======================
+  #        COMPRAVENTAS
+  # ======================
+  /compraventas:
+  # ---------------- GET ----------------
+    get:
+      summary: Listar todas las compraventas
+      description: |
+        Este endpoint permite obtener la lista de compraventas registradas o aplicar distintos filtros según los parámetros proporcionados.
+
+        **Posibles usos:**
+        - Sin parámetros → devuelve todas las compraventas (200, array vacío si no hay compraventas)  
+        - `compradorId` → buscar registros de compraventa dado un ID de comprador (404 si no existe usuario o 200 y array vacío si no hay registros para el mismo)
+        - `vendedorId` → buscar registros de compraventa dado un ID de vendedor (404 si no existe usuario o 200 y array vacío si no hay registros para el mismo)
+        - `productoId` → buscar registros de compraventa dado un ID de producto (404 si no existe producto o 200 y array vacío si no hay registros para el mismo)
+
+      operationId: listarCompraventas
+
+      parameters:
+        - name: compradorId
+          in: query
+          description: ID del comprador involucrado en la acción de compraventa.
+          required: false
+          schema:
+            type: int
+            format: int64
+        - name: vendedorId
+          in: query
+          description: ID del vendedor involucrado en la acción de compraventa.
+          required: false
+          schema:
+            type: int
+            format: int64
+        - name: productoId
+          in: query
+          description: ID del producto comprado-vendido
+          required: false
+          schema:
+            type: int
+            format: int64
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UsuarioOutDto'
+
+        '404':
+          description: Usuario/Producto no encontrado (solo si se busca por compradorId, vendedorId o productoId)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+  # ---------------- POST ----------------
+    post:
+      summary: Dar de alta un nuevo registro de compraventa
+      description: |
+          Este endpoint permite registrar una nueva compraventa.
+          
+          **Reglas:**
+          - Debe especificarse el producto comprado-vendido.
+          - Debe especificarse el usuario comprador.
+          - Debe especificarse el usuario vendedor.
+          - El precio final debe ser mayor que cero.
+      operationId: crearCompraventa
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompraventaInDto'
+
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompraventaOutDto'
+
+        '400':
+          description: Bad request por validación.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+  /compraventas/{id}:
+
+  # ---------------- GET BY ID ----------------
+    get:
+      summary: Obtener una compraventa por su ID.
+      description: |
+        Este endpoint permite obtener los datos de una compraventa específica a partir de su identificador único.
+      operationId: obtenerCompraventaPorId
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único de la compraventa.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompraventaOutDto'
+
+        '404':
+          description: Compraventa no encontrada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+    # ---------------- PUT ----------------
+    put:
+      summary: Editar compraventa que tiene un determinado ID
+      description: |
+        Este endpoint permite modificar ciertos campos de un registro de compraventa cuyo ID ha sido proporcionado.
+
+        **Regla:**
+        - El precio debe ser mayor que cero.
+      operationId: editarCompraventa.
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único de la compraventa.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompraventaUpdateDto'
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompraventaOutDto'
+
+        '400':
+          description: Bad request por validación.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+        '404':
+          description: Compraventa no encontrada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+    # ---------------- DELETE ----------------
+    delete:
+      summary: Eliminar compraventa por su ID
+      description: |
+        Este endpoint permite eliminar una compraventa existente en la base de datos a partir de su identificador único (**ID**).
+        
+        **Reglas:**
+        - Si la compraventa no existe, devuelve un error `404`.
+        - Si la eliminación se realiza correctamente, no se devuelve contenido (`204 No Content`). Permite eliminar una determinada compraventa cuyo ID ha sido proporcionado.
+      operationId: eliminarCompraventa
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único de la compraventa.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      responses:
+        '204':
+          description: Compraventa eliminada correctamente.  No se devuelve contenido.
+
+        '404':
+          description: Compraventa no encontrada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+
+  # ======================
+  #        ALQUILERES
+  # ======================
+  /alquileres:
+  # ---------------- GET ----------------
+    get:
+      summary: Listar todos los alquileres
+      description: |
+        Este endpoint permite obtener la lista de alquileres registradas o aplicar distintos filtros según los parámetros proporcionados.
+          
+        **Posibles usos:**
+        - Sin parámetros → devuelve todas los alquileres (200, array vacío si no hay alquileres)  
+        - `arrendadorId` → buscar registros de alquiler dado un ID de arrendador (404 si no existe usuario o 200 y array vacío si no hay registros para el mismo)
+        - `arrendatarioId` → buscar registros de alquiler dado un ID de arrendatario (404 si no existe usuario o 200 y array vacío si no hay registros para el mismo)
+        - `productoId` → buscar registros de alquiler dado un ID de producto (404 si no existe producto o 200 y array vacío si no hay registros para el mismo)
+      operationId: listarAlquileres
+
+      parameters:
+        - name: arrendadorId
+          in: query
+          description: ID del arrendador involucrado en el alquiler.
+          required: false
+          schema:
+            type: int
+            format: int64
+        - name: arrendatarioId
+          in: query
+          description: ID del arrendatario involucrado en la acción de alquiler.
+          required: false
+          schema:
+            type: int
+            format: int64
+        - name: productoId
+          in: query
+          description: ID del producto comprado-vendido
+          required: false
+          schema:
+            type: int
+            format: int64
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AlquilerOutDto'
+
+        '404':
+          description: Usuario/Producto no encontrado (solo si se busca por arrendadorId, arrendatarioId o productoId)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+  # ---------------- POST ----------------
+    post:
+      summary: Dar de alta un nuevo registro de alquiler
+      description: |
+        Este endpoint permite registrar un nuevo alquiler.
+          
+        **Reglas:**
+        - Debe especificarse el producto alquilado.
+        - Debe especificarse el usuario arrendador.
+        - Debe especificarse el usuario arrendatario.
+        - El precio final debe ser mayor que cero.
+
+      operationId: crearAlquiler
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlquilerInDto'
+
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlquilerOutDto'
+          
+        '400':
+          description: Bad request por validación.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError' 
+  
+  /alquileres/{id}:
+  
+  # ---------------- GET BY ID ----------------
+    get:
+      summary: Obtener un alquiler por su ID
+      description: |
+        Este endpoint permite obtener los datos de un alquiler específico a partir de su identificador único.
+      operationId: obtenerAlquilerPorId
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único al alquiler.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlquilerOutDto'
+
+        '404':
+          description: Alquiler no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+    # ---------------- PUT ----------------
+    put:
+      summary: Editar alquiler que tiene un determinado ID
+      description: |
+        Este endpoint permite modificar ciertos campos de un registro de alquiler cuyo ID ha sido proporcionado.
+        
+        **Regla:**
+        - El precio debe ser mayor que cero.
+      operationId: editarAlquiler.
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único del alquiler.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlquilerUpdateDto'
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlquilerOutDto'
+
+        '400':
+          description: Bad request por validación.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+        '404':
+          description: Alquiler no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+  # ---------------- DELETE ----------------
+    delete:
+      summary: Eliminar alquiler por su ID
+      description: |
+        Este endpoint permite eliminar un alquiler existente en la base de datos a partir de su identificador único (**ID**).
+  
+        **Reglas:**
+        - Si el alquiler no existe, devuelve un error `404`.
+        - Si la eliminación se realiza correctamente, no se devuelve contenido (`204 No Content`). Permite eliminar una determinada compraventa cuyo ID ha sido proporcionado.
+      operationId: eliminarAlquiler
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único del alquiler.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      responses:
+        '204':
+          description: Alquiler eliminado correctamente.  No se devuelve contenido.
+
+        '404':
+          description: Alquiler no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+  
+  # ======================
+  #       COMPONENTES
+  # ======================
+components:
+  schemas:
+    # ---------- USUARIOS ----------
+    UsuarioOutDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: identificador del usuario
+          format: int64 # OpenAPI utiliza tipos primitivos genéricos basados en JSON Schema, int32 es un int de JAVA e int 64 un long en JAVA
+          example: 1
+        nickname:
+          type: string
+          description: apodo del usuario
+          example: "juan23"
+        nombre:
+          type: string
+          description: nombre del usuario
+          example: "Juan"
+        apellido:
+          type: string
+          description: apellido del usuario
+          example: "Pérez"
+        email:
+          type: string
+          description: email del usuario
+          format: email
+          example: juan@example.com
+        fechaNacimiento:
+          type: string
+          description: fecha de nacimiento del usuario.
+          format: date
+          example: "1990-05-10"
+        cuentaActiva:
+          type: boolean
+          description: especifica si la cuenta está activa o si ha sido desactivada
+          example: true
+        fechaAlta:
+          type: string
+          description: es la fecha en la que el usuario ha sido dado de alta en la aplicación.
+          format: date
+          example: "2024-11-10"
+        tipoUsuario:
+          type: string
+          description: es el rol del usuario dentro de la aplicación.  Puede ser un particular, una empresa un un centro público.
+          enum: [ particular, empresa, centro_publico ]
+          example: "particular"
+        admin:
+          type: boolean
+          description: especifica si el usuario es administrador de la aplicación o no.
+          example: false
+        saldo:
+          type: number
+          description: saldo que aporta el usuario para operar en la aplicación
+          format: float
+          example: 125.50
+        latitud:
+          type: number
+          description: latitud en la que se encuentra el usuario
+          format: double
+          example: 40.4168
+        longitud:
+          type: number
+          description: longitud en la que se encuentra el usuario
+          format: double
+          example: -3.7038
+
+    UsuarioInDto:
+      type: object
+      properties:
+        nickname:
+          type: string
+          description: apodo del usuario
+          example: "juan23"
+        password:
+          type: string
+          description: contraseña del usuario
+          format: password
+          example: "1234"
+        nombre:
+          type: string
+          description: nombre del usuario
+          example: "Juan"
+        apellido:
+          type: string
+          description: apellido del usuario
+          example: "Pérez"
+        email:
+          type: string
+          description: email del usuario
+          format: email
+          example: juan@example.com
+        fechaNacimiento:
+          type: string
+          description: fecha de nacimiento del usuario
+          format: date
+          example: "1990-05-10"
+        cuentaActiva:
+          type: boolean
+          description: estado de la cuenta del usuario, puede ser activa o no
+          example: true
+        tipoUsuario:
+          type: string
+          description: rol del usuario dentro de la aplicación (particular, empresa, centro público)
+          enum: [ particular, empresa, centro_publico ]
+          example: "particular"
+        admin:
+          type: boolean
+          description: especifica si el usuario es administrador de la aplicación o no.
+          example: false
+        saldo:
+          type: number
+          description: saldo que aporta el usuario para operar en la aplicación
+          format: float
+          example: 125.50
+        latitud:
+          type: number
+          description: latitud en la que se encuentra el usuario
+          format: double
+          example: 40.4168
+        longitud:
+          type: number
+          description: longitud en la que se encuentra el usuario
+          format: double
+          example: -3.7038
+
+    UsuarioUpdateDto:
+      type: object
+      properties:
+        nickname:
+          type: string
+          description: apodo del usuario
+          example: "Carolina23"
+        password:
+          type: string
+          description: contraseña del usuario
+          format: password
+          example: "9876"
+        nombre:
+          type: string
+          description: nombre del usuario
+          example: "Carolina"
+        apellido:
+          type: string
+          description: apellido del usuario
+          example: "López"
+        email:
+          type: string
+          description: email del usuario
+          format: email
+          example: carolina@example.com
+        fechaNacimiento:
+          type: string
+          description: fecha de nacimiento del usuario
+          format: date
+          example: "1977-09-01"
+        cuentaActiva:
+          type: boolean
+          description: estado de la cuenta del usuario, puede ser activa o no
+          example: true
+        tipoUsuario:
+          type: string
+          description: rol del usuario dentro de la aplicación (particular, empresa, centro público)
+          enum: [ particular, empresa, centro_publico ]
+          example: "particular"
+        latitud:
+          type: number
+          description: latitud en la que se encuentra el usuario
+          format: double
+          example: 40.4168
+        longitud:
+          type: number
+          description: longitud en la que se encuentra el usuario
+          format: double
+          example: -3.7038
+
+
+    # ---------- PRODUCTOS ----------
+    ProductoOutDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Identificador único del producto
+          format: int64
+          example: 1
+        nombre:
+          type: string
+          description: nombre del producto
+          example: "ChemiDoc"
+        descripcion:
+          type: string
+          description: es la descripción del producto
+          example: "Permite capturar imágenes y datos de experimentos de laboratorio como los geles de ADN/proteínas y las transferencias Western"
+        precio:
+          type: number
+          description: precio inicial del producto, fijado por el vendedor
+          format: float
+          example: 10000
+        fechaActualizacion:
+          type: string
+          description: fecha de la última actualización del producto
+          format: date
+          example: "2025-09-01"
+        activo:
+          type: boolean
+          description: estado del producto, activo o no.
+          example: true
+        categoria:
+          $ref: '#/components/schemas/CategoriaSimpleDto'
+        usuario:
+          $ref: '#/components/schemas/UsuarioSimpleDto'
+
+
+    ProductoInDto:
+      type: object
+      properties:
+        nombre:
+          type: string
+          description: nombre del producto
+          example: "ChemiDoc"
+        descripcion:
+          type: string
+          description: es la descripción del producto
+          example: "Permite capturar imágenes y datos de experimentos de laboratorio como los geles de ADN/proteínas y las transferencias Western"
+        precio:
+          type: number
+          description: precio inicial del producto, fijado por el vendedor
+          format: float
+          example: 10000
+        activo:
+          type: boolean
+          description: estado del producto, activo o no.
+          example: true
+        categoriaId:
+          type: integer
+          description: identificador de la categoria
+          format: int64
+          example: 1
+        usuarioId:
+          type: integer
+          description: identificador del usuario
+          format: int64
+          example: 1
+
+    ProductoUpdateDto:
+      type: object
+      properties:
+        nombre:
+          type: string
+          description: nombre del producto
+          example: "ChemiDoc"
+        descripcion:
+          type: string
+          description: es la descripción del producto
+          example: "Permite capturar imágenes y datos de experimentos de laboratorio como los geles de ADN/proteínas y las transferencias Western"
+        precio:
+          type: number
+          description: precio inicial del producto, fijado por el vendedor
+          format: float
+          example: 10000
+        activo:
+          type: boolean
+          description: estado del producto, activo o no.
+          example: true
+        categoriaId:
+          type: integer
+          description: identificador de la categoria
+          format: int64
+          example: 1
+
+    CategoriaSimpleDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Identificador de la categoría
+          example: 1
+        nombre:
+          type: string
+          description: Nombre de la categoría
+          example: "Sistemas de imagen"
+
+    UsuarioSimpleDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Identificador del usuario
+          example: 12
+        nickname:
+          type: string
+          description: Apodo del usuario propietario del producto
+          example: "maria_lab"
+
+
+    # ---------- CATEGORÍAS ----------
+    CategoriaOutDto:
+      type: Object
+      properties:
+        id:
+          type: integer
+          description: Identificador único de la categoría. Permite clasificar los productos dentro de un grupo temático común.
+          format: int64
+          example: 1
+        nombre:
+          type: string
+          description: Nombre de la categoría
+          example: "Microscopios Ópticos"
+        descripcion:
+          type: string
+          description: Descripción detallada de la categoría, utilizada para especificar qué tipo de productos agrupa.
+          example: "Categoría que incluye todos los productos relacionados con microscopios ópticos y sus accesorios."
+        fechaCreacion:
+          type: string
+          description: Fecha de creación de la categoría
+          format: date
+          example: "2024-06-22"
+        activa:
+          type: boolean
+          description: estado de la categoría, activa o no.
+          example: true
+        tasaComision:
+          type: number
+          description: Comisión que se lleva ReLab por la venta de un producto perteneciente a esa categoría
+          format: float
+          example: 0.3
+
+    CategoriaInDto:
+      type: Object
+      properties:
+        nombre:
+          type: string
+          description: Nombre de la categoría
+          example: "Microscopios Ópticos"
+        descripcion:
+          type: string
+          description: Descripción detallada de la categoría, utilizada para especificar qué tipo de productos agrupa.
+          example: "Categoría que incluye todos los productos relacionados con microscopios ópticos y sus accesorios."
+        activa:
+          type: boolean
+          description: estado de la categoría, activa o no.
+          example: true
+        tasaComision:
+          type: number
+          description: Comisión que se lleva ReLab por la venta de un producto perteneciente a esa categoría
+          format: float
+          example: 0.3
+
+    CategoriaUpdateDto: #Realmente es igual que CategoriaInDto, pero lo pongo por documentar que utilizan DTOs distintos
+      type: Object
+      properties:
+        nombre:
+          type: string
+          description: Nombre de la categoría
+          example: "Microscopios Ópticos"
+        descripcion:
+          type: string
+          description: Descripción detallada de la categoría, utilizada para especificar qué tipo de productos agrupa.
+          example: "Categoría que incluye todos los productos relacionados con microscopios ópticos y sus accesorios."
+        activa:
+          type: boolean
+          description: estado de la categoría, activa o no.
+          example: true
+        tasaComision:
+          type: number
+          description: Comisión que se lleva ReLab por la venta de un producto perteneciente a esa categoría
+          format: float
+          example: 0.3
+
+    # ---------- COMPRAVENTAS ----------
+    CompraventaOutDto:
+      type: Object
+      properties:
+        id:
+          type: integer
+          description: Identificador único de la compraventa
+          format: int64
+          example: 1
+        fecha:
+          type: string
+          description: Fecha en la que se efectúa la compraventa.
+          format: date
+          example: "2024-06-22"
+        precioFinal:
+          type: number
+          description: Precio final del producto, acordado entre comprador y vendedor
+          format: float
+          example: 2000
+        comentario:
+          type: string
+          description: Es el comentario que deja el comprador sobre la transacción
+          example: "Vendedor muy profesional y buen precio."
+        devuelto:
+          type: boolean
+          description: Si el producto ha sido devuelto o no.
+          example: true
+        producto:
+          $ref: '#/components/schemas/ProductoSimpleDto'
+        comprador:
+          $ref: '#/components/schemas/UsuarioSimpleDto'
+        vendedor:
+          $ref: '#/components/schemas/UsuarioSimpleDto'
+
+    CompraventaInDto:
+      type: Object
+      properties:
+        compradorId:
+          type: integer
+          description: Identificador único del usuario comprador.
+          format: int64
+          example: 1
+        vendedorId:
+          type: integer
+          description: Identificador único del usuario vendedor.
+          format: int64
+          example: 1
+        productoId:
+          type: integer
+          description: Identificador único del producto comprado-vendido.
+          format: int64
+          example: 1
+        devuelto:
+          type: boolean
+          description: Si el producto ha sido devuelto o no.
+          example: true
+        comentario:
+          type: string
+          description: Es el comentario que deja el comprador sobre la transacción
+          example: "Vendedor muy profesional y buen precio."
+        precioFinal:
+          type: number
+          description: Precio final del producto, acordado entre comprador y vendedor
+          format: float
+          example: 2000
+
+    ProductoSimpleDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Identificador del producto.
+          example: 12
+        nombre:
+          type: string
+          description: Nombre del producto
+          example: "Ultrasonic processor 500W"
+
+    CompraventaUpdateDto:
+      type: object
+      properties:
+        devuelto:
+          type: boolean
+          description: Si el producto ha sido devuelto o no.
+          example: true
+        comentario:
+          type: string
+          description: Es el comentario que deja el comprador sobre la transacción
+          example: "Vendedor muy profesional y buen precio."
+        precioFinal:
+          type: number
+          description: Precio final del producto, acordado entre comprador y vendedor
+          format: float
+          example: 2000
+
+
+    # ---------- ALQUILERES ----------
+
+    AlquilerOutDto:
+      type: Object
+      properties:
+        id:
+          type: integer
+          description: Identificador único del alquiler
+          format: int64
+          example: 1
+        fechaInicio:
+          type: string
+          description: Fecha en la que se inicia el alquiler.
+          format: date
+          example: "2024-01-22"
+        fechaFin:
+          type: string
+          description: Fecha en la que finaliza el alquiler.
+          format: date
+          example: "2025-01-22"
+        meses:
+          type: number
+          format: int
+          description: número de meses que está alquilado
+          example: 12
+        precio:
+          type: number
+          description: Precio del alquiler
+          format: float
+          example: 300
+        comentario:
+          type: string
+          description: Es el comentario que deja el comprador sobre la transacción
+          example: "El equipo estaba en perfecto estado"
+        cancelado:
+          type: boolean
+          description: Si el alquiler se cancela antes de que finalice el periodo acordado.
+          example: false
+        producto:
+          $ref: '#/components/schemas/ProductoSimpleDto'
+        arrendador:
+          $ref: '#/components/schemas/UsuarioSimpleDto'
+        arrendatario:
+          $ref: '#/components/schemas/UsuarioSimpleDto'
+
+    AlquilerInDto:
+      type: Object
+      properties:
+        arrendadorId:
+          type: integer
+          description: Identificador único del usuario arrendador.
+          format: int64
+          example: 1
+        arrendatarioId:
+          type: integer
+          description: Identificador único del usuario arrendatario.
+          format: int64
+          example: 1
+        productoId:
+          type: integer
+          description: Identificador único del producto alquilado.
+          format: int64
+          example: 1
+        fechaInicio:
+          type: string
+          description: Fecha en la que se inicia el alquiler.
+          format: date
+          example: "2024-01-22"
+        fechaFin:
+          type: string
+          description: Fecha en la que finaliza el alquiler.
+          format: date
+          example: "2025-01-22"
+        meses:
+          type: number
+          format: int
+          description: número de meses que está alquilado
+          example: 12
+        precio:
+          type: number
+          description: Precio del alquiler
+          format: float
+          example: 300
+        comentario:
+          type: string
+          description: Es el comentario que deja el comprador sobre la transacción
+          example: "El equipo estaba en perfecto estado"
+        cancelado:
+          type: boolean
+          description: Si el alquiler se cancela antes de que finalice el periodo acordado.
+          example: false
+      
+    AlquilerUpdateDto:
+      type: Object
+      properties:
+        precio:
+          type: number
+          description: Precio del alquiler
+          format: float
+          example: 300
+        comentario:
+          type: string
+          description: Es el comentario que deja el comprador sobre la transacción
+          example: "El equipo estaba en perfecto estado"
+        cancelado:
+          type: boolean
+          description: Si el alquiler se cancela antes de que finalice el periodo acordado.
+          example: false
+    
+    
+    
+    
+    # ---------- RESPUESTAS HTTP ----------
+    InternalServerError:
+      type: object
+      properties:
+        code:
+          type: number
+          format: int
+          description: código de estado
+          example: 500
+        title:
+          type: string
+          description: tipo de error
+          example: error-interno
+        message:
+          type: string
+          description: mensaje de error
+          example: Error interno del servidor
+
+
+    NotFound:
+      type: object
+      properties:
+        code:
+          type: number
+          format: int
+          description: código de estado
+          example: 404
+        title:
+          type: String
+          description: tipo de error
+          example: not-found
+        message:
+          type: string
+          description: mensaje de error
+          example: La entidad (usuario, producto, categoría, compraventa o alquiler) no existe.
+
+
+    NicknameYaExiste:
+      type: object
+      properties:
+        code:
+          type: number
+          format: int
+          description: código de estado
+          example: 400
+        title:
+          type: string
+          description: tipo de error
+          example: bad-request
+        message:
+          type: string
+          description: mensaje de error
+          example: El nickname ya está en uso
+
+
+    ValidationError:
+      type: object
+      properties:
+        code:
+          type: number
+          format: int
+          description: código de estado
+          example: 400
+        title:
+          type: string
+          description: tipo de error
+          example: bad-request
+        message:
+          type: string
+          description: mensaje general de validación
+          example: Error de validación
+        errors:
+          type: object
+          description: Mapa de campos con sus mensajes de validación
+          additionalProperties:
+            type: string
+            example: "El saldo tiene que ser mayor que cero (ejemplo para usuario)"
+
+
+
+
+
+
