@@ -6,6 +6,19 @@ info:
 servers:
   - url: 'http://localhost:8080'
     description: Servidor local de desarrollo
+tags:
+  - name: Usuarios
+    description: Operaciones relacionadas con los usuarios
+  - name: Productos
+    description: Operaciones relacionadas con los productos
+  - name: Categorías
+    description: Operaciones relacionadas con las categorías
+  - name: Compraventas
+    description: Operaciones relacionadas con las compraventas
+  - name: Alquileres
+    description: Operaciones relacionadas con los alquileres
+
+
 paths:
 
   # ======================
@@ -16,6 +29,8 @@ paths:
 
     # ---------------- GET ----------------
     get:
+      tags:
+        - Usuarios
       summary: Listar todos los usuarios
       description: |
         Este endpoint permite obtener la lista de usuarios registrados o aplicar distintos filtros según los parámetros proporcionados.
@@ -81,6 +96,8 @@ paths:
 
     # ---------------- POST ----------------
     post:
+      tags:
+        - Usuarios
       summary: Dar de alta un nuevo usuario
       description: |
         Este endpoint permite registrar un nuevo usuario en la plataforma.
@@ -128,6 +145,8 @@ paths:
 
     # ---------------- GET BY ID ----------------
     get:
+      tags:
+        - Usuarios
       summary: Obtener usuario por su ID
       description: |
         Este endpoint permite obtener los datos de un usuario específico a partir de su identificador único.
@@ -168,6 +187,8 @@ paths:
 
   # ---------------- PUT ----------------
     put:
+      tags:
+        - Usuarios
       summary: Editar usuario que tiene un determinado ID
       description: |
         Este endpoint permite modificar ciertos datos de un usuario cuyo ID ha sido proporcionado.
@@ -229,6 +250,8 @@ paths:
 
   # ---------------- DELETE ----------------
     delete:
+      tags:
+        - Usuarios
       summary: Eliminar usuario por su ID
       description: |
         Este endpoint permite eliminar un usuario existente en la base de datos a partir de su identificador único (**ID**).
@@ -274,6 +297,8 @@ paths:
 
     # ---------------- GET ----------------
     get:
+      tags:
+        - Productos
       summary: Listar todos los productos
       description: |
         Este endpoint permite obtener la lista de productos registrados o aplicar distintos filtros según los parámetros proporcionados.
@@ -341,6 +366,8 @@ paths:
 
     # ---------------- POST ----------------
     post:
+      tags:
+        - Productos
       summary: Dar de alta un nuevo producto
       description: |
         Este endpoint permite registrar un nuevo producto.
@@ -393,6 +420,8 @@ paths:
 
     # ---------------- GET BY ID ----------------
     get:
+      tags:
+        - Productos
       summary: Obtener producto por su ID
       description: |
         Este endpoint permite obtener los datos de un producto específico a partir de su identificador único.
@@ -433,6 +462,8 @@ paths:
 
     # ---------------- PUT ----------------
     put:
+      tags:
+        - Productos
       summary: Editar producto que tiene un determinado ID
       description: |
         Este endpoint permite modificar ciertos datos de un producto cuyo ID ha sido proporcionado.
@@ -491,6 +522,8 @@ paths:
 
     # ---------------- DELETE ----------------
     delete:
+      tags:
+        - Productos
       summary: Eliminar producto por su ID
       description: |
         Este endpoint permite eliminar un producto existente en la base de datos a partir de su identificador único (**ID**).
@@ -537,6 +570,8 @@ paths:
   /categorias:
 
     get:
+      tags:
+        - Categorías
       summary: Listar todas las categorías
       description: |
         Este endpoint permite obtener la lista de categorías registradas o aplicar distintos filtros según los parámetros proporcionados.
@@ -590,6 +625,8 @@ paths:
     # ---------------- POST ----------------
 
     post:
+      tags:
+        - Categorías
       summary: Dar de alta una nueva categoría
       description: |
         Este endpoint permite registrar una nueva categoría.
@@ -634,6 +671,8 @@ paths:
 
   # ---------------- GET BY ID ----------------
     get:
+      tags:
+        - Categorías
       summary: Obtener una categoría por su ID.
       description: |
         Este endpoint permite obtener los datos de una categoría específica a partir de su identificador único.
@@ -673,6 +712,8 @@ paths:
 
   # ---------------- PUT ----------------
     put:
+      tags:
+        - Categorías
       summary: Editar categoría que tiene un determinado ID
       description: |
         Este endpoint permite modificar ciertos datos de una categoría cuyo ID ha sido proporcionado.
@@ -732,6 +773,8 @@ paths:
   # ---------------- DELETE ----------------
 
     delete:
+      tags:
+        - Categorías
       summary: Eliminar categoria por su ID
       description: |
           Este endpoint permite eliminar una categoría existente en la base de datos a partir de su identificador único (**ID**).
@@ -777,6 +820,8 @@ paths:
   /compraventas:
   # ---------------- GET ----------------
     get:
+      tags:
+        - Compraventas
       summary: Listar todas las compraventas
       description: |
         Este endpoint permite obtener la lista de compraventas registradas o aplicar distintos filtros según los parámetros proporcionados.
@@ -839,6 +884,8 @@ paths:
 
   # ---------------- POST ----------------
     post:
+      tags:
+        - Compraventas
       summary: Dar de alta un nuevo registro de compraventa
       description: |
           Este endpoint permite registrar una nueva compraventa.
@@ -883,6 +930,8 @@ paths:
 
   # ---------------- GET BY ID ----------------
     get:
+      tags:
+        - Compraventas
       summary: Obtener una compraventa por su ID.
       description: |
         Este endpoint permite obtener los datos de una compraventa específica a partir de su identificador único.
@@ -923,6 +972,8 @@ paths:
 
     # ---------------- PUT ----------------
     put:
+      tags:
+        - Compraventas
       summary: Editar compraventa que tiene un determinado ID
       description: |
         Este endpoint permite modificar ciertos campos de un registro de compraventa cuyo ID ha sido proporcionado.
@@ -980,6 +1031,8 @@ paths:
 
     # ---------------- DELETE ----------------
     delete:
+      tags:
+        - Compraventas
       summary: Eliminar compraventa por su ID
       description: |
         Este endpoint permite eliminar una compraventa existente en la base de datos a partir de su identificador único (**ID**).
@@ -1025,6 +1078,8 @@ paths:
   /alquileres:
   # ---------------- GET ----------------
     get:
+      tags:
+        - Alquileres
       summary: Listar todos los alquileres
       description: |
         Este endpoint permite obtener la lista de alquileres registradas o aplicar distintos filtros según los parámetros proporcionados.
@@ -1085,6 +1140,8 @@ paths:
 
   # ---------------- POST ----------------
     post:
+      tags:
+        - Alquileres
       summary: Dar de alta un nuevo registro de alquiler
       description: |
         Este endpoint permite registrar un nuevo alquiler.
@@ -1129,6 +1186,8 @@ paths:
   
   # ---------------- GET BY ID ----------------
     get:
+      tags:
+        - Alquileres
       summary: Obtener un alquiler por su ID
       description: |
         Este endpoint permite obtener los datos de un alquiler específico a partir de su identificador único.
@@ -1168,6 +1227,8 @@ paths:
 
     # ---------------- PUT ----------------
     put:
+      tags:
+        - Alquileres
       summary: Editar alquiler que tiene un determinado ID
       description: |
         Este endpoint permite modificar ciertos campos de un registro de alquiler cuyo ID ha sido proporcionado.
@@ -1225,6 +1286,8 @@ paths:
 
   # ---------------- DELETE ----------------
     delete:
+      tags:
+        - Alquileres
       summary: Eliminar alquiler por su ID
       description: |
         Este endpoint permite eliminar un alquiler existente en la base de datos a partir de su identificador único (**ID**).
