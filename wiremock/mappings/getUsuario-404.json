@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/usuarios/4"
+  },
+  "response": {
+    "status": 404,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "getEntidad-404.json"
+
+  }
+}

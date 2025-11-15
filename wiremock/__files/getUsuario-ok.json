@@ -1,0 +1,15 @@
+{
+  "id": 1,
+  "nickname": "juan23",
+  "nombre": "Juan",
+  "apellido": "Pérez",
+  "email": "juan@example.com",
+  "fechaNacimiento": "1990-05-10",
+  "cuentaActiva": true,
+  "fechaAlta": "2024-11-10",
+  "tipoUsuario": "particular",
+  "admin": false,
+  "saldo": 125.5,
+  "latitud": 40.4168,
+  "longitud": -3.7038
+}

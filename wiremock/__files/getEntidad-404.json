@@ -1,0 +1,5 @@
+{
+  "code": 404,
+  "title": "not-found",
+  "message": "La entidad (usuario, producto, categoría, compraventa o alquiler) no existe."
+}
