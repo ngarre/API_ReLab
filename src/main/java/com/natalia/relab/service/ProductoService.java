@@ -96,6 +96,14 @@ public class ProductoService {
                 .toList();
     }
 
+    // --- GET con FILTRADO según el usuario al que pertenece el producto (filtrado por usuarioId)
+    public List<ProductoOutDto> buscarPorUsuarioId(Long usuarioId) {
+        return productoRepository.findByUsuarioId(usuarioId)
+                .stream()
+                .map(this::mapToOutDto)
+                .toList();
+    }
+
     // --- PUT / modificar
     public ProductoOutDto modificar(long id, ProductoUpdateDto productoUpdateDto) throws ProductoNoEncontradoException, CategoriaNoEncontradaException {
         Producto productoAnterior = productoRepository.findById(id)
