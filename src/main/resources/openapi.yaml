@@ -282,6 +282,7 @@ paths:
         - Sin parámetros → devuelve todos los productos (200, array vacío si no hay usuarios)  
         - `nombre` → buscar un producto por coincidencia parcial del nombre (sin considerar mayúsculas ni minúsculas), devuelve todos los productos si se pasa vacío
         - `categoriaId` → filtrar producto por ID de la categoría a la que pertenece (404, si no existe la categoría) 
+        - `usuarioId` → filtrar producto por ID del usuario al que pertenece (404, si no existe el usuario)
         - `activo` → filtrar productos según su estado (200, array vacío si no hay coincidencias)
       operationId: listarProductos
 
@@ -301,6 +302,13 @@ paths:
         - name: categoriaId
           in: query
           description: ID de la categoría a la cual puede pertenecer un producto
+          required: false
+          schema:
+            type: int
+            format: int64
+        - name: usuarioId
+          in: query
+          description: ID del usuario al cual pertenece un producto
           required: false
           schema:
             type: int
