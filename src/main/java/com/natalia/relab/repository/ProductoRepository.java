@@ -14,4 +14,5 @@ public interface ProductoRepository extends CrudRepository<Producto,Long> {
     List<Producto> findByNombreContainingIgnoreCase(String nombre); // Para filtrar por coincidencia parcial del nombre sin tener en cuenta mayúsculas o minúsculas
     List<Producto> findByActivo(boolean activo);
     List<Producto> findByCategoriaId(Long categoriaId);
+    List<Producto> findByUsuarioId(Long usuarioId);
 }
