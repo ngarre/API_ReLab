@@ -1,14 +1,14 @@
 {
   "request": {
     "method": "PUT",
-    "url": "/usuarios/4"
+    "url": "/productos/2"
   },
   "response": {
     "status": 200,
     "headers": {
       "Content-Type": "application/json"
     },
-    "bodyFileName": "EntidadNotFound-404.json"
+    "bodyFileName": "putProducto-ok.json"
 
   }
 }

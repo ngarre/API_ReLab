@@ -1,0 +1,10 @@
+{
+  "code": 400,
+  "title": "bad-request",
+  "message": "Error de validación",
+  "errors": {
+    "precio": "El precio tiene que ser mayor que cero",
+    "usuarioId": "Debe especificarse el usuario que publica el producto",
+    "nombre": "El nombre del producto es un campo obligatorio"
+  }
+}

@@ -8,7 +8,7 @@
     "headers": {
       "Content-Type": "application/json"
     },
-    "bodyFileName": "usuarioNotFound-404.json"
+    "bodyFileName": "EntidadNotFound-404.json"
 
   }
 }

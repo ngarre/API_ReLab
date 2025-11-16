@@ -1,7 +1,7 @@
 {
   "request": {
     "method": "PUT",
-    "url": "/usuarios/4"
+    "url": "/productos/5"
   },
   "response": {
     "status": 200,

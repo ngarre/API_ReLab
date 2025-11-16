@@ -1,0 +1,16 @@
+{
+  "id": 1,
+  "nombre": "Centrifuga GiroZen",
+  "descripcion": "Una centrífuga",
+  "precio": 10000,
+  "fechaActualizacion": "2025-09-01",
+  "activo": true,
+  "categoria": {
+    "id": 2,
+    "nombre": "Centrifugas"
+  },
+  "usuario": {
+    "id": 12,
+    "nickname": "maria_lab"
+  }
+}

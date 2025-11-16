@@ -1,14 +1,13 @@
 {
   "request": {
-    "method": "PUT",
-    "url": "/usuarios/4"
+    "method": "DELETE",
+    "url": "/productos/5"
   },
   "response": {
-    "status": 200,
+    "status": 404,
     "headers": {
       "Content-Type": "application/json"
     },
     "bodyFileName": "EntidadNotFound-404.json"
-
   }
 }

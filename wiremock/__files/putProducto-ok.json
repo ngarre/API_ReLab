@@ -1,0 +1,16 @@
+{
+  "id": 2,
+  "nombre": "Centrifuga normalilla",
+  "descripcion": "No era para tanto.",
+  "precio": 3000,
+  "fechaActualizacion": "2024-09-01",
+  "activo": true,
+  "categoria": {
+    "id": 2,
+    "nombre": "Centrífugas"
+  },
+  "usuario": {
+    "id": 12,
+    "nickname": "maria_lab"
+  }
+}

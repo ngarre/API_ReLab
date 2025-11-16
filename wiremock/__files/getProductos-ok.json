@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "nombre": "ChemiDoc",
+    "descripcion": "Permite capturar imágenes y datos de experimentos de laboratorio como los geles de ADN/proteínas y las transferencias Western",
+    "precio": 10000,
+    "fechaActualizacion": "2025-09-01",
+    "activo": true,
+    "categoria": {
+      "id": 1,
+      "nombre": "Sistemas de imagen"
+    },
+    "usuario": {
+      "id": 12,
+      "nickname": "maria_lab"
+    }
+  },
+  {
+    "id": 2,
+    "nombre": "Ultra centrífuga Optima TLX 120000 Rpms",
+    "descripcion": "La ultracentrífuga Optima TLX de mesa controlada por microprocesador genera fuerzas centrífugas elevadas para diversas aplicaciones de alta velocidad. El diseño del instrumento incluye un motor de inducción de frecuencia variable y un sistema de control termoeléctrico de la temperatura.",
+    "precio": 300000,
+    "fechaActualizacion": "2024-09-01",
+    "activo": true,
+    "categoria": {
+      "id": 2,
+      "nombre": "Centrífugas"
+    },
+    "usuario": {
+      "id": 12,
+      "nickname": "maria_lab"
+    }
+  },
+  {
+    "id": 3,
+    "nombre": "Kern balanza analítica",
+    "descripcion": "Balanza de alta precisión para laboratorio",
+    "precio": 1750,
+    "fechaActualizacion": "2023-08-01",
+    "activo": true,
+    "categoria": {
+      "id": 3,
+      "nombre": "Balanzas"
+    },
+    "usuario": {
+      "id": 13,
+      "nickname": "Juan23"
+    }
+  }
+]
