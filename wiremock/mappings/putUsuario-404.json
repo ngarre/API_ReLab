@@ -1,10 +1,10 @@
 {
   "request": {
-    "method": "GET",
+    "method": "PUT",
     "url": "/usuarios/4"
   },
   "response": {
-    "status": 404,
+    "status": 200,
     "headers": {
       "Content-Type": "application/json"
     },

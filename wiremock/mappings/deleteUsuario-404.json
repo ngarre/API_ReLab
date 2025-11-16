@@ -1,6 +1,6 @@
 {
   "request": {
-    "method": "GET",
+    "method": "DELETE",
     "url": "/usuarios/4"
   },
   "response": {
@@ -9,6 +9,5 @@
       "Content-Type": "application/json"
     },
     "bodyFileName": "usuarioNotFound-404.json"
-
   }
 }

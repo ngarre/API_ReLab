@@ -1,0 +1,9 @@
+{
+  "code": 400,
+  "title": "bad-request",
+  "message": "Error de validación",
+  "errors": {
+    "password": "La contraseña debe tener al menos 4 carácteres",
+    "email": "El formato de email no es válido"
+  }
+}
