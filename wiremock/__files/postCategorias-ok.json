@@ -1,0 +1,8 @@
+{
+  "id": 4,
+  "nombre": "Microscopía Confocal",
+  "descripcion": "Categoría que incluye todos los productos relacionados con microscopios confocal y sus accesorios.",
+  "fechaCreacion": "2024-06-22",
+  "activa": true,
+  "tasaComision": 0.3
+}

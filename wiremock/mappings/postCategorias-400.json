@@ -1,0 +1,20 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "url": "/categorias",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(!(@.nombre) || @.nombre == '' || !(@.descripcion) || @.descripcion == '' || @.descripcion.length() < 10 ||  @.tasaComision < 0 || @.tasaComision > 1)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "postCategorias-400.json"
+
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/categorias/1"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "getCategoria-ok.json"
+
+  }
+}

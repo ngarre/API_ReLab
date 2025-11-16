@@ -4,7 +4,7 @@
     "url": "/usuarios/4"
   },
   "response": {
-    "status": 200,
+    "status": 404,
     "headers": {
       "Content-Type": "application/json"
     },

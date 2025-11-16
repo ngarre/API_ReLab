@@ -1,7 +1,7 @@
 {
   "request": {
-    "method": "PUT",
-    "url": "/productos/5"
+    "method": "GET",
+    "url": "/categorias/5"
   },
   "response": {
     "status": 404,

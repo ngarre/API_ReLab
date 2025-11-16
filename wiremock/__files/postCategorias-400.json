@@ -1,0 +1,10 @@
+{
+  "code": 400,
+  "title": "bad-request",
+  "message": "Error de validación",
+  "errors": {
+    "descripcion": "La descripción debe tener al menos 10 caracteres",
+    "tasaComision": "El valor máximo permitido es 1",
+    "nombre": "El nombre es un campo obligatorio"
+  }
+}
