@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/alquileres/1"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "getAlquiler-ok.json"
+
+  }
+}
