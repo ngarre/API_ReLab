@@ -1,0 +1,19 @@
+{
+  "id": 4,
+  "fecha": "2024-06-22",
+  "precioFinal": 2000,
+  "comentario": "Vendedor muy profesional y buen precio.",
+  "devuelto": true,
+  "producto": {
+    "id": 12,
+    "nombre": "Ultrasonic processor 500W"
+  },
+  "comprador": {
+    "id": 1,
+    "nickname": "maria_lab"
+  },
+  "vendedor": {
+    "id": 2,
+    "nickname": "RamonHur"
+  }
+}

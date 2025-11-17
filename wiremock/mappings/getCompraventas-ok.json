@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/compraventas"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "getCompraventas-ok.json"
+
+  }
+}

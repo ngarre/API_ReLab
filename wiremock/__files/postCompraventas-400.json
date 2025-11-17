@@ -1,0 +1,11 @@
+{
+  "code": 400,
+  "title": "bad-request",
+  "message": "Error de validación",
+  "errors": {
+    "compradorId": "Debe especificarse el comprador",
+    "productoId": "Debe especificarse el producto comprado/vendido",
+    "precioFinal": "El precio debe ser mayor que cero",
+    "vendedorId": "Debe especificarse el vendedor"
+  }
+}

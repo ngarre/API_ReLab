@@ -865,7 +865,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/UsuarioOutDto'
+                  $ref: '#/components/schemas/CompraventaOutDto'
 
         '404':
           description: Usuario/Producto no encontrado (solo si se busca por compradorId, vendedorId o productoId)
