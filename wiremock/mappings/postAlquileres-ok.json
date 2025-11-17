@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/alquileres"
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "postAlquileres-ok.json"
+
+  }
+}

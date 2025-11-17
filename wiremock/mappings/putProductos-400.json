@@ -1,0 +1,20 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "PUT",
+    "url": "/productos/1",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(!(@.nombre) || @.nombre == '' || @.precio <= 0)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "putProducto-400.json"
+
+  }
+}

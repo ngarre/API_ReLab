@@ -1,0 +1,8 @@
+{
+  "id": 1,
+  "nombre": "Microscopios Ópticos",
+  "descripcion": "Categoría que incluye todos los productos relacionados con microscopios ópticos y sus accesorios.",
+  "fechaCreacion": "2024-06-22",
+  "activa": true,
+  "tasaComision": 0.3
+}

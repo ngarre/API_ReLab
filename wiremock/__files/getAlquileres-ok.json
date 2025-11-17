@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "fechaInicio": "2022-02-22",
+    "fechaFin": "2023-02-22",
+    "meses": 12,
+    "precio": 300,
+    "comentario": "El equipo estaba en perfecto estado",
+    "cancelado": false,
+    "producto": {
+      "id": 1,
+      "nombre": "Espectropolarímetro de dicroísmo circular (CD)"
+    },
+    "arrendador": {
+      "id": 12,
+      "nickname": "maria_lab"
+    },
+    "arrendatario": {
+      "id": 13,
+      "nickname": "JuanIP"
+    }
+  },
+  {
+    "id": 2,
+    "fechaInicio": "2024-01-22",
+    "fechaFin": "2025-01-22",
+    "meses": 12,
+    "precio": 5000,
+    "comentario": "El equipo estaba sucio",
+    "cancelado": false,
+    "producto": {
+      "id": 12,
+      "nombre": "Ultrasonic processor 500W"
+    },
+    "arrendador": {
+      "id": 15,
+      "nickname": "Ana23"
+    },
+    "arrendatario": {
+      "id": 14,
+      "nickname": "BioSara"
+    }
+  },
+  {
+    "id": 3,
+    "fechaInicio": "2024-01-22",
+    "fechaFin": "2024-06-22",
+    "meses": 5,
+    "precio": 700,
+    "comentario": "Todo correcto",
+    "cancelado": false,
+    "producto": {
+      "id": 12,
+      "nombre": "Ultra centrífuga"
+    },
+    "arrendador": {
+      "id": 1,
+      "nickname": "Fer94"
+    },
+    "arrendatario": {
+      "id": 12,
+      "nickname": "maria_lab"
+    }
+  }
+]

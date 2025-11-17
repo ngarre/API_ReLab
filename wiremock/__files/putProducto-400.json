@@ -1,0 +1,9 @@
+{
+  "code": 400,
+  "title": "bad-request",
+  "message": "Error de validación",
+  "errors": {
+    "precio": "El precio tiene que ser mayor que cero",
+    "nombre": "El nombre no puede estar vacío"
+  }
+}

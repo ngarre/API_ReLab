@@ -1,0 +1,19 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "url": "/alquileres",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(@.precio <= 0 || !(@.productoId) || @.productoId == '' || !(@.arrendatarioId) || @.arrendatarioId == '' || !(@.arrendadorId) || @.arrendadorId == '')]"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "postAlquileres-400.json"
+  }
+}

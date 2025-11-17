@@ -1,0 +1,19 @@
+{
+  "id": 1,
+  "fecha": "2025-10-30",
+  "precioFinal": 48.0,
+  "comentario": "mejor",
+  "devuelto": false,
+  "producto": {
+    "id": 14,
+    "nombre": "Balanza Nueva"
+  },
+  "comprador": {
+    "id": 3,
+    "nickname": "LukaNuevo"
+  },
+  "vendedor": {
+    "id": 5,
+    "nickname": "Julia22"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "request": {
-    "method": "GET",
-    "url": "/usuarios/4"
+    "method": "DELETE",
+    "url": "/categorias/5"
   },
   "response": {
     "status": 404,
@@ -9,6 +9,5 @@
       "Content-Type": "application/json"
     },
     "bodyFileName": "EntidadNotFound-404.json"
-
   }
 }

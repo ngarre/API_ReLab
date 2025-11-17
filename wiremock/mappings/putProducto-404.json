@@ -1,7 +1,7 @@
 {
   "request": {
-    "method": "GET",
-    "url": "/usuarios/4"
+    "method": "PUT",
+    "url": "/productos/5"
   },
   "response": {
     "status": 404,

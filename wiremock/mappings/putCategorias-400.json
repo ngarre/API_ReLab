@@ -1,0 +1,20 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "PUT",
+    "url": "/categorias/1",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(!(@.nombre) || @.nombre == '' || !(@.descripcion) || @.descripcion == '' || @.descripcion.length() < 10 ||  @.tasaComision < 0 || @.tasaComision > 1)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "putCategoria-400.json"
+
+  }
+}

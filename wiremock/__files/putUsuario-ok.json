@@ -1,0 +1,15 @@
+{
+  "id": 2,
+  "nickname": "Laura03",
+  "nombre": "Laura",
+  "apellido": "López",
+  "email": "ana@example.com",
+  "fechaNacimiento": "2003-06-11",
+  "cuentaActiva": true,
+  "fechaAlta": "2025-01-09",
+  "tipoUsuario": "empresa",
+  "admin": false,
+  "saldo": 300.7,
+  "latitud": 30.4168,
+  "longitud": -3.7038
+}

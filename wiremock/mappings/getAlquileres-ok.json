@@ -1,14 +1,14 @@
 {
   "request": {
     "method": "GET",
-    "url": "/usuarios/4"
+    "url": "/alquileres"
   },
   "response": {
-    "status": 404,
+    "status": 200,
     "headers": {
       "Content-Type": "application/json"
     },
-    "bodyFileName": "EntidadNotFound-404.json"
+    "bodyFileName": "getAlquileres-ok.json"
 
   }
 }

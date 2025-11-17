@@ -1,0 +1,20 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "PUT",
+    "url": "/compraventas/1",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(@.precioFinal <= 0)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "putCompraventa-400.json"
+
+  }
+}

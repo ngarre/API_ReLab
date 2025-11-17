@@ -1,0 +1,1181 @@
+{
+	"info": {
+		"_postman_id": "87a57e28-8992-409a-99e1-5e6149529e6b",
+		"name": "Wiremock",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50099138",
+		"_collection_link": "https://a28710-1283473.postman.co/workspace/NATALIA-Team's-Workspace~59c2cf73-7f6a-4e52-8deb-042922211d8f/collection/50099138-87a57e28-8992-409a-99e1-5e6149529e6b?action=share&source=collection_link&creator=50099138"
+	},
+	"item": [
+		{
+			"name": "usuarios",
+			"item": [
+				{
+					"name": "usuarios (ok)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/usuarios",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "usuario (ok)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \r\n  \t\"nickname\": \"Fer34\",\r\n  \t\"password\": \"secreto\",\r\n    \t\"nombre\": \"Fernando\",\r\n    \t\"apellido\": \"Pérez\",\r\n    \t\"email\": \"Fernando@example.com\",\r\n    \t\"fechaNacimiento\": \"2008-05-15\",\r\n    \t\"cuentaActiva\": true,\r\n    \t\"tipoUsuario\": \"Empresa\",\r\n    \t\"saldo\": 300,\r\n    \t\"latitud\": 40.4168,\r\n    \t\"longitud\": -3.7038\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseURL}}/usuarios/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "usuario (not found)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \r\n  \t\"nickname\": \"Fer34\",\r\n  \t\"password\": \"secreto\",\r\n    \t\"nombre\": \"Fernando\",\r\n    \t\"apellido\": \"Pérez\",\r\n    \t\"email\": \"Fernando@example.com\",\r\n    \t\"fechaNacimiento\": \"2008-05-15\",\r\n    \t\"cuentaActiva\": true,\r\n    \t\"tipoUsuario\": \"Empresa\",\r\n    \t\"saldo\": 300,\r\n    \t\"latitud\": 40.4168,\r\n    \t\"longitud\": -3.7038\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseURL}}/usuarios/4",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"usuarios",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "usuario (ok)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \r\n  \t\"nickname\": \"Fer34\",\r\n  \t\"password\": \"secreto\",\r\n    \t\"nombre\": \"Fernando\",\r\n    \t\"apellido\": \"Pérez\",\r\n    \t\"email\": \"Fernando@example.com\",\r\n    \t\"fechaNacimiento\": \"2008-05-15\",\r\n    \t\"cuentaActiva\": true,\r\n    \t\"tipoUsuario\": \"Empresa\",\r\n    \t\"saldo\": 300,\r\n    \t\"latitud\": 40.4168,\r\n    \t\"longitud\": -3.7038\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/usuarios",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "usuarios (bad request)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \r\n  \t\"nickname\": \"Fer34\",\r\n  \t\"password\": \"23\",\r\n    \t\"nombre\": \"Fernando\",\r\n    \t\"apellido\": \"Pérez\",\r\n    \t\"email\": \"hola\",\r\n    \t\"fechaNacimiento\": \"2008-05-15\",\r\n    \t\"cuentaActiva\": true,\r\n    \t\"tipoUsuario\": \"Empresa\",\r\n    \t\"saldo\": -300,\r\n    \t\"latitud\": 40.4168,\r\n    \t\"longitud\": -3.7038\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/usuarios",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "usuario (ok)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \r\n  \t\"nickname\": \"Anita03\",\r\n  \t\"password\": \"1234\",\r\n    \"nombre\": \"Sara\",\r\n   \t\"apellido\": \"García\",\r\n    \"email\": \"Saritag@example.com\",\r\n   \t\"fechaNacimiento\": \"1995-05-15\",\r\n    \"cuentaActiva\": true,\r\n    \"tipoUsuario\": \"Empresa\",\r\n    \"latitud\": 40.4168,\r\n    \"longitud\": -3.7038\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseURL}}/usuarios/2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"usuarios",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "usuario (not found)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \r\n  \t\"nickname\": \"Anita03\",\r\n  \t\"password\": \"1234\",\r\n    \"nombre\": \"Sara\",\r\n   \t\"apellido\": \"García\",\r\n    \"email\": \"Saritag@example.com\",\r\n   \t\"fechaNacimiento\": \"1995-05-15\",\r\n    \"cuentaActiva\": true,\r\n    \"tipoUsuario\": \"Empresa\",\r\n    \"latitud\": 40.4168,\r\n    \"longitud\": -3.7038\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseURL}}/usuarios/4",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"usuarios",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "usuario (bad request)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \r\n  \t\"nickname\": \"juan23\",\r\n  \t\"password\": \"12\",\r\n    \"nombre\": \"Juan\",\r\n   \t\"apellido\": \"Pérez\",\r\n    \"email\": \"Sarita\",\r\n   \t\"fechaNacimiento\": \"1995-05-15\",\r\n    \"cuentaActiva\": true,\r\n    \"tipoUsuario\": \"Empresa\",\r\n    \"latitud\": 40.4168,\r\n    \"longitud\": -3.7038\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/usuarios/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "usuario (ok)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \r\n  \t\"nickname\": \"Fer34\",\r\n  \t\"password\": \"secreto\",\r\n    \t\"nombre\": \"Fernando\",\r\n    \t\"apellido\": \"Pérez\",\r\n    \t\"email\": \"Fernando@example.com\",\r\n    \t\"fechaNacimiento\": \"2008-05-15\",\r\n    \t\"cuentaActiva\": true,\r\n    \t\"tipoUsuario\": \"Empresa\",\r\n    \t\"saldo\": 300,\r\n    \t\"latitud\": 40.4168,\r\n    \t\"longitud\": -3.7038\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseURL}}/usuarios/3",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"usuarios",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "usuario (not found)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \r\n  \t\"nickname\": \"Fer34\",\r\n  \t\"password\": \"secreto\",\r\n    \t\"nombre\": \"Fernando\",\r\n    \t\"apellido\": \"Pérez\",\r\n    \t\"email\": \"Fernando@example.com\",\r\n    \t\"fechaNacimiento\": \"2008-05-15\",\r\n    \t\"cuentaActiva\": true,\r\n    \t\"tipoUsuario\": \"Empresa\",\r\n    \t\"saldo\": 300,\r\n    \t\"latitud\": 40.4168,\r\n    \t\"longitud\": -3.7038\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseURL}}/usuarios/4",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"usuarios",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "productos",
+			"item": [
+				{
+					"name": "productos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \r\n  \t\"nickname\": \"juan23\",\r\n  \t\"password\": \"12\",\r\n    \"nombre\": \"Juan\",\r\n   \t\"apellido\": \"Pérez\",\r\n    \"email\": \"Sarita\",\r\n   \t\"fechaNacimiento\": \"1995-05-15\",\r\n    \"cuentaActiva\": true,\r\n    \"tipoUsuario\": \"Empresa\",\r\n    \"latitud\": 40.4168,\r\n    \"longitud\": -3.7038\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/productos",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "producto (ok)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \r\n  \t\"nickname\": \"juan23\",\r\n  \t\"password\": \"12\",\r\n    \"nombre\": \"Juan\",\r\n   \t\"apellido\": \"Pérez\",\r\n    \"email\": \"Sarita\",\r\n   \t\"fechaNacimiento\": \"1995-05-15\",\r\n    \"cuentaActiva\": true,\r\n    \"tipoUsuario\": \"Empresa\",\r\n    \"latitud\": 40.4168,\r\n    \"longitud\": -3.7038\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/productos/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"productos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "producto (not found)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \r\n  \t\"nickname\": \"juan23\",\r\n  \t\"password\": \"12\",\r\n    \"nombre\": \"Juan\",\r\n   \t\"apellido\": \"Pérez\",\r\n    \"email\": \"Sarita\",\r\n   \t\"fechaNacimiento\": \"1995-05-15\",\r\n    \"cuentaActiva\": true,\r\n    \"tipoUsuario\": \"Empresa\",\r\n    \"latitud\": 40.4168,\r\n    \"longitud\": -3.7038\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/productos/4",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"productos",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "producto (ok)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \t\"nombre\": \"Centrífguga GiroZen\",\r\n    \"descripcion\": \"Una centrífuga\",\r\n    \"precio\": 2000.0,\r\n    \"activo\": true,\r\n    \"categoriaId\": 5,\r\n\t\"usuarioId\": 7\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/productos",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "producto (bad request)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \t\"nombre\": \"\",\r\n    \"descripcion\": \"Una centrífuga\",\r\n    \"precio\": -2000.0,\r\n    \"activo\": true,\r\n    \"categoriaId\": 5\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/productos",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "producto (ok)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n   \t\"nombre\": \"Centrifuga normalilla\",\r\n    \t\"descripcion\": \"No era para tanto.\",\r\n    \t\"precio\": 2000.0,\r\n    \t\"activo\": true,\r\n   \t\"categoriaId\": 5\r\n }\r\n"
+						},
+						"url": {
+							"raw": "{{baseURL}}/productos/2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"productos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "producto (not found)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n   \t\"nombre\": \"pH-metro\",\r\n    \"descripcion\": \"Para efectuar medidas de pH\",\r\n    \"precio\": 2000.0,\r\n    \"activo\": true,\r\n   \t\"categoriaId\": 5\r\n }"
+						},
+						"url": {
+							"raw": "{{baseURL}}/productos/5",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"productos",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "producto (bad request)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n   \t\"nombre\": \"\",\r\n    \"descripcion\": \"Puede hacer ciencia\",\r\n    \"precio\": -2000.0,\r\n    \"activo\": true,\r\n   \t\"categoriaId\": 5\r\n }"
+						},
+						"url": {
+							"raw": "{{baseURL}}/productos/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"productos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "producto (ok)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n   \t\"nombre\": \"\",\r\n    \"descripcion\": \"Puede hacer ciencia\",\r\n    \"precio\": -2000.0,\r\n    \"activo\": true,\r\n   \t\"categoriaId\": 5\r\n }"
+						},
+						"url": {
+							"raw": "{{baseURL}}/productos/3",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"productos",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "producto (not found)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n   \t\"nombre\": \"\",\r\n    \"descripcion\": \"Puede hacer ciencia\",\r\n    \"precio\": -2000.0,\r\n    \"activo\": true,\r\n   \t\"categoriaId\": 5\r\n }"
+						},
+						"url": {
+							"raw": "{{baseURL}}/productos/5",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"productos",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "categorias",
+			"item": [
+				{
+					"name": "categorias (ok)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n   \t\"nombre\": \"\",\r\n    \"descripcion\": \"Puede hacer ciencia\",\r\n    \"precio\": -2000.0,\r\n    \"activo\": true,\r\n   \t\"categoriaId\": 5\r\n }"
+						},
+						"url": {
+							"raw": "{{baseURL}}/categorias",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"categorias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "categoria (ok)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n   \t\"nombre\": \"\",\r\n    \"descripcion\": \"Puede hacer ciencia\",\r\n    \"precio\": -2000.0,\r\n    \"activo\": true,\r\n   \t\"categoriaId\": 5\r\n }"
+						},
+						"url": {
+							"raw": "{{baseURL}}/categorias/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"categorias",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "categoria (not found)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n   \t\"nombre\": \"\",\r\n    \"descripcion\": \"Puede hacer ciencia\",\r\n    \"precio\": -2000.0,\r\n    \"activo\": true,\r\n   \t\"categoriaId\": 5\r\n }"
+						},
+						"url": {
+							"raw": "{{baseURL}}/categorias/5",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"categorias",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "categoria (ok)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Microscopía Confocal\",\r\n  \"descripcion\": \"Categoría que incluye todos los productos relacionados con microscopios confocal y sus accesorios.\",\r\n  \"activa\": true,\r\n  \"tasaComision\": 0.3\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/categorias",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"categorias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "categoria (bad request)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"\",\r\n  \"descripcion\": \"micro\",\r\n  \"activa\": true,\r\n  \"tasaComision\": 8\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/categorias",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"categorias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "categoria (ok)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Microscopios Ópticos\",\r\n  \"descripcion\": \"Categoría que incluye todos los productos relacionados con microscopios ópticos y sus accesorios.\",\r\n  \"activa\": true,\r\n  \"tasaComision\": 0.3\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/categorias/2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"categorias",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "categoria (not found)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Microscopios Ópticos\",\r\n  \"descripcion\": \"Categoría que incluye todos los productos relacionados con microscopios ópticos y sus accesorios.\",\r\n  \"activa\": true,\r\n  \"tasaComision\": 0.3\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/categorias/5",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"categorias",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "categoria (bad request)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"\",\r\n  \"descripcion\": \"Categoría\",\r\n  \"activa\": true,\r\n  \"tasaComision\": 8\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/categorias/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"categorias",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "categoria (ok)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"\",\r\n  \"descripcion\": \"Categoría\",\r\n  \"activa\": true,\r\n  \"tasaComision\": 8\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/categorias/3",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"categorias",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "categoria (not found)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"\",\r\n  \"descripcion\": \"Categoría\",\r\n  \"activa\": true,\r\n  \"tasaComision\": 8\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/categorias/5",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"categorias",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "alquileres",
+			"item": [
+				{
+					"name": "alquileres (ok)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"\",\r\n  \"descripcion\": \"Categoría\",\r\n  \"activa\": true,\r\n  \"tasaComision\": 8\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/alquileres",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"alquileres"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alquiler (ok)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"\",\r\n  \"descripcion\": \"Categoría\",\r\n  \"activa\": true,\r\n  \"tasaComision\": 8\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/alquileres/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"alquileres",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alquiler (not found)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"\",\r\n  \"descripcion\": \"Categoría\",\r\n  \"activa\": true,\r\n  \"tasaComision\": 8\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/alquileres/5",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"alquileres",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alquiler (ok)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"arrendadorId\": 1,\r\n  \"arrendatarioId\": 2,\r\n  \"productoId\": 1,\r\n  \"fechaInicio\": \"2024-01-22\",\r\n  \"fechaFin\": \"2025-01-22\",\r\n  \"meses\": 12,\r\n  \"precio\": 300,\r\n  \"comentario\": \"El equipo estaba en perfecto estado\",\r\n  \"cancelado\": false\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/alquileres",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"alquileres"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alquileres (bad request)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fechaInicio\": \"2024-01-22\",\r\n  \"fechaFin\": \"2025-01-22\",\r\n  \"meses\": 12,\r\n  \"precio\": -300,\r\n  \"comentario\": \"El equipo estaba en perfecto estado\",\r\n  \"cancelado\": false\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/alquileres",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"alquileres"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alquiler (ok)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"precio\": 300,\r\n  \"comentario\": \"El equipo estaba en perfecto estado\",\r\n  \"cancelado\": false\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/alquileres/2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"alquileres",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alquiler (not found)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"precio\": 300,\r\n  \"comentario\": \"El equipo estaba en perfecto estado\",\r\n  \"cancelado\": false\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/alquileres/5",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"alquileres",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alquiler (bad request)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"precio\": -300,\r\n  \"comentario\": \"El equipo estaba en perfecto estado\",\r\n  \"cancelado\": false\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/alquileres/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"alquileres",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alquiler (ok)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"precio\": -300,\r\n  \"comentario\": \"El equipo estaba en perfecto estado\",\r\n  \"cancelado\": false\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/alquileres/3",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"alquileres",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alquiler (not found)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"precio\": -300,\r\n  \"comentario\": \"El equipo estaba en perfecto estado\",\r\n  \"cancelado\": false\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/alquileres/5",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"alquileres",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "compraventas",
+			"item": [
+				{
+					"name": "compraventas (ok)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fechaInicio\": \"2024-01-22\",\r\n  \"fechaFin\": \"2025-01-22\",\r\n  \"meses\": 12,\r\n  \"precio\": -300,\r\n  \"comentario\": \"El equipo estaba en perfecto estado\",\r\n  \"cancelado\": false\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/compraventas",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"compraventas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "compraventa (ok)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fechaInicio\": \"2024-01-22\",\r\n  \"fechaFin\": \"2025-01-22\",\r\n  \"meses\": 12,\r\n  \"precio\": -300,\r\n  \"comentario\": \"El equipo estaba en perfecto estado\",\r\n  \"cancelado\": false\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/compraventas/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"compraventas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "compraventa (not found)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fechaInicio\": \"2024-01-22\",\r\n  \"fechaFin\": \"2025-01-22\",\r\n  \"meses\": 12,\r\n  \"precio\": -300,\r\n  \"comentario\": \"El equipo estaba en perfecto estado\",\r\n  \"cancelado\": false\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/compraventas/5",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"compraventas",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "compraventa (ok)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"compradorId\": 1,\r\n  \"vendedorId\": 2,\r\n  \"productoId\": 1,\r\n  \"devuelto\": true,\r\n  \"comentario\": \"Vendedor muy profesional y buen precio.\",\r\n  \"precioFinal\": 2000\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/compraventas",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"compraventas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "compraventa (bad request)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"devuelto\": true,\r\n  \"comentario\": \"Vendedor muy profesional y buen precio.\",\r\n  \"precioFinal\": -2000\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/compraventas",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"compraventas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "compraventa (ok)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"devuelto\": true,\r\n  \"comentario\": \"No lo recomiendo.\",\r\n  \"precioFinal\": 2000\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/compraventas/2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"compraventas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "compraventa (not found)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"devuelto\": true,\r\n  \"comentario\": \"No lo recomiendo.\",\r\n  \"precioFinal\": 2000\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/compraventas/5",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"compraventas",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "compraventa (bad request)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"devuelto\": true,\r\n  \"comentario\": \"No lo recomiendo.\",\r\n  \"precioFinal\": -2000\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/compraventas/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"compraventas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "compraventa (ok)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"devuelto\": true,\r\n  \"comentario\": \"No lo recomiendo.\",\r\n  \"precioFinal\": 2000\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/compraventas/3",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"compraventas",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "compraventa (not found)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"devuelto\": true,\r\n  \"comentario\": \"No lo recomiendo.\",\r\n  \"precioFinal\": 2000\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/compraventas/5",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"compraventas",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

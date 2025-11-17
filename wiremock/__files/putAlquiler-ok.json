@@ -1,0 +1,21 @@
+{
+  "id": 1,
+  "fechaInicio": "2024-01-22",
+  "fechaFin": "2025-01-22",
+  "meses": 12,
+  "precio": 300,
+  "comentario": "El equipo estaba en perfecto estado",
+  "cancelado": false,
+  "producto": {
+    "id": 12,
+    "nombre": "Ultrasonic processor 500W"
+  },
+  "arrendador": {
+    "id": 1,
+    "nickname": "maria_lab"
+  },
+  "arrendatario": {
+    "id": 2,
+    "nickname": "susana1974"
+  }
+}

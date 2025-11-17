@@ -1,0 +1,59 @@
+[
+  {
+    "id": 1,
+    "fecha": "2025-10-30",
+    "precioFinal": 48.0,
+    "comentario": "mejor",
+    "devuelto": false,
+    "producto": {
+      "id": 14,
+      "nombre": "Balanza Nueva"
+    },
+    "comprador": {
+      "id": 3,
+      "nickname": "LukaNuevo"
+    },
+    "vendedor": {
+      "id": 5,
+      "nickname": "Julia22"
+    }
+  },
+  {
+    "id": 2,
+    "fecha": "2025-11-02",
+    "precioFinal": 450.0,
+    "comentario": "Buena compra",
+    "devuelto": false,
+    "producto": {
+      "id": 10,
+      "nombre": "Agitador NUEVO"
+    },
+    "comprador": {
+      "id": 4,
+      "nickname": "Juanito"
+    },
+    "vendedor": {
+      "id": 5,
+      "nickname": "Julia22"
+    }
+  },
+  {
+    "id": 3,
+    "fecha": "2025-11-07",
+    "precioFinal": 450.0,
+    "comentario": "qué caro",
+    "devuelto": false,
+    "producto": {
+      "id": 17,
+      "nombre": "Eppendorf"
+    },
+    "comprador": {
+      "id": 12,
+      "nickname": "Ursu"
+    },
+    "vendedor": {
+      "id": 6,
+      "nickname": "Maria22"
+    }
+  }
+]

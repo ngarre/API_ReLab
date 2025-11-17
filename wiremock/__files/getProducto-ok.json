@@ -1,0 +1,16 @@
+ {
+    "id": 1,
+    "nombre": "ChemiDoc",
+    "descripcion": "Permite capturar imágenes y datos de experimentos de laboratorio como los geles de ADN/proteínas y las transferencias Western",
+    "precio": 10000,
+    "fechaActualizacion": "2025-09-01",
+    "activo": true,
+    "categoria": {
+      "id": 1,
+      "nombre": "Sistemas de imagen"
+    },
+    "usuario": {
+      "id": 12,
+      "nickname": "maria_lab"
+    }
+  }
