@@ -22,4 +22,8 @@ public class ProductoOutDto {
     private boolean modo;
     private CategoriaSimpleDto categoria;
     private UsuarioSimpleDto usuario;
+
+    // Atributo para cargar la imagen. La app Android cargará la imagen incovando http así: http://localhost:8080/productos/1/imagen
+    private String imagenUrl; // ProductoOutDto relamente NO tiene la imagen.  Solo tiene una URL.
+
 }

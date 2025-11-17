@@ -134,6 +134,11 @@ public class ProductoService {
         productoRepository.delete(producto);
     }
 
+    // --- Metodo para devolver entidad completa del producto (incluyendo la imagen=
+    public Producto buscarPorIdEntidad(Long id) throws ProductoNoEncontradoException {
+        return productoRepository.findById(id)
+                .orElseThrow(ProductoNoEncontradoException::new);
+    }
 
     // --- Metodo auxiliar privado para mapear y no repetir código
     private ProductoOutDto mapToOutDto(Producto producto) {
@@ -162,7 +167,8 @@ public class ProductoService {
                 producto.isActivo(),
                 producto.isModo(),
                 categoriaSimple,
-                usuarioSimple
+                usuarioSimple,
+                "/productos/"  + producto.getId() + "/imagen"
         );
 
     }

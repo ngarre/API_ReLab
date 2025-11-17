@@ -3,6 +3,7 @@ package com.natalia.relab.controller;
 import com.natalia.relab.dto.ProductoInDto;
 import com.natalia.relab.dto.ProductoOutDto;
 import com.natalia.relab.dto.ProductoUpdateDto;
+import com.natalia.relab.model.Producto;
 import com.natalia.relab.service.CategoriaService;
 import com.natalia.relab.service.ProductoService;
 import com.natalia.relab.service.UsuarioService;
@@ -12,6 +13,7 @@ import exception.UsuarioNoEncontradoException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -79,6 +81,7 @@ public class ProductoController {
         return ResponseEntity.ok(dto);
     }
 
+
     @PostMapping("/productos")
     public ResponseEntity<ProductoOutDto> agregarProductos(@Valid @RequestBody ProductoInDto productoInDto)
             throws CategoriaNoEncontradaException, UsuarioNoEncontradoException {
@@ -99,5 +102,26 @@ public class ProductoController {
         return ResponseEntity.noContent().build();
     }
 
+    //  Endpoint específico para servir la imagen como archivo binario:
+    @GetMapping("/productos/{id}/imagen")
+    public ResponseEntity<byte[]> obtenerImagen(@PathVariable Long id) {
+        try {
+            Producto producto = productoService.buscarPorIdEntidad(id);
+
+            if (producto.getImagen() == null) {
+                return ResponseEntity.notFound().build();
+            }
+
+            return ResponseEntity.ok()
+                    .contentType(MediaType.IMAGE_JPEG)
+                    .body(producto.getImagen());
+
+        } catch (ProductoNoEncontradoException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
 // --- Me llevo excepciones a GlobalExceptionHandler
+
 }
