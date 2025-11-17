@@ -32,6 +32,11 @@ public class Producto {
     @Column
     private boolean modo; // Para saber si el producto se vende o se alquila
 
+    // Campo para almacenar la imagen en la BBDD
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
+    private byte[] imagen;
+
     // RELACIÓN CON TABLA CATEGORIA
     @ManyToOne // Cada producto tiene una sola categoría asociada, mientras que cada categoría puede aplicarse a varios productos.  Muchos productos se relacionan con una categoría.
     @JoinColumn(name = "categoria_id") // FK
