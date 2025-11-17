@@ -21,6 +21,7 @@ public class ProductoInDto { // Es un objeto que utilizaré para mandar informac
 //    @JsonFormat(pattern = "yyyy-MM-dd")
 //    private LocalDate fechaActualizacion;
     private boolean activo;
+    private boolean modo;
     private long categoriaId;
     @NotNull(message = "Debe especificarse el usuario que publica el producto")
     private Long usuarioId;

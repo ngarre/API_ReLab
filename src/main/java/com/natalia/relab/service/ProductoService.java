@@ -48,6 +48,7 @@ public class ProductoService {
             producto.setFechaActualizacion(LocalDate.now());
 
             producto.setActivo(productoInDto.isActivo());
+            producto.setModo(productoInDto.isModo());
             producto.setCategoria(categoria);
             producto.setUsuario(usuario);
 
@@ -118,6 +119,7 @@ public class ProductoService {
         productoAnterior.setPrecio(productoUpdateDto.getPrecio());
         productoAnterior.setFechaActualizacion(LocalDate.now()); // La cojo cada vez que se realizan modificaciones sobre el producto
         productoAnterior.setActivo(productoUpdateDto.isActivo());
+        productoAnterior.setModo(productoUpdateDto.isModo());
         productoAnterior.setCategoria(categoria);
         // El campo UsuarioId no quiero que se pueda modificar
 
@@ -158,6 +160,7 @@ public class ProductoService {
                 producto.getPrecio(),
                 producto.getFechaActualizacion(),
                 producto.isActivo(),
+                producto.isModo(),
                 categoriaSimple,
                 usuarioSimple
         );

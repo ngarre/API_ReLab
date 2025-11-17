@@ -19,6 +19,7 @@ public class ProductoOutDto {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaActualizacion;
     private boolean activo;
+    private boolean modo;
     private CategoriaSimpleDto categoria;
     private UsuarioSimpleDto usuario;
 }

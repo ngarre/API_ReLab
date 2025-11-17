@@ -19,6 +19,7 @@ public class ProductoUpdateDto {
     private float precio;
 //    private LocalDate fechaActualizacion;
     private boolean activo;
+    private boolean modo;
     private long categoriaId;
 }
 
