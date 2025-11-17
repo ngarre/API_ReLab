@@ -1,0 +1,11 @@
+{
+  "code": 400,
+  "title": "bad-request",
+  "message": "Error de validación",
+  "errors": {
+    "precio": "El precio debe ser mayor que cero",
+    "productoId": "Debe especificarse el producto alquilado",
+    "arrendatarioId": "Debe especificarse el arrendatario",
+    "arrendadorId": "Debe especificarse el arrendador"
+  }
+}

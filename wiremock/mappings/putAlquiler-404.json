@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "/alquileres/5"
+  },
+  "response": {
+    "status": 404,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "EntidadNotFound-404.json"
+
+  }
+}

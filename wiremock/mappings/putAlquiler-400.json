@@ -1,0 +1,20 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "PUT",
+    "url": "/alquileres/1",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(@.precio <= 0)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "putAlquiler-400.json"
+
+  }
+}

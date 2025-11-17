@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "/alquileres/2"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "putAlquiler-ok.json"
+
+  }
+}
