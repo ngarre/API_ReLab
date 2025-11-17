@@ -8,6 +8,7 @@ import com.natalia.relab.service.CategoriaService;
 import com.natalia.relab.service.ProductoService;
 import com.natalia.relab.service.UsuarioService;
 import exception.CategoriaNoEncontradaException;
+import exception.ImagenNoEncontradaException;
 import exception.ProductoNoEncontradoException;
 import exception.UsuarioNoEncontradoException;
 import jakarta.validation.Valid;
@@ -104,24 +105,18 @@ public class ProductoController {
 
     //  Endpoint específico para servir la imagen como archivo binario:
     @GetMapping("/productos/{id}/imagen")
-    public ResponseEntity<byte[]> obtenerImagen(@PathVariable Long id) {
-        try {
+    public ResponseEntity<byte[]> obtenerImagen(@PathVariable Long id) throws ProductoNoEncontradoException, ImagenNoEncontradaException {
             Producto producto = productoService.buscarPorIdEntidad(id);
 
             if (producto.getImagen() == null) {
-                return ResponseEntity.notFound().build();
+                throw new ImagenNoEncontradaException();
             }
 
             return ResponseEntity.ok()
                     .contentType(MediaType.IMAGE_JPEG)
                     .body(producto.getImagen());
-
-        } catch (ProductoNoEncontradoException e) {
-            return ResponseEntity.notFound().build();
-        }
     }
 
-
-// --- Me llevo excepciones a GlobalExceptionHandler
+    // --- Me llevo excepciones a GlobalExceptionHandler
 
 }

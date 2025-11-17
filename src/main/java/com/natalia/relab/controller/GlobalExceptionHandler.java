@@ -46,7 +46,8 @@ public class GlobalExceptionHandler {
             ProductoNoEncontradoException.class,
             AlquilerNoEncontradoException.class,
             CompraventaNoEncontradaException.class,
-            CategoriaNoEncontradaException.class
+            CategoriaNoEncontradaException.class,
+            ImagenNoEncontradaException.class
     })
 
     public ResponseEntity<ErrorResponse> handleNotFound(Exception ex) {
@@ -56,7 +57,8 @@ public class GlobalExceptionHandler {
             case "AlquilerNoEncontradoException" -> "El alquiler no existe";
             case "CompraventaNoEncontradaException" -> "La compraventa no existe";
             case "CategoriaNoEncontradaException" -> "La categoria no existe";
-            default -> "El recurso no fue encontrado";
+            case "ImagenNoEncontradaException" -> "El producto no tiene imagen";
+            default -> "El recurso no fue encontrado"; // Este default me obliga JAVA a ponerlo.
         };
 
         ErrorResponse errorResponse = ErrorResponse.notFound(message);
