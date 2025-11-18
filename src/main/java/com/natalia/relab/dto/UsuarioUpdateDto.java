@@ -27,10 +27,8 @@ public class UsuarioUpdateDto {
     private String email;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaNacimiento;
-    private boolean cuentaActiva;
+    private Boolean cuentaActiva;
     private String tipoUsuario;
-//    private boolean admin;
-//    private Float saldo;
     private Double latitud;
     private Double longitud;
 }
