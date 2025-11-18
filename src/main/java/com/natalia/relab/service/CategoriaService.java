@@ -25,7 +25,7 @@ public class CategoriaService {
     // --- POST
     public CategoriaOutDto agregar(CategoriaInDto categoriaInDto) {
 
-        // Valido que el nombre no esté en uso
+        // Validación de que el nombre no esté en uso
         if (categoriaRepository.existsByNombre(categoriaInDto.getNombre())) {
             throw new NombreYaExisteException();
         }
