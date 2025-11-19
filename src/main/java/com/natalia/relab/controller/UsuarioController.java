@@ -4,8 +4,6 @@ import com.natalia.relab.dto.UsuarioInDto;
 import com.natalia.relab.dto.UsuarioOutDto;
 import com.natalia.relab.dto.UsuarioUpdateDto;
 import com.natalia.relab.service.UsuarioService;
-import exception.ErrorResponse;
-import exception.NicknameYaExisteException;
 import exception.UsuarioNoEncontradoException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
+
 
 @RestController
 public class UsuarioController {
@@ -31,35 +29,9 @@ public class UsuarioController {
             @RequestParam(value = "cuentaActiva", required = false) Boolean cuentaActiva)
             throws UsuarioNoEncontradoException {
 
-        // Login: nickname + password
-        if (nickname != null && !nickname.isEmpty() && password != null && !password.isEmpty()) {
-            UsuarioOutDto usuario = usuarioService.login(nickname, password);
-            return ResponseEntity.ok(usuario);
-        }
-
-        // Filtrado solo por nickname
-        if (nickname != null && !nickname.isEmpty()) {
-            UsuarioOutDto usuario = usuarioService.buscarPorNickname(nickname);
-            return ResponseEntity.ok(usuario);
-        }
-
-        // Filtrado solo por tipoUsuario
-        if (tipoUsuario != null && !tipoUsuario.isEmpty()) {
-            List<UsuarioOutDto> usuarios = usuarioService.buscarPorTipoUsuario(tipoUsuario);
-            return ResponseEntity.ok(usuarios);
-        }
-
-        // Filtrado por cuentaActiva
-        if  (cuentaActiva != null) {
-            List<UsuarioOutDto> usuarios = usuarioService.filtrarPorCuentaActiva(cuentaActiva);
-            return ResponseEntity.ok(usuarios);
-        }
-
-        // Todos los usuarios
-        List<UsuarioOutDto> todosUsuarios = usuarioService.listarTodos();
-        return ResponseEntity.ok(todosUsuarios);
+        List<UsuarioOutDto> usuarios = usuarioService.listarConFiltros(nickname, password, tipoUsuario, cuentaActiva);
+        return ResponseEntity.ok(usuarios);
     }
-
 
     @GetMapping("/usuarios/{id}")
     public ResponseEntity<UsuarioOutDto> ListarPorId(@PathVariable long id) throws UsuarioNoEncontradoException {
