@@ -23,7 +23,7 @@ public class Producto {
     @Column
     private String descripcion;
     @Column
-    private float precio;
+    private Float precio;
     @Column(name = "fecha_actualizacion")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaActualizacion;

@@ -10,6 +10,7 @@ import com.natalia.relab.repository.UsuarioRepository;
 import exception.CategoriaNoEncontradaException;
 import exception.ProductoNoEncontradoException;
 import exception.UsuarioNoEncontradoException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,8 @@ import java.util.List;
 
 @Service
 public class ProductoService {
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Autowired
     private ProductoRepository productoRepository;
@@ -32,28 +35,26 @@ public class ProductoService {
     // --- POST
     public ProductoOutDto agregar(ProductoInDto productoInDto) throws CategoriaNoEncontradaException, UsuarioNoEncontradoException {
 
-        // Busco categoria en la BBDD
-            Categoria categoria = categoriaRepository.findById(productoInDto.getCategoriaId())
+            // Busco categoria en la BBDD, es opcional ponerla.  Pero en caso de no existir una categoría con ese ID salta excepción.
+            Categoria categoria = null;
+            if (productoInDto.getCategoriaId() != null) {
+                categoria = categoriaRepository.findById(productoInDto.getCategoriaId())
                     .orElseThrow(CategoriaNoEncontradaException::new);
+            }
             // Busco el usuario en la BBDD
             Usuario usuario = usuarioRepository.findById(productoInDto.getUsuarioId())
                     .orElseThrow(UsuarioNoEncontradoException::new);
 
             // Creo producto
-            Producto producto = new Producto();
-            producto.setNombre(productoInDto.getNombre());
-            producto.setDescripcion(productoInDto.getDescripcion());
-            producto.setPrecio(productoInDto.getPrecio());
+            // 1. Mapeo datos simples con ModelMapper
+            Producto producto = modelMapper.map(productoInDto, Producto.class);
 
+            // 2. Campos adicionales que no vienen del DTO como objetos. ModelMapper no sabe transformar un id de categoría en un objeto Categoría.
             producto.setFechaActualizacion(LocalDate.now());
-
-            producto.setActivo(productoInDto.isActivo());
-            producto.setModo(productoInDto.isModo());
             producto.setCategoria(categoria);
             producto.setUsuario(usuario);
 
             Producto guardado = productoRepository.save(producto);
-
             return mapToOutDto(guardado);
     }
 
@@ -114,14 +115,12 @@ public class ProductoService {
                 .orElseThrow(CategoriaNoEncontradaException::new);
 
 
-        productoAnterior.setNombre(productoUpdateDto.getNombre());
-        productoAnterior.setDescripcion(productoUpdateDto.getDescripcion());
-        productoAnterior.setPrecio(productoUpdateDto.getPrecio());
-        productoAnterior.setFechaActualizacion(LocalDate.now()); // La cojo cada vez que se realizan modificaciones sobre el producto
-        productoAnterior.setActivo(productoUpdateDto.isActivo());
-        productoAnterior.setModo(productoUpdateDto.isModo());
+        // Mapear cambios simples del updateDto sobre el producto existente
+        modelMapper.map(productoUpdateDto, productoAnterior);
+
+        productoAnterior.setFechaActualizacion(LocalDate.now());
         productoAnterior.setCategoria(categoria);
-        // El campo UsuarioId no quiero que se pueda modificar
+        // No permito cambiar usuario.  No toco productoAnterior.setUsuario()
 
         Producto actualizado = productoRepository.save(productoAnterior);
         return mapToOutDto(actualizado);
@@ -134,13 +133,19 @@ public class ProductoService {
         productoRepository.delete(producto);
     }
 
-    // --- Metodo para devolver entidad completa del producto (incluyendo la imagen=
+    // --- Metodo para devolver entidad completa del producto (incluyendo la imagen)
     public Producto buscarPorIdEntidad(Long id) throws ProductoNoEncontradoException {
         return productoRepository.findById(id)
                 .orElseThrow(ProductoNoEncontradoException::new);
     }
 
     // --- Metodo auxiliar privado para mapear y no repetir código
+
+    // Utilizo un mapeo manual aquí en lugar de ModelMapper porque ProductoOutDto
+    // contiene campos anidados (CategoriaSimpleDto y UsuarioSimpleDto) y un campo calculado (imagenUrl)
+    // que no existen en la entidad Producto. ModelMapper no puede inferir correctamente estos DTOs anidados
+    // ni generar la URL de la imagen automáticamente, por lo que el mapeo manual es más claro y seguro.
+
     private ProductoOutDto mapToOutDto(Producto producto) {
         CategoriaSimpleDto categoriaSimple = null;  // Para que no salte el NullPointerException en caso de que la categoria sea NULL
         if (producto.getCategoria() != null) {

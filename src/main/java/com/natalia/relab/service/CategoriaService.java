@@ -4,8 +4,8 @@ import com.natalia.relab.dto.*;
 import com.natalia.relab.model.Categoria;
 import com.natalia.relab.repository.CategoriaRepository;
 import exception.CategoriaNoEncontradaException;
-import exception.NicknameYaExisteException;
 import exception.NombreYaExisteException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +14,10 @@ import java.util.List;
 
 @Service
 public class CategoriaService {
+
+    @Autowired
+    private ModelMapper modelMapper;
+
     @Autowired
     private CategoriaRepository categoriaRepository;
 
@@ -21,23 +25,18 @@ public class CategoriaService {
     // --- POST
     public CategoriaOutDto agregar(CategoriaInDto categoriaInDto) {
 
-        // Valido que el nombre no esté en uso
+        // Validación de que el nombre no esté en uso
         if (categoriaRepository.existsByNombre(categoriaInDto.getNombre())) {
             throw new NombreYaExisteException();
         }
 
         // Creo categoria
-        Categoria categoria = new Categoria();
-        categoria.setNombre(categoriaInDto.getNombre());
-        categoria.setDescripcion(categoriaInDto.getDescripcion());
-
+        Categoria categoria = modelMapper.map(categoriaInDto, Categoria.class);
+        // Fecha automática del sistema
         categoria.setFechaCreacion(LocalDate.now());
 
-        categoria.setActiva(categoriaInDto.isActiva());
-        categoria.setTasaComision(categoriaInDto.getTasaComision());
-
+        // Guardar y devolver DTO
         Categoria guardada  = categoriaRepository.save(categoria);
-
         return mapToOutDto(guardada);
     }
 
@@ -98,10 +97,8 @@ public class CategoriaService {
             throw new NombreYaExisteException();
         }
 
-        categoriaAnterior.setNombre(categoriaUpdateDto.getNombre());
-        categoriaAnterior.setDescripcion(categoriaUpdateDto.getDescripcion());
-        categoriaAnterior.setActiva(categoriaUpdateDto.isActiva());
-        categoriaAnterior.setTasaComision(categoriaUpdateDto.getTasaComision());
+        // Mapeo automático sobre el objeto existente
+        modelMapper.map(categoriaUpdateDto, categoriaAnterior);
 
         Categoria actualizada = categoriaRepository.save(categoriaAnterior);
         return mapToOutDto(actualizada);
@@ -114,18 +111,8 @@ public class CategoriaService {
         categoriaRepository.delete(categoria);
     }
 
-
     // --- Metodo auxiliar privado para mapear y no repetir código
     private CategoriaOutDto mapToOutDto(Categoria categoria) {
-
-        return new CategoriaOutDto(
-                categoria.getId(),
-                categoria.getNombre(),
-                categoria.getDescripcion(),
-                categoria.getFechaCreacion(),
-                categoria.isActiva(),
-                categoria.getTasaComision()
-        );
-
+        return modelMapper.map(categoria, CategoriaOutDto.class);
     }
 }

@@ -10,6 +10,7 @@ import com.natalia.relab.repository.UsuarioRepository;
 import exception.AlquilerNoEncontradoException;
 import exception.ProductoNoEncontradoException;
 import exception.UsuarioNoEncontradoException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,9 @@ import java.util.List;
 
 @Service
 public class AlquilerService {
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Autowired
     private AlquilerRepository alquilerRepository;
@@ -43,16 +47,13 @@ public class AlquilerService {
                 .orElseThrow(UsuarioNoEncontradoException::new);
 
         // Creo registro de alquiler
-        Alquiler alquiler = new Alquiler();
+        // 1. Mapeo datos simples con ModelMapper
+        Alquiler alquiler  = modelMapper.map(alquilerInDto, Alquiler.class);
+
+        // 2. Campos adicionales que no vienen del DTO como objetos:
         alquiler.setProducto(producto);
         alquiler.setArrendador(arrendador);
         alquiler.setArrendatario(arrendatario);
-        alquiler.setFechaInicio(alquilerInDto.getFechaInicio());
-        alquiler.setFechaFin(alquilerInDto.getFechaFin());
-        alquiler.setMeses(alquilerInDto.getMeses());
-        alquiler.setPrecio(alquilerInDto.getPrecio());
-        alquiler.setComentario(alquilerInDto.getComentario());
-        alquiler.setCancelado(alquilerInDto.isCancelado());
 
         Alquiler guardado = alquilerRepository.save(alquiler);
         return mapToOutDto(guardado);
@@ -104,10 +105,8 @@ public class AlquilerService {
                 .orElseThrow(AlquilerNoEncontradoException::new);
 
 
-        // Solo mapeo los campos que se pueden modificar
-        alquilerAnterior.setPrecio(alquilerUpdateDto.getPrecio());
-        alquilerAnterior.setComentario(alquilerUpdateDto.getComentario());
-        alquilerAnterior.setCancelado(alquilerUpdateDto.isCancelado());
+        // Mapeo desde ProductoUpdateDto a mi Entidad Producto
+        modelMapper.map(alquilerUpdateDto, alquilerAnterior);
 
         Alquiler actualizado = alquilerRepository.save(alquilerAnterior);
         return mapToOutDto(actualizado);
@@ -122,6 +121,12 @@ public class AlquilerService {
 
 
     // -- Metodo auxiliar privado para mapear y no repetir código
+
+    // Utilizo un mapeo manual aquí en lugar de ModelMapper porque AlquilerOutDto
+    // contiene campos anidados (ProductoSimpleDto y UsuarioSimpleDto)
+    // que no existen en la entidad Alquiler. ModelMapper no puede inferir correctamente estos DTOs anidados,
+    // por lo que el mapeo manual es más claro y seguro.
+
     private AlquilerOutDto mapToOutDto (Alquiler alquiler) {
 
         ProductoSimpleDto productoSimple = null;

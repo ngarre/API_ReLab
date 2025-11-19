@@ -6,10 +6,7 @@ import com.natalia.relab.dto.CompraventaUpdateDto;
 import com.natalia.relab.service.CompraventaService;
 import com.natalia.relab.service.ProductoService;
 import com.natalia.relab.service.UsuarioService;
-import exception.CompraventaNoEncontradaException;
-import exception.ErrorResponse;
-import exception.ProductoNoEncontradoException;
-import exception.UsuarioNoEncontradoException;
+import exception.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -74,7 +71,7 @@ public class CompraventaController {
 
     @PostMapping("/compraventas")
     public ResponseEntity<CompraventaOutDto> agregarCompraventa(@Valid @RequestBody CompraventaInDto compraventaInDto)
-        throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
+        throws UsuarioNoEncontradoException, ProductoNoEncontradoException, ProductoYaVendidoException {
 
         CompraventaOutDto nuevaCompraventa = compraventaService.agregar(compraventaInDto);
         return new ResponseEntity<>(nuevaCompraventa, HttpStatus.CREATED);

@@ -87,8 +87,8 @@ public class ProductoController {
     public ResponseEntity<ProductoOutDto> agregarProductos(@Valid @RequestBody ProductoInDto productoInDto)
             throws CategoriaNoEncontradaException, UsuarioNoEncontradoException {
 
-        ProductoOutDto nuevoProducto = productoService.agregar(productoInDto);
-        return new ResponseEntity<>(nuevoProducto, HttpStatus.CREATED);
+            ProductoOutDto nuevoProducto = productoService.agregar(productoInDto);
+            return new ResponseEntity<>(nuevoProducto, HttpStatus.CREATED);
     }
 
     @PutMapping("/productos/{id}")

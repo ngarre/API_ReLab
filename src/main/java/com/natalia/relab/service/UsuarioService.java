@@ -8,6 +8,7 @@ import com.natalia.relab.model.Usuario;
 import com.natalia.relab.repository.UsuarioRepository;
 import exception.NicknameYaExisteException;
 import exception.UsuarioNoEncontradoException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,9 @@ import java.util.List;
 
 @Service
 public class UsuarioService {
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Autowired                                     // Así hacemos que la capa Service pueda comunicarse con la Repository.  Crea una instancia de la clase en repository cada vez que llame a metodos de la capa service
     private UsuarioRepository usuarioRepository;
@@ -30,23 +34,9 @@ public class UsuarioService {
         }
 
         // Creo usuario
-        Usuario usuario = new Usuario();
-        usuario.setNickname(usuarioInDto.getNickname());
-        usuario.setPassword(usuarioInDto.getPassword());
-        usuario.setNombre(usuarioInDto.getNombre());
-        usuario.setApellido(usuarioInDto.getApellido());
-        usuario.setEmail(usuarioInDto.getEmail());
-        usuario.setFechaNacimiento(usuarioInDto.getFechaNacimiento());
-        usuario.setCuentaActiva(usuarioInDto.isCuentaActiva());
-
+        Usuario usuario = modelMapper.map(usuarioInDto, Usuario.class);
         // Fecha automática del sistema
         usuario.setFechaAlta(LocalDate.now());
-
-        usuario.setTipoUsuario(usuarioInDto.getTipoUsuario());
-        usuario.setAdmin(usuarioInDto.isAdmin());
-        usuario.setSaldo(usuarioInDto.getSaldo());
-        usuario.setLatitud(usuarioInDto.getLatitud());
-        usuario.setLongitud(usuarioInDto.getLongitud());
 
 
         // Guardar y devolver DTO
@@ -111,20 +101,8 @@ public class UsuarioService {
             throw new NicknameYaExisteException();
         }
 
-        // TODO usar ModelMapper para mapear atributos entre objetos
-        usuarioAnterior.setNickname(usuarioUpdateDto.getNickname());
-        usuarioAnterior.setPassword(usuarioUpdateDto.getPassword());
-        usuarioAnterior.setNombre(usuarioUpdateDto.getNombre());
-        usuarioAnterior.setApellido(usuarioUpdateDto.getApellido());
-        usuarioAnterior.setEmail(usuarioUpdateDto.getEmail());
-        usuarioAnterior.setFechaNacimiento(usuarioUpdateDto.getFechaNacimiento());
-        usuarioAnterior.setCuentaActiva(usuarioUpdateDto.isCuentaActiva());
-//        usuarioAnterior.setFechaAlta(usuarioUpdateDto.getFechaAlta());
-        usuarioAnterior.setTipoUsuario(usuarioUpdateDto.getTipoUsuario());
-//        usuarioAnterior.setAdmin(usuarioUpdateDto.isAdmin());
-//        usuarioAnterior.setSaldo(usuarioUpdateDto.getSaldo());
-        usuarioAnterior.setLatitud(usuarioUpdateDto.getLatitud());
-        usuarioAnterior.setLongitud(usuarioUpdateDto.getLongitud());
+        // Mapeo automático sobre el objeto existente
+        modelMapper.map(usuarioUpdateDto, usuarioAnterior);
 
         Usuario actualizado = usuarioRepository.save(usuarioAnterior);
         return mapToOutDto(actualizado);
@@ -137,24 +115,8 @@ public class UsuarioService {
         usuarioRepository.delete(usuario);
     }
 
-    // --- Metodo auxiliar privado para mapear y no repetir código
+    // --- Metodo auxiliar privado para mapear y no repetir código: para volcar datos de usuario a usuarioOutDto
     private UsuarioOutDto mapToOutDto(Usuario usuario) {
-
-        return new UsuarioOutDto(
-                usuario.getId(),
-                usuario.getNickname(),
-                usuario.getNombre(),
-                usuario.getApellido(),
-                usuario.getEmail(),
-                usuario.getFechaNacimiento(),
-                usuario.isCuentaActiva(),
-                usuario.getFechaAlta(),
-                usuario.getTipoUsuario(),
-                usuario.isAdmin(),
-                usuario.getSaldo(),
-                usuario.getLatitud(),
-                usuario.getLongitud()
-        );
-
+        return modelMapper.map(usuario, UsuarioOutDto.class);
     }
 }

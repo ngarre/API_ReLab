@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 public class AlquilerUpdateDto {
 
     @Min(value=0, message = "El precio debe ser mayor que cero" )
-    private float precio;
+    private Float precio;
     private String comentario;
-    private boolean cancelado;
+    private Boolean cancelado;
 
 }
