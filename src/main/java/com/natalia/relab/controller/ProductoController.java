@@ -27,10 +27,6 @@ public class ProductoController {
 
     @Autowired
     private ProductoService productoService;
-    @Autowired
-    private CategoriaService categoriaService;
-    @Autowired
-    private UsuarioService usuarioService;
 
     @GetMapping("/productos")
     public ResponseEntity<?> listarTodos(
@@ -40,40 +36,8 @@ public class ProductoController {
             @RequestParam(value = "usuarioId", required = false) Long usuarioId)
             throws CategoriaNoEncontradaException, UsuarioNoEncontradoException {
 
-        // Filtrado por nombre --> Coincidencias parciales y sin distinguir mayúsculas y minúsculas
-        if (nombre != null && !nombre.isEmpty()) {
-            List<ProductoOutDto> productos = productoService.buscarPorNombreParcial(nombre);
-            return ResponseEntity.ok(productos);
-        }
-
-        // Filtrado por activo
-        if (activo != null) {
-            List<ProductoOutDto> productos = productoService.buscarActivos(activo);
-            return ResponseEntity.ok(productos);
-        }
-
-        // Filtrado por categoría (id de la categoría a la que pertenece el producto)
-        if (categoriaId != null) {
-            // Se verifica que la categoría exista
-            categoriaService.buscarPorId(categoriaId); // Esto lanza la excepción de Categoría no Encontrada si no existe.
-
-            List<ProductoOutDto> productos = productoService.buscarPorCategoriaId(categoriaId);
-            return ResponseEntity.ok(productos);
-        }
-
-        // Filtrado por usuario (id del usuario al que pertenece el producto)
-        if (usuarioId != null) {
-            // Se verifica que el usuario exista
-            usuarioService.buscarPorId(usuarioId); // Esto lanza la excepción de Usuario no Encontrado si no existe.
-
-            List<ProductoOutDto> productos = productoService.buscarPorUsuarioId(usuarioId);
-            return ResponseEntity.ok(productos);
-        }
-
-
-        // Todos los productos
-        List<ProductoOutDto> todosProductos = productoService.listarTodos();
-        return ResponseEntity.ok(todosProductos);
+        List<ProductoOutDto> productos = productoService.listarConFiltrado(nombre, activo, categoriaId, usuarioId);
+        return ResponseEntity.ok(productos);
     }
 
     @GetMapping("/productos/{id}")
