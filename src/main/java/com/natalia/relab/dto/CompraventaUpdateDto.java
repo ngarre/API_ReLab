@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CompraventaUpdateDto {
-    private boolean devuelto;
+    private Boolean devuelto;
     private String comentario;
     @Min(value=0, message = "El precio debe ser mayor que cero" )
-    private float precioFinal;
+    private Float precioFinal;
 
 }
 

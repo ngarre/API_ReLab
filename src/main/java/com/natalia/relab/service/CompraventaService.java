@@ -9,7 +9,9 @@ import com.natalia.relab.repository.ProductoRepository;
 import com.natalia.relab.repository.UsuarioRepository;
 import exception.CompraventaNoEncontradaException;
 import exception.ProductoNoEncontradoException;
+import exception.ProductoYaVendidoException;
 import exception.UsuarioNoEncontradoException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,9 @@ import java.util.List;
 
 @Service
 public class CompraventaService {
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Autowired
     private CompraventaRepository compraventaRepository;
@@ -28,11 +33,16 @@ public class CompraventaService {
     private UsuarioRepository usuarioRepository;
 
     // -- POST
-    public CompraventaOutDto agregar(CompraventaInDto compraventaInDto) throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
+    public CompraventaOutDto agregar(CompraventaInDto compraventaInDto) throws UsuarioNoEncontradoException, ProductoNoEncontradoException, ProductoYaVendidoException {
 
         // Busco el producto en la base de datos
         Producto producto = productoRepository.findById(compraventaInDto.getProductoId())
                 .orElseThrow(ProductoNoEncontradoException::new);
+
+        // Compruebo si el producto ya ha sido vendido
+        if (compraventaRepository.existsByProductoId(producto.getId())) {
+            throw new ProductoYaVendidoException();
+        }
 
         // Busco usuario comprador en la base de datos
         Usuario comprador = usuarioRepository.findById(compraventaInDto.getCompradorId())
@@ -43,13 +53,13 @@ public class CompraventaService {
                 .orElseThrow(UsuarioNoEncontradoException::new);
 
         // Creo registro de compraventa
-        Compraventa compraventa = new Compraventa();
+        // 1. Mapeo datos simples con ModelMapper
+        Compraventa compraventa = modelMapper.map(compraventaInDto, Compraventa.class);
+
+        // 2. Campos adicionales que no pueden llegar en forma de objeto con el DTO y fecha del sistema.
         compraventa.setProducto(producto);
         compraventa.setComprador(comprador);
         compraventa.setVendedor(vendedor);
-        compraventa.setDevuelto(compraventaInDto.isDevuelto());
-        compraventa.setComentario(compraventaInDto.getComentario());
-        compraventa.setPrecioFinal(compraventaInDto.getPrecioFinal());
         compraventa.setFecha(java.time.LocalDate.now()); // Fecha sistema
 
         Compraventa guardada = compraventaRepository.save(compraventa);
@@ -102,9 +112,7 @@ public class CompraventaService {
 
 
         // Solo mapeo los campos que se pueden modificar
-        compraventaAnterior.setDevuelto(compraventaUpdateDto.isDevuelto());
-        compraventaAnterior.setComentario(compraventaUpdateDto.getComentario());
-        compraventaAnterior.setPrecioFinal(compraventaUpdateDto.getPrecioFinal());
+        modelMapper.map(compraventaUpdateDto, compraventaAnterior);
 
         // Los campos comprador, vendedor y fecha no los dejo editables.  No le veo el sentido a modificarlos.
 
@@ -120,6 +128,12 @@ public class CompraventaService {
     }
 
     // -- Metodo auxiliar privado para mapear y no repetir código
+
+    // Utilizo un mapeo manual aquí en lugar de ModelMapper porque CompraventaOutDto
+    // contiene campos anidados (ProductoSimpleDto y UsuarioSimpleDto)
+    // que no existen en la entidad Compraventa. ModelMapper no puede inferir correctamente estos DTOs anidados,
+    // por lo que el mapeo manual es más claro y seguro.
+
     private CompraventaOutDto mapToOutDto (Compraventa compraventa) {
 
         ProductoSimpleDto productoSimple = null;

@@ -83,6 +83,23 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
+    // --- PRODUCTO YA VENDIDO (409) --- Es un 409 porque la acción es válida, pero no se puede completar
+    // porque entra en conflicto con el estado actual del recurso.
+    // Es la excepción que salta si intento crear un registro de compraventa con un producto que ya forma parte de un
+    // registro de este tipo.
+    @ExceptionHandler(ProductoYaVendidoException.class)
+    public ResponseEntity<ErrorResponse> handleProductoYaVendido(ProductoYaVendidoException ex) {
+
+        ErrorResponse errorResponse = ErrorResponse.generalError(
+                HttpStatus.CONFLICT.value(),
+                "producto-ya-vendido",
+                "El producto ya ha sido vendido"
+        );
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
+    }
+
+
     // --- OTROS ERRORES INESPERADOS (500) ---
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneralError(Exception ex) {
