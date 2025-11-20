@@ -59,14 +59,6 @@ public class AlquilerService {
         return mapToOutDto(guardado);
     }
 
-    // -- GET todos
-    public List<AlquilerOutDto> listarTodos() {
-        return alquilerRepository.findAll()
-                .stream()
-                .map(this::mapToOutDto)
-                .toList();
-    }
-
     // --- GET por id
     public AlquilerOutDto buscarPorId(long id) throws AlquilerNoEncontradoException {
         Alquiler alquiler = alquilerRepository.findById(id)
@@ -74,29 +66,93 @@ public class AlquilerService {
         return mapToOutDto(alquiler);
     }
 
-    // --- GET con FILTRADO por ArrendadorId
-    public List<AlquilerOutDto> buscarPorArrendadorId(Long arrendadorId) {
-        return alquilerRepository.findByArrendadorId(arrendadorId)
+
+    // --- GET con FILTRADO dinámico
+    public List<AlquilerOutDto> listarConFiltros(
+            Long arrendadorId,
+            Long arrendatarioId,
+            Long productoId) throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
+
+        // Filtrado por arrendadorId
+        if (arrendadorId != null) {
+            // Se verifica que el usuario arrendador exista
+            boolean existe = usuarioRepository.existsById(arrendadorId);
+            if (!existe) {
+                throw new UsuarioNoEncontradoException();
+            }
+
+            return alquilerRepository.findByArrendadorId(arrendadorId)
+                    .stream()
+                    .map(this::mapToOutDto)
+                    .toList();
+        }
+
+        // Filtrado por arrendatarioId
+        if (arrendatarioId != null) {
+            // Se verifica que el usuario arrendatario exista
+            boolean existe = usuarioRepository.existsById(arrendatarioId);
+            if (!existe) {
+                throw new UsuarioNoEncontradoException();
+            }
+
+            return alquilerRepository.findByArrendatarioId(arrendatarioId)
+                .stream()
+                .map(this::mapToOutDto)
+                .toList();
+        }
+
+        // Filtrado por productoid
+        if (productoId != null) {
+            // Se verifica que el producto exista
+            boolean existe = productoRepository.existsById(productoId);
+            if (!existe) {
+                throw new ProductoNoEncontradoException();
+            }
+
+            return alquilerRepository.findByProductoId(productoId)
+                    .stream()
+                    .map(this::mapToOutDto)
+                    .toList();
+        }
+
+        // Sin filtros → todos los alquileres
+        return alquilerRepository.findAll()
                 .stream()
                 .map(this::mapToOutDto)
                 .toList();
     }
 
-    // --- GET con FILTRADO por ArrendatarioId
-    public List<AlquilerOutDto> buscarPorArrendatarioId(Long arrendatarioId) {
-        return alquilerRepository.findByArrendatarioId(arrendatarioId)
-                .stream()
-                .map(this::mapToOutDto)
-                .toList();
-    }
-
-    // --- GET con FILTRADO por ProductoId
-    public List<AlquilerOutDto> buscarPorProductoId(Long productoId) {
-        return alquilerRepository.findByProductoId(productoId)
-                .stream()
-                .map(this::mapToOutDto)
-                .toList();
-    }
+//    public List<AlquilerOutDto> listarTodos() {
+//        return alquilerRepository.findAll()
+//                .stream()
+//                .map(this::mapToOutDto)
+//                .toList();
+//    }
+//
+//
+//    // --- GET con FILTRADO por ArrendadorId
+//    public List<AlquilerOutDto> buscarPorArrendadorId(Long arrendadorId) {
+//        return alquilerRepository.findByArrendadorId(arrendadorId)
+//                .stream()
+//                .map(this::mapToOutDto)
+//                .toList();
+//    }
+//
+//    // --- GET con FILTRADO por ArrendatarioId
+//    public List<AlquilerOutDto> buscarPorArrendatarioId(Long arrendatarioId) {
+//        return alquilerRepository.findByArrendatarioId(arrendatarioId)
+//                .stream()
+//                .map(this::mapToOutDto)
+//                .toList();
+//    }
+//
+//    // --- GET con FILTRADO por ProductoId
+//    public List<AlquilerOutDto> buscarPorProductoId(Long productoId) {
+//        return alquilerRepository.findByProductoId(productoId)
+//                .stream()
+//                .map(this::mapToOutDto)
+//                .toList();
+//    }
 
 
     // --- PUT / modificar

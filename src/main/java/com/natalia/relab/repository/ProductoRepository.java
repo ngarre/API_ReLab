@@ -3,6 +3,7 @@ package com.natalia.relab.repository;
 import com.natalia.relab.model.Producto;
 import com.natalia.relab.model.Usuario;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,4 +16,5 @@ public interface ProductoRepository extends CrudRepository<Producto,Long> {
     List<Producto> findByActivo(boolean activo);
     List<Producto> findByCategoriaId(Long categoriaId);
     List<Producto> findByUsuarioId(Long usuarioId);
+    boolean existsById(@NonNull Long productoId); // Para ver si existe ese ID de ese producto antes de listar alquileres de ese producto
 }

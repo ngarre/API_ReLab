@@ -33,34 +33,39 @@ public class AlquilerController {
             @RequestParam(value="productoId", required = false) Long productoId)
             throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
 
-        if (arrendadorId !=null){
-            // Se verifica que el usuario arrendador exista
-            usuarioService.buscarPorId(arrendadorId);
+        List<AlquilerOutDto> alquileres = alquilerService.listarConFiltros(arrendadorId, arrendatarioId, productoId);
+        return ResponseEntity.ok(alquileres);
 
-            List<AlquilerOutDto> alquileres = alquilerService.buscarPorArrendadorId(arrendadorId);
-            return ResponseEntity.ok(alquileres);
-        }
-
-        if (arrendatarioId !=null){
-            // Se verifica que el usuario arrendatario exista
-            usuarioService.buscarPorId(arrendatarioId);
-
-            List<AlquilerOutDto> alquileres = alquilerService.buscarPorArrendatarioId(arrendatarioId);
-            return ResponseEntity.ok(alquileres);
-        }
-
-        if (productoId !=null){
-            // Se verifica que el producto exista
-            productoService.buscarPorId(productoId);
-
-            List<AlquilerOutDto> alquileres = alquilerService.buscarPorProductoId(productoId);
-            return ResponseEntity.ok(alquileres);
-        }
-
-
-        List<AlquilerOutDto> todosAlquileres = alquilerService.listarTodos();
-        return ResponseEntity.ok(todosAlquileres);
     }
+
+//        if (arrendadorId !=null){
+//            // Se verifica que el usuario arrendador exista
+//            usuarioService.buscarPorId(arrendadorId);
+//
+//            List<AlquilerOutDto> alquileres = alquilerService.buscarPorArrendadorId(arrendadorId);
+//            return ResponseEntity.ok(alquileres);
+//        }
+//
+//        if (arrendatarioId !=null){
+//            // Se verifica que el usuario arrendatario exista
+//            usuarioService.buscarPorId(arrendatarioId);
+//
+//            List<AlquilerOutDto> alquileres = alquilerService.buscarPorArrendatarioId(arrendatarioId);
+//            return ResponseEntity.ok(alquileres);
+//        }
+//
+//        if (productoId !=null){
+//            // Se verifica que el producto exista
+//            productoService.buscarPorId(productoId);
+//
+//            List<AlquilerOutDto> alquileres = alquilerService.buscarPorProductoId(productoId);
+//            return ResponseEntity.ok(alquileres);
+//        }
+//
+//
+//        List<AlquilerOutDto> todosAlquileres = alquilerService.listarTodos();
+//        return ResponseEntity.ok(todosAlquileres);
+//    }
 
     @GetMapping("/alquileres/{id}")
     public ResponseEntity<AlquilerOutDto> listarPorId(@PathVariable long id) throws AlquilerNoEncontradoException {
