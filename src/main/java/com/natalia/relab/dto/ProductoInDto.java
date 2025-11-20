@@ -26,6 +26,9 @@ public class ProductoInDto { // Es un objeto que utilizaré para mandar informac
     @NotNull(message = "Debe especificarse el usuario que publica el producto")
     private Long usuarioId;
 
+    // Campo para recibir la imagen (en formato byte[])
+    private byte[] imagen;
+
     // Pongo "Long" y no "long", porque si lo pongo en minúscula en caso de que un producto
     // llegase sin el ID de usuario, Spring lo pondría automáticamente a 0,
     // ese no es un ID válido, pero no es Null y no saltarían mis validaciones.

@@ -46,14 +46,27 @@ public class ProductoController {
         return ResponseEntity.ok(dto);
     }
 
+// Versión que NO permite la SUBIDA DE IMÁGENES
+//    @PostMapping("/productos")
+//    public ResponseEntity<ProductoOutDto> agregarProductos(@Valid @RequestBody ProductoInDto productoInDto)
+//            throws CategoriaNoEncontradaException, UsuarioNoEncontradoException {
+//
+//            ProductoOutDto nuevoProducto = productoService.agregar(productoInDto);
+//            return new ResponseEntity<>(nuevoProducto, HttpStatus.CREATED);
+//    }
 
+    // Versión que PERMITE SUBIDA DE IMÁGENES
     @PostMapping("/productos")
-    public ResponseEntity<ProductoOutDto> agregarProductos(@Valid @RequestBody ProductoInDto productoInDto)
+    public ResponseEntity<ProductoOutDto> agregarProducto(@Valid @RequestBody ProductoInDto productoInDto)
             throws CategoriaNoEncontradaException, UsuarioNoEncontradoException {
 
-            ProductoOutDto nuevoProducto = productoService.agregar(productoInDto);
-            return new ResponseEntity<>(nuevoProducto, HttpStatus.CREATED);
+        // Llamo al servicio para agregar el producto, pasando el DTO que incluye la imagen
+        ProductoOutDto nuevoProducto = productoService.agregarConImagen(productoInDto);
+
+        // Retorno el nuevo producto creado con el código de estado 201 (CREATED)
+        return new ResponseEntity<>(nuevoProducto, HttpStatus.CREATED);
     }
+
 
     @PutMapping("/productos/{id}")
     public ResponseEntity<ProductoOutDto> actualizarProducto(@Valid @RequestBody ProductoUpdateDto productoUpdateDto, @PathVariable long id) throws ProductoNoEncontradoException, CategoriaNoEncontradaException {
