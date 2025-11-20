@@ -5,6 +5,7 @@
     "precio": 10000,
     "fechaActualizacion": "2025-09-01",
     "activo": true,
+    "modo": false,
     "categoria": {
       "id": 1,
       "nombre": "Sistemas de imagen"
@@ -12,5 +13,7 @@
     "usuario": {
       "id": 12,
       "nickname": "maria_lab"
-    }
+    },
+
+   "imagenUrl": "/productos/1/imagen"
   }

@@ -6,6 +6,7 @@
     "precio": 10000,
     "fechaActualizacion": "2025-09-01",
     "activo": true,
+    "modo": false,
     "categoria": {
       "id": 1,
       "nombre": "Sistemas de imagen"
@@ -13,7 +14,8 @@
     "usuario": {
       "id": 12,
       "nickname": "maria_lab"
-    }
+    },
+    "imagenUrl": "/productos/1/imagen"
   },
   {
     "id": 2,
@@ -22,6 +24,7 @@
     "precio": 300000,
     "fechaActualizacion": "2024-09-01",
     "activo": true,
+    "modo": true,
     "categoria": {
       "id": 2,
       "nombre": "Centrífugas"
@@ -29,7 +32,8 @@
     "usuario": {
       "id": 12,
       "nickname": "maria_lab"
-    }
+    },
+    "imagenUrl": "/productos/2/imagen"
   },
   {
     "id": 3,
@@ -38,6 +42,7 @@
     "precio": 1750,
     "fechaActualizacion": "2023-08-01",
     "activo": true,
+    "modo": false,
     "categoria": {
       "id": 3,
       "nombre": "Balanzas"
@@ -45,6 +50,7 @@
     "usuario": {
       "id": 13,
       "nickname": "Juan23"
-    }
+    },
+    "imagenUrl": "/productos/3/imagen"
   }
 ]

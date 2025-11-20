@@ -5,6 +5,7 @@
   "precio": 3000,
   "fechaActualizacion": "2024-09-01",
   "activo": true,
+  "modo": true,
   "categoria": {
     "id": 2,
     "nombre": "Centrífugas"
@@ -12,5 +13,6 @@
   "usuario": {
     "id": 12,
     "nickname": "maria_lab"
-  }
+  },
+  "imagenUrl": "/productos/2/imagen"
 }

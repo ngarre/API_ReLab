@@ -1,0 +1,5 @@
+{
+  "code": 409,
+  "title": "producto-ya-vendido",
+  "message": "El producto ya ha sido vendido"
+}

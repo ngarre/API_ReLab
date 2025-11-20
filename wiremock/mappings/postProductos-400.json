@@ -5,7 +5,7 @@
     "url": "/productos",
     "bodyPatterns": [
       {
-        "matchesJsonPath": "$[?(!(@.nombre) || @.nombre == '' || @.precio <= 0 || !(@.usuario.id))]"
+        "matchesJsonPath": "$[?(!(@.nombre) || @.nombre == '' || @.precio <= 0 || !(@.usuarioId))]"
       }
     ]
   },
