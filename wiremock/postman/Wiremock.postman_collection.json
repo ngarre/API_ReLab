@@ -325,7 +325,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \t\"nombre\": \"Centrífguga GiroZen\",\r\n    \"descripcion\": \"Una centrífuga\",\r\n    \"precio\": 2000.0,\r\n    \"activo\": true,\r\n    \"categoriaId\": 5,\r\n\t\"usuarioId\": 7\r\n}",
+							"raw": "{\r\n   \t\"nombre\": \"Centrífguga GiroZen\",\r\n    \"descripcion\": \"Una centrífuga\",\r\n    \"precio\": 2000.0,\r\n    \"activo\": true,\r\n    \"modo\": false,\r\n    \"categoriaId\": 5,\r\n\t\"usuarioId\": 7\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -351,7 +351,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \t\"nombre\": \"\",\r\n    \"descripcion\": \"Una centrífuga\",\r\n    \"precio\": -2000.0,\r\n    \"activo\": true,\r\n    \"categoriaId\": 5\r\n}"
+							"raw": "{\r\n   \t\"nombre\": \"\",\r\n    \"descripcion\": \"Una centrífuga\",\r\n    \"precio\": -2000.0,\r\n    \"activo\": true,\r\n    \"modo\": true,\r\n    \"categoriaId\": 5\r\n}"
 						},
 						"url": {
 							"raw": "{{baseURL}}/productos",
@@ -372,7 +372,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n   \t\"nombre\": \"Centrifuga normalilla\",\r\n    \t\"descripcion\": \"No era para tanto.\",\r\n    \t\"precio\": 2000.0,\r\n    \t\"activo\": true,\r\n   \t\"categoriaId\": 5\r\n }\r\n"
+							"raw": " {\r\n   \t\"nombre\": \"Centrifuga normalilla\",\r\n    \"descripcion\": \"No era para tanto.\",\r\n    \"precio\": 2000.0,\r\n    \"activo\": true,\r\n    \"modo\": true,\r\n   \t\"categoriaId\": 2\r\n }\r\n"
 						},
 						"url": {
 							"raw": "{{baseURL}}/productos/2",
@@ -394,7 +394,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n   \t\"nombre\": \"pH-metro\",\r\n    \"descripcion\": \"Para efectuar medidas de pH\",\r\n    \"precio\": 2000.0,\r\n    \"activo\": true,\r\n   \t\"categoriaId\": 5\r\n }"
+							"raw": " {\r\n   \t\"nombre\": \"pH-metro\",\r\n    \"descripcion\": \"Para efectuar medidas de pH\",\r\n    \"precio\": 2000.0,\r\n    \"activo\": true,\r\n    \"modo\": true,\r\n   \t\"categoriaId\": 5\r\n }"
 						},
 						"url": {
 							"raw": "{{baseURL}}/productos/5",
@@ -416,7 +416,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n   \t\"nombre\": \"\",\r\n    \"descripcion\": \"Puede hacer ciencia\",\r\n    \"precio\": -2000.0,\r\n    \"activo\": true,\r\n   \t\"categoriaId\": 5\r\n }"
+							"raw": " {\r\n   \t\"nombre\": \"\",\r\n    \"descripcion\": \"Puede hacer ciencia\",\r\n    \"precio\": -2000.0,\r\n    \"activo\": true,\r\n    \"modo\": true,\r\n   \t\"categoriaId\": 5\r\n }"
 						},
 						"url": {
 							"raw": "{{baseURL}}/productos/1",
@@ -1045,6 +1045,27 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"devuelto\": true,\r\n  \"comentario\": \"Vendedor muy profesional y buen precio.\",\r\n  \"precioFinal\": -2000\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/compraventas",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"compraventas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "compraventa (conflict)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"compradorId\": 1,\r\n  \"vendedorId\": 2,\r\n  \"productoId\": 100,\r\n  \"devuelto\": true,\r\n  \"comentario\": \"Vendedor muy profesional y buen precio.\",\r\n  \"precioFinal\": 2000\r\n}"
 						},
 						"url": {
 							"raw": "{{baseURL}}/compraventas",
