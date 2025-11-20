@@ -68,11 +68,25 @@ public class ProductoController {
     }
 
 
+    // Versión que NO permite ACTUALIZAR IMAGEN
+//    @PutMapping("/productos/{id}")
+//    public ResponseEntity<ProductoOutDto> actualizarProducto(@Valid @RequestBody ProductoUpdateDto productoUpdateDto, @PathVariable long id) throws ProductoNoEncontradoException, CategoriaNoEncontradaException {
+//        ProductoOutDto actualizado = productoService.modificar(id, productoUpdateDto);
+//        return ResponseEntity.ok(actualizado);
+//    }
+
+    // Versión que PERMITE ACTUALIZACIÓN DE IMÁGENES
     @PutMapping("/productos/{id}")
-    public ResponseEntity<ProductoOutDto> actualizarProducto(@Valid @RequestBody ProductoUpdateDto productoUpdateDto, @PathVariable long id) throws ProductoNoEncontradoException, CategoriaNoEncontradaException {
-        ProductoOutDto actualizado = productoService.modificar(id, productoUpdateDto);
-        return ResponseEntity.ok(actualizado);
+    public ResponseEntity<ProductoOutDto> actualizarProducto(@Valid @RequestBody ProductoUpdateDto productoUpdateDto, @PathVariable long id)
+            throws ProductoNoEncontradoException, CategoriaNoEncontradaException {
+
+        // Llamo al servicio para actualizar el producto, pasando el ID y el DTO con los datos actualizados
+        ProductoOutDto productoActualizado = productoService.actualizarConImagen(id, productoUpdateDto);
+
+        // Devuelvo el producto actualizado
+        return ResponseEntity.ok(productoActualizado);
     }
+
 
     @DeleteMapping("/productos/{id}")
     public ResponseEntity<Void> eliminarProducto(@PathVariable long id) throws ProductoNoEncontradoException {
