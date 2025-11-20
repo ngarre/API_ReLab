@@ -3,6 +3,7 @@ package com.natalia.relab.repository;
 import com.natalia.relab.model.Categoria;
 import com.natalia.relab.model.Producto;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -17,4 +18,5 @@ public interface CategoriaRepository  extends CrudRepository<Categoria,Long> {
     List<Categoria> findByFechaCreacion(LocalDate fechaCreacion); // Permite filtrar por una fecha exacta
     List<Categoria> findByFechaCreacionBetween(LocalDate desde, LocalDate hasta); // Permite filtrar por rango de fecha
     boolean existsByNombre(String nombre);
+    boolean existsById(@NonNull Long categoriaId); // Para ver si existe ese ID de categoria antes de listar productos de esa categoría
 }

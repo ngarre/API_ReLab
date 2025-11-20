@@ -20,6 +20,7 @@ import java.util.List;
 
 @Service
 public class ProductoService {
+
     @Autowired
     private ModelMapper modelMapper;
 
@@ -58,14 +59,6 @@ public class ProductoService {
             return mapToOutDto(guardado);
     }
 
-    // --- GET todos
-    public List<ProductoOutDto> listarTodos() {
-        return productoRepository.findAll()
-                .stream()
-                .map(this::mapToOutDto) // Coge producto a producto y lo convierte al formato que me interesa, utilizando el metodo que he dejado abajo
-                .toList();
-    }
-
 
     // --- GET por id
     public ProductoOutDto buscarPorId(long id) throws ProductoNoEncontradoException {
@@ -74,37 +67,61 @@ public class ProductoService {
         return mapToOutDto(producto);
     }
 
-    // --- GET con FILTRADO por nombre (coincidencias parciales y sin tener en cuenta mayúsculas y minúsculas)
-    public List<ProductoOutDto> buscarPorNombreParcial(String nombre) {
-        return productoRepository.findByNombreContainingIgnoreCase(nombre)
+
+    // --- GET con FILTRADO dinámico
+    public List<ProductoOutDto> listarConFiltrado(
+            String nombre,
+            Boolean activo,
+            Long categoriaId,
+            Long usuarioId) throws UsuarioNoEncontradoException, CategoriaNoEncontradaException {
+
+        // Filtrado por nombre --> Coincidencias parciales y sin distinguir mayúsculas y minúsculas
+        if (nombre != null && !nombre.isEmpty()) {
+            return productoRepository.findByNombreContainingIgnoreCase(nombre)
+                    .stream()
+                    .map(this::mapToOutDto)
+                    .toList();
+        }
+
+        if (activo != null) {
+            return productoRepository.findByActivo(activo)
+                    .stream()
+                    .map(this::mapToOutDto)
+                    .toList();
+        }
+
+        if (categoriaId != null) {
+            boolean existe = categoriaRepository.existsById(categoriaId);
+            if (!existe) {
+                throw new CategoriaNoEncontradaException();
+            }
+
+            return productoRepository.findByCategoriaId(categoriaId)
+                    .stream()
+                    .map(this::mapToOutDto)
+                    .toList();
+        }
+
+        if (usuarioId != null) {
+            boolean existe = usuarioRepository.existsById(usuarioId);
+            if (!existe) {
+                throw new UsuarioNoEncontradoException();
+            }
+
+            return productoRepository.findByUsuarioId(usuarioId)
+                    .stream()
+                    .map(this::mapToOutDto)
+                    .toList();
+
+        }
+
+        return productoRepository.findAll()
                 .stream()
                 .map(this::mapToOutDto)
                 .toList();
+
     }
 
-    // --- GET con FILTRADO según si el producto está activo o no
-    public List<ProductoOutDto> buscarActivos (boolean activo) {
-        return productoRepository.findByActivo(activo)
-                .stream()
-                .map(this::mapToOutDto)
-                .toList();
-    }
-
-    // --- GET con FILTRADO según la categoría a la que pertenezca el producto (filtrado por categoriaId)
-    public List<ProductoOutDto> buscarPorCategoriaId(Long categoriaId) {
-        return productoRepository.findByCategoriaId(categoriaId)
-                .stream()
-                .map(this::mapToOutDto)
-                .toList();
-    }
-
-    // --- GET con FILTRADO según el usuario al que pertenece el producto (filtrado por usuarioId)
-    public List<ProductoOutDto> buscarPorUsuarioId(Long usuarioId) {
-        return productoRepository.findByUsuarioId(usuarioId)
-                .stream()
-                .map(this::mapToOutDto)
-                .toList();
-    }
 
     // --- PUT / modificar
     public ProductoOutDto modificar(long id, ProductoUpdateDto productoUpdateDto) throws ProductoNoEncontradoException, CategoriaNoEncontradaException {

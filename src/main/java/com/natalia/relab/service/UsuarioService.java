@@ -45,14 +45,6 @@ public class UsuarioService {
     }
 
 
-    // --- GET todos
-    public List<UsuarioOutDto> listarTodos() {
-        return usuarioRepository.findAll()
-                .stream()
-                .map(this::mapToOutDto)
-                .toList();
-    }
-
     // --- GET por id
     public UsuarioOutDto buscarPorId(long id) throws UsuarioNoEncontradoException {
        Usuario usuario = usuarioRepository.findById(id)
@@ -60,35 +52,50 @@ public class UsuarioService {
        return mapToOutDto(usuario);
     }
 
-    // --- GET con FILTRADO por nickname
-    public UsuarioOutDto buscarPorNickname(String nickname) throws UsuarioNoEncontradoException {
-        Usuario usuario = usuarioRepository.findByNickname(nickname)
-                .orElseThrow(UsuarioNoEncontradoException::new);
-        return mapToOutDto(usuario);
-    }
+    // --- GET con FILTRADO dinámico
+    public List<UsuarioOutDto> listarConFiltros(
+            String nickname,
+            String password,
+            String tipoUsuario,
+            Boolean cuentaActiva) throws UsuarioNoEncontradoException {
 
-    // --- GET con FILTRADO por nickname y password para LOGIN ReLab
-    public UsuarioOutDto login(String nickname, String password) throws UsuarioNoEncontradoException {
-        Usuario usuario = usuarioRepository.findByNicknameAndPassword(nickname, password)
-                .orElseThrow(UsuarioNoEncontradoException::new);
-        return mapToOutDto(usuario);
-    }
+        // Login (nickname + password)
+        if (nickname != null && !nickname.isEmpty() && password != null && !password.isEmpty()) {
+            Usuario usuario = usuarioRepository.findByNicknameAndPassword(nickname, password)
+                    .orElseThrow(UsuarioNoEncontradoException::new);
+            return List.of(mapToOutDto(usuario));
+        }
 
-    // --- GET con FILTRADO por Tipo de Usuario
-    public List<UsuarioOutDto> buscarPorTipoUsuario(String tipoUsuario) {
-        return usuarioRepository.findByTipoUsuario(tipoUsuario)
+        // Filtrado por nickname
+        if (nickname != null && !nickname.isEmpty()) {
+            Usuario usuario = usuarioRepository.findByNickname(nickname)
+                    .orElseThrow(UsuarioNoEncontradoException::new);
+            return List.of(mapToOutDto(usuario));
+        }
+
+        // Filtrado por tipoUsuario
+        if (tipoUsuario != null && !tipoUsuario.isEmpty()) {
+            return usuarioRepository.findByTipoUsuario(tipoUsuario)
+                    .stream()
+                    .map(this::mapToOutDto)
+                    .toList();
+        }
+
+        // Filtrado por cuentaActiva
+        if (cuentaActiva != null) {
+            return usuarioRepository.findByCuentaActiva(cuentaActiva)
+                    .stream()
+                    .map(this::mapToOutDto)
+                    .toList();
+        }
+
+        // Sin filtros → todos los usuarios
+        return usuarioRepository.findAll()
                 .stream()
                 .map(this::mapToOutDto)
                 .toList();
     }
 
-    // --- GET con FILTRADO por Cuenta Activa
-    public List<UsuarioOutDto> filtrarPorCuentaActiva(boolean cuentaActiva) {
-        return usuarioRepository.findByCuentaActiva(cuentaActiva)
-                .stream()
-                .map(this::mapToOutDto)
-                .toList();
-    }
 
     // --- PUT / modificar
     public UsuarioOutDto modificar(long id, UsuarioUpdateDto usuarioUpdateDto) throws UsuarioNoEncontradoException {
