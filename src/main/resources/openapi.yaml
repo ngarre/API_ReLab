@@ -11,6 +11,8 @@ tags:
     description: Operaciones relacionadas con los usuarios
   - name: Productos
     description: Operaciones relacionadas con los productos
+  - name: Imagen de producto
+    description: Endpoint que devuelve la imagen binaria asociada al producto
   - name: Categorías
     description: Operaciones relacionadas con las categorías
   - name: Compraventas
@@ -561,6 +563,45 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
 
+  # ======================
+  #  IMAGEN DEL PRODUCTO
+  # ======================
+  /productos/{id}/imagen:
+    get:
+      tags:
+        - Imagen de producto
+      summary: Obtiene la imagen del producto
+      description: Devuelve la imagen JPEG asociada al producto indicado por su ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del producto
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Imagen JPEG del producto devuelta correctamente
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: No existe imagen para ese producto o no existe el producto del cual se quiere recuperar la imagen
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
 
   # ======================
   #        CATEGORIA
@@ -918,6 +959,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/ValidationError'
 
+        '404':
+          description: usuario/producto no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '409':
+          description: El producto ya ha sido vendido (ya forma parte de un registro de compraventa).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conflict'
+
         '500':
           description: Internal server error
           content:
@@ -1174,6 +1229,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ValidationError'
+
+        '404':
+          description: usuario/producto no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
           
         '500':
           description: Internal server error
@@ -1537,10 +1599,18 @@ components:
           type: boolean
           description: estado del producto, activo o no.
           example: true
+        modo:
+          type: boolean
+          description: si el producto se vende (0) o se alquila (1)
+          example: true
         categoria:
           $ref: '#/components/schemas/CategoriaSimpleDto'
         usuario:
           $ref: '#/components/schemas/UsuarioSimpleDto'
+        imagenUrl:
+          type: String
+          description: URL pública para obtener la imagen del producto
+          example: "/productos/1/imagen"
 
 
     ProductoInDto:
@@ -1563,6 +1633,10 @@ components:
           type: boolean
           description: estado del producto, activo o no.
           example: true
+        modo:
+          type: boolean
+          description: si el producto se vende (0) o se alquila (1)
+          example: true
         categoriaId:
           type: integer
           description: identificador de la categoria
@@ -1573,6 +1647,11 @@ components:
           description: identificador del usuario
           format: int64
           example: 1
+        imagen:
+          type: string
+          format: byte
+          description: Imagen del producto codificada en Base64
+          example: "/9j/4AAQSkZJRgABAQAAAQABAAD... (Base64 completa aquí)"
 
     ProductoUpdateDto:
       type: object
@@ -1594,11 +1673,20 @@ components:
           type: boolean
           description: estado del producto, activo o no.
           example: true
+        modo:
+          type: boolean
+          description: si el producto se vende (0) o se alquila (1)
+          example: true
         categoriaId:
           type: integer
           description: identificador de la categoria
           format: int64
           example: 1
+        imagen:
+          type: string
+          format: byte
+          description: Imagen del producto codificada en Base64
+          example: "/9j/4AAQSkZJRgABAQAAAQABAAD... (Base64 completa aquí)"
 
     CategoriaSimpleDto:
       type: object
@@ -1944,7 +2032,7 @@ components:
         message:
           type: string
           description: mensaje de error
-          example: La entidad (usuario, producto, categoría, compraventa o alquiler) no existe.
+          example: El recurso (usuario, producto, categoría, compraventa, alquiler o imagen) no existe.
 
 
     NicknameYaExiste:
@@ -1988,6 +2076,22 @@ components:
             type: string
             example: "El saldo tiene que ser mayor que cero (ejemplo para usuario)"
 
+    Conflict:
+      type: object
+      properties:
+        code:
+          type: number
+          format: int
+          description: código de estado
+          example: 409
+        title:
+          type: String
+          description: tipo de error
+          example: producto-ya-vendido
+        message:
+          type: string
+          description: mensaje de error
+          example: El producto ya ha sido vendido
 
 
 
