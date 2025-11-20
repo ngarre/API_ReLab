@@ -46,20 +46,47 @@ public class ProductoController {
         return ResponseEntity.ok(dto);
     }
 
+// Versión que NO permite la SUBIDA DE IMÁGENES
+//    @PostMapping("/productos")
+//    public ResponseEntity<ProductoOutDto> agregarProductos(@Valid @RequestBody ProductoInDto productoInDto)
+//            throws CategoriaNoEncontradaException, UsuarioNoEncontradoException {
+//
+//            ProductoOutDto nuevoProducto = productoService.agregar(productoInDto);
+//            return new ResponseEntity<>(nuevoProducto, HttpStatus.CREATED);
+//    }
 
+    // Versión que PERMITE SUBIDA DE IMÁGENES
     @PostMapping("/productos")
-    public ResponseEntity<ProductoOutDto> agregarProductos(@Valid @RequestBody ProductoInDto productoInDto)
+    public ResponseEntity<ProductoOutDto> agregarProducto(@Valid @RequestBody ProductoInDto productoInDto)
             throws CategoriaNoEncontradaException, UsuarioNoEncontradoException {
 
-            ProductoOutDto nuevoProducto = productoService.agregar(productoInDto);
-            return new ResponseEntity<>(nuevoProducto, HttpStatus.CREATED);
+        // Llamo al servicio para agregar el producto, pasando el DTO que incluye la imagen
+        ProductoOutDto nuevoProducto = productoService.agregarConImagen(productoInDto);
+
+        // Retorno el nuevo producto creado con el código de estado 201 (CREATED)
+        return new ResponseEntity<>(nuevoProducto, HttpStatus.CREATED);
     }
 
+
+    // Versión que NO permite ACTUALIZAR IMAGEN
+//    @PutMapping("/productos/{id}")
+//    public ResponseEntity<ProductoOutDto> actualizarProducto(@Valid @RequestBody ProductoUpdateDto productoUpdateDto, @PathVariable long id) throws ProductoNoEncontradoException, CategoriaNoEncontradaException {
+//        ProductoOutDto actualizado = productoService.modificar(id, productoUpdateDto);
+//        return ResponseEntity.ok(actualizado);
+//    }
+
+    // Versión que PERMITE ACTUALIZACIÓN DE IMÁGENES
     @PutMapping("/productos/{id}")
-    public ResponseEntity<ProductoOutDto> actualizarProducto(@Valid @RequestBody ProductoUpdateDto productoUpdateDto, @PathVariable long id) throws ProductoNoEncontradoException, CategoriaNoEncontradaException {
-        ProductoOutDto actualizado = productoService.modificar(id, productoUpdateDto);
-        return ResponseEntity.ok(actualizado);
+    public ResponseEntity<ProductoOutDto> actualizarProducto(@Valid @RequestBody ProductoUpdateDto productoUpdateDto, @PathVariable long id)
+            throws ProductoNoEncontradoException, CategoriaNoEncontradaException {
+
+        // Llamo al servicio para actualizar el producto, pasando el ID y el DTO con los datos actualizados
+        ProductoOutDto productoActualizado = productoService.actualizarConImagen(id, productoUpdateDto);
+
+        // Devuelvo el producto actualizado
+        return ResponseEntity.ok(productoActualizado);
     }
+
 
     @DeleteMapping("/productos/{id}")
     public ResponseEntity<Void> eliminarProducto(@PathVariable long id) throws ProductoNoEncontradoException {

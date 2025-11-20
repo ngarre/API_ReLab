@@ -21,6 +21,9 @@ public class ProductoUpdateDto {
     private boolean activo;
     private boolean modo;
     private long categoriaId;
+
+    // Campo para recibir la imagen (en formato byte[])
+    private byte[] imagen;
 }
 
 // Sirve para poder hacer la operación PUT de producto evitando

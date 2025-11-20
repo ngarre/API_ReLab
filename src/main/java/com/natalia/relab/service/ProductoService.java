@@ -34,33 +34,68 @@ public class ProductoService {
     private UsuarioRepository usuarioRepository;
 
     // --- POST
-    public ProductoOutDto agregar(ProductoInDto productoInDto) throws CategoriaNoEncontradaException, UsuarioNoEncontradoException {
+    // Metodo en desuso que no permite subida con imagen:
+//    public ProductoOutDto agregar(ProductoInDto productoInDto) throws CategoriaNoEncontradaException, UsuarioNoEncontradoException {
+//
+//            // Busco categoria en la BBDD, es opcional ponerla.  Pero en caso de no existir una categoría con ese ID salta excepción.
+//            Categoria categoria = null;
+//            if (productoInDto.getCategoriaId() != null) {
+//                categoria = categoriaRepository.findById(productoInDto.getCategoriaId())
+//                    .orElseThrow(CategoriaNoEncontradaException::new);
+//            }
+//            // Busco el usuario en la BBDD
+//            Usuario usuario = usuarioRepository.findById(productoInDto.getUsuarioId())
+//                    .orElseThrow(UsuarioNoEncontradoException::new);
+//
+//            // Creo producto
+//            // 1. Mapeo datos simples con ModelMapper
+//            Producto producto = modelMapper.map(productoInDto, Producto.class);
+//
+//            // 2. Campos adicionales que no vienen del DTO como objetos. ModelMapper no sabe transformar un id de categoría en un objeto Categoría.
+//            producto.setFechaActualizacion(LocalDate.now());
+//            producto.setCategoria(categoria);
+//            producto.setUsuario(usuario);
+//
+//            Producto guardado = productoRepository.save(producto);
+//            return mapToOutDto(guardado);
+//    }
 
-            // Busco categoria en la BBDD, es opcional ponerla.  Pero en caso de no existir una categoría con ese ID salta excepción.
-            Categoria categoria = null;
-            if (productoInDto.getCategoriaId() != null) {
-                categoria = categoriaRepository.findById(productoInDto.getCategoriaId())
+    // --- POST NUEVO que permite subida CON IMAGEN
+    public ProductoOutDto agregarConImagen(ProductoInDto productoInDto)
+            throws CategoriaNoEncontradaException, UsuarioNoEncontradoException {
+
+        // Busco la categoría
+        Categoria categoria = null;
+        if (productoInDto.getCategoriaId() != null) {
+            categoria = categoriaRepository.findById(productoInDto.getCategoriaId())
                     .orElseThrow(CategoriaNoEncontradaException::new);
-            }
-            // Busco el usuario en la BBDD
-            Usuario usuario = usuarioRepository.findById(productoInDto.getUsuarioId())
-                    .orElseThrow(UsuarioNoEncontradoException::new);
+        }
 
-            // Creo producto
-            // 1. Mapeo datos simples con ModelMapper
-            Producto producto = modelMapper.map(productoInDto, Producto.class);
+        // Busco el usuario
+        Usuario usuario = usuarioRepository.findById(productoInDto.getUsuarioId())
+                .orElseThrow(UsuarioNoEncontradoException::new);
 
-            // 2. Campos adicionales que no vienen del DTO como objetos. ModelMapper no sabe transformar un id de categoría en un objeto Categoría.
-            producto.setFechaActualizacion(LocalDate.now());
-            producto.setCategoria(categoria);
-            producto.setUsuario(usuario);
+        // Creo el producto a partir del DTO
+        Producto producto = modelMapper.map(productoInDto, Producto.class);
 
-            Producto guardado = productoRepository.save(producto);
-            return mapToOutDto(guardado);
+        // Establecemos los valores adicionales
+        producto.setFechaActualizacion(LocalDate.now());
+        producto.setCategoria(categoria);
+        producto.setUsuario(usuario);
+
+        // Si hay imagen en el DTO, la agrego
+        if (productoInDto.getImagen() != null) {
+            producto.setImagen(productoInDto.getImagen());  // Aquí guardo la imagen en el producto
+        }
+
+        // Guardo el producto
+        Producto guardado = productoRepository.save(producto);
+
+        return mapToOutDto(guardado);
     }
 
 
-    // --- GET por id
+        // --- GET por id
     public ProductoOutDto buscarPorId(long id) throws ProductoNoEncontradoException {
         Producto producto = productoRepository.findById(id)
                 .orElseThrow(ProductoNoEncontradoException::new);
@@ -123,25 +158,60 @@ public class ProductoService {
     }
 
 
-    // --- PUT / modificar
-    public ProductoOutDto modificar(long id, ProductoUpdateDto productoUpdateDto) throws ProductoNoEncontradoException, CategoriaNoEncontradaException {
-        Producto productoAnterior = productoRepository.findById(id)
+    // --- PUT / modificar --> Sin imagen
+//    public ProductoOutDto modificar(long id, ProductoUpdateDto productoUpdateDto) throws ProductoNoEncontradoException, CategoriaNoEncontradaException {
+//        Producto productoAnterior = productoRepository.findById(id)
+//                .orElseThrow(ProductoNoEncontradoException::new);
+//
+//        Categoria categoria = categoriaRepository.findById(productoUpdateDto.getCategoriaId())
+//                .orElseThrow(CategoriaNoEncontradaException::new);
+//
+//
+//        // Mapear cambios simples del updateDto sobre el producto existente
+//        modelMapper.map(productoUpdateDto, productoAnterior);
+//
+//        productoAnterior.setFechaActualizacion(LocalDate.now());
+//        productoAnterior.setCategoria(categoria);
+//        // No permito cambiar usuario.  No toco productoAnterior.setUsuario()
+//
+//        Producto actualizado = productoRepository.save(productoAnterior);
+//        return mapToOutDto(actualizado);
+//    }
+
+
+    // --- PUT NUEVO --> Permite actualizar imagen
+    public ProductoOutDto actualizarConImagen(long id, ProductoUpdateDto productoUpdateDto)
+            throws ProductoNoEncontradoException, CategoriaNoEncontradaException {
+
+        // Buscar el producto existente
+        Producto productoExistente = productoRepository.findById(id)
                 .orElseThrow(ProductoNoEncontradoException::new);
 
+        // Buscar la categoría del producto (si la categoría cambia)
         Categoria categoria = categoriaRepository.findById(productoUpdateDto.getCategoriaId())
                 .orElseThrow(CategoriaNoEncontradaException::new);
 
+        // Mapear los cambios del DTO al producto existente (sin la imagen por ahora)
+        modelMapper.map(productoUpdateDto, productoExistente);
 
-        // Mapear cambios simples del updateDto sobre el producto existente
-        modelMapper.map(productoUpdateDto, productoAnterior);
+        // Actualizo la fecha de la actualización
+        productoExistente.setFechaActualizacion(LocalDate.now());
 
-        productoAnterior.setFechaActualizacion(LocalDate.now());
-        productoAnterior.setCategoria(categoria);
-        // No permito cambiar usuario.  No toco productoAnterior.setUsuario()
+        // Establezco la nueva categoría
+        productoExistente.setCategoria(categoria);
 
-        Producto actualizado = productoRepository.save(productoAnterior);
+        // Si se ha enviado una nueva imagen en el DTO, la actualizo
+        if (productoUpdateDto.getImagen() != null) {
+            productoExistente.setImagen(productoUpdateDto.getImagen());
+        }
+
+        // Guardo el producto actualizado
+        Producto actualizado = productoRepository.save(productoExistente);
+
+        // Devuelvo el DTO del producto actualizado
         return mapToOutDto(actualizado);
     }
+
 
     // --- DELETE
     public void eliminar(long id) throws ProductoNoEncontradoException {
