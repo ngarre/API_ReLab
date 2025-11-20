@@ -66,15 +66,6 @@ public class CompraventaService {
         return mapToOutDto(guardada);
     }
 
-    // --- GET todas
-    public List<CompraventaOutDto> listarTodas() {
-        return compraventaRepository.findAll()
-                .stream()
-                .map(this::mapToOutDto)
-                .toList();
-    }
-
-
     // --- GET por id
     public CompraventaOutDto buscarPorId(long id) throws CompraventaNoEncontradaException {
         Compraventa compraventa = compraventaRepository.findById(id)
@@ -82,28 +73,61 @@ public class CompraventaService {
         return mapToOutDto(compraventa);
     }
 
-    // --- GET con FILTRADO por CompradorId
-    public List<CompraventaOutDto> buscarPorCompradorId(Long compradorId) {
-        return compraventaRepository.findByCompradorId(compradorId)
+    // --- GET con FILTRADO dinámico
+    public List <CompraventaOutDto> listarConFiltros(
+            Long compradorId,
+            Long vendedorId,
+            Long productoId) throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
+
+        // Filtrado por compradorId
+        if (compradorId != null) {
+            // Se verifica que el usuario comprador exista
+            boolean existe = usuarioRepository.existsById(compradorId);
+            if (!existe) {
+                throw new UsuarioNoEncontradoException();
+            }
+
+            return compraventaRepository.findByCompradorId(compradorId)
+                    .stream()
+                    .map(this::mapToOutDto)
+                    .toList();
+        }
+
+        // Filtrado por vendedorId
+        if (vendedorId != null) {
+            // Se verifica que el usuario vendedor exista
+            boolean existe = usuarioRepository.existsById(vendedorId);
+            if (!existe) {
+                throw new UsuarioNoEncontradoException();
+            }
+
+            return compraventaRepository.findByVendedorId(vendedorId)
+                    .stream()
+                    .map(this::mapToOutDto)
+                    .toList();
+        }
+
+        // Filtrado por productoid
+        if (productoId != null) {
+            // Se verifica que el producto exista
+            boolean existe = productoRepository.existsById(productoId);
+            if (!existe) {
+                throw new ProductoNoEncontradoException();
+            }
+
+            return compraventaRepository.findByProductoId(productoId)
+                    .stream()
+                    .map(this::mapToOutDto)
+                    .toList();
+        }
+
+        // Sin filtros → todas las compraventas
+        return compraventaRepository.findAll()
                 .stream()
                 .map(this::mapToOutDto)
                 .toList();
     }
 
-    // --- GET con FILTRADO por VendedorId
-    public List<CompraventaOutDto> buscarPorVendedorId(Long vendedorId) {
-        return compraventaRepository.findByVendedorId(vendedorId)
-                .stream()
-                .map(this::mapToOutDto)
-                .toList();
-    }
-
-    // --- GET con FILTRADO por ProductoId --> Solo una compraventa por producto
-    public CompraventaOutDto buscarPorProductoId(Long productoId) throws CompraventaNoEncontradaException {
-        Compraventa compraventa = compraventaRepository.findByProductoId(productoId)
-                .orElseThrow(CompraventaNoEncontradaException::new);
-        return mapToOutDto(compraventa);
-    }
 
     // --- PUT / modificar
     public CompraventaOutDto modificar(long id, CompraventaUpdateDto compraventaUpdateDto) throws CompraventaNoEncontradaException {

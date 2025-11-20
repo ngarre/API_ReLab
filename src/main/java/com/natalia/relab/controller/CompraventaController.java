@@ -11,56 +11,26 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 @RestController
 public class CompraventaController {
 
     @Autowired
     private CompraventaService compraventaService;
-    @Autowired
-    private UsuarioService usuarioService;
-    @Autowired
-    private ProductoService productoService;
 
     @GetMapping("/compraventas")
     public ResponseEntity<?> verTodas(
             @RequestParam(value="compradorId", required = false) Long compradorId,
             @RequestParam(value="vendedorId", required = false) Long vendedorId,
             @RequestParam(value="productoId", required = false) Long productoId)
-        throws UsuarioNoEncontradoException, ProductoNoEncontradoException, CompraventaNoEncontradaException {
+        throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
 
-        if (compradorId !=null){
-            // Se verifica que el usuario comprador exista
-            usuarioService.buscarPorId(compradorId);
-
-            List<CompraventaOutDto> compraventas = compraventaService.buscarPorCompradorId(compradorId);
-            return ResponseEntity.ok(compraventas);
-        }
-
-        if (vendedorId !=null){
-            // Se verifica que el usuario vendedor exista
-            usuarioService.buscarPorId(vendedorId);
-
-            List<CompraventaOutDto> compraventas = compraventaService.buscarPorVendedorId(vendedorId);
-            return ResponseEntity.ok(compraventas);
-        }
-
-        if (productoId !=null){
-            // Se verifica que el producto exista
-            productoService.buscarPorId(productoId);
-
-            CompraventaOutDto compraventa = compraventaService.buscarPorProductoId(productoId);
-            return ResponseEntity.ok(compraventa);
-        }
-
-        List<CompraventaOutDto> todasCompraventas = compraventaService.listarTodas();
-        return ResponseEntity.ok(todasCompraventas);
+        List<CompraventaOutDto> compraventas = compraventaService.listarConFiltros(compradorId, vendedorId, productoId);
+        return ResponseEntity.ok(compraventas);
     }
 
     @GetMapping("/compraventas/{id}")

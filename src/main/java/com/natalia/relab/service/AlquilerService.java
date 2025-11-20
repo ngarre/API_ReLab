@@ -122,38 +122,6 @@ public class AlquilerService {
                 .toList();
     }
 
-//    public List<AlquilerOutDto> listarTodos() {
-//        return alquilerRepository.findAll()
-//                .stream()
-//                .map(this::mapToOutDto)
-//                .toList();
-//    }
-//
-//
-//    // --- GET con FILTRADO por ArrendadorId
-//    public List<AlquilerOutDto> buscarPorArrendadorId(Long arrendadorId) {
-//        return alquilerRepository.findByArrendadorId(arrendadorId)
-//                .stream()
-//                .map(this::mapToOutDto)
-//                .toList();
-//    }
-//
-//    // --- GET con FILTRADO por ArrendatarioId
-//    public List<AlquilerOutDto> buscarPorArrendatarioId(Long arrendatarioId) {
-//        return alquilerRepository.findByArrendatarioId(arrendatarioId)
-//                .stream()
-//                .map(this::mapToOutDto)
-//                .toList();
-//    }
-//
-//    // --- GET con FILTRADO por ProductoId
-//    public List<AlquilerOutDto> buscarPorProductoId(Long productoId) {
-//        return alquilerRepository.findByProductoId(productoId)
-//                .stream()
-//                .map(this::mapToOutDto)
-//                .toList();
-//    }
-
 
     // --- PUT / modificar
     public AlquilerOutDto modificar(long id, AlquilerUpdateDto alquilerUpdateDto) throws AlquilerNoEncontradoException {
