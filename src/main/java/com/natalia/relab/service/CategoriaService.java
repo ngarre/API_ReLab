@@ -40,14 +40,6 @@ public class CategoriaService {
         return mapToOutDto(guardada);
     }
 
-    // --- GET todos
-    public List<CategoriaOutDto> listarTodas() {
-        return categoriaRepository.findAll()
-                .stream()
-                .map(this::mapToOutDto)
-                .toList();
-    }
-
     // --- GET por id
     public CategoriaOutDto buscarPorId(long id) throws CategoriaNoEncontradaException {
         Categoria categoria = categoriaRepository.findById(id)
@@ -55,36 +47,60 @@ public class CategoriaService {
         return mapToOutDto(categoria);
     }
 
-    // --- GET con FILTRADO por nombre
-    public List<CategoriaOutDto> buscarPorNombreParcial(String nombre)  {
-        return categoriaRepository.findByNombreContainingIgnoreCase(nombre)
-                .stream()
-                .map(this::mapToOutDto)
-                .toList();
-    }
+    // --- GET con FILTRADO dinámico
+    public List<CategoriaOutDto> listarConFiltros(
+            String nombre,
+            Boolean activa,
+            LocalDate fechaCreacion,
+            LocalDate desde,
+            LocalDate hasta) {
 
-    // --- GET con FILTRADO según si la categoría está activa o no
-    public List<CategoriaOutDto> buscarActivas(boolean activa) {
-        return categoriaRepository.findByActiva(activa)
-                .stream()
-                .map(this::mapToOutDto)
-                .toList();
-    }
-
-    // -- GET con FILTRADO por fecha de creación EXACTA o RANGO
-    public List<CategoriaOutDto> buscarPorFecha(LocalDate fechaCreacion, LocalDate desde, LocalDate hasta) {
-        List<Categoria> lista;
-        if (fechaCreacion != null) {
-            lista = categoriaRepository.findByFechaCreacion(fechaCreacion);
-        } else if (desde != null && hasta != null) {
-            lista = categoriaRepository.findByFechaCreacionBetween(desde, hasta);
-        } else if (desde != null){
-            lista = categoriaRepository.findByFechaCreacionBetween(desde, LocalDate.now());
-        } else {
-            return listarTodas(); // Si no me dan parámetros de fecha listo todas las categorias.
+        // Filtrado por nombre --> Coincidencias parciales y sin distinguir mayúsculas y minúsculas
+        if (nombre != null && !nombre.isEmpty()) {
+            return categoriaRepository.findByNombreContainingIgnoreCase(nombre)
+                    .stream()
+                    .map(this::mapToOutDto)
+                    .toList();
         }
-        return lista.stream().map(this::mapToOutDto).toList();
+
+        // Filtrado por activa o no
+        if (activa != null) {
+            return categoriaRepository.findByActiva(activa)
+                    .stream()
+                    .map(this::mapToOutDto)
+                    .toList();
+        }
+
+        // Filtrado por fecha exacta o rango ("Desde-hasta" o "desde-hasta fecha actual")
+        // 1. Filtrado por fecha EXACTA
+        if (fechaCreacion != null) {
+            return categoriaRepository.findByFechaCreacion(fechaCreacion)
+                    .stream()
+                    .map(this::mapToOutDto)
+                    .toList();
+        }
+        // 2. Filtrado por RANGO completo: desde + hasta
+        if (desde != null && hasta != null) {
+            return categoriaRepository.findByFechaCreacionBetween(desde, hasta)
+                    .stream()
+                    .map(this::mapToOutDto)
+                    .toList();
+        }
+        // 3. Filtrado por RANGO parcialmente abierto (solo desde)
+        if (desde != null) {
+            return categoriaRepository.findByFechaCreacionBetween(desde, LocalDate.now())
+                    .stream()
+                    .map(this::mapToOutDto)
+                    .toList();
+        }
+
+        // Si no hay ningún filtro, listar todas
+        return categoriaRepository.findAll()
+                .stream()
+                .map(this::mapToOutDto)
+                .toList();
     }
+
 
     // --- PUT / modificar
     public CategoriaOutDto modificar(long id, CategoriaUpdateDto categoriaUpdateDto) throws CategoriaNoEncontradaException {
