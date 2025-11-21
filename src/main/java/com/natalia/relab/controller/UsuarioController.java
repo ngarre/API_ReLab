@@ -30,6 +30,10 @@ public class UsuarioController {
             throws UsuarioNoEncontradoException {
 
         List<UsuarioOutDto> usuarios = usuarioService.listarConFiltros(nickname, password, tipoUsuario, cuentaActiva);
+        if (usuarios.size() == 1) {
+            return ResponseEntity.ok(usuarios.getFirst()); // Devuelvo solo el primer usuario si en la lista solo hay uno.
+            // Sin esto con el filtro de Login me devolvía un array.
+        }
         return ResponseEntity.ok(usuarios);
     }
 
