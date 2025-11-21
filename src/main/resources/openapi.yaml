@@ -116,6 +116,11 @@ paths:
           application/json:
             schema:
                 $ref: '#/components/schemas/UsuarioInDto'
+            examples:
+              ejemploExistente:
+                $ref: '#/components/examples/UsuarioInExample1'
+              ejemploAdicional:
+                $ref: '#/components/examples/UsuarioInExample2'
 
       responses:
         '201':
@@ -217,6 +222,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UsuarioUpdateDto'
+            examples:
+              ejemploExistente:
+                $ref: '#/components/examples/UsuarioUpdateExample1'
+              ejemploAdicional:
+                $ref: '#/components/examples/UsuarioUpdateExample2'
 
       responses:
         '200':
@@ -386,6 +396,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ProductoInDto'
+            examples:
+              ejemploExistente:
+                $ref: '#/components/examples/ProductoInExample1'
+              ejemploAdicional:
+                $ref: '#/components/examples/ProductoInExample2'
 
       responses:
         '201':
@@ -491,6 +506,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ProductoUpdateDto'
+            examples:
+              ejemploExistente:
+                $ref: '#/components/examples/ProductoUpdateExample1'
+              ejemploAdicional:
+                $ref: '#/components/examples/ProductoUpdateExample2'
 
       responses:
         '200':
@@ -684,6 +704,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CategoriaInDto'
+            examples:
+              ejemploExistente:
+                $ref: '#/components/examples/CategoriaInExample1'
+              ejemploAdicional:
+                $ref: '#/components/examples/CategoriaInExample2'
 
       responses:
         '201':
@@ -781,6 +806,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CategoriaUpdateDto'
+            examples:
+              ejemploExistente:
+                $ref: '#/components/examples/CategoriaUpdateExample1'
+              ejemploAdicional:
+                $ref: '#/components/examples/CategoriaUpdateExample2'
 
       responses:
         '200':
@@ -943,6 +973,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CompraventaInDto'
+            examples:
+              ejemploExistente:
+                $ref: '#/components/examples/CompraventaInExample1'
+              ejemploAdicional:
+                $ref: '#/components/examples/CompraventaInExample2'
 
       responses:
         '201':
@@ -1053,6 +1088,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CompraventaUpdateDto'
+            examples:
+              ejemploExistente:
+                $ref: '#/components/examples/CompraventaUpdateExample1'
+              ejemploAdicional:
+                $ref: '#/components/examples/CompraventaUpdateExample2'
 
       responses:
         '200':
@@ -1214,6 +1254,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AlquilerInDto'
+            examples:
+              ejemploExistente:
+                $ref: '#/components/examples/AlquilerInExample1'
+              ejemploAdicional:
+                $ref: '#/components/examples/AlquilerInExample2'
 
       responses:
         '201':
@@ -1315,6 +1360,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AlquilerUpdateDto'
+            examples:
+              ejemploExistente:
+                $ref: '#/components/examples/AlquilerUpdateExample1'
+              ejemploAdicional:
+                $ref: '#/components/examples/AlquilerUpdateExample2'
 
       responses:
         '200':
@@ -2093,7 +2143,215 @@ components:
           description: mensaje de error
           example: El producto ya ha sido vendido
 
+  examples:
+    UsuarioInExample1:
+      summary: Ejemplo existente para crear usuario
+      value:
+        nickname: "juan23"
+        password: "1234"
+        nombre: "Juan"
+        apellido: "Pérez"
+        email: "juan@example.com"
+        fechaNacimiento: "1990-05-10"
+        cuentaActiva: true
+        tipoUsuario: "particular"
+        admin: false
+        saldo: 125.5
+        latitud: 40.4168
+        longitud: -3.7038
 
+    UsuarioInExample2:
+      summary: Ejemplo adicional para crear usuario
+      value:
+        nickname: "maria_lab"
+        password: "labpass"
+        nombre: "María"
+        apellido: "García"
+        email: "maria@example.com"
+        fechaNacimiento: "1985-03-15"
+        cuentaActiva: true
+        tipoUsuario: "empresa"
+        admin: false
+        saldo: 500.0
+        latitud: 41.3879
+        longitud: 2.16992
 
+    UsuarioUpdateExample1:
+      summary: Ejemplo existente para actualizar usuario
+      value:
+        nickname: "Carolina23"
+        password: "9876"
+        nombre: "Carolina"
+        apellido: "López"
+        email: "carolina@example.com"
+        fechaNacimiento: "1977-09-01"
+        cuentaActiva: true
+        tipoUsuario: "particular"
+        latitud: 40.4168
+        longitud: -3.7038
 
+    UsuarioUpdateExample2:
+      summary: Ejemplo adicional para actualizar usuario
+      value:
+        nickname: "carlos99"
+        password: "pass99"
+        nombre: "Carlos"
+        apellido: "Hernández"
+        email: "carlos@example.com"
+        fechaNacimiento: "1992-12-12"
+        cuentaActiva: false
+        tipoUsuario: "centro_publico"
+        latitud: 37.3891
+        longitud: -5.9845
 
+    ProductoInExample1:
+      summary: Ejemplo existente para crear producto
+      value:
+        nombre: "ChemiDoc"
+        descripcion: "Permite capturar imágenes y datos de experimentos de laboratorio como los geles de ADN/proteínas y las transferencias Western"
+        precio: 10000
+        activo: true
+        modo: true
+        categoriaId: 1
+        usuarioId: 1
+        imagen: "/9j/4AAQSkZJRgABAQAAAQABAAD... (Base64 completa aquí)"
+
+    ProductoInExample2:
+      summary: Ejemplo adicional para crear producto
+      value:
+        nombre: "Ultrasonic processor 500W"
+        descripcion: "Procesador ultrasónico para limpieza y preparación de muestras"
+        precio: 2500.5
+        activo: true
+        modo: false
+        categoriaId: 2
+        usuarioId: 12
+        imagen: "/9j/4AAQSkZJRgABAQAAAQABAAD... (otra imagen Base64)"
+
+    ProductoUpdateExample1:
+      summary: Ejemplo existente para actualizar producto
+      value:
+        nombre: "ChemiDoc"
+        descripcion: "Permite capturar imágenes y datos de experimentos de laboratorio como los geles de ADN/proteínas y las transferencias Western"
+        precio: 10000
+        activo: true
+        modo: true
+        categoriaId: 1
+        imagen: "/9j/4AAQSkZJRgABAQAAAQABAAD... (Base64 completa aquí)"
+
+    ProductoUpdateExample2:
+      summary: Ejemplo adicional para actualizar producto
+      value:
+        nombre: "Microcentrífuga X200"
+        descripcion: "Microcentrífuga de alta velocidad para tubos de 1.5/2 ml"
+        precio: 350.75
+        activo: false
+        modo: false
+        categoriaId: 3
+        imagen: "/9j/4AAQSkZJRgABAQAAAQABAAD... (otra imagen Base64)"
+
+    CategoriaInExample1:
+      summary: Ejemplo existente para crear categoría
+      value:
+        nombre: "Microscopios Ópticos"
+        descripcion: "Categoría que incluye todos los productos relacionados con microscopios ópticos y sus accesorios."
+        activa: true
+        tasaComision: 0.3
+
+    CategoriaInExample2:
+      summary: Ejemplo adicional para crear categoría
+      value:
+        nombre: "Equipamiento de cultivo"
+        descripcion: "Incubadoras, agitadores y todo lo relacionado con cultivos celulares y bacterianos."
+        activa: true
+        tasaComision: 0.15
+
+    CategoriaUpdateExample1:
+      summary: Ejemplo existente para actualizar categoría
+      value:
+        nombre: "Microscopios Ópticos"
+        descripcion: "Categoría que incluye todos los productos relacionados con microscopios ópticos y sus accesorios."
+        activa: true
+        tasaComision: 0.3
+
+    CategoriaUpdateExample2:
+      summary: Ejemplo adicional para actualizar categoría
+      value:
+        nombre: "Material de laboratorio"
+        descripcion: "Material fungible y reactivos para laboratorio en general."
+        activa: false
+        tasaComision: 0.05
+
+    CompraventaInExample1:
+      summary: Ejemplo existente para crear compraventa
+      value:
+        compradorId: 1
+        vendedorId: 2
+        productoId: 1
+        devuelto: true
+        comentario: "Vendedor muy profesional y buen precio."
+        precioFinal: 2000
+
+    CompraventaInExample2:
+      summary: Ejemplo adicional para crear compraventa
+      value:
+        compradorId: 5
+        vendedorId: 12
+        productoId: 12
+        devuelto: false
+        comentario: "Entrega impecable, producto como en la descripción."
+        precioFinal: 1500.75
+
+    CompraventaUpdateExample1:
+      summary: Ejemplo existente para actualizar compraventa
+      value:
+        devuelto: true
+        comentario: "Vendedor muy profesional y buen precio."
+        precioFinal: 2000
+
+    CompraventaUpdateExample2:
+      summary: Ejemplo adicional para actualizar compraventa
+      value:
+        devuelto: false
+        comentario: "Produto devuelto en perfectas condiciones."
+        precioFinal: 1800
+
+    AlquilerInExample1:
+      summary: Ejemplo existente para crear alquiler
+      value:
+        arrendadorId: 1
+        arrendatarioId: 1
+        productoId: 1
+        fechaInicio: "2024-01-22"
+        fechaFin: "2025-01-22"
+        meses: 12
+        precio: 300
+        comentario: "El equipo estaba en perfecto estado"
+        cancelado: false
+
+    AlquilerInExample2:
+      summary: Ejemplo adicional para crear alquiler
+      value:
+        arrendadorId: 10
+        arrendatarioId: 11
+        productoId: 12
+        fechaInicio: "2025-02-01"
+        fechaFin: "2025-08-01"
+        meses: 6
+        precio: 150.5
+        comentario: "Buen estado, funcionamiento correcto"
+        cancelado: false
+
+    AlquilerUpdateExample1:
+      summary: Ejemplo existente para actualizar alquiler
+      value:
+        precio: 300
+        comentario: "El equipo estaba en perfecto estado"
+        cancelado: false
+
+    AlquilerUpdateExample2:
+      summary: Ejemplo adicional para actualizar alquiler
+      value:
+        precio: 200
+        comentario: "Se ajustó el precio tras negociación"
+        cancelado: true
