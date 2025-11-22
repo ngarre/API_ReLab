@@ -20,11 +20,8 @@ import org.modelmapper.ModelMapper;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -97,5 +94,35 @@ public class ProductoServiceTests {
         assertEquals("usuario10", resultado.getUsuario().getNickname());
         assertEquals("Categoria1", resultado.getCategoria().getNombre());
     }
+
+    @Test
+    public void testAgregarConImagen_UsuarioNoExiste() {
+        // DTO de entrada con un usuario inexistente
+        ProductoInDto inDto = new ProductoInDto(
+                "Producto1",
+                "Descripción del producto 1",
+                100.0f,
+                true,
+                false,
+                10L,    // categoría existente
+                99L,    // usuario inexistente
+                new byte[]{1, 2, 3}
+        );
+
+        // Mockeo la categoría para que exista
+        Categoria categoria = new Categoria();
+        categoria.setId(10L);
+        categoria.setNombre("Categoria1");
+        when(categoriaRepository.findById(10L)).thenReturn(Optional.of(categoria));
+
+        // Mockeo el usuario como NO existente
+        when(usuarioRepository.findById(99L)).thenReturn(Optional.empty());
+
+        // Ejecución y verificación: espero que se lance UsuarioNoEncontradoException
+        assertThrows(UsuarioNoEncontradoException.class,
+                () -> productoService.agregarConImagen(inDto));
+    }
+
+
 
 }
