@@ -18,9 +18,9 @@ public class ProductoUpdateDto {
     @Min(value=0, message = "El precio tiene que ser mayor que cero" )
     private float precio;
 //    private LocalDate fechaActualizacion;
-    private boolean activo;
-    private boolean modo;
-    private long categoriaId;
+    private Boolean activo;
+    private Boolean modo;
+    private Long categoriaId;
 
     // Campo para recibir la imagen (en formato byte[])
     private byte[] imagen;
