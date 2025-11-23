@@ -111,7 +111,7 @@ public class ProductoService {
             Long usuarioId) throws UsuarioNoEncontradoException, CategoriaNoEncontradaException {
 
         // Filtrado por nombre --> Coincidencias parciales y sin distinguir mayúsculas y minúsculas
-        if (nombre != null && !nombre.isEmpty()) {
+        if (nombre != null && !nombre.trim().isEmpty()) { // Evito buscar con cadena vacía de cara a los tests unitarios y que no se llegue a poder hacer filtrado por categoriaId
             return productoRepository.findByNombreContainingIgnoreCase(nombre)
                     .stream()
                     .map(this::mapToOutDto)
