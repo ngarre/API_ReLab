@@ -443,6 +443,21 @@ public class ProductoServiceTests {
         assertEquals("/productos/1/imagen", resultado.getImagenUrl());
     }
 
+    @Test
+    public void testActualizarConImagen_FallaSiNoExisteProducto() {
+        long idInexistente = 999;
+
+        // UpdateDto con los datos a modificar
+        ProductoUpdateDto updateDto = new ProductoUpdateDto();
+        updateDto.setNombre("NuevoProducto");
+
+        // Defino el comportamiento del mock
+        when(productoRepository.findById(idInexistente)).thenReturn(java.util.Optional.empty());
+
+        // Verifico que se lanza la excepción al intentar modificar un producto inexistente
+        assertThrows(ProductoNoEncontradoException.class,
+                () -> productoService.actualizarConImagen(idInexistente, updateDto));
+    }
 
     // ---------------------------------------------------------
     //                TEST DELETE / eliminar()

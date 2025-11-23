@@ -2,6 +2,7 @@ package com.natalia.relab;
 
 import com.natalia.relab.dto.CategoriaInDto;
 import com.natalia.relab.dto.CategoriaOutDto;
+import com.natalia.relab.dto.CategoriaUpdateDto;
 import com.natalia.relab.model.Categoria;
 import com.natalia.relab.repository.CategoriaRepository;
 import com.natalia.relab.service.CategoriaService;
@@ -17,7 +18,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+
 
 @ExtendWith(MockitoExtension.class)
 public class CategoriaServiceTests {
@@ -309,5 +311,102 @@ public class CategoriaServiceTests {
     // ---------------------------------------------------------
     //                  TEST PUT / modificar()
     // ---------------------------------------------------------
-    // TODO
+
+    @Test
+    public void testModificarCategoria_Exito() throws CategoriaNoEncontradaException {
+        // Id de la categoría a modificar
+        long id = 1L;
+
+        // Categoria Update DTO con los nuevos datos
+        CategoriaUpdateDto updateDto = new CategoriaUpdateDto();
+        updateDto.setNombre("Centrífugas Modificadas");
+        updateDto.setDescripcion("Descripción modificada");
+
+        // Categoria existente en la BBDD antes de la modificación
+        Categoria categoriaExistente = new Categoria();
+        categoriaExistente.setId(id);
+        categoriaExistente.setId(id);
+        categoriaExistente.setNombre("Centrífugas");
+        categoriaExistente.setDescripcion("Descripción original");
+
+        // Categoria después de la modificación
+        Categoria categoriaModificada = new Categoria();
+        categoriaModificada.setId(id);
+        categoriaModificada.setNombre(updateDto.getNombre());
+        categoriaModificada.setDescripcion(updateDto.getDescripcion());
+
+        // CategoriaOutDto esperado
+        CategoriaOutDto categoriaOutDto = new CategoriaOutDto();
+        categoriaOutDto.setId(categoriaModificada.getId());
+        categoriaOutDto.setNombre(categoriaModificada.getNombre());
+        categoriaOutDto.setDescripcion(categoriaModificada.getDescripcion());
+
+        // Defino el comportamiento de los mocks
+        when(categoriaRepository.findById(id)).thenReturn(java.util.Optional.of(categoriaExistente)); // Mockeo la búsqueda de la categoría existente
+        lenient().doNothing().when(modelMapper).map(updateDto, categoriaExistente); // Mockeo el mapeo de los datos del UpdateDto sobre la entidad existente
+        when(categoriaRepository.save(categoriaExistente)).thenReturn(categoriaExistente); // Mockeo el guardado de la categoría modificada
+        when(modelMapper.map(categoriaExistente, CategoriaOutDto.class)).thenReturn(categoriaOutDto); // Mockeo el mapeo a outDto de la categoría modificada
+
+
+        // Llamo al metodo a testear
+        CategoriaOutDto resultado = categoriaService.modificar(id, updateDto);
+
+        // Verificaciones
+        assertNotNull(resultado);
+        assertEquals(id, resultado.getId());
+        assertEquals(updateDto.getNombre(), resultado.getNombre());
+        assertEquals(updateDto.getDescripcion(), resultado.getDescripcion());
+    }
+
+    @Test
+    public void testModificarCategoria_FallaSiNoExisteCategoria() throws CategoriaNoEncontradaException {
+        long idInexistente = 99L;
+
+        // UpdateDto con los nuevos datos
+        CategoriaUpdateDto updateDto = new CategoriaUpdateDto();
+        updateDto.setNombre("Nombre Nuevo");
+
+        // Defino el comportamiento del mock para simular que no se encuentra la categoría
+        when(categoriaRepository.findById(idInexistente)).thenReturn(java.util.Optional.empty());
+
+        // Espero que lance la excepción al intentar modificar una categoría inexistente
+        assertThrows(CategoriaNoEncontradaException.class,
+                () -> categoriaService.modificar(idInexistente, updateDto));
+    }
+
+    // ---------------------------------------------------------
+    //                TEST DELETE / eliminar()
+    // ---------------------------------------------------------
+
+    @Test
+    public void testEliminarCategoria_Exito() throws CategoriaNoEncontradaException {
+        // Id de la categoría a eliminar
+        long id = 1L;
+
+        // Categoria existente en la BBDD antes de la eliminación
+        Categoria categoriaExistente = new Categoria();
+        categoriaExistente.setId(id);
+        categoriaExistente.setNombre("Centrífugas");
+
+        // Defino el comportamiento de los mocks
+        when(categoriaRepository.findById(id)).thenReturn(java.util.Optional.of(categoriaExistente)); // Mockeo la búsqueda de la categoría existente
+
+        // Llamo al metodo a testear
+        categoriaService.eliminar(id);
+
+        // Verificaciones
+        verify(categoriaRepository, times(1)).delete(categoriaExistente);
+    }
+
+    @Test
+    public void testEliminarCategoria_FallaSiNoExiste(){
+        // Id de la categoría a eliminar
+        long id = 99L;
+
+        // Defino el comportamiento del mock para simular que no se encuentra la categoría
+        when(categoriaRepository.findById(id)).thenReturn(java.util.Optional.empty());
+
+        assertThrows(CategoriaNoEncontradaException.class, // Espero que lance esta excepción
+                () -> categoriaService.eliminar(id)); // Llamada al metodo a testear
+    }
 }

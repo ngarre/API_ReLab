@@ -392,6 +392,23 @@ public class UsuarioServiceTests {
         assertEquals("NuevoNombre", resultado.getNombre());
     }
 
+    @Test
+    public void testModificar_FallaSiNoExiste() {
+        long idInexistente = 999;
+
+        // UsuarioUpdateDto con los datos a modificar
+        UsuarioUpdateDto updateDto = new UsuarioUpdateDto();
+        updateDto.setNickname("cualquierNick");
+
+        // Defino el comportamiento de los mocks
+        when(usuarioRepository.findById(idInexistente))
+                .thenReturn(java.util.Optional.empty());
+
+        // Verifico que se lanza la excepción al intentar modificar un usuario inexistente
+        assertThrows(UsuarioNoEncontradoException.class,
+                () -> usuarioService.modificar(idInexistente, updateDto));
+    }
+
 
     // ---------------------------------------------------------
     //                TEST DELETE / eliminar()
