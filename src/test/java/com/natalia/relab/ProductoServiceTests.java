@@ -85,7 +85,7 @@ public class ProductoServiceTests {
         when(usuarioRepository.findById(10L)).thenReturn(Optional.of(usuario));
         when(productoRepository.save(any(Producto.class))).thenReturn(productoGuardado);
 
-        // Ejecución
+        // Metodo a testear
         ProductoOutDto resultado = productoService.agregarConImagen(inDto);
 
         // Verificaciones
