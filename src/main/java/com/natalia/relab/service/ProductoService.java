@@ -187,20 +187,21 @@ public class ProductoService {
         Producto productoExistente = productoRepository.findById(id)
                 .orElseThrow(ProductoNoEncontradoException::new);
 
-        // Buscar la categoría del producto (si la categoría cambia)
-        Categoria categoria = categoriaRepository.findById(productoUpdateDto.getCategoriaId())
-                .orElseThrow(CategoriaNoEncontradaException::new);
 
-        // Mapear los cambios del DTO al producto existente (sin la imagen por ahora)
+        // Mapear los cambios del DTO al producto existente (excepto categoria e imagen)
         modelMapper.map(productoUpdateDto, productoExistente);
 
         // Actualizo la fecha de la actualización
         productoExistente.setFechaActualizacion(LocalDate.now());
 
-        // Establezco la nueva categoría
-        productoExistente.setCategoria(categoria);
+        // ----------- CATEGORÍA ------------
+        if (productoUpdateDto.getCategoriaId() != null) {
+            Categoria categoria = categoriaRepository.findById(productoUpdateDto.getCategoriaId())
+                    .orElseThrow(CategoriaNoEncontradaException::new);
+            productoExistente.setCategoria(categoria);
+        }
 
-        // Si se ha enviado una nueva imagen en el DTO, la actualizo
+        // ----------- IMAGEN ------------
         if (productoUpdateDto.getImagen() != null) {
             productoExistente.setImagen(productoUpdateDto.getImagen());
         }

@@ -22,7 +22,7 @@ public class ProductoInDto { // Es un objeto que utilizaré para mandar informac
 //    private LocalDate fechaActualizacion;
     private boolean activo;
     private boolean modo;
-    private Long categoriaId;
+    private Long categoriaId; // <-- Importante el Wrapprer Long en lugar de long, para poder recibir null si no viene en el JSON.
     @NotNull(message = "Debe especificarse el usuario que publica el producto")
     private Long usuarioId;
 
