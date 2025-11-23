@@ -16,7 +16,7 @@ public class ProductoUpdateDto {
     private String nombre;
     private String descripcion;
     @Min(value=0, message = "El precio tiene que ser mayor que cero" )
-    private float precio;
+    private Float precio;
 //    private LocalDate fechaActualizacion;
     private Boolean activo;
     private Boolean modo;
