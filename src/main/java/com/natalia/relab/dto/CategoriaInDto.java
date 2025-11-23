@@ -21,8 +21,8 @@ public class CategoriaInDto {
     private String descripcion;
 //    @JsonFormat(pattern = "yyyy-MM-dd")
 //    private LocalDate fechaCreacion;
-    private boolean activa;
+    private Boolean activa;
     @DecimalMin(value = "0.0", inclusive = true, message = "El valor mínimo permitido es 0")
     @DecimalMax(value = "1.0", inclusive = true, message = "El valor máximo permitido es 1")
-    private float tasaComision;
+    private Float tasaComision;
 }

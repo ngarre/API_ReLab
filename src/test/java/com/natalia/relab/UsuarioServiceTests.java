@@ -40,24 +40,24 @@ public class UsuarioServiceTests {
     public void testAgregar_Exito(){
         // Campos para UsuarioInDto
         UsuarioInDto usuarioInDto = new UsuarioInDto(
-                "usuario1",                               // nickname
-                "pass1234",                                        // password
-                "Nombre1",                                         // nombre
-                "Apellido1",                                       // apellido
-                "email",                                           // email
-                LocalDate.of(1999, 4, 2),   // fechaNacimiento
-                true,                                              // cuentaActiva
-                "empresa",                                         // tipoUsuario
-                false,                                             // admin
-                100.0f,                                            // saldo
-                null,                                              // latitud
-                null                                               // longitud
+                "usuario1",
+                "pass1234",
+                "Nombre1",
+                "Apellido1",
+                "email",
+                LocalDate.of(1999, 4, 2),
+                true,
+                "empresa",
+                false,
+                100.0f,
+                null,
+                null
         );
 
         // Esto mockea el resultado de volcar el DTO a la entidad con ModelMapper
         Usuario usuarioMapeado = new Usuario();
 
-        // Aquí se mockea el usuario que ya está en la BBDD tras hacer el save y que se ha crado a partir de los datos del InDto.
+        // Aquí se mockea el usuario que ya está en la BBDD tras hacer el save y que se ha creado a partir de los datos del InDto.
         Usuario guardado = new Usuario();
         guardado.setId(42);
         guardado.setNickname("usuario1");
@@ -73,7 +73,7 @@ public class UsuarioServiceTests {
         when(usuarioRepository.save(any(Usuario.class))).thenReturn(guardado);
         when(modelMapper.map(guardado, UsuarioOutDto.class)).thenReturn(outDto);
 
-        // Llamamos al metodo a testear
+        // Llamo al metodo a testear
         UsuarioOutDto resultado = usuarioService.agregar(usuarioInDto);
 
         // Verificaciones (aserciones)
@@ -242,7 +242,7 @@ public class UsuarioServiceTests {
     // No tiene caso de fallo porque si no hay usuarios de ese tipo, devuelve lista vacía.
 
     @Test
-    public void testListarConFiltros_TipoUsuario_Exito() throws UsuarioNoEncontradoException { // Es necesario declarar que lanza la excepción porque el metodo lo hace, aunque en este caso no se lance.
+    public void testListarConFiltros_TipoUsuario() throws UsuarioNoEncontradoException { // Es necesario declarar que lanza la excepción porque el metodo lo hace, aunque en este caso no se lance.
         // Datos de ejemplo
         String tipoUsuario = "empresa";
 
@@ -273,7 +273,7 @@ public class UsuarioServiceTests {
     // -- FILTRADO por cuentaActiva -- //
 
     @Test
-    public void testListarConFiltros_CuentaActiva_Exito() throws UsuarioNoEncontradoException {
+    public void testListarConFiltros_CuentaActiva() throws UsuarioNoEncontradoException {
         // Datos de ejemplo
         boolean cuentaActiva = true;
 

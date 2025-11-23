@@ -178,7 +178,7 @@ public class ProductoServiceTests {
     //   TEST GET Todos o Aplicar Filtros - listarConFiltros()
     // ---------------------------------------------------------
 
-    // FIXME
+    //-- FILTRADO por NOMBRE --//
     @Test
     public void testListarConFiltradoPorNombre() throws UsuarioNoEncontradoException, CategoriaNoEncontradaException {
         String nombre = "Prod";
@@ -205,7 +205,7 @@ public class ProductoServiceTests {
         assertEquals(2L, resultado.get(1).getId()); // Verifico que el segundo producto es el esperado
     }
 
-
+    //-- FILTRADO por ACTIVO --//
     @Test
     public void testListarConFiltradoPorActivo() throws UsuarioNoEncontradoException, CategoriaNoEncontradaException {
         // Creamos un Producto de ejemplo
@@ -254,6 +254,7 @@ public class ProductoServiceTests {
         assertEquals("usuario10", resultado.getFirst().getUsuario().getNickname());
     }
 
+    //-- FILTRADO por CategoriaId --//
     @Test
     public void testListarConFiltradoPorCategoria_Exito() throws CategoriaNoEncontradaException, UsuarioNoEncontradoException {
         // Datos de prueba
@@ -295,6 +296,7 @@ public class ProductoServiceTests {
                 () -> productoService.listarConFiltrado(null, null, categoriaIdInexistente, null));
     }
 
+    //-- FILTRADO por usuarioId --//
     @Test
     public void testListarConFiltradoPorUsuario_Exito() throws UsuarioNoEncontradoException, CategoriaNoEncontradaException {
         // Datos de prueba
@@ -336,6 +338,7 @@ public class ProductoServiceTests {
                 () -> productoService.listarConFiltrado(null, null, null, usuarioIdInexistente));
     }
 
+    // -- SIN FILTROS --> Devuelve todos los productos -- //
     @Test
     public void testListarConFiltros_SinFiltrosDevuelveTodos() throws UsuarioNoEncontradoException, CategoriaNoEncontradaException {
         // Productos simulados en la BBDD
