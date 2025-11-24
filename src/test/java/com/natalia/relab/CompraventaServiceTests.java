@@ -76,10 +76,10 @@ public class CompraventaServiceTests {
         vendedor.setId(3L);
         vendedor.setNombre("Maria");
 
-        // Mockeo categoria mapeada por ModelMapper de inDto a compraventaGuardada
+        // Mockeo compraventa mapeada por ModelMapper de inDto a compraventa
         Compraventa compraventaMapeada = new Compraventa();
 
-        // Mockeo categoria guardada en la base de datos
+        // Mockeo compraventa guardada en la base de datos
         Compraventa compraventaGuardada = new Compraventa();
         compraventaGuardada.setId(1L);
         compraventaGuardada.setProducto(producto);
@@ -209,7 +209,7 @@ public class CompraventaServiceTests {
         // Asocio producto
         Producto producto = new Producto();
         producto.setId(5L);
-        producto.setNombre("Producto1");
+        producto.setNombre("Microscopio");
         compraventa.setProducto(producto);
 
         // Mock: la lista de compraventas devuelta por el repositorio
