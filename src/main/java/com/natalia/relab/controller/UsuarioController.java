@@ -1,5 +1,7 @@
 package com.natalia.relab.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.natalia.relab.dto.UsuarioInDto;
 import com.natalia.relab.dto.UsuarioOutDto;
 import com.natalia.relab.dto.UsuarioUpdateDto;
@@ -20,6 +22,9 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    // TODO continuar con esto y añadir logging en los métodos, aplicar en todas las capas controller y service
+    private static final Logger log = LoggerFactory.getLogger(UsuarioController.class); // Logger para la clase UsuarioController
 
     @GetMapping("/usuarios")
     public ResponseEntity<?> listarTodos(
