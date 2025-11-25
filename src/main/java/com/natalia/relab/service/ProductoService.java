@@ -11,6 +11,8 @@ import exception.CategoriaNoEncontradaException;
 import exception.ProductoNoEncontradoException;
 import exception.UsuarioNoEncontradoException;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,8 @@ import java.util.List;
 
 @Service
 public class ProductoService {
+
+    private static final Logger log = LoggerFactory.getLogger(ProductoService.class);
 
     @Autowired
     private ModelMapper modelMapper;
@@ -64,19 +68,34 @@ public class ProductoService {
     public ProductoOutDto agregarConImagen(ProductoInDto productoInDto)
             throws CategoriaNoEncontradaException, UsuarioNoEncontradoException {
 
+        log.info("Servicio: creando producto '{}'", productoInDto.getNombre());
+
         // Busco la categoría
-        Categoria categoria = null;
+        Categoria categoria = null; // Inicializo a null por si no viene categoría en el DTO y evitar NullPointerException
         if (productoInDto.getCategoriaId() != null) {
+
+            // Es DEBUG porque es un detalle técnico del flujo, no un evento significativo para INFO
+            log.debug("Buscando categoría con ID {}", productoInDto.getCategoriaId());
+
             categoria = categoriaRepository.findById(productoInDto.getCategoriaId())
-                    .orElseThrow(CategoriaNoEncontradaException::new);
+                    .orElseThrow(() -> {
+                        log.warn("Categoría {} no encontrada", productoInDto.getCategoriaId());
+                        return new CategoriaNoEncontradaException();
+                    });
         }
 
         // Busco el usuario
+        log.debug("Buscando usuario con ID {}", productoInDto.getUsuarioId());
         Usuario usuario = usuarioRepository.findById(productoInDto.getUsuarioId())
-                .orElseThrow(UsuarioNoEncontradoException::new);
+                .orElseThrow(() -> {
+            log.warn("Usuario {} no encontrado", productoInDto.getUsuarioId());
+            return new UsuarioNoEncontradoException();
+        });
 
         // Creo el producto a partir del DTO
         Producto producto = modelMapper.map(productoInDto, Producto.class);
+
+        log.debug("Producto mapeado. Imagen incluida: {}", productoInDto.getImagen() != null);
 
         // Establecemos los valores adicionales
         producto.setFechaActualizacion(LocalDate.now());
@@ -90,6 +109,7 @@ public class ProductoService {
 
         // Guardo el producto
         Producto guardado = productoRepository.save(producto);
+        log.info("Producto creado con ID {}", guardado.getId());
 
         return mapToOutDto(guardado);
     }
@@ -97,8 +117,15 @@ public class ProductoService {
 
         // --- GET por id
     public ProductoOutDto buscarPorId(long id) throws ProductoNoEncontradoException {
+
+        log.debug("Servicio: buscando producto {}", id);
+
         Producto producto = productoRepository.findById(id)
-                .orElseThrow(ProductoNoEncontradoException::new);
+                .orElseThrow(() -> {
+                    log.warn("Producto {} no encontrado", id);
+                    return new ProductoNoEncontradoException();
+                });
+
         return mapToOutDto(producto);
     }
 
@@ -109,6 +136,9 @@ public class ProductoService {
             Boolean activo,
             Long categoriaId,
             Long usuarioId) throws UsuarioNoEncontradoException, CategoriaNoEncontradaException {
+
+        log.debug("Servicio: filtrando productos. nombre={}, activo={}, categoriaId={}, usuarioId={}",
+                nombre, activo, categoriaId, usuarioId);
 
         // Filtrado por nombre --> Coincidencias parciales y sin distinguir mayúsculas y minúsculas
         if (nombre != null && !nombre.trim().isEmpty()) { // Evito buscar con cadena vacía de cara a los tests unitarios y que no se llegue a poder hacer filtrado por categoriaId
@@ -183,13 +213,17 @@ public class ProductoService {
     public ProductoOutDto actualizarConImagen(long id, ProductoUpdateDto productoUpdateDto)
             throws ProductoNoEncontradoException, CategoriaNoEncontradaException {
 
+        log.info("Servicio: actualizando producto {}", id);
+
         // Buscar el producto existente
         Producto productoExistente = productoRepository.findById(id)
-                .orElseThrow(ProductoNoEncontradoException::new);
+                .orElseThrow(() -> {
+                    log.warn("Producto {} no encontrado al intentar actualizar", id);
+                    return new ProductoNoEncontradoException();
+                });
 
-
-        // Mapear los cambios del DTO al producto existente (excepto categoria e imagen)
-        modelMapper.map(productoUpdateDto, productoExistente);
+        log.debug("Mapeando campos del DTO al producto {}", id);
+        modelMapper.map(productoUpdateDto, productoExistente); // Mapear los cambios del DTO al producto existente (excepto categoria e imagen)
 
         // Actualizo la fecha de la actualización
         productoExistente.setFechaActualizacion(LocalDate.now());
@@ -197,12 +231,16 @@ public class ProductoService {
         // ----------- CATEGORÍA ------------
         if (productoUpdateDto.getCategoriaId() != null) {
             Categoria categoria = categoriaRepository.findById(productoUpdateDto.getCategoriaId())
-                    .orElseThrow(CategoriaNoEncontradaException::new);
+                    .orElseThrow(() -> {
+                        log.warn("Categoría {} no encontrada en actualización de producto {}", productoUpdateDto.getCategoriaId(), id);
+                        return new CategoriaNoEncontradaException();
+                    });
             productoExistente.setCategoria(categoria);
         }
 
         // ----------- IMAGEN ------------
         if (productoUpdateDto.getImagen() != null) {
+            log.debug("Actualizando imagen del producto {}", id);
             productoExistente.setImagen(productoUpdateDto.getImagen());
         }
 
@@ -210,15 +248,24 @@ public class ProductoService {
         Producto actualizado = productoRepository.save(productoExistente);
 
         // Devuelvo el DTO del producto actualizado
+        log.info("Producto {} actualizado correctamente", id);
         return mapToOutDto(actualizado);
     }
 
 
     // --- DELETE
     public void eliminar(long id) throws ProductoNoEncontradoException {
+
+        log.warn("Servicio: eliminando producto {}", id);
+
         Producto producto = productoRepository.findById(id)
-                .orElseThrow(ProductoNoEncontradoException::new);
+                .orElseThrow(() -> {
+                    log.warn("Producto {} no encontrado al intentar eliminar", id);
+                    return new ProductoNoEncontradoException();
+                });
         productoRepository.delete(producto);
+
+        log.warn("Producto {} eliminado correctamente", id);
     }
 
     // --- Metodo para devolver entidad completa del producto (incluyendo la imagen)
