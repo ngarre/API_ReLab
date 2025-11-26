@@ -1,0 +1,266 @@
+2025-11-25 10:58:30,884 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.3.Final
+2025-11-25 10:58:30,920 INFO o.s.b.StartupInfoLogger [main] Starting RelabApplication using Java 21.0.8 with PID 11132 (D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab\target\classes started by natal in D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab)
+2025-11-25 10:58:30,920 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-11-25 10:58:31,265 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-25 10:58:31,287 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 27 ms. Found 5 JPA repository interfaces.
+2025-11-25 10:58:31,569 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-11-25 10:58:31,582 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-25 10:58:31,586 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2025-11-25 10:58:31,586 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-11-25 10:58:31,618 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-11-25 10:58:31,618 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 675 ms
+2025-11-25 10:58:31,702 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-25 10:58:31,732 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-11-25 10:58:31,764 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2025-11-25 10:58:31,912 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-25 10:58:31,940 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2025-11-25 10:58:32,023 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.mariadb.jdbc.Connection@5d08976a
+2025-11-25 10:58:32,023 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-11-25 10:58:32,047 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-25 10:58:32,057 INFO o.h.e.j.e.i.JdbcEnvironmentInitiator [main] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 12.0.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-25 10:58:32,584 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-25 10:58:32,657 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-25 10:58:32,872 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-25 10:58:33,029 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-25 10:58:33,039 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-11-25 10:58:33,047 INFO o.s.b.StartupInfoLogger [main] Started RelabApplication in 2.432 seconds (process running for 2.611)
+2025-11-25 10:58:54,308 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-25 10:58:54,308 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-11-25 10:58:54,309 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-11-25 10:58:54,327 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-1] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-11-25 10:58:54,327 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-1] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-11-25 10:58:54,409 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-1] Resultado: 14 usuarios encontrados
+2025-11-25 10:59:45,052 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-2] GET /usuarios/3 solicitado
+2025-11-25 10:59:45,055 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-2] Buscando usuario por id 3
+2025-11-25 10:59:45,065 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-2] Usuario con id 3 encontrado
+2025-11-25 11:00:57,603 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-6] POST /usuarios - creando usuario con nickname Ele
+2025-11-25 11:00:57,603 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-6] Agregando usuario con nickname Ele
+2025-11-25 11:00:57,637 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-6] Usuario creado con id 22
+2025-11-25 11:00:57,637 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-6] Usuario creado con id 22
+2025-11-25 11:01:57,876 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-4] PUT /usuarios/22 - actualización solicitada
+2025-11-25 11:01:57,876 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-4] Modificando usuario con id 22
+2025-11-25 11:01:57,887 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-4] Usuario 22 modificado correctamente
+2025-11-25 11:01:57,887 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-4] Usuario 22 actualizado correctamente
+2025-11-25 11:02:18,484 WARN c.n.r.c.UsuarioController [http-nio-8080-exec-8] DELETE /usuarios/22 solicitado
+2025-11-25 11:02:18,484 WARN c.n.r.s.UsuarioService [http-nio-8080-exec-8] Eliminando usuario con id 22
+2025-11-25 11:02:18,491 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-8] Usuario 22 eliminado
+2025-11-25 11:02:18,491 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-8] Usuario 22 eliminado correctamente
+2025-11-25 11:02:53,872 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-10] POST /usuarios - creando usuario con nickname Fer34
+2025-11-25 11:02:53,872 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-10] Agregando usuario con nickname Fer34
+2025-11-25 11:02:53,882 ERROR c.n.r.s.UsuarioService [http-nio-8080-exec-10] Error: nickname Fer34 ya existe
+2025-11-25 11:05:45,939 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-25 11:05:45,954 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-11-25 11:05:45,957 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-25 11:05:45,958 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-11-25 11:05:45,960 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-11-25 11:05:58,577 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.3.Final
+2025-11-25 11:05:58,606 INFO o.s.b.StartupInfoLogger [main] Starting RelabApplication using Java 21.0.8 with PID 26972 (D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab\target\classes started by natal in D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab)
+2025-11-25 11:05:58,606 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-11-25 11:05:58,935 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-25 11:05:58,956 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 27 ms. Found 5 JPA repository interfaces.
+2025-11-25 11:05:59,227 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-11-25 11:05:59,234 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-25 11:05:59,236 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2025-11-25 11:05:59,236 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-11-25 11:05:59,261 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-11-25 11:05:59,261 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 632 ms
+2025-11-25 11:05:59,344 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-25 11:05:59,369 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-11-25 11:05:59,385 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2025-11-25 11:05:59,510 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-25 11:05:59,524 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2025-11-25 11:05:59,574 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.mariadb.jdbc.Connection@1d1c37d5
+2025-11-25 11:05:59,574 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-11-25 11:05:59,574 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-25 11:05:59,589 INFO o.h.e.j.e.i.JdbcEnvironmentInitiator [main] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 12.0.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-25 11:06:00,090 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-25 11:06:00,121 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-25 11:06:00,331 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-25 11:06:00,490 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-25 11:06:00,490 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-11-25 11:06:00,506 INFO o.s.b.StartupInfoLogger [main] Started RelabApplication in 2.261 seconds (process running for 2.446)
+2025-11-25 11:06:08,241 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-25 11:06:08,241 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-11-25 11:06:08,241 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 0 ms
+2025-11-25 11:07:11,957 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-25 11:07:11,968 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-11-25 11:07:11,970 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-25 11:07:11,970 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-11-25 11:07:11,970 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-11-25 11:17:21,202 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.3.Final
+2025-11-25 11:17:21,232 INFO o.s.b.StartupInfoLogger [main] Starting RelabApplication using Java 21.0.8 with PID 3852 (D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab\target\classes started by natal in D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab)
+2025-11-25 11:17:21,232 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-11-25 11:17:21,537 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-25 11:17:21,582 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 26 ms. Found 5 JPA repository interfaces.
+2025-11-25 11:17:21,835 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-11-25 11:17:21,842 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-25 11:17:21,843 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2025-11-25 11:17:21,844 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-11-25 11:17:21,875 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-11-25 11:17:21,876 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 618 ms
+2025-11-25 11:17:21,944 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-25 11:17:21,971 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-11-25 11:17:21,987 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2025-11-25 11:17:22,111 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-25 11:17:22,118 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2025-11-25 11:17:22,175 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.mariadb.jdbc.Connection@295b07e0
+2025-11-25 11:17:22,178 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-11-25 11:17:22,191 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-25 11:17:22,197 INFO o.h.e.j.e.i.JdbcEnvironmentInitiator [main] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 12.0.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-25 11:17:22,680 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-25 11:17:22,709 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-25 11:17:22,928 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-25 11:17:23,070 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-25 11:17:23,086 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-11-25 11:17:23,086 INFO o.s.b.StartupInfoLogger [main] Started RelabApplication in 2.127 seconds (process running for 2.307)
+2025-11-25 11:17:33,777 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-25 11:17:33,777 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-11-25 11:17:33,777 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 0 ms
+2025-11-25 11:17:33,869 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-1] Error de validación detectado: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.natalia.relab.dto.UsuarioOutDto> com.natalia.relab.controller.UsuarioController.agregarUsuario(com.natalia.relab.dto.UsuarioInDto) with 2 errors: [Field error in object 'usuarioInDto' on field 'password': rejected value [s]; codes [Size.usuarioInDto.password,Size.password,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [usuarioInDto.password,password]; arguments []; default message [password],2147483647,4]; default message [La contraseña debe tener al menos 4 carácteres]] [Field error in object 'usuarioInDto' on field 'nickname': rejected value []; codes [NotBlank.usuarioInDto.nickname,NotBlank.nickname,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [usuarioInDto.nickname,nickname]; arguments []; default message [nickname]]; default message [El nickname es un campo obligatorio]] 
+2025-11-25 11:20:15,131 ERROR c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-2] Error interno inesperado
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource dk%C3%B1akdj.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:585)
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:52)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1776)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:975)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:493)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-11-25 11:21:02,871 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-3] Error de validación detectado: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.natalia.relab.dto.UsuarioOutDto> com.natalia.relab.controller.UsuarioController.agregarUsuario(com.natalia.relab.dto.UsuarioInDto): [Field error in object 'usuarioInDto' on field 'password': rejected value [s]; codes [Size.usuarioInDto.password,Size.password,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [usuarioInDto.password,password]; arguments []; default message [password],2147483647,4]; default message [La contraseña debe tener al menos 4 carácteres]] 
+2025-11-25 11:21:10,204 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-4] POST /usuarios - creando usuario con nickname Ursu
+2025-11-25 11:21:10,204 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-4] Agregando usuario con nickname Ursu
+2025-11-25 11:21:10,253 ERROR c.n.r.s.UsuarioService [http-nio-8080-exec-4] Error: nickname Ursu ya existe
+2025-11-25 11:21:10,253 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-4] Intento de creación con datos duplicados: NicknameYaExisteException
+2025-11-25 11:22:10,465 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-5] Conflicto: producto ya vendido
+2025-11-25 11:22:19,984 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-25 11:22:20,009 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-11-25 11:22:20,009 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-25 11:22:20,009 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-11-25 11:22:20,009 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-11-25 11:55:16,225 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.3.Final
+2025-11-25 11:55:16,253 INFO o.s.b.StartupInfoLogger [main] Starting RelabApplication using Java 21.0.8 with PID 20064 (D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab\target\classes started by natal in D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab)
+2025-11-25 11:55:16,254 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-11-25 11:55:16,580 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-25 11:55:16,613 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 28 ms. Found 5 JPA repository interfaces.
+2025-11-25 11:55:16,870 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-11-25 11:55:16,877 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-25 11:55:16,877 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2025-11-25 11:55:16,877 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-11-25 11:55:16,906 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-11-25 11:55:16,906 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 629 ms
+2025-11-25 11:55:16,963 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-25 11:55:16,998 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-11-25 11:55:17,015 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2025-11-25 11:55:17,146 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-25 11:55:17,149 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2025-11-25 11:55:17,209 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.mariadb.jdbc.Connection@3dfe59d7
+2025-11-25 11:55:17,213 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-11-25 11:55:17,213 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-25 11:55:17,231 INFO o.h.e.j.e.i.JdbcEnvironmentInitiator [main] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 12.0.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-25 11:55:17,720 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-25 11:55:17,764 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-25 11:55:17,990 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-25 11:55:18,143 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-25 11:55:18,157 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-11-25 11:55:18,161 INFO o.s.b.StartupInfoLogger [main] Started RelabApplication in 2.207 seconds (process running for 2.424)
+2025-11-25 11:56:19,127 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-25 11:56:19,127 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-11-25 11:56:19,127 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 0 ms
+2025-11-25 11:56:19,151 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-11-25 11:56:19,228 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - encontrados 13 productos
+2025-11-25 11:56:26,359 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/9 - solicitando producto por ID
+2025-11-25 11:56:26,359 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/9 - producto encontrado correctamente
+2025-11-25 11:56:54,042 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] POST /productos - creando nuevo producto. Nombre=Centrifuga Girozen, UsuarioId=700, CategoriaId=5
+2025-11-25 11:56:54,042 INFO c.n.r.s.ProductoService [http-nio-8080-exec-4] Servicio: creando producto 'Centrifuga Girozen'
+2025-11-25 11:56:54,042 WARN c.n.r.s.ProductoService [http-nio-8080-exec-4] Usuario 700 no encontrado
+2025-11-25 11:56:54,042 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-4] Recurso no encontrado: UsuarioNoEncontradoException
+2025-11-25 11:57:04,200 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] POST /productos - creando nuevo producto. Nombre=Centrifuga Girozen, UsuarioId=7, CategoriaId=500
+2025-11-25 11:57:04,200 INFO c.n.r.s.ProductoService [http-nio-8080-exec-6] Servicio: creando producto 'Centrifuga Girozen'
+2025-11-25 11:57:04,200 WARN c.n.r.s.ProductoService [http-nio-8080-exec-6] Categoría 500 no encontrada
+2025-11-25 11:57:04,200 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-6] Recurso no encontrado: CategoriaNoEncontradaException
+2025-11-25 11:57:13,978 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-8] Error de validación detectado: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.natalia.relab.dto.ProductoOutDto> com.natalia.relab.controller.ProductoController.agregarProducto(com.natalia.relab.dto.ProductoInDto) throws exception.CategoriaNoEncontradaException,exception.UsuarioNoEncontradoException: [Field error in object 'productoInDto' on field 'precio': rejected value [-2000.0]; codes [Min.productoInDto.precio,Min.precio,Min.java.lang.Float,Min]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [productoInDto.precio,precio]; arguments []; default message [precio],0]; default message [El precio tiene que ser mayor que cero]] 
+2025-11-25 11:57:23,408 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] POST /productos - creando nuevo producto. Nombre=Centrifuga Girozen, UsuarioId=7, CategoriaId=5
+2025-11-25 11:57:23,408 INFO c.n.r.s.ProductoService [http-nio-8080-exec-9] Servicio: creando producto 'Centrifuga Girozen'
+2025-11-25 11:57:23,453 INFO c.n.r.s.ProductoService [http-nio-8080-exec-9] Producto creado con ID 25
+2025-11-25 11:57:23,453 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] POST /productos - producto creado con ID 25
+2025-11-25 11:58:07,491 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-1] Error de validación detectado: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.natalia.relab.dto.ProductoOutDto> com.natalia.relab.controller.ProductoController.actualizarProducto(com.natalia.relab.dto.ProductoUpdateDto,long) throws exception.ProductoNoEncontradoException,exception.CategoriaNoEncontradaException: [Field error in object 'productoUpdateDto' on field 'nombre': rejected value []; codes [Size.productoUpdateDto.nombre,Size.nombre,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [productoUpdateDto.nombre,nombre]; arguments []; default message [nombre],2147483647,1]; default message [El nombre no puede estar vacío]] 
+2025-11-25 11:58:52,839 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] PUT /productos/25 - actualización solicitada
+2025-11-25 11:58:52,839 INFO c.n.r.s.ProductoService [http-nio-8080-exec-3] Servicio: actualizando producto 25
+2025-11-25 11:58:52,856 INFO c.n.r.s.ProductoService [http-nio-8080-exec-3] Producto 25 actualizado correctamente
+2025-11-25 11:58:52,856 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] PUT /productos/25 - producto actualizado correctamente
+2025-11-25 11:59:00,753 WARN c.n.r.c.ProductoController [http-nio-8080-exec-4] DELETE /productos/25 - eliminación solicitada
+2025-11-25 11:59:00,753 WARN c.n.r.s.ProductoService [http-nio-8080-exec-4] Servicio: eliminando producto 25
+2025-11-25 11:59:00,776 WARN c.n.r.s.ProductoService [http-nio-8080-exec-4] Producto 25 eliminado correctamente
+2025-11-25 11:59:00,778 WARN c.n.r.c.ProductoController [http-nio-8080-exec-4] DELETE /productos/25 - producto eliminado
+2025-11-25 11:59:06,019 WARN c.n.r.c.ProductoController [http-nio-8080-exec-6] DELETE /productos/25 - eliminación solicitada
+2025-11-25 11:59:06,019 WARN c.n.r.s.ProductoService [http-nio-8080-exec-6] Servicio: eliminando producto 25
+2025-11-25 11:59:06,019 WARN c.n.r.s.ProductoService [http-nio-8080-exec-6] Producto 25 no encontrado al intentar eliminar
+2025-11-25 11:59:06,019 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-6] Recurso no encontrado: ProductoNoEncontradoException
+2025-11-25 11:59:13,570 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-25 11:59:13,580 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-11-25 11:59:13,580 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-25 11:59:13,580 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-11-25 11:59:13,590 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
