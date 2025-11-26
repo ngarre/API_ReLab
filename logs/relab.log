@@ -160,3 +160,88 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
 2025-11-26 10:37:27,526 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-11-26 10:37:27,526 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2025-11-26 10:37:27,526 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-11-26 11:04:24,556 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.3.Final
+2025-11-26 11:04:24,590 INFO o.s.b.StartupInfoLogger [main] Starting RelabApplication using Java 21.0.8 with PID 26944 (D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab\target\classes started by natal in D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab)
+2025-11-26 11:04:24,592 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-11-26 11:04:24,888 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-26 11:04:24,920 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 24 ms. Found 5 JPA repository interfaces.
+2025-11-26 11:04:25,159 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-11-26 11:04:25,159 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-26 11:04:25,159 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2025-11-26 11:04:25,159 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-11-26 11:04:25,200 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-11-26 11:04:25,200 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 586 ms
+2025-11-26 11:04:25,270 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-26 11:04:25,286 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-11-26 11:04:25,302 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2025-11-26 11:04:25,415 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-26 11:04:25,431 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2025-11-26 11:04:25,488 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.mariadb.jdbc.Connection@52cb52bd
+2025-11-26 11:04:25,488 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-11-26 11:04:25,504 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-26 11:04:25,509 INFO o.h.e.j.e.i.JdbcEnvironmentInitiator [main] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 12.0.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-26 11:04:25,999 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-26 11:04:26,037 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-26 11:04:26,252 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-26 11:04:26,418 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-26 11:04:26,433 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-11-26 11:04:26,434 INFO o.s.b.StartupInfoLogger [main] Started RelabApplication in 2.119 seconds (process running for 2.284)
+2025-11-26 11:04:33,933 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-26 11:04:33,948 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-11-26 11:04:33,949 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-11-26 11:04:33,970 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-1] GET /compraventas - Filtros recibidos -> compradorId=null, vendedorId=null, productoId=null
+2025-11-26 11:04:33,970 INFO c.n.r.s.CompraventaService [http-nio-8080-exec-1] Servicio: Listar compraventas con filtros -> compradorId=null, vendedorId=null, productoId=null
+2025-11-26 11:04:34,050 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-1] Resultado: 4 compraventas encontradas
+2025-11-26 11:04:50,475 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-2] GET /compraventas/1 solicitado
+2025-11-26 11:04:50,475 INFO c.n.r.s.CompraventaService [http-nio-8080-exec-2] Servicio: Buscar compraventa por ID 1
+2025-11-26 11:04:50,486 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-2] Compraventa con id 1 encontrada
+2025-11-26 11:05:05,564 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-4] Invalid chunk starting at byte [0] and ending at byte [15] with a value of [=categoriaId=45] ignored
+ Note: further occurrences of Parameter errors will be logged at DEBUG level.
+2025-11-26 11:05:05,564 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-4] GET /compraventas - Filtros recibidos -> compradorId=null, vendedorId=null, productoId=null
+2025-11-26 11:05:05,564 INFO c.n.r.s.CompraventaService [http-nio-8080-exec-4] Servicio: Listar compraventas con filtros -> compradorId=null, vendedorId=null, productoId=null
+2025-11-26 11:05:05,587 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-4] Resultado: 4 compraventas encontradas
+2025-11-26 11:05:17,716 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-7] GET /compraventas - Filtros recibidos -> compradorId=null, vendedorId=null, productoId=null
+2025-11-26 11:05:17,718 INFO c.n.r.s.CompraventaService [http-nio-8080-exec-7] Servicio: Listar compraventas con filtros -> compradorId=null, vendedorId=null, productoId=null
+2025-11-26 11:05:17,718 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-7] Resultado: 4 compraventas encontradas
+2025-11-26 11:05:47,213 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-8] GET /compraventas - Filtros recibidos -> compradorId=null, vendedorId=null, productoId=null
+2025-11-26 11:05:47,213 INFO c.n.r.s.CompraventaService [http-nio-8080-exec-8] Servicio: Listar compraventas con filtros -> compradorId=null, vendedorId=null, productoId=null
+2025-11-26 11:05:47,231 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-8] Resultado: 4 compraventas encontradas
+2025-11-26 11:06:00,820 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-10] GET /compraventas - Filtros recibidos -> compradorId=null, vendedorId=null, productoId=45
+2025-11-26 11:06:00,821 INFO c.n.r.s.CompraventaService [http-nio-8080-exec-10] Servicio: Listar compraventas con filtros -> compradorId=null, vendedorId=null, productoId=45
+2025-11-26 11:06:00,962 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-10] Recurso no encontrado: ProductoNoEncontradoException
+2025-11-26 11:06:17,170 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-2] GET /compraventas - Filtros recibidos -> compradorId=null, vendedorId=null, productoId=null
+2025-11-26 11:06:17,170 INFO c.n.r.s.CompraventaService [http-nio-8080-exec-2] Servicio: Listar compraventas con filtros -> compradorId=null, vendedorId=null, productoId=null
+2025-11-26 11:06:17,179 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-2] Resultado: 4 compraventas encontradas
+2025-11-26 11:06:25,024 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-4] GET /compraventas - Filtros recibidos -> compradorId=null, vendedorId=null, productoId=14
+2025-11-26 11:06:25,024 INFO c.n.r.s.CompraventaService [http-nio-8080-exec-4] Servicio: Listar compraventas con filtros -> compradorId=null, vendedorId=null, productoId=14
+2025-11-26 11:06:25,028 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-4] Resultado: 1 compraventas encontradas
+2025-11-26 11:06:56,475 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-7] Error de validación detectado: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.natalia.relab.dto.CompraventaOutDto> com.natalia.relab.controller.CompraventaController.agregarCompraventa(com.natalia.relab.dto.CompraventaInDto) throws exception.UsuarioNoEncontradoException,exception.ProductoNoEncontradoException,exception.ProductoYaVendidoException: [Field error in object 'compraventaInDto' on field 'compradorId': rejected value [null]; codes [NotNull.compraventaInDto.compradorId,NotNull.compradorId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [compraventaInDto.compradorId,compradorId]; arguments []; default message [compradorId]]; default message [Debe especificarse el comprador]] 
+2025-11-26 11:07:41,457 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-6] POST /compraventas - creando compraventa para productoId 10 entre compradorId 11 y vendedorId 5
+2025-11-26 11:07:41,457 INFO c.n.r.s.CompraventaService [http-nio-8080-exec-6] Agregando compraventa de producto id 10 entre comprador id 11 y vendedor id 5
+2025-11-26 11:07:41,477 WARN c.n.r.s.CompraventaService [http-nio-8080-exec-6] Producto 10 ya ha sido vendido. Operación cancelada
+2025-11-26 11:07:41,477 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-6] Conflicto: producto ya vendido
+2025-11-26 11:08:06,556 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-9] POST /compraventas - creando compraventa para productoId 23 entre compradorId 11 y vendedorId 5
+2025-11-26 11:08:06,556 INFO c.n.r.s.CompraventaService [http-nio-8080-exec-9] Agregando compraventa de producto id 23 entre comprador id 11 y vendedor id 5
+2025-11-26 11:08:06,608 INFO c.n.r.s.CompraventaService [http-nio-8080-exec-9] Compraventa creada correctamente. ID=8
+2025-11-26 11:08:06,608 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-9] Compraventa creada con id 8
+2025-11-26 11:08:33,490 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-1] Error de validación detectado: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.natalia.relab.dto.CompraventaOutDto> com.natalia.relab.controller.CompraventaController.actualizarCompraventa(com.natalia.relab.dto.CompraventaUpdateDto,long) throws exception.CompraventaNoEncontradaException: [Field error in object 'compraventaUpdateDto' on field 'precioFinal': rejected value [-4500.0]; codes [Min.compraventaUpdateDto.precioFinal,Min.precioFinal,Min.java.lang.Float,Min]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [compraventaUpdateDto.precioFinal,precioFinal]; arguments []; default message [precioFinal],0]; default message [El precio debe ser mayor que cero]] 
+2025-11-26 11:08:41,775 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-2] PUT /compraventas/8 actualizando
+2025-11-26 11:08:41,781 INFO c.n.r.s.CompraventaService [http-nio-8080-exec-2] Servicio: Modificar compraventa por ID 8
+2025-11-26 11:08:41,789 INFO c.n.r.s.CompraventaService [http-nio-8080-exec-2] Compraventa 8 actualizada correctamente
+2025-11-26 11:08:41,789 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-2] Compraventa con id 8 actualizada correctamente
+2025-11-26 11:08:48,889 WARN c.n.r.c.CompraventaController [http-nio-8080-exec-4] DELETE /compraventas/8 solicitado
+2025-11-26 11:08:48,890 WARN c.n.r.s.CompraventaService [http-nio-8080-exec-4] Servicio: Eliminar compraventa 8
+2025-11-26 11:08:48,905 INFO c.n.r.s.CompraventaService [http-nio-8080-exec-4] Compraventa 8 eliminada correctamente
+2025-11-26 11:08:48,905 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-4] Compraventa con id 8 eliminada correctamente
+2025-11-26 11:09:12,724 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-26 11:09:12,724 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-11-26 11:09:12,737 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-26 11:09:12,737 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-11-26 11:09:12,740 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
