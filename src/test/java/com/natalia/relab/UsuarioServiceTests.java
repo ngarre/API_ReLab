@@ -51,7 +51,8 @@ public class UsuarioServiceTests {
                 false,
                 100.0f,
                 null,
-                null
+                null,
+                "Mi dirección"
         );
 
         // Esto mockea el resultado de volcar el DTO a la entidad con ModelMapper

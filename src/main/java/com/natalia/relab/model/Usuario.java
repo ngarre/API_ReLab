@@ -46,6 +46,8 @@ public class Usuario {
     private Double latitud;
     @Column
     private Double longitud;
+    @Column
+    private String direccion;
 
     // RELACIÓN CON LA TABLA PRODUCTO
     @OneToMany(mappedBy = "usuario") // Un usuario puede tener muchos productos, pero un producto solo puede pertenecer a un usuario.
