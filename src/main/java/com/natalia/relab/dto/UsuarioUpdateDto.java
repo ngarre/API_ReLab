@@ -31,6 +31,7 @@ public class UsuarioUpdateDto {
     private String tipoUsuario;
     private Double latitud;
     private Double longitud;
+    private String direccion;
 }
 
 

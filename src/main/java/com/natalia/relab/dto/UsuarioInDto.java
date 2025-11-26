@@ -35,4 +35,5 @@ public class UsuarioInDto {
     private Float saldo;
     private Double latitud;
     private Double longitud;
+    private String direccion;
 }
