@@ -11,6 +11,8 @@ import exception.AlquilerNoEncontradoException;
 import exception.ProductoNoEncontradoException;
 import exception.UsuarioNoEncontradoException;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,8 @@ import java.util.List;
 
 @Service
 public class AlquilerService {
+
+    private static final Logger log = LoggerFactory.getLogger(AlquilerService.class);
 
     @Autowired
     private ModelMapper modelMapper;
@@ -34,17 +38,34 @@ public class AlquilerService {
     // -- POST
     public AlquilerOutDto agregar(AlquilerInDto alquilerInDto) throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
 
+        log.info("Agregando nuevo alquiler: productoId {}, arrendadorId {}, arrendatarioId {}",
+                alquilerInDto.getProductoId(),
+                alquilerInDto.getArrendadorId(),
+                alquilerInDto.getArrendatarioId()
+        );
+
         // Busco el producto en la base de datos
         Producto producto = productoRepository.findById(alquilerInDto.getProductoId())
-                .orElseThrow(ProductoNoEncontradoException::new);
+                .orElseThrow(() -> {
+                    log.warn("Producto con ID {} no encontrado", alquilerInDto.getProductoId());
+                    return new ProductoNoEncontradoException();
+                });
 
         // Busco usuario arrendador en la base de datos
         Usuario arrendador = usuarioRepository.findById(alquilerInDto.getArrendadorId())
-                .orElseThrow(UsuarioNoEncontradoException::new);
+                .orElseThrow(() -> {
+                    log.warn("Arrendador con ID {} no encontrado", alquilerInDto.getArrendadorId());
+                    return new UsuarioNoEncontradoException();
+                });
 
         // Busco usuario arrendatario en la base de datos
         Usuario arrendatario = usuarioRepository.findById(alquilerInDto.getArrendatarioId())
-                .orElseThrow(UsuarioNoEncontradoException::new);
+                .orElseThrow(() -> {
+                    log.warn("Arrendatario con ID {} no encontrado", alquilerInDto.getArrendatarioId());
+                    return new UsuarioNoEncontradoException();
+                });
+
+        log.debug("Producto y usuarios validados correctamente.");
 
         // Creo registro de alquiler
         // 1. Mapeo datos simples con ModelMapper
@@ -56,13 +77,22 @@ public class AlquilerService {
         alquiler.setArrendatario(arrendatario);
 
         Alquiler guardado = alquilerRepository.save(alquiler);
+
+        log.info("Alquiler creado correctamente con ID {}", guardado.getId());
         return mapToOutDto(guardado);
     }
 
     // --- GET por id
     public AlquilerOutDto buscarPorId(long id) throws AlquilerNoEncontradoException {
+
+        log.info("Servicio: buscando alquiler por ID {}", id);
+
         Alquiler alquiler = alquilerRepository.findById(id)
-                .orElseThrow(AlquilerNoEncontradoException::new);
+                .orElseThrow(() -> {
+                    log.error("No existe alquiler con ID {}", id);
+                    return new AlquilerNoEncontradoException();
+                });
+
         return mapToOutDto(alquiler);
     }
 
@@ -72,6 +102,9 @@ public class AlquilerService {
             Long arrendadorId,
             Long arrendatarioId,
             Long productoId) throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
+
+        log.info("Servicio: Listando alquileres con filtros: arrendadorId={}, arrendatarioId={}, productoId={}",
+                arrendadorId, arrendatarioId, productoId);
 
         // Filtrado por arrendadorId
         if (arrendadorId != null) {
@@ -128,18 +161,22 @@ public class AlquilerService {
         Alquiler alquilerAnterior = alquilerRepository.findById(id)
                 .orElseThrow(AlquilerNoEncontradoException::new);
 
+        log.info("Servicio: Modificando alquiler con ID {}", id);
 
         // Mapeo desde ProductoUpdateDto a mi Entidad Producto
         modelMapper.map(alquilerUpdateDto, alquilerAnterior);
 
         Alquiler actualizado = alquilerRepository.save(alquilerAnterior);
+        log.info("Servicio: Alquiler actualizado correctamente con ID {}", actualizado.getId());
         return mapToOutDto(actualizado);
     }
 
     // --- DELETE
     public void eliminar(long id) throws AlquilerNoEncontradoException {
+        log.warn("Servicio: Intentando eliminar alquiler con ID {}", id);
         Alquiler alquiler = alquilerRepository.findById(id)
                 .orElseThrow(AlquilerNoEncontradoException::new);
+        log.info("Alquiler con ID {} eliminado correctamente", id);
         alquilerRepository.delete(alquiler);
     }
 

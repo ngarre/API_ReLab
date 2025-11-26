@@ -6,6 +6,8 @@ import com.natalia.relab.repository.CategoriaRepository;
 import exception.CategoriaNoEncontradaException;
 import exception.NombreYaExisteException;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ import java.util.List;
 
 @Service
 public class CategoriaService {
+
+    private static final Logger log = LoggerFactory.getLogger(CategoriaService.class);
 
     @Autowired
     private ModelMapper modelMapper;
@@ -24,9 +28,12 @@ public class CategoriaService {
 
     // --- POST
     public CategoriaOutDto agregar(CategoriaInDto categoriaInDto) {
+        log.info("Intentando crear nueva categoría");
+        log.debug("Datos recibidos: {}", categoriaInDto);
 
         // Validación de que el nombre no esté en uso
         if (categoriaRepository.existsByNombre(categoriaInDto.getNombre())) {
+            log.warn("El nombre '{}' ya existe. Lanzando excepción.", categoriaInDto.getNombre());
             throw new NombreYaExisteException();
         }
 
@@ -37,13 +44,20 @@ public class CategoriaService {
 
         // Guardar y devolver DTO
         Categoria guardada  = categoriaRepository.save(categoria);
+
+        log.info("Categoría creada con ID {}", guardada.getId());
         return mapToOutDto(guardada);
     }
 
     // --- GET por id
     public CategoriaOutDto buscarPorId(long id) throws CategoriaNoEncontradaException {
+        log.info("Buscando categoría por ID {}", id);
         Categoria categoria = categoriaRepository.findById(id)
-                .orElseThrow(CategoriaNoEncontradaException::new);
+                .orElseThrow(() -> {
+                    log.error("Categoría {} no encontrada", id);
+                    return new CategoriaNoEncontradaException();
+                });
+
         return mapToOutDto(categoria);
     }
 
@@ -54,6 +68,10 @@ public class CategoriaService {
             LocalDate fechaCreacion,
             LocalDate desde,
             LocalDate hasta) {
+
+        log.info("Listando categorías con filtros - nombre: {}, activa: {}, fechaCreacion: {}, desde: {}, hasta: {}",
+                nombre, activa, fechaCreacion, desde, hasta);
+
 
         // Filtrado por nombre --> Coincidencias parciales y sin distinguir mayúsculas y minúsculas
         if (nombre != null && !nombre.isEmpty()) {
@@ -101,15 +119,22 @@ public class CategoriaService {
                 .toList();
     }
 
-
     // --- PUT / modificar
     public CategoriaOutDto modificar(long id, CategoriaUpdateDto categoriaUpdateDto) throws CategoriaNoEncontradaException {
+
+        log.info("Intentando modificar categoría con ID {}", id);
+
         Categoria categoriaAnterior = categoriaRepository.findById(id)
-                .orElseThrow(CategoriaNoEncontradaException::new);
+                .orElseThrow(() -> {
+                    log.error("Categoría {} no encontrada", id);
+                    return new CategoriaNoEncontradaException();
+                });
+
 
         // Verifico si el nombre de la categoría no esté en uso por OTRA categoría
         if (categoriaRepository.existsByNombre(categoriaUpdateDto.getNombre())
                 && !categoriaAnterior.getNombre().equals(categoriaUpdateDto.getNombre())) {
+            log.warn("El nombre '{}' ya existe. No se puede actualizar", categoriaUpdateDto.getNombre());
             throw new NombreYaExisteException();
         }
 
@@ -117,14 +142,20 @@ public class CategoriaService {
         modelMapper.map(categoriaUpdateDto, categoriaAnterior);
 
         Categoria actualizada = categoriaRepository.save(categoriaAnterior);
+        log.info("Categoría {} actualizada correctamente", id);
         return mapToOutDto(actualizada);
     }
 
     // --- DELETE
     public void eliminar(long id) throws CategoriaNoEncontradaException {
+        log.warn("Intentando eliminar categoría {}", id);
         Categoria categoria = categoriaRepository.findById(id)
-                .orElseThrow(CategoriaNoEncontradaException::new);
+                .orElseThrow(() -> {
+                    log.error("Categoría {} no encontrada", id);
+                    return new CategoriaNoEncontradaException();
+                });
         categoriaRepository.delete(categoria);
+        log.info("Categoría {} eliminada correctamente", id);
     }
 
     // --- Metodo auxiliar privado para mapear y no repetir código

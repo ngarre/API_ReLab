@@ -1,6 +1,8 @@
 package com.natalia.relab.controller;
 
 import exception.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -16,9 +18,14 @@ import java.util.Map;
 // handlers a los controllers que estén en este paquete y subpaquetes.
 public class GlobalExceptionHandler {
 
-    // --- VALIDACIONES @Valid ---
+    private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
+    // --- VALIDACIONES @Valid (400) ---
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleValidationErrors(MethodArgumentNotValidException ex) {
+
+        log.warn("Error de validación detectado: {}", ex.getMessage());
+
         // Creo un mapa donde guardaré los errores de validación.
         // La clave será el nombre del campo (por ejemplo "email")
         // y el valor será el mensaje de error definido en la anotación (por ejemplo "Debe tener formato de email válido").
@@ -51,6 +58,9 @@ public class GlobalExceptionHandler {
     })
 
     public ResponseEntity<ErrorResponse> handleNotFound(Exception ex) {
+
+        log.warn("Recurso no encontrado: {}", ex.getClass().getSimpleName());
+
         String message = switch (ex.getClass().getSimpleName()) {
             case "UsuarioNoEncontradoException" -> "El usuario no existe";
             case "ProductoNoEncontradoException" -> "El producto no existe";
@@ -68,6 +78,9 @@ public class GlobalExceptionHandler {
     // --- DATOS DUPLICADOS (400) ---
     @ExceptionHandler({NicknameYaExisteException.class, NombreYaExisteException.class})
     public ResponseEntity<ErrorResponse> handleDuplicateData(RuntimeException ex) {
+
+        log.warn("Intento de creación con datos duplicados: {}", ex.getClass().getSimpleName());
+
         String title;
         String message;
 
@@ -90,6 +103,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ProductoYaVendidoException.class)
     public ResponseEntity<ErrorResponse> handleProductoYaVendido(ProductoYaVendidoException ex) {
 
+        log.warn("Conflicto: producto ya vendido");
+
         ErrorResponse errorResponse = ErrorResponse.generalError(
                 HttpStatus.CONFLICT.value(),
                 "producto-ya-vendido",
@@ -103,6 +118,9 @@ public class GlobalExceptionHandler {
     // --- OTROS ERRORES INESPERADOS (500) ---
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneralError(Exception ex) {
+
+        log.error("Error interno inesperado", ex);
+
         ErrorResponse errorResponse = ErrorResponse.generalError(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(), "error-interno", "Error interno del servidor");
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
