@@ -245,3 +245,78 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
 2025-11-26 11:09:12,737 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-11-26 11:09:12,737 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2025-11-26 11:09:12,740 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-11-26 11:34:16,420 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.3.Final
+2025-11-26 11:34:16,452 INFO o.s.b.StartupInfoLogger [main] Starting RelabApplication using Java 21.0.8 with PID 26788 (D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab\target\classes started by natal in D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab)
+2025-11-26 11:34:16,452 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-11-26 11:34:16,806 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-26 11:34:16,837 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 26 ms. Found 5 JPA repository interfaces.
+2025-11-26 11:34:17,074 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-11-26 11:34:17,090 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-26 11:34:17,090 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2025-11-26 11:34:17,090 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-11-26 11:34:17,126 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-11-26 11:34:17,127 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 646 ms
+2025-11-26 11:34:17,197 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-26 11:34:17,224 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-11-26 11:34:17,240 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2025-11-26 11:34:17,407 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-26 11:34:17,407 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2025-11-26 11:34:17,470 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.mariadb.jdbc.Connection@2b6262bc
+2025-11-26 11:34:17,470 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-11-26 11:34:17,490 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-26 11:34:17,496 INFO o.h.e.j.e.i.JdbcEnvironmentInitiator [main] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 12.0.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-26 11:34:17,971 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-26 11:34:18,007 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-26 11:34:18,208 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-26 11:34:18,361 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-26 11:34:18,377 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-11-26 11:34:18,377 INFO o.s.b.StartupInfoLogger [main] Started RelabApplication in 2.244 seconds (process running for 2.416)
+2025-11-26 11:34:23,203 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-26 11:34:23,203 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-11-26 11:34:23,203 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 0 ms
+2025-11-26 11:34:23,223 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-1] GET /alquileres - Parámetros: arrendadorId=null, arrendatarioId=null, productoId=null
+2025-11-26 11:34:23,223 INFO c.n.r.s.AlquilerService [http-nio-8080-exec-1] Servicio: Listando alquileres con filtros: arrendadorId=null, arrendatarioId=null, productoId=null
+2025-11-26 11:34:23,301 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-1] Resultado: 7 alquileres encontrados
+2025-11-26 11:34:30,303 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-3] GET /alquileres/1 solicitado
+2025-11-26 11:34:30,303 INFO c.n.r.s.AlquilerService [http-nio-8080-exec-3] Servicio: buscando alquiler por ID 1
+2025-11-26 11:34:30,308 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-3] Alquiler con id 1 encontrado
+2025-11-26 11:34:50,910 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-4] GET /alquileres - Parámetros: arrendadorId=null, arrendatarioId=null, productoId=13
+2025-11-26 11:34:50,911 INFO c.n.r.s.AlquilerService [http-nio-8080-exec-4] Servicio: Listando alquileres con filtros: arrendadorId=null, arrendatarioId=null, productoId=13
+2025-11-26 11:34:51,071 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-4] Resultado: 6 alquileres encontrados
+2025-11-26 11:35:09,291 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-6] GET /alquileres - Parámetros: arrendadorId=5, arrendatarioId=null, productoId=null
+2025-11-26 11:35:09,293 INFO c.n.r.s.AlquilerService [http-nio-8080-exec-6] Servicio: Listando alquileres con filtros: arrendadorId=5, arrendatarioId=null, productoId=null
+2025-11-26 11:35:09,304 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-6] Resultado: 6 alquileres encontrados
+2025-11-26 11:35:19,050 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-8] GET /alquileres - Parámetros: arrendadorId=500, arrendatarioId=null, productoId=null
+2025-11-26 11:35:19,050 INFO c.n.r.s.AlquilerService [http-nio-8080-exec-8] Servicio: Listando alquileres con filtros: arrendadorId=500, arrendatarioId=null, productoId=null
+2025-11-26 11:35:19,055 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-8] Recurso no encontrado: UsuarioNoEncontradoException
+2025-11-26 11:35:55,996 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-10] Error de validación detectado: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.natalia.relab.dto.AlquilerOutDto> com.natalia.relab.controller.AlquilerController.agregarAlquiler(com.natalia.relab.dto.AlquilerInDto) throws exception.UsuarioNoEncontradoException,exception.ProductoNoEncontradoException: [Field error in object 'alquilerInDto' on field 'precio': rejected value [-2000.0]; codes [Min.alquilerInDto.precio,Min.precio,Min.float,Min]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [alquilerInDto.precio,precio]; arguments []; default message [precio],0]; default message [El precio debe ser mayor que cero]] 
+2025-11-26 11:36:12,902 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-1] Error de validación detectado: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.natalia.relab.dto.AlquilerOutDto> com.natalia.relab.controller.AlquilerController.agregarAlquiler(com.natalia.relab.dto.AlquilerInDto) throws exception.UsuarioNoEncontradoException,exception.ProductoNoEncontradoException: [Field error in object 'alquilerInDto' on field 'arrendatarioId': rejected value [null]; codes [NotNull.alquilerInDto.arrendatarioId,NotNull.arrendatarioId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [alquilerInDto.arrendatarioId,arrendatarioId]; arguments []; default message [arrendatarioId]]; default message [Debe especificarse el arrendatario]] 
+2025-11-26 11:36:33,565 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-3] POST /alquileres - creando nuevo alquiler
+2025-11-26 11:36:33,565 INFO c.n.r.s.AlquilerService [http-nio-8080-exec-3] Agregando nuevo alquiler: productoId 13, arrendadorId 5, arrendatarioId 22
+2025-11-26 11:36:33,568 WARN c.n.r.s.AlquilerService [http-nio-8080-exec-3] Arrendatario con ID 22 no encontrado
+2025-11-26 11:36:33,568 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-3] Recurso no encontrado: UsuarioNoEncontradoException
+2025-11-26 11:36:49,441 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-4] POST /alquileres - creando nuevo alquiler
+2025-11-26 11:36:49,441 INFO c.n.r.s.AlquilerService [http-nio-8080-exec-4] Agregando nuevo alquiler: productoId 13, arrendadorId 5, arrendatarioId 16
+2025-11-26 11:36:49,476 INFO c.n.r.s.AlquilerService [http-nio-8080-exec-4] Alquiler creado correctamente con ID 9
+2025-11-26 11:36:49,476 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-4] Alquiler creado con id 9
+2025-11-26 11:37:11,648 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-6] Error de validación detectado: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.natalia.relab.dto.AlquilerOutDto> com.natalia.relab.controller.AlquilerController.actualizarAlquiler(com.natalia.relab.dto.AlquilerUpdateDto,long) throws exception.AlquilerNoEncontradoException: [Field error in object 'alquilerUpdateDto' on field 'precio': rejected value [-400.0]; codes [Min.alquilerUpdateDto.precio,Min.precio,Min.java.lang.Float,Min]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [alquilerUpdateDto.precio,precio]; arguments []; default message [precio],0]; default message [El precio debe ser mayor que cero]] 
+2025-11-26 11:37:18,247 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-7] PUT /alquileres/9 - actualizando alquiler
+2025-11-26 11:37:18,249 INFO c.n.r.s.AlquilerService [http-nio-8080-exec-7] Servicio: Modificando alquiler con ID 9
+2025-11-26 11:37:18,266 INFO c.n.r.s.AlquilerService [http-nio-8080-exec-7] Servicio: Alquiler actualizado correctamente con ID 9
+2025-11-26 11:37:18,266 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-7] Alquiler con id 9 actualizado correctamente
+2025-11-26 11:37:23,679 WARN c.n.r.c.AlquilerController [http-nio-8080-exec-9] DELETE /alquileres/9 - eliminando
+2025-11-26 11:37:23,680 WARN c.n.r.s.AlquilerService [http-nio-8080-exec-9] Servicio: Intentando eliminar alquiler con ID 9
+2025-11-26 11:37:23,682 INFO c.n.r.s.AlquilerService [http-nio-8080-exec-9] Alquiler con ID 9 eliminado correctamente
+2025-11-26 11:37:23,694 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-9] Alquiler con id 9 eliminado correctamente
+2025-11-26 11:37:30,614 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-26 11:37:30,630 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-11-26 11:37:30,630 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-26 11:37:30,630 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-11-26 11:37:30,630 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
