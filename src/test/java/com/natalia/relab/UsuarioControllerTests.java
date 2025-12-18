@@ -83,7 +83,7 @@ public class UsuarioControllerTests {
     @Test
     public void testAgregarUsuario_400_PorValidacion() throws Exception {
         UsuarioInDto inDto = new UsuarioInDto();
-        inDto.setNickname("");          // inválido (no puede ser un String vacío
+        inDto.setNickname("");          // inválido (no puede ser un String vacío)
         inDto.setPassword("123");       // inválido (menos de 4 caracteres)
         inDto.setEmail("email-mal");    // inválido (mal formato)
 
