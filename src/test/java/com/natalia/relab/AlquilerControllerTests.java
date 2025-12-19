@@ -356,6 +356,4 @@ public class AlquilerControllerTests {
         mockMvc.perform(delete("/alquileres/{id}", alquilerId))
                 .andExpect(status().isNotFound());
     }
-
-
 }
