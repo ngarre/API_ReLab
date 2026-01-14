@@ -1,0 +1,1524 @@
+2025-12-23 10:34:39,408 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.3.Final
+2025-12-23 10:34:39,444 INFO o.s.b.StartupInfoLogger [main] Starting RelabApplication using Java 21.0.8 with PID 25356 (D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab\target\classes started by natal in D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab)
+2025-12-23 10:34:39,444 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-12-23 10:34:39,799 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-23 10:34:39,836 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 31 ms. Found 5 JPA repository interfaces.
+2025-12-23 10:34:40,108 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-12-23 10:34:40,108 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-12-23 10:34:40,124 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2025-12-23 10:34:40,124 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-12-23 10:34:40,155 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-12-23 10:34:40,155 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 686 ms
+2025-12-23 10:34:40,234 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-23 10:34:40,266 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-12-23 10:34:40,309 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2025-12-23 10:34:40,468 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-23 10:34:40,484 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2025-12-23 10:34:40,547 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.mariadb.jdbc.Connection@5cffec7
+2025-12-23 10:34:40,550 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-12-23 10:34:40,563 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-23 10:34:40,581 INFO o.h.e.j.e.i.JdbcEnvironmentInitiator [main] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 12.0.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-12-23 10:34:41,112 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-23 10:34:41,170 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-23 10:34:41,418 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-23 10:34:41,624 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-12-23 10:34:41,640 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-12-23 10:34:41,640 INFO o.s.b.StartupInfoLogger [main] Started RelabApplication in 2.514 seconds (process running for 2.699)
+2025-12-23 10:35:01,181 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-23 10:35:01,181 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-12-23 10:35:01,196 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 15 ms
+2025-12-23 10:35:01,250 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 10:35:01,384 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - encontrados 15 productos
+2025-12-23 10:35:03,389 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 10:35:03,389 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/9/imagen - solicitando imagen
+2025-12-23 10:35:03,389 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/13/imagen - solicitando imagen
+2025-12-23 10:35:03,389 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/23/imagen - solicitando imagen
+2025-12-23 10:35:03,389 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/14/imagen - solicitando imagen
+2025-12-23 10:35:03,389 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/22/imagen - solicitando imagen
+2025-12-23 10:35:03,389 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/12/imagen - solicitando imagen
+2025-12-23 10:35:03,404 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - encontrados 15 productos
+2025-12-23 10:35:03,404 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 10:35:03,404 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 10:35:03,404 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 10:35:03,404 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 10:35:03,404 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 10:35:03,404 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 10:35:03,418 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/10/imagen - solicitando imagen
+2025-12-23 10:35:03,418 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/11/imagen - solicitando imagen
+2025-12-23 10:35:03,420 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 10:35:03,420 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 11:15:25,488 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-5] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 11:15:25,489 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-5] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 11:15:25,534 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-5] Se devolvieron 11 categorias
+2025-12-23 11:15:25,541 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-10] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 11:15:25,541 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-10] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 11:15:25,546 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-10] Se devolvieron 11 categorias
+2025-12-23 11:15:32,521 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-23 11:15:32,538 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-12-23 11:15:32,540 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-23 11:15:32,542 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-12-23 11:15:32,544 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-12-23 11:15:56,467 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.3.Final
+2025-12-23 11:15:56,497 INFO o.s.b.StartupInfoLogger [main] Starting RelabApplication using Java 21.0.8 with PID 29200 (D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab\target\classes started by natal in D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab)
+2025-12-23 11:15:56,497 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-12-23 11:15:56,789 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-23 11:15:56,819 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 26 ms. Found 5 JPA repository interfaces.
+2025-12-23 11:15:57,051 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-12-23 11:15:57,062 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-12-23 11:15:57,067 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2025-12-23 11:15:57,067 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-12-23 11:15:57,097 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-12-23 11:15:57,098 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 577 ms
+2025-12-23 11:15:57,160 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-23 11:15:57,192 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-12-23 11:15:57,200 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2025-12-23 11:15:57,318 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-23 11:15:57,346 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2025-12-23 11:15:57,395 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.mariadb.jdbc.Connection@6b126187
+2025-12-23 11:15:57,398 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-12-23 11:15:57,413 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-23 11:15:57,421 INFO o.h.e.j.e.i.JdbcEnvironmentInitiator [main] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 12.0.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-12-23 11:15:57,871 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-23 11:15:57,910 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-23 11:15:58,114 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-23 11:15:58,260 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-12-23 11:15:58,275 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-12-23 11:15:58,275 INFO o.s.b.StartupInfoLogger [main] Started RelabApplication in 2.052 seconds (process running for 2.209)
+2025-12-23 11:16:03,241 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-23 11:16:03,241 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-12-23 11:16:03,241 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 0 ms
+2025-12-23 11:16:03,276 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-1] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 11:16:03,277 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-1] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 11:16:03,354 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-1] Se devolvieron 11 categorias
+2025-12-23 11:16:03,387 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-3] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 11:16:03,388 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-3] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 11:16:03,392 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-3] Se devolvieron 11 categorias
+2025-12-23 11:16:48,796 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 11:16:48,826 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos - encontrados 15 productos
+2025-12-23 11:16:48,831 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 11:16:48,842 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/10/imagen - solicitando imagen
+2025-12-23 11:16:48,842 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/13/imagen - solicitando imagen
+2025-12-23 11:16:48,842 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/14/imagen - solicitando imagen
+2025-12-23 11:16:48,842 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/12/imagen - solicitando imagen
+2025-12-23 11:16:48,842 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/11/imagen - solicitando imagen
+2025-12-23 11:16:48,844 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos - encontrados 15 productos
+2025-12-23 11:16:48,848 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/9/imagen - solicitando imagen
+2025-12-23 11:16:48,850 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 11:16:48,850 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 11:16:48,850 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 11:16:48,851 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 11:16:48,851 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 11:16:48,851 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 11:16:48,858 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/23/imagen - solicitando imagen
+2025-12-23 11:16:48,858 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/22/imagen - solicitando imagen
+2025-12-23 11:16:48,860 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 11:16:48,860 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 11:17:24,301 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/27/imagen - solicitando imagen
+2025-12-23 11:17:24,304 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/27/imagen - imagen servida correctamente
+2025-12-23 11:17:27,042 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/17/imagen - solicitando imagen
+2025-12-23 11:17:27,046 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/17/imagen - imagen servida correctamente
+2025-12-23 11:17:54,367 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/20/imagen - solicitando imagen
+2025-12-23 11:17:54,367 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/16/imagen - solicitando imagen
+2025-12-23 11:17:54,370 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/16/imagen - imagen servida correctamente
+2025-12-23 11:17:54,370 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/20/imagen - imagen servida correctamente
+2025-12-23 11:17:54,372 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/15/imagen - solicitando imagen
+2025-12-23 11:17:54,375 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/15/imagen - imagen servida correctamente
+2025-12-23 11:18:06,551 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/13/imagen - solicitando imagen
+2025-12-23 11:18:06,551 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/11/imagen - solicitando imagen
+2025-12-23 11:18:06,551 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/10/imagen - solicitando imagen
+2025-12-23 11:18:06,552 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/12/imagen - solicitando imagen
+2025-12-23 11:18:06,552 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/14/imagen - solicitando imagen
+2025-12-23 11:18:06,552 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/9/imagen - solicitando imagen
+2025-12-23 11:18:06,555 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 11:18:06,555 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 11:18:06,555 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 11:18:06,553 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 11:18:06,555 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 11:18:06,556 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 11:18:06,560 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/23/imagen - solicitando imagen
+2025-12-23 11:18:06,560 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/22/imagen - solicitando imagen
+2025-12-23 11:18:06,563 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 11:18:06,563 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 11:23:25,646 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/16/imagen - solicitando imagen
+2025-12-23 11:23:25,646 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/17/imagen - solicitando imagen
+2025-12-23 11:23:25,650 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/17/imagen - imagen servida correctamente
+2025-12-23 11:23:25,650 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/16/imagen - imagen servida correctamente
+2025-12-23 11:23:38,029 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-2] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 11:23:38,030 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-2] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 11:23:38,039 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-2] Se devolvieron 11 categorias
+2025-12-23 11:23:38,042 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-6] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 11:23:38,042 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-6] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 11:23:38,049 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-6] Se devolvieron 11 categorias
+2025-12-23 11:23:44,665 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 11:23:44,681 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - encontrados 15 productos
+2025-12-23 11:23:44,685 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 11:23:44,696 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/13/imagen - solicitando imagen
+2025-12-23 11:23:44,696 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/12/imagen - solicitando imagen
+2025-12-23 11:23:44,696 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/10/imagen - solicitando imagen
+2025-12-23 11:23:44,696 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/11/imagen - solicitando imagen
+2025-12-23 11:23:44,696 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/23/imagen - solicitando imagen
+2025-12-23 11:23:44,696 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/14/imagen - solicitando imagen
+2025-12-23 11:23:44,698 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 11:23:44,698 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 11:23:44,698 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 11:23:44,698 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 11:23:44,698 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 11:23:44,699 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 11:23:44,702 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/9/imagen - solicitando imagen
+2025-12-23 11:23:44,702 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/22/imagen - solicitando imagen
+2025-12-23 11:23:44,703 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos - encontrados 15 productos
+2025-12-23 11:23:44,704 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 11:23:44,704 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 11:29:46,882 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 11:29:46,895 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos - encontrados 15 productos
+2025-12-23 11:29:46,899 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 11:29:46,902 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/10/imagen - solicitando imagen
+2025-12-23 11:29:46,903 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/11/imagen - solicitando imagen
+2025-12-23 11:29:46,903 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/13/imagen - solicitando imagen
+2025-12-23 11:29:46,904 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/12/imagen - solicitando imagen
+2025-12-23 11:29:46,904 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/14/imagen - solicitando imagen
+2025-12-23 11:29:46,905 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 11:29:46,905 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 11:29:46,905 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 11:29:46,905 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 11:29:46,905 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 11:29:46,911 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - encontrados 15 productos
+2025-12-23 11:29:46,914 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/9/imagen - solicitando imagen
+2025-12-23 11:29:46,914 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/23/imagen - solicitando imagen
+2025-12-23 11:29:46,914 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/22/imagen - solicitando imagen
+2025-12-23 11:29:46,914 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 11:29:46,914 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 11:29:46,914 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 11:29:48,586 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/26/imagen - solicitando imagen
+2025-12-23 11:29:48,591 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-2] Recurso no encontrado: ImagenNoEncontradaException
+2025-12-23 11:30:41,955 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/10/imagen - solicitando imagen
+2025-12-23 11:30:41,955 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/11/imagen - solicitando imagen
+2025-12-23 11:30:41,955 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/13/imagen - solicitando imagen
+2025-12-23 11:30:41,955 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/12/imagen - solicitando imagen
+2025-12-23 11:30:41,955 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/14/imagen - solicitando imagen
+2025-12-23 11:30:41,955 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/9/imagen - solicitando imagen
+2025-12-23 11:30:41,957 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 11:30:41,957 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 11:30:41,959 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 11:30:41,959 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 11:30:41,959 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 11:30:41,959 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 11:30:41,963 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/22/imagen - solicitando imagen
+2025-12-23 11:30:41,963 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/23/imagen - solicitando imagen
+2025-12-23 11:30:41,965 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 11:30:41,965 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 11:39:34,330 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/26/imagen - solicitando imagen
+2025-12-23 11:39:34,330 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/20/imagen - solicitando imagen
+2025-12-23 11:39:34,330 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/17/imagen - solicitando imagen
+2025-12-23 11:39:34,330 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/15/imagen - solicitando imagen
+2025-12-23 11:39:34,333 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/15/imagen - imagen servida correctamente
+2025-12-23 11:39:34,333 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/20/imagen - imagen servida correctamente
+2025-12-23 11:39:34,333 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/17/imagen - imagen servida correctamente
+2025-12-23 11:39:34,333 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-9] Recurso no encontrado: ImagenNoEncontradaException
+2025-12-23 11:39:50,906 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-1] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 11:39:50,906 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-1] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 11:39:50,924 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-1] Resultado: 15 usuarios encontrados
+2025-12-23 11:39:50,934 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-7] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 11:39:50,935 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-7] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 11:39:50,939 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-7] Resultado: 15 usuarios encontrados
+2025-12-23 11:39:54,604 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-3] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 11:39:54,604 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-3] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 11:39:54,615 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-3] Se devolvieron 11 categorias
+2025-12-23 11:39:54,618 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-8] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 11:39:54,618 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-8] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 11:39:54,626 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-8] Se devolvieron 11 categorias
+2025-12-23 11:39:56,736 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-6] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 11:39:56,737 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-6] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 11:39:56,748 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-6] Resultado: 15 usuarios encontrados
+2025-12-23 11:39:56,752 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-10] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 11:39:56,752 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-10] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 11:39:56,757 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-10] Resultado: 15 usuarios encontrados
+2025-12-23 11:39:56,997 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 11:39:57,019 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos - encontrados 15 productos
+2025-12-23 11:39:57,022 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 11:39:57,028 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/13/imagen - solicitando imagen
+2025-12-23 11:39:57,028 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/11/imagen - solicitando imagen
+2025-12-23 11:39:57,028 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/10/imagen - solicitando imagen
+2025-12-23 11:39:57,028 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/12/imagen - solicitando imagen
+2025-12-23 11:39:57,028 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/14/imagen - solicitando imagen
+2025-12-23 11:39:57,029 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 11:39:57,030 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 11:39:57,030 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 11:39:57,030 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 11:39:57,030 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 11:39:57,032 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos - encontrados 15 productos
+2025-12-23 11:39:57,032 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/22/imagen - solicitando imagen
+2025-12-23 11:39:57,033 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/23/imagen - solicitando imagen
+2025-12-23 11:39:57,033 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/9/imagen - solicitando imagen
+2025-12-23 11:39:57,034 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 11:39:57,036 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 11:39:57,036 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 11:41:00,636 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/26/imagen - solicitando imagen
+2025-12-23 11:41:00,636 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/15/imagen - solicitando imagen
+2025-12-23 11:41:00,636 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/17/imagen - solicitando imagen
+2025-12-23 11:41:00,637 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/20/imagen - solicitando imagen
+2025-12-23 11:41:00,639 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/20/imagen - imagen servida correctamente
+2025-12-23 11:41:00,639 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/15/imagen - imagen servida correctamente
+2025-12-23 11:41:00,639 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/17/imagen - imagen servida correctamente
+2025-12-23 11:41:00,639 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-6] Recurso no encontrado: ImagenNoEncontradaException
+2025-12-23 11:41:36,211 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/13/imagen - solicitando imagen
+2025-12-23 11:41:36,211 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/11/imagen - solicitando imagen
+2025-12-23 11:41:36,211 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/10/imagen - solicitando imagen
+2025-12-23 11:41:36,211 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/12/imagen - solicitando imagen
+2025-12-23 11:41:36,211 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/14/imagen - solicitando imagen
+2025-12-23 11:41:36,212 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/9/imagen - solicitando imagen
+2025-12-23 11:41:36,213 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 11:41:36,213 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 11:41:36,213 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 11:41:36,214 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 11:41:36,214 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 11:41:36,214 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 11:41:36,218 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/22/imagen - solicitando imagen
+2025-12-23 11:41:36,219 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/23/imagen - solicitando imagen
+2025-12-23 11:41:36,220 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 11:41:36,221 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 12:38:34,012 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 12:38:34,026 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos - encontrados 15 productos
+2025-12-23 12:38:34,033 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 12:38:34,036 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/10/imagen - solicitando imagen
+2025-12-23 12:38:34,036 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/11/imagen - solicitando imagen
+2025-12-23 12:38:34,036 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/13/imagen - solicitando imagen
+2025-12-23 12:38:34,037 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/14/imagen - solicitando imagen
+2025-12-23 12:38:34,037 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/12/imagen - solicitando imagen
+2025-12-23 12:38:34,038 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 12:38:34,038 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 12:38:34,038 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 12:38:34,039 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 12:38:34,039 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 12:38:34,044 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos - encontrados 15 productos
+2025-12-23 12:38:34,046 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/9/imagen - solicitando imagen
+2025-12-23 12:38:34,046 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/23/imagen - solicitando imagen
+2025-12-23 12:38:34,046 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/22/imagen - solicitando imagen
+2025-12-23 12:38:34,048 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 12:38:34,048 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 12:38:34,048 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 12:38:35,168 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/11 - solicitando producto por ID
+2025-12-23 12:38:35,168 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/11 - producto encontrado correctamente
+2025-12-23 12:38:35,181 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/11 - solicitando producto por ID
+2025-12-23 12:38:35,186 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/11 - producto encontrado correctamente
+2025-12-23 12:38:36,864 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 12:38:36,867 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos - encontrados 15 productos
+2025-12-23 12:38:36,867 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 12:38:36,886 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos - encontrados 15 productos
+2025-12-23 12:44:09,986 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 12:44:09,997 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - encontrados 15 productos
+2025-12-23 12:44:09,999 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 12:44:10,005 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/10/imagen - solicitando imagen
+2025-12-23 12:44:10,005 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/13/imagen - solicitando imagen
+2025-12-23 12:44:10,005 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/11/imagen - solicitando imagen
+2025-12-23 12:44:10,005 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/12/imagen - solicitando imagen
+2025-12-23 12:44:10,005 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/14/imagen - solicitando imagen
+2025-12-23 12:44:10,005 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 12:44:10,005 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 12:44:10,005 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 12:44:10,005 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 12:44:10,005 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 12:44:10,005 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos - encontrados 15 productos
+2025-12-23 12:44:10,005 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/9/imagen - solicitando imagen
+2025-12-23 12:44:10,005 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/22/imagen - solicitando imagen
+2025-12-23 12:44:10,015 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 12:44:10,015 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 12:44:10,015 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/23/imagen - solicitando imagen
+2025-12-23 12:44:10,017 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 12:44:15,430 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/17/imagen - solicitando imagen
+2025-12-23 12:44:15,433 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/17/imagen - imagen servida correctamente
+2025-12-23 12:44:16,320 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/27/imagen - solicitando imagen
+2025-12-23 12:44:16,320 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/27/imagen - imagen servida correctamente
+2025-12-23 12:44:33,041 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 12:44:33,048 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos - encontrados 15 productos
+2025-12-23 12:44:33,048 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 12:44:33,048 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/13/imagen - solicitando imagen
+2025-12-23 12:44:33,048 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/10/imagen - solicitando imagen
+2025-12-23 12:44:33,048 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/11/imagen - solicitando imagen
+2025-12-23 12:44:33,048 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/12/imagen - solicitando imagen
+2025-12-23 12:44:33,048 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/14/imagen - solicitando imagen
+2025-12-23 12:44:33,048 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 12:44:33,048 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 12:44:33,048 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 12:44:33,048 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 12:44:33,048 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 12:44:33,064 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos - encontrados 15 productos
+2025-12-23 12:44:33,067 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/23/imagen - solicitando imagen
+2025-12-23 12:44:33,067 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/22/imagen - solicitando imagen
+2025-12-23 12:44:33,067 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/9/imagen - solicitando imagen
+2025-12-23 12:44:33,067 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 12:44:33,067 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 12:44:33,067 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 12:44:36,111 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/27/imagen - solicitando imagen
+2025-12-23 12:44:36,115 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/27/imagen - imagen servida correctamente
+2025-12-23 12:46:28,909 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/10/imagen - solicitando imagen
+2025-12-23 12:46:28,909 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/11/imagen - solicitando imagen
+2025-12-23 12:46:28,909 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/13/imagen - solicitando imagen
+2025-12-23 12:46:28,909 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/14/imagen - solicitando imagen
+2025-12-23 12:46:28,909 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/12/imagen - solicitando imagen
+2025-12-23 12:46:28,909 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/9/imagen - solicitando imagen
+2025-12-23 12:46:28,909 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 12:46:28,909 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 12:46:28,909 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 12:46:28,909 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 12:46:28,909 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 12:46:28,909 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 12:46:28,909 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/23/imagen - solicitando imagen
+2025-12-23 12:46:28,918 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 12:46:38,403 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 12:46:38,410 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos - encontrados 15 productos
+2025-12-23 12:46:38,417 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 12:46:38,417 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/10/imagen - solicitando imagen
+2025-12-23 12:46:38,417 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/11/imagen - solicitando imagen
+2025-12-23 12:46:38,417 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/13/imagen - solicitando imagen
+2025-12-23 12:46:38,417 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/12/imagen - solicitando imagen
+2025-12-23 12:46:38,417 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/14/imagen - solicitando imagen
+2025-12-23 12:46:38,417 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 12:46:38,417 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 12:46:38,417 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 12:46:38,417 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 12:46:38,417 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 12:46:38,426 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/9/imagen - solicitando imagen
+2025-12-23 12:46:38,426 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/22/imagen - solicitando imagen
+2025-12-23 12:46:38,426 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/23/imagen - solicitando imagen
+2025-12-23 12:46:38,426 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos - encontrados 15 productos
+2025-12-23 12:46:38,426 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 12:46:38,426 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 12:46:38,433 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 12:46:44,015 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/11 - solicitando producto por ID
+2025-12-23 12:46:44,018 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/11 - producto encontrado correctamente
+2025-12-23 12:46:44,021 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/11 - solicitando producto por ID
+2025-12-23 12:46:44,023 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/11 - producto encontrado correctamente
+2025-12-23 12:46:45,654 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 12:46:45,661 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos - encontrados 15 productos
+2025-12-23 12:46:45,661 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 12:46:45,678 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - encontrados 15 productos
+2025-12-23 12:46:50,375 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/27/imagen - solicitando imagen
+2025-12-23 12:46:50,375 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/27/imagen - imagen servida correctamente
+2025-12-23 12:49:06,255 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/27/imagen - solicitando imagen
+2025-12-23 12:49:06,255 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/27/imagen - imagen servida correctamente
+2025-12-23 12:49:30,009 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-9] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 12:49:30,009 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-9] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 12:49:30,014 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-9] Resultado: 15 usuarios encontrados
+2025-12-23 12:49:30,016 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-8] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 12:49:30,016 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-8] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 12:49:30,022 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-8] Resultado: 15 usuarios encontrados
+2025-12-23 12:49:34,192 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-5] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 12:49:34,192 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-5] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 12:49:34,197 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-5] Se devolvieron 11 categorias
+2025-12-23 12:49:34,201 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-2] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 12:49:34,201 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-2] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 12:49:34,205 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-2] Se devolvieron 11 categorias
+2025-12-23 12:49:36,392 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 12:49:36,403 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos - encontrados 15 productos
+2025-12-23 12:49:36,406 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 12:49:36,411 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos - encontrados 15 productos
+2025-12-23 12:58:33,628 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/27/imagen - solicitando imagen
+2025-12-23 12:58:33,628 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/17/imagen - solicitando imagen
+2025-12-23 12:58:33,628 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/26/imagen - solicitando imagen
+2025-12-23 12:58:33,628 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/15/imagen - solicitando imagen
+2025-12-23 12:58:33,628 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/20/imagen - solicitando imagen
+2025-12-23 12:58:33,628 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/19/imagen - solicitando imagen
+2025-12-23 12:58:33,628 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/19/imagen - imagen servida correctamente
+2025-12-23 12:58:33,628 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/17/imagen - imagen servida correctamente
+2025-12-23 12:58:33,628 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/27/imagen - imagen servida correctamente
+2025-12-23 12:58:33,628 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/15/imagen - imagen servida correctamente
+2025-12-23 12:58:33,628 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/20/imagen - imagen servida correctamente
+2025-12-23 12:58:33,628 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-6] Recurso no encontrado: ImagenNoEncontradaException
+2025-12-23 12:58:33,644 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/16/imagen - solicitando imagen
+2025-12-23 12:58:33,645 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/16/imagen - imagen servida correctamente
+2025-12-23 12:58:35,371 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/26 - solicitando producto por ID
+2025-12-23 12:58:35,371 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/26 - producto encontrado correctamente
+2025-12-23 12:58:35,371 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/26 - solicitando producto por ID
+2025-12-23 12:58:35,371 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/26 - producto encontrado correctamente
+2025-12-23 12:58:35,371 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/26/imagen - solicitando imagen
+2025-12-23 12:58:35,379 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-7] Recurso no encontrado: ImagenNoEncontradaException
+2025-12-23 12:58:42,957 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 12:58:42,968 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos - encontrados 15 productos
+2025-12-23 12:58:42,971 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 12:58:42,978 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos - encontrados 15 productos
+2025-12-23 12:58:45,417 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-2] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 12:58:45,418 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-2] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 12:58:45,423 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-2] Se devolvieron 11 categorias
+2025-12-23 12:58:45,426 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-2] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 12:58:45,426 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-2] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 12:58:45,429 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-2] Se devolvieron 11 categorias
+2025-12-23 12:58:57,182 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-23 12:58:57,191 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-12-23 12:58:57,195 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-23 12:58:57,195 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-12-23 12:58:57,197 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-12-23 16:41:21,821 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.3.Final
+2025-12-23 16:41:21,874 INFO o.s.b.StartupInfoLogger [main] Starting RelabApplication using Java 21.0.8 with PID 11752 (D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab\target\classes started by natal in D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab)
+2025-12-23 16:41:21,876 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-12-23 16:41:22,214 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-23 16:41:22,258 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 38 ms. Found 5 JPA repository interfaces.
+2025-12-23 16:41:22,542 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-12-23 16:41:22,549 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-12-23 16:41:22,550 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2025-12-23 16:41:22,551 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-12-23 16:41:22,596 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-12-23 16:41:22,597 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 685 ms
+2025-12-23 16:41:22,704 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-23 16:41:22,745 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-12-23 16:41:22,768 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2025-12-23 16:41:22,930 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-23 16:41:22,949 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2025-12-23 16:41:23,019 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.mariadb.jdbc.Connection@295b07e0
+2025-12-23 16:41:23,021 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-12-23 16:41:23,040 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-23 16:41:23,050 INFO o.h.e.j.e.i.JdbcEnvironmentInitiator [main] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 12.0.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-12-23 16:41:23,724 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-23 16:41:23,794 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-23 16:41:24,042 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-23 16:41:24,211 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-12-23 16:41:24,227 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-12-23 16:41:24,231 INFO o.s.b.StartupInfoLogger [main] Started RelabApplication in 2.726 seconds (process running for 2.891)
+2025-12-23 16:41:31,040 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-23 16:41:31,041 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-12-23 16:41:31,042 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-12-23 16:41:31,085 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 16:41:31,205 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - encontrados 15 productos
+2025-12-23 16:41:31,265 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 16:41:31,276 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos - encontrados 15 productos
+2025-12-23 16:41:31,286 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/13/imagen - solicitando imagen
+2025-12-23 16:41:31,286 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/11/imagen - solicitando imagen
+2025-12-23 16:41:31,286 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/14/imagen - solicitando imagen
+2025-12-23 16:41:31,286 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/10/imagen - solicitando imagen
+2025-12-23 16:41:31,286 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/9/imagen - solicitando imagen
+2025-12-23 16:41:31,286 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/12/imagen - solicitando imagen
+2025-12-23 16:41:31,294 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 16:41:31,294 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 16:41:31,294 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 16:41:31,294 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 16:41:31,294 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 16:41:31,295 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 16:41:31,299 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/22/imagen - solicitando imagen
+2025-12-23 16:41:31,299 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/23/imagen - solicitando imagen
+2025-12-23 16:41:31,305 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 16:41:31,305 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 16:56:41,509 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 16:56:41,540 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos - encontrados 15 productos
+2025-12-23 16:56:41,544 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 16:56:41,548 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/11/imagen - solicitando imagen
+2025-12-23 16:56:41,548 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/10/imagen - solicitando imagen
+2025-12-23 16:56:41,548 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/13/imagen - solicitando imagen
+2025-12-23 16:56:41,548 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/14/imagen - solicitando imagen
+2025-12-23 16:56:41,548 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/12/imagen - solicitando imagen
+2025-12-23 16:56:41,548 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 16:56:41,548 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 16:56:41,551 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 16:56:41,552 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 16:56:41,552 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 16:56:41,552 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos - encontrados 15 productos
+2025-12-23 16:56:41,552 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/22/imagen - solicitando imagen
+2025-12-23 16:56:41,552 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/9/imagen - solicitando imagen
+2025-12-23 16:56:41,560 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 16:56:41,560 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 16:56:41,560 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/23/imagen - solicitando imagen
+2025-12-23 16:56:41,560 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 16:56:47,076 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-10] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 16:56:47,076 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-10] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 16:56:47,121 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-10] Resultado: 15 usuarios encontrados
+2025-12-23 16:56:47,130 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-7] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 16:56:47,130 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-7] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 16:56:47,137 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-7] Resultado: 15 usuarios encontrados
+2025-12-23 16:56:49,649 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-5] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 16:56:49,650 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-5] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 16:56:49,663 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-5] Se devolvieron 11 categorias
+2025-12-23 16:56:49,668 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-4] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 16:56:49,669 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-4] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 16:56:49,673 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-4] Se devolvieron 11 categorias
+2025-12-23 16:56:53,702 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 16:56:53,719 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos - encontrados 15 productos
+2025-12-23 16:56:53,723 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 16:56:53,732 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos - encontrados 15 productos
+2025-12-23 16:58:11,296 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 16:58:11,307 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos - encontrados 15 productos
+2025-12-23 16:58:11,308 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 16:58:11,312 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/11/imagen - solicitando imagen
+2025-12-23 16:58:11,312 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/10/imagen - solicitando imagen
+2025-12-23 16:58:11,313 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/13/imagen - solicitando imagen
+2025-12-23 16:58:11,313 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/12/imagen - solicitando imagen
+2025-12-23 16:58:11,313 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/14/imagen - solicitando imagen
+2025-12-23 16:58:11,316 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 16:58:11,316 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 16:58:11,316 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 16:58:11,316 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 16:58:11,317 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 16:58:11,323 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos - encontrados 15 productos
+2025-12-23 16:58:11,323 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/23/imagen - solicitando imagen
+2025-12-23 16:58:11,323 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/22/imagen - solicitando imagen
+2025-12-23 16:58:11,323 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/9/imagen - solicitando imagen
+2025-12-23 16:58:11,328 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 16:58:11,328 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 16:58:11,328 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 16:58:15,116 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-4] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 16:58:15,117 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-4] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 16:58:15,124 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-4] Resultado: 15 usuarios encontrados
+2025-12-23 16:58:15,127 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-4] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 16:58:15,129 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-4] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 16:58:15,136 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-4] Resultado: 15 usuarios encontrados
+2025-12-23 16:58:17,753 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-8] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 16:58:17,753 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-8] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 16:58:17,758 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-8] Se devolvieron 11 categorias
+2025-12-23 16:58:17,762 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-8] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 16:58:17,763 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-8] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 16:58:17,766 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-8] Se devolvieron 11 categorias
+2025-12-23 16:58:20,299 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 16:58:20,315 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos - encontrados 15 productos
+2025-12-23 16:58:20,339 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 16:58:20,350 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - encontrados 15 productos
+2025-12-23 17:19:27,685 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 17:19:27,691 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos - encontrados 15 productos
+2025-12-23 17:19:27,691 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 17:19:27,691 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/10/imagen - solicitando imagen
+2025-12-23 17:19:27,691 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/13/imagen - solicitando imagen
+2025-12-23 17:19:27,691 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/12/imagen - solicitando imagen
+2025-12-23 17:19:27,691 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/11/imagen - solicitando imagen
+2025-12-23 17:19:27,691 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/14/imagen - solicitando imagen
+2025-12-23 17:19:27,691 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 17:19:27,691 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 17:19:27,691 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 17:19:27,706 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 17:19:27,706 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 17:19:27,710 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos - encontrados 15 productos
+2025-12-23 17:19:27,714 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/9/imagen - solicitando imagen
+2025-12-23 17:19:27,715 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/22/imagen - solicitando imagen
+2025-12-23 17:19:27,716 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/23/imagen - solicitando imagen
+2025-12-23 17:19:27,716 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 17:19:27,716 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 17:19:27,716 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 17:19:29,220 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-8] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 17:19:29,220 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-8] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 17:19:29,228 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-8] Resultado: 15 usuarios encontrados
+2025-12-23 17:19:29,231 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-5] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 17:19:29,233 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-5] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 17:19:29,238 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-5] Resultado: 15 usuarios encontrados
+2025-12-23 17:19:31,409 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-1] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 17:19:31,409 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-1] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 17:19:31,427 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-1] Se devolvieron 11 categorias
+2025-12-23 17:19:31,431 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-7] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 17:19:31,432 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-7] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 17:19:31,436 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-7] Se devolvieron 11 categorias
+2025-12-23 17:19:32,964 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 17:19:32,977 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos - encontrados 15 productos
+2025-12-23 17:19:32,982 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 17:19:32,990 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos - encontrados 15 productos
+2025-12-23 17:24:15,249 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-7] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 17:24:15,249 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-7] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 17:24:15,254 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-7] Resultado: 15 usuarios encontrados
+2025-12-23 17:24:15,258 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-3] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 17:24:15,258 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-3] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 17:24:15,263 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-3] Resultado: 15 usuarios encontrados
+2025-12-23 17:24:17,210 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-10] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 17:24:17,211 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-10] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 17:24:17,215 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-10] Se devolvieron 11 categorias
+2025-12-23 17:24:17,218 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-4] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 17:24:17,218 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-4] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 17:24:17,222 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-4] Se devolvieron 11 categorias
+2025-12-23 17:24:24,265 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 17:24:24,274 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos - encontrados 15 productos
+2025-12-23 17:24:24,276 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 17:24:24,285 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - encontrados 15 productos
+2025-12-23 17:24:24,294 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/12/imagen - solicitando imagen
+2025-12-23 17:24:24,294 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/11/imagen - solicitando imagen
+2025-12-23 17:24:24,294 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/14/imagen - solicitando imagen
+2025-12-23 17:24:24,294 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/13/imagen - solicitando imagen
+2025-12-23 17:24:24,294 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/10/imagen - solicitando imagen
+2025-12-23 17:24:24,294 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/9/imagen - solicitando imagen
+2025-12-23 17:24:24,297 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 17:24:24,297 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 17:24:24,297 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 17:24:24,297 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 17:24:24,297 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 17:24:24,297 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 17:24:24,312 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/23/imagen - solicitando imagen
+2025-12-23 17:24:24,312 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/22/imagen - solicitando imagen
+2025-12-23 17:24:24,314 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 17:24:24,314 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 17:40:59,869 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 17:40:59,882 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos - encontrados 15 productos
+2025-12-23 17:40:59,886 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 17:40:59,897 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos - encontrados 15 productos
+2025-12-23 17:40:59,915 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/10/imagen - solicitando imagen
+2025-12-23 17:40:59,915 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/11/imagen - solicitando imagen
+2025-12-23 17:40:59,916 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/12/imagen - solicitando imagen
+2025-12-23 17:40:59,916 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/9/imagen - solicitando imagen
+2025-12-23 17:40:59,916 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/13/imagen - solicitando imagen
+2025-12-23 17:40:59,916 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/14/imagen - solicitando imagen
+2025-12-23 17:40:59,917 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 17:40:59,917 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 17:40:59,918 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 17:40:59,918 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 17:40:59,918 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 17:40:59,918 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 17:40:59,924 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/23/imagen - solicitando imagen
+2025-12-23 17:40:59,924 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/22/imagen - solicitando imagen
+2025-12-23 17:40:59,926 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 17:40:59,926 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 17:41:02,390 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-4] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 17:41:02,390 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-4] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 17:41:02,396 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-4] Resultado: 15 usuarios encontrados
+2025-12-23 17:41:02,399 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-10] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 17:41:02,399 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-10] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 17:41:02,403 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-10] Resultado: 15 usuarios encontrados
+2025-12-23 17:41:04,037 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-9] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 17:41:04,039 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-9] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 17:41:04,041 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-9] Se devolvieron 11 categorias
+2025-12-23 17:41:04,042 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-1] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 17:41:04,043 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-1] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 17:41:04,044 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-1] Se devolvieron 11 categorias
+2025-12-23 17:41:19,307 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-7] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 17:41:19,307 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-7] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 17:41:19,311 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-7] Se devolvieron 11 categorias
+2025-12-23 17:41:19,313 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-3] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 17:41:19,313 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-3] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 17:41:19,318 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-3] Se devolvieron 11 categorias
+2025-12-23 17:41:21,094 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-5] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 17:41:21,094 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-5] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 17:41:21,099 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-5] Resultado: 15 usuarios encontrados
+2025-12-23 17:41:21,101 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-8] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 17:41:21,101 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-8] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 17:41:21,104 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-8] Resultado: 15 usuarios encontrados
+2025-12-23 18:12:41,032 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 18:12:41,045 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos - encontrados 15 productos
+2025-12-23 18:12:41,048 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 18:12:41,056 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos - encontrados 15 productos
+2025-12-23 18:12:41,057 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/11/imagen - solicitando imagen
+2025-12-23 18:12:41,057 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/13/imagen - solicitando imagen
+2025-12-23 18:12:41,057 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/12/imagen - solicitando imagen
+2025-12-23 18:12:41,057 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/10/imagen - solicitando imagen
+2025-12-23 18:12:41,057 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/14/imagen - solicitando imagen
+2025-12-23 18:12:41,059 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 18:12:41,059 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 18:12:41,059 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 18:12:41,059 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 18:12:41,059 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 18:12:41,059 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/9/imagen - solicitando imagen
+2025-12-23 18:12:41,061 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 18:12:41,064 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/22/imagen - solicitando imagen
+2025-12-23 18:12:41,064 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/23/imagen - solicitando imagen
+2025-12-23 18:12:41,065 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 18:12:41,066 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 18:22:53,315 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 18:22:53,325 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos - encontrados 15 productos
+2025-12-23 18:22:53,328 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 18:22:53,337 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos - encontrados 15 productos
+2025-12-23 18:22:53,372 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/14/imagen - solicitando imagen
+2025-12-23 18:22:53,372 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/11/imagen - solicitando imagen
+2025-12-23 18:22:53,372 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/13/imagen - solicitando imagen
+2025-12-23 18:22:53,372 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/12/imagen - solicitando imagen
+2025-12-23 18:22:53,372 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/10/imagen - solicitando imagen
+2025-12-23 18:22:53,372 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/9/imagen - solicitando imagen
+2025-12-23 18:22:53,375 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 18:22:53,375 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 18:22:53,375 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 18:22:53,375 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 18:22:53,375 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 18:22:53,375 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 18:22:53,387 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/22/imagen - solicitando imagen
+2025-12-23 18:22:53,387 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/23/imagen - solicitando imagen
+2025-12-23 18:22:53,387 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 18:22:53,387 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 18:23:11,223 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 18:23:11,231 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos - encontrados 15 productos
+2025-12-23 18:23:11,234 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 18:23:11,239 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/10/imagen - solicitando imagen
+2025-12-23 18:23:11,240 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/11/imagen - solicitando imagen
+2025-12-23 18:23:11,241 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/13/imagen - solicitando imagen
+2025-12-23 18:23:11,241 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/12/imagen - solicitando imagen
+2025-12-23 18:23:11,241 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 18:23:11,246 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 18:23:11,246 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/14/imagen - solicitando imagen
+2025-12-23 18:23:11,247 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 18:23:11,247 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 18:23:11,248 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos - encontrados 15 productos
+2025-12-23 18:23:11,248 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 18:23:11,253 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/9/imagen - solicitando imagen
+2025-12-23 18:23:11,253 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/22/imagen - solicitando imagen
+2025-12-23 18:23:11,255 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 18:23:11,255 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 18:23:11,256 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/23/imagen - solicitando imagen
+2025-12-23 18:23:11,257 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 18:25:32,275 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 18:25:32,290 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - encontrados 15 productos
+2025-12-23 18:25:32,295 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 18:25:32,307 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos - encontrados 15 productos
+2025-12-23 18:25:32,323 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/11/imagen - solicitando imagen
+2025-12-23 18:25:32,323 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/10/imagen - solicitando imagen
+2025-12-23 18:25:32,323 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/12/imagen - solicitando imagen
+2025-12-23 18:25:32,323 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/13/imagen - solicitando imagen
+2025-12-23 18:25:32,324 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/9/imagen - solicitando imagen
+2025-12-23 18:25:32,324 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/14/imagen - solicitando imagen
+2025-12-23 18:25:32,325 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 18:25:32,325 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 18:25:32,325 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 18:25:32,325 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 18:25:32,325 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 18:25:32,328 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 18:25:32,337 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/23/imagen - solicitando imagen
+2025-12-23 18:25:32,337 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/22/imagen - solicitando imagen
+2025-12-23 18:25:32,339 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 18:25:32,340 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 18:25:36,806 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 18:25:36,816 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - encontrados 15 productos
+2025-12-23 18:25:36,819 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 18:25:36,827 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/10/imagen - solicitando imagen
+2025-12-23 18:25:36,829 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/11/imagen - solicitando imagen
+2025-12-23 18:25:36,829 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/13/imagen - solicitando imagen
+2025-12-23 18:25:36,829 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos - encontrados 15 productos
+2025-12-23 18:25:36,830 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/12/imagen - solicitando imagen
+2025-12-23 18:25:36,830 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 18:25:36,830 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 18:25:36,830 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 18:25:36,831 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/14/imagen - solicitando imagen
+2025-12-23 18:25:36,832 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 18:25:36,832 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 18:25:36,837 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/9/imagen - solicitando imagen
+2025-12-23 18:25:36,838 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/23/imagen - solicitando imagen
+2025-12-23 18:25:36,838 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/22/imagen - solicitando imagen
+2025-12-23 18:25:36,839 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 18:25:36,840 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 18:25:36,840 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 18:25:41,115 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 18:25:41,123 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - encontrados 15 productos
+2025-12-23 18:25:41,126 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 18:25:41,130 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/10/imagen - solicitando imagen
+2025-12-23 18:25:41,131 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/11/imagen - solicitando imagen
+2025-12-23 18:25:41,133 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/13/imagen - solicitando imagen
+2025-12-23 18:25:41,134 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 18:25:41,134 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/12/imagen - solicitando imagen
+2025-12-23 18:25:41,134 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 18:25:41,135 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos - encontrados 15 productos
+2025-12-23 18:25:41,136 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/14/imagen - solicitando imagen
+2025-12-23 18:25:41,136 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 18:25:41,136 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 18:25:41,137 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 18:25:41,144 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/9/imagen - solicitando imagen
+2025-12-23 18:25:41,144 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/22/imagen - solicitando imagen
+2025-12-23 18:25:41,144 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/23/imagen - solicitando imagen
+2025-12-23 18:25:41,146 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 18:25:41,146 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 18:25:41,146 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 18:26:08,042 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/27/imagen - solicitando imagen
+2025-12-23 18:26:08,045 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/27/imagen - imagen servida correctamente
+2025-12-23 18:38:30,747 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 18:38:30,756 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos - encontrados 15 productos
+2025-12-23 18:38:30,760 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 18:38:30,767 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - encontrados 15 productos
+2025-12-23 18:38:30,789 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/10/imagen - solicitando imagen
+2025-12-23 18:38:30,789 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/11/imagen - solicitando imagen
+2025-12-23 18:38:30,789 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/13/imagen - solicitando imagen
+2025-12-23 18:38:30,789 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/9/imagen - solicitando imagen
+2025-12-23 18:38:30,789 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/12/imagen - solicitando imagen
+2025-12-23 18:38:30,789 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/14/imagen - solicitando imagen
+2025-12-23 18:38:30,793 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 18:38:30,793 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 18:38:30,793 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 18:38:30,793 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 18:38:30,793 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 18:38:30,793 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 18:38:30,805 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/22/imagen - solicitando imagen
+2025-12-23 18:38:30,805 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/23/imagen - solicitando imagen
+2025-12-23 18:38:30,807 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 18:38:30,807 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 19:22:46,043 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/11 - solicitando producto por ID
+2025-12-23 19:22:46,048 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/11 - producto encontrado correctamente
+2025-12-23 19:22:46,048 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/11 - solicitando producto por ID
+2025-12-23 19:22:46,048 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/11 - producto encontrado correctamente
+2025-12-23 19:22:46,063 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/11/imagen - solicitando imagen
+2025-12-23 19:22:46,065 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 19:24:21,154 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/1919191 - solicitando producto por ID
+2025-12-23 19:24:21,155 WARN c.n.r.s.ProductoService [http-nio-8080-exec-5] Producto 1919191 no encontrado
+2025-12-23 19:24:21,162 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-5] Recurso no encontrado: ProductoNoEncontradoException
+2025-12-23 19:24:21,175 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/1919191 - solicitando producto por ID
+2025-12-23 19:24:21,175 WARN c.n.r.s.ProductoService [http-nio-8080-exec-10] Producto 1919191 no encontrado
+2025-12-23 19:24:21,175 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-10] Recurso no encontrado: ProductoNoEncontradoException
+2025-12-23 19:24:29,112 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/11/imagen - solicitando imagen
+2025-12-23 19:24:29,115 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 19:24:42,445 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/11/imagen - solicitando imagen
+2025-12-23 19:24:42,446 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 19:27:37,957 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/11 - solicitando producto por ID
+2025-12-23 19:27:37,959 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/11 - producto encontrado correctamente
+2025-12-23 19:27:37,962 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/11 - solicitando producto por ID
+2025-12-23 19:27:37,963 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/11 - producto encontrado correctamente
+2025-12-23 19:27:37,965 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/11/imagen - solicitando imagen
+2025-12-23 19:27:37,966 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 19:27:56,332 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-23 19:27:56,346 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-12-23 19:27:56,346 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-23 19:27:56,353 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-12-23 19:27:56,353 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-12-23 19:28:20,627 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.3.Final
+2025-12-23 19:28:20,656 INFO o.s.b.StartupInfoLogger [main] Starting RelabApplication using Java 21.0.8 with PID 3360 (D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab\target\classes started by natal in D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab)
+2025-12-23 19:28:20,657 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-12-23 19:28:20,995 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-23 19:28:21,050 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 47 ms. Found 5 JPA repository interfaces.
+2025-12-23 19:28:21,414 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-12-23 19:28:21,430 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-12-23 19:28:21,430 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2025-12-23 19:28:21,430 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-12-23 19:28:21,467 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-12-23 19:28:21,467 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 785 ms
+2025-12-23 19:28:21,570 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-23 19:28:21,592 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-12-23 19:28:21,617 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2025-12-23 19:28:21,795 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-23 19:28:21,814 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2025-12-23 19:28:21,875 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.mariadb.jdbc.Connection@20864cd1
+2025-12-23 19:28:21,875 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-12-23 19:28:21,904 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-23 19:28:21,915 INFO o.h.e.j.e.i.JdbcEnvironmentInitiator [main] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 12.0.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-12-23 19:28:22,564 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-23 19:28:22,603 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-23 19:28:22,898 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-23 19:28:23,124 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-12-23 19:28:23,140 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-12-23 19:28:23,140 INFO o.s.b.StartupInfoLogger [main] Started RelabApplication in 2.766 seconds (process running for 2.94)
+2025-12-23 19:28:23,876 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-23 19:28:23,877 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-12-23 19:28:23,878 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-12-23 19:28:23,916 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 19:28:24,036 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - encontrados 15 productos
+2025-12-23 19:28:24,081 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 19:28:24,099 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos - encontrados 15 productos
+2025-12-23 19:28:24,100 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/12/imagen - solicitando imagen
+2025-12-23 19:28:24,100 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/14/imagen - solicitando imagen
+2025-12-23 19:28:24,100 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/11/imagen - solicitando imagen
+2025-12-23 19:28:24,100 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/10/imagen - solicitando imagen
+2025-12-23 19:28:24,100 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/13/imagen - solicitando imagen
+2025-12-23 19:28:24,104 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/9/imagen - solicitando imagen
+2025-12-23 19:28:24,106 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 19:28:24,106 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 19:28:24,106 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 19:28:24,106 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 19:28:24,106 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 19:28:24,106 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 19:28:24,106 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/22/imagen - solicitando imagen
+2025-12-23 19:28:24,106 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/23/imagen - solicitando imagen
+2025-12-23 19:28:24,115 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 19:28:24,116 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 19:28:37,310 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/10 - solicitando producto por ID
+2025-12-23 19:28:37,314 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/10 - producto encontrado correctamente
+2025-12-23 19:28:37,319 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/10 - solicitando producto por ID
+2025-12-23 19:28:37,323 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/10 - producto encontrado correctamente
+2025-12-23 19:35:42,306 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/11 - solicitando producto por ID
+2025-12-23 19:35:42,309 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/11 - producto encontrado correctamente
+2025-12-23 19:35:42,312 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/11 - solicitando producto por ID
+2025-12-23 19:35:42,315 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/11/imagen - solicitando imagen
+2025-12-23 19:35:42,315 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/11 - producto encontrado correctamente
+2025-12-23 19:35:42,317 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 19:36:48,832 ERROR c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-5] Error interno inesperado
+org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'id': Failed to convert value of type 'java.lang.String' to required type 'long'; For input string: "undefined"
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.convertIfNecessary(AbstractNamedValueMethodArgumentResolver.java:301)
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.resolveArgument(AbstractNamedValueMethodArgumentResolver.java:136)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:227)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:181)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1776)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:975)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:493)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.lang.NumberFormatException: For input string: "undefined"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Long.parseLong(Long.java:709)
+	at java.base/java.lang.Long.valueOf(Long.java:1157)
+	at org.springframework.util.NumberUtils.parseNumber(NumberUtils.java:204)
+	at org.springframework.beans.propertyeditors.CustomNumberEditor.setAsText(CustomNumberEditor.java:115)
+	at org.springframework.beans.TypeConverterDelegate.doConvertTextValue(TypeConverterDelegate.java:439)
+	at org.springframework.beans.TypeConverterDelegate.doConvertValue(TypeConverterDelegate.java:412)
+	at org.springframework.beans.TypeConverterDelegate.convertIfNecessary(TypeConverterDelegate.java:161)
+	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:80)
+	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:53)
+	at org.springframework.validation.DataBinder.convertIfNecessary(DataBinder.java:867)
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.convertIfNecessary(AbstractNamedValueMethodArgumentResolver.java:293)
+	... 48 common frames omitted
+2025-12-23 19:36:48,839 ERROR c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-3] Error interno inesperado
+org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'id': Failed to convert value of type 'java.lang.String' to required type 'long'; For input string: "undefined"
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.convertIfNecessary(AbstractNamedValueMethodArgumentResolver.java:301)
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.resolveArgument(AbstractNamedValueMethodArgumentResolver.java:136)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:227)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:181)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1776)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:975)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:493)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.lang.NumberFormatException: For input string: "undefined"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Long.parseLong(Long.java:709)
+	at java.base/java.lang.Long.valueOf(Long.java:1157)
+	at org.springframework.util.NumberUtils.parseNumber(NumberUtils.java:204)
+	at org.springframework.beans.propertyeditors.CustomNumberEditor.setAsText(CustomNumberEditor.java:115)
+	at org.springframework.beans.TypeConverterDelegate.doConvertTextValue(TypeConverterDelegate.java:439)
+	at org.springframework.beans.TypeConverterDelegate.doConvertValue(TypeConverterDelegate.java:412)
+	at org.springframework.beans.TypeConverterDelegate.convertIfNecessary(TypeConverterDelegate.java:161)
+	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:80)
+	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:53)
+	at org.springframework.validation.DataBinder.convertIfNecessary(DataBinder.java:867)
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.convertIfNecessary(AbstractNamedValueMethodArgumentResolver.java:293)
+	... 48 common frames omitted
+2025-12-23 19:37:14,578 ERROR c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-6] Error interno inesperado
+org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'id': Failed to convert value of type 'java.lang.String' to required type 'long'; For input string: "undefined"
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.convertIfNecessary(AbstractNamedValueMethodArgumentResolver.java:301)
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.resolveArgument(AbstractNamedValueMethodArgumentResolver.java:136)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:227)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:181)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1776)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:975)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:493)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.lang.NumberFormatException: For input string: "undefined"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Long.parseLong(Long.java:709)
+	at java.base/java.lang.Long.valueOf(Long.java:1157)
+	at org.springframework.util.NumberUtils.parseNumber(NumberUtils.java:204)
+	at org.springframework.beans.propertyeditors.CustomNumberEditor.setAsText(CustomNumberEditor.java:115)
+	at org.springframework.beans.TypeConverterDelegate.doConvertTextValue(TypeConverterDelegate.java:439)
+	at org.springframework.beans.TypeConverterDelegate.doConvertValue(TypeConverterDelegate.java:412)
+	at org.springframework.beans.TypeConverterDelegate.convertIfNecessary(TypeConverterDelegate.java:161)
+	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:80)
+	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:53)
+	at org.springframework.validation.DataBinder.convertIfNecessary(DataBinder.java:867)
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.convertIfNecessary(AbstractNamedValueMethodArgumentResolver.java:293)
+	... 48 common frames omitted
+2025-12-23 19:37:14,582 ERROR c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-9] Error interno inesperado
+org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'id': Failed to convert value of type 'java.lang.String' to required type 'long'; For input string: "undefined"
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.convertIfNecessary(AbstractNamedValueMethodArgumentResolver.java:301)
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.resolveArgument(AbstractNamedValueMethodArgumentResolver.java:136)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:227)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:181)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1776)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:975)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:493)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.lang.NumberFormatException: For input string: "undefined"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Long.parseLong(Long.java:709)
+	at java.base/java.lang.Long.valueOf(Long.java:1157)
+	at org.springframework.util.NumberUtils.parseNumber(NumberUtils.java:204)
+	at org.springframework.beans.propertyeditors.CustomNumberEditor.setAsText(CustomNumberEditor.java:115)
+	at org.springframework.beans.TypeConverterDelegate.doConvertTextValue(TypeConverterDelegate.java:439)
+	at org.springframework.beans.TypeConverterDelegate.doConvertValue(TypeConverterDelegate.java:412)
+	at org.springframework.beans.TypeConverterDelegate.convertIfNecessary(TypeConverterDelegate.java:161)
+	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:80)
+	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:53)
+	at org.springframework.validation.DataBinder.convertIfNecessary(DataBinder.java:867)
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.convertIfNecessary(AbstractNamedValueMethodArgumentResolver.java:293)
+	... 48 common frames omitted
+2025-12-23 19:41:09,633 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 19:41:09,646 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos - encontrados 15 productos
+2025-12-23 19:41:09,650 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 19:41:09,662 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - encontrados 15 productos
+2025-12-23 19:41:09,669 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/11/imagen - solicitando imagen
+2025-12-23 19:41:09,670 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/12/imagen - solicitando imagen
+2025-12-23 19:41:09,669 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/13/imagen - solicitando imagen
+2025-12-23 19:41:09,670 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/14/imagen - solicitando imagen
+2025-12-23 19:41:09,669 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/10/imagen - solicitando imagen
+2025-12-23 19:41:09,670 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/9/imagen - solicitando imagen
+2025-12-23 19:41:09,672 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 19:41:09,672 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 19:41:09,672 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 19:41:09,672 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 19:41:09,672 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 19:41:09,673 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 19:41:09,681 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/22/imagen - solicitando imagen
+2025-12-23 19:41:09,681 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/23/imagen - solicitando imagen
+2025-12-23 19:41:09,683 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 19:41:09,684 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 19:41:10,463 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/10 - solicitando producto por ID
+2025-12-23 19:41:10,467 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/10 - producto encontrado correctamente
+2025-12-23 19:41:10,470 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/10 - solicitando producto por ID
+2025-12-23 19:41:10,473 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/10 - producto encontrado correctamente
+2025-12-23 19:45:59,676 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 19:45:59,691 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos - encontrados 15 productos
+2025-12-23 19:45:59,694 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 19:45:59,704 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - encontrados 15 productos
+2025-12-23 19:45:59,711 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/11/imagen - solicitando imagen
+2025-12-23 19:45:59,711 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/13/imagen - solicitando imagen
+2025-12-23 19:45:59,711 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/10/imagen - solicitando imagen
+2025-12-23 19:45:59,711 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/12/imagen - solicitando imagen
+2025-12-23 19:45:59,712 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/9/imagen - solicitando imagen
+2025-12-23 19:45:59,712 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/14/imagen - solicitando imagen
+2025-12-23 19:45:59,713 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 19:45:59,713 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 19:45:59,713 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 19:45:59,713 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 19:45:59,715 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 19:45:59,716 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 19:45:59,724 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/23/imagen - solicitando imagen
+2025-12-23 19:45:59,724 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/22/imagen - solicitando imagen
+2025-12-23 19:45:59,726 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 19:45:59,726 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 19:46:00,382 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/11 - solicitando producto por ID
+2025-12-23 19:46:00,386 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/11 - producto encontrado correctamente
+2025-12-23 19:46:00,388 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/11 - solicitando producto por ID
+2025-12-23 19:46:00,391 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/11 - producto encontrado correctamente
+2025-12-23 19:50:35,203 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 19:50:35,216 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos - encontrados 15 productos
+2025-12-23 19:50:35,218 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 19:50:35,228 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - encontrados 15 productos
+2025-12-23 19:50:39,878 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/9 - solicitando producto por ID
+2025-12-23 19:50:39,881 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/9 - producto encontrado correctamente
+2025-12-23 19:50:39,884 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/9 - solicitando producto por ID
+2025-12-23 19:50:39,887 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/9 - producto encontrado correctamente
+2025-12-23 19:50:42,220 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 19:50:42,233 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos - encontrados 15 productos
+2025-12-23 19:50:42,237 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 19:50:42,252 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - encontrados 15 productos
+2025-12-23 19:51:09,820 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/12 - solicitando producto por ID
+2025-12-23 19:51:09,822 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/12 - producto encontrado correctamente
+2025-12-23 19:51:09,824 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/12 - solicitando producto por ID
+2025-12-23 19:51:09,827 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/12 - producto encontrado correctamente
+2025-12-23 19:51:14,033 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/27 - solicitando producto por ID
+2025-12-23 19:51:14,036 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/27 - producto encontrado correctamente
+2025-12-23 19:51:14,039 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/27 - solicitando producto por ID
+2025-12-23 19:51:14,041 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/27 - producto encontrado correctamente
+2025-12-23 19:51:14,044 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/27/imagen - solicitando imagen
+2025-12-23 19:51:14,046 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/27/imagen - imagen servida correctamente
+2025-12-23 19:52:00,647 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/12 - solicitando producto por ID
+2025-12-23 19:52:00,650 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/12 - producto encontrado correctamente
+2025-12-23 19:52:00,652 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/12 - solicitando producto por ID
+2025-12-23 19:52:00,654 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/12 - producto encontrado correctamente
+2025-12-23 19:52:00,657 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/12/imagen - solicitando imagen
+2025-12-23 19:52:00,659 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 19:53:21,799 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/12 - solicitando producto por ID
+2025-12-23 19:53:21,802 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/12 - producto encontrado correctamente
+2025-12-23 19:53:21,804 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/12 - solicitando producto por ID
+2025-12-23 19:53:21,807 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/12 - producto encontrado correctamente
+2025-12-23 19:53:21,808 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/12/imagen - solicitando imagen
+2025-12-23 19:53:21,809 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 19:53:25,979 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 19:53:25,990 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos - encontrados 15 productos
+2025-12-23 19:53:25,994 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 19:53:26,003 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - encontrados 15 productos
+2025-12-23 19:53:26,011 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/10/imagen - solicitando imagen
+2025-12-23 19:53:26,011 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/9/imagen - solicitando imagen
+2025-12-23 19:53:26,011 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/11/imagen - solicitando imagen
+2025-12-23 19:53:26,011 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/13/imagen - solicitando imagen
+2025-12-23 19:53:26,011 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/14/imagen - solicitando imagen
+2025-12-23 19:53:26,012 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/22/imagen - solicitando imagen
+2025-12-23 19:53:26,013 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 19:53:26,013 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 19:53:26,013 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 19:53:26,013 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 19:53:26,013 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 19:53:26,015 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 19:53:26,024 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/23/imagen - solicitando imagen
+2025-12-23 19:53:26,027 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 19:53:26,541 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/11 - solicitando producto por ID
+2025-12-23 19:53:26,544 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/11 - producto encontrado correctamente
+2025-12-23 19:53:26,546 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/11 - solicitando producto por ID
+2025-12-23 19:53:26,549 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/11 - producto encontrado correctamente
+2025-12-23 19:53:28,469 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 19:53:28,481 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - encontrados 15 productos
+2025-12-23 19:53:28,484 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 19:53:28,492 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos - encontrados 15 productos
+2025-12-23 19:53:32,348 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/14 - solicitando producto por ID
+2025-12-23 19:53:32,352 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/14 - producto encontrado correctamente
+2025-12-23 19:53:32,354 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/14 - solicitando producto por ID
+2025-12-23 19:53:32,354 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/14/imagen - solicitando imagen
+2025-12-23 19:53:32,354 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/14 - producto encontrado correctamente
+2025-12-23 19:53:32,354 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 19:54:44,601 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/14 - solicitando producto por ID
+2025-12-23 19:54:44,601 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/14 - producto encontrado correctamente
+2025-12-23 19:54:44,601 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/14 - solicitando producto por ID
+2025-12-23 19:54:44,608 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/14 - producto encontrado correctamente
+2025-12-23 19:54:44,622 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/14/imagen - solicitando imagen
+2025-12-23 19:54:44,624 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 19:57:01,429 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/14 - solicitando producto por ID
+2025-12-23 19:57:01,431 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/14 - producto encontrado correctamente
+2025-12-23 19:57:01,434 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/14 - solicitando producto por ID
+2025-12-23 19:57:01,436 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/14 - producto encontrado correctamente
+2025-12-23 19:57:01,450 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/14/imagen - solicitando imagen
+2025-12-23 19:57:01,452 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 20:09:48,022 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 20:09:48,030 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos - encontrados 15 productos
+2025-12-23 20:09:48,033 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 20:09:48,042 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos - encontrados 15 productos
+2025-12-23 20:09:48,043 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/11/imagen - solicitando imagen
+2025-12-23 20:09:48,043 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/10/imagen - solicitando imagen
+2025-12-23 20:09:48,043 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/13/imagen - solicitando imagen
+2025-12-23 20:09:48,044 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/12/imagen - solicitando imagen
+2025-12-23 20:09:48,045 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 20:09:48,045 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/9/imagen - solicitando imagen
+2025-12-23 20:09:48,045 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 20:09:48,045 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/22/imagen - solicitando imagen
+2025-12-23 20:09:48,046 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 20:09:48,046 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 20:09:48,048 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 20:09:48,048 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 20:09:48,050 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/23/imagen - solicitando imagen
+2025-12-23 20:09:48,051 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 20:09:48,637 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-2] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 20:09:48,637 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-2] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 20:09:48,661 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-2] Se devolvieron 11 categorias
+2025-12-23 20:09:48,666 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-5] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 20:09:48,666 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-5] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 20:09:48,670 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-5] Se devolvieron 11 categorias
+2025-12-23 20:09:49,844 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-8] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 20:09:49,844 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-8] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 20:09:49,849 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-8] Se devolvieron 11 categorias
+2025-12-23 20:09:49,851 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-4] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 20:09:49,851 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-4] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 20:09:49,852 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-4] Se devolvieron 11 categorias
+2025-12-23 20:10:43,983 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-6] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 20:10:43,984 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-6] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 20:10:43,999 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-6] Resultado: 15 usuarios encontrados
+2025-12-23 20:10:44,008 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-9] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 20:10:44,008 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-9] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 20:10:44,012 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-9] Resultado: 15 usuarios encontrados
+2025-12-23 20:10:44,576 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 20:10:44,597 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos - encontrados 15 productos
+2025-12-23 20:10:44,601 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 20:10:44,608 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/14/imagen - solicitando imagen
+2025-12-23 20:10:44,608 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/10/imagen - solicitando imagen
+2025-12-23 20:10:44,608 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/13/imagen - solicitando imagen
+2025-12-23 20:10:44,608 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/11/imagen - solicitando imagen
+2025-12-23 20:10:44,608 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/12/imagen - solicitando imagen
+2025-12-23 20:10:44,610 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 20:10:44,610 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 20:10:44,610 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 20:10:44,610 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 20:10:44,610 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 20:10:44,611 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos - encontrados 15 productos
+2025-12-23 20:10:44,612 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/9/imagen - solicitando imagen
+2025-12-23 20:10:44,613 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/22/imagen - solicitando imagen
+2025-12-23 20:10:44,613 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/23/imagen - solicitando imagen
+2025-12-23 20:10:44,614 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 20:10:44,615 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 20:10:44,615 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 20:10:45,130 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-10] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 20:10:45,130 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-10] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 20:10:45,130 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-10] Se devolvieron 11 categorias
+2025-12-23 20:10:45,130 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-3] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 20:10:45,142 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-3] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 20:10:45,147 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-3] Se devolvieron 11 categorias
+2025-12-23 20:13:14,601 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-10] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 20:13:14,602 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-10] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 20:13:14,605 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-10] Se devolvieron 11 categorias
+2025-12-23 20:13:14,608 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-3] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 20:13:14,608 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-3] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 20:13:14,611 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-3] Se devolvieron 11 categorias
+2025-12-23 20:14:03,406 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 20:14:03,415 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos - encontrados 15 productos
+2025-12-23 20:14:03,419 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 20:14:03,426 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/13/imagen - solicitando imagen
+2025-12-23 20:14:03,426 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/11/imagen - solicitando imagen
+2025-12-23 20:14:03,426 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos - encontrados 15 productos
+2025-12-23 20:14:03,426 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/10/imagen - solicitando imagen
+2025-12-23 20:14:03,426 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/12/imagen - solicitando imagen
+2025-12-23 20:14:03,426 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/14/imagen - solicitando imagen
+2025-12-23 20:14:03,427 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 20:14:03,427 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 20:14:03,427 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 20:14:03,427 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 20:14:03,428 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 20:14:03,429 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/9/imagen - solicitando imagen
+2025-12-23 20:14:03,431 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 20:14:03,437 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/22/imagen - solicitando imagen
+2025-12-23 20:14:03,438 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/23/imagen - solicitando imagen
+2025-12-23 20:14:03,438 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 20:14:03,439 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 20:14:09,094 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 20:14:09,102 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos - encontrados 15 productos
+2025-12-23 20:14:09,105 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 20:14:09,107 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/10/imagen - solicitando imagen
+2025-12-23 20:14:09,107 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/11/imagen - solicitando imagen
+2025-12-23 20:14:09,108 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/13/imagen - solicitando imagen
+2025-12-23 20:14:09,108 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/12/imagen - solicitando imagen
+2025-12-23 20:14:09,108 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/14/imagen - solicitando imagen
+2025-12-23 20:14:09,109 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 20:14:09,109 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 20:14:09,110 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 20:14:09,111 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 20:14:09,111 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 20:14:09,114 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos - encontrados 15 productos
+2025-12-23 20:14:09,117 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/9/imagen - solicitando imagen
+2025-12-23 20:14:09,121 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/22/imagen - solicitando imagen
+2025-12-23 20:14:09,121 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 20:14:09,123 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/23/imagen - solicitando imagen
+2025-12-23 20:14:09,125 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 20:14:09,126 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 20:14:10,674 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-2] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 20:14:10,675 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-2] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 20:14:10,684 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-2] Resultado: 15 usuarios encontrados
+2025-12-23 20:14:10,687 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-2] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 20:14:10,687 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-2] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 20:14:10,691 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-2] Resultado: 15 usuarios encontrados
+2025-12-23 20:14:11,758 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-4] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 20:14:11,758 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-4] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 20:14:11,758 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-4] Se devolvieron 11 categorias
+2025-12-23 20:14:11,767 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-7] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 20:14:11,768 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-7] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 20:14:11,772 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-7] Se devolvieron 11 categorias
+2025-12-23 20:14:12,439 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 20:14:12,443 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - encontrados 15 productos
+2025-12-23 20:14:12,450 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 20:14:12,458 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - encontrados 15 productos
+2025-12-23 20:14:12,855 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-5] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 20:14:12,855 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-5] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 20:14:12,860 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-5] Resultado: 15 usuarios encontrados
+2025-12-23 20:14:12,862 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-9] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 20:14:12,862 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-9] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 20:14:12,865 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-9] Resultado: 15 usuarios encontrados
+2025-12-23 20:14:17,727 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 20:14:17,739 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos - encontrados 15 productos
+2025-12-23 20:14:17,742 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 20:14:17,749 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos - encontrados 15 productos
+2025-12-23 20:14:18,170 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-8] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 20:14:18,170 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-8] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 20:14:18,170 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-8] Se devolvieron 11 categorias
+2025-12-23 20:14:18,170 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-2] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2025-12-23 20:14:18,170 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-2] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2025-12-23 20:14:18,187 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-2] Se devolvieron 11 categorias
+2025-12-23 20:16:06,554 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-8] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 20:16:06,554 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-8] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 20:16:06,558 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-8] Resultado: 15 usuarios encontrados
+2025-12-23 20:16:06,561 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-2] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 20:16:06,561 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-2] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2025-12-23 20:16:06,564 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-2] Resultado: 15 usuarios encontrados
+2025-12-23 20:17:32,265 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 20:17:32,273 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - encontrados 15 productos
+2025-12-23 20:17:32,276 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 20:17:32,283 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos - encontrados 15 productos
+2025-12-23 20:17:32,286 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/13/imagen - solicitando imagen
+2025-12-23 20:17:32,286 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/10/imagen - solicitando imagen
+2025-12-23 20:17:32,286 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/12/imagen - solicitando imagen
+2025-12-23 20:17:32,286 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/11/imagen - solicitando imagen
+2025-12-23 20:17:32,286 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/9/imagen - solicitando imagen
+2025-12-23 20:17:32,287 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/14/imagen - solicitando imagen
+2025-12-23 20:17:32,288 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 20:17:32,288 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 20:17:32,288 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 20:17:32,288 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 20:17:32,288 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 20:17:32,288 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 20:17:32,297 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/23/imagen - solicitando imagen
+2025-12-23 20:17:32,297 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/22/imagen - solicitando imagen
+2025-12-23 20:17:32,299 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 20:17:32,299 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 20:17:33,015 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/11 - solicitando producto por ID
+2025-12-23 20:17:33,019 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/11 - producto encontrado correctamente
+2025-12-23 20:17:33,023 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/11 - solicitando producto por ID
+2025-12-23 20:17:33,024 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/11 - producto encontrado correctamente
+2025-12-23 20:22:06,087 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/11 - solicitando producto por ID
+2025-12-23 20:22:06,087 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/11 - producto encontrado correctamente
+2025-12-23 20:22:06,097 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/11 - solicitando producto por ID
+2025-12-23 20:22:06,100 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/11 - producto encontrado correctamente
+2025-12-23 20:22:06,111 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/11/imagen - solicitando imagen
+2025-12-23 20:22:06,113 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos/11/imagen - imagen servida correctamente
+2025-12-23 20:22:10,483 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 20:22:10,490 INFO c.n.r.c.ProductoController [http-nio-8080-exec-9] GET /productos - encontrados 15 productos
+2025-12-23 20:22:10,493 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - filtros: nombre=null, activo=null, categoriaId=null, usuarioId=null
+2025-12-23 20:22:10,499 INFO c.n.r.c.ProductoController [http-nio-8080-exec-1] GET /productos - encontrados 15 productos
+2025-12-23 20:22:10,511 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/10/imagen - solicitando imagen
+2025-12-23 20:22:10,511 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/13/imagen - solicitando imagen
+2025-12-23 20:22:10,511 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/22/imagen - solicitando imagen
+2025-12-23 20:22:10,511 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/9/imagen - solicitando imagen
+2025-12-23 20:22:10,511 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/14/imagen - solicitando imagen
+2025-12-23 20:22:10,511 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/12/imagen - solicitando imagen
+2025-12-23 20:22:10,513 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos/22/imagen - imagen servida correctamente
+2025-12-23 20:22:10,513 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos/10/imagen - imagen servida correctamente
+2025-12-23 20:22:10,513 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos/13/imagen - imagen servida correctamente
+2025-12-23 20:22:10,513 INFO c.n.r.c.ProductoController [http-nio-8080-exec-4] GET /productos/9/imagen - imagen servida correctamente
+2025-12-23 20:22:10,513 INFO c.n.r.c.ProductoController [http-nio-8080-exec-8] GET /productos/14/imagen - imagen servida correctamente
+2025-12-23 20:22:10,513 INFO c.n.r.c.ProductoController [http-nio-8080-exec-10] GET /productos/12/imagen - imagen servida correctamente
+2025-12-23 20:22:10,523 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/23/imagen - solicitando imagen
+2025-12-23 20:22:10,523 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos/23/imagen - imagen servida correctamente
+2025-12-23 20:22:38,860 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-23 20:22:38,860 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-12-23 20:22:38,860 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-23 20:22:38,872 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-12-23 20:22:38,874 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.

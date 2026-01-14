@@ -78,7 +78,7 @@ API REST construida con Java, Spring Boot y Maven que se conecta a una base de d
 ## Notas
 
 * La aplicación genera y actualiza automáticamente las tablas en la base de datos según los modelos.
-* Logging configurado para diferenciar niveles (`INFO`, `WARN`, `ERROR`, `DEBUG`) según necesidades de desarrollo.
+* Logging configurado para diferenciar niveles (`INFO`, `WARN`, `ERROR`) según necesidades de desarrollo.
 
 ## Autora
 - Natalia Garré
