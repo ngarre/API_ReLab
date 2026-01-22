@@ -72,49 +72,60 @@ public class CategoriaService {
         log.info("Listando categorías con filtros - nombre: {}, activa: {}, fechaCreacion: {}, desde: {}, hasta: {}",
                 nombre, activa, fechaCreacion, desde, hasta);
 
+        // Parto de todas las categorías
+        List<Categoria> categorias = categoriaRepository.findAll();
 
-        // Filtrado por nombre --> Coincidencias parciales y sin distinguir mayúsculas y minúsculas
-        if (nombre != null && !nombre.isEmpty()) {
-            return categoriaRepository.findByNombreContainingIgnoreCase(nombre)
-                    .stream()
-                    .map(this::mapToOutDto)
+        // Filtrado por nombre (parcial e ignore case)
+        if (nombre != null && !nombre.trim().isEmpty()) {
+            String nombreFiltrado = nombre.trim().toLowerCase();
+            categorias = categorias.stream()
+                    .filter(categoria -> categoria.getNombre() != null &&
+                            categoria.getNombre().toLowerCase().contains(nombreFiltrado))
                     .toList();
         }
 
-        // Filtrado por activa o no
+        // Filtrado por activa (true/false)
         if (activa != null) {
-            return categoriaRepository.findByActiva(activa)
-                    .stream()
-                    .map(this::mapToOutDto)
+            categorias = categorias.stream()
+                    .filter(categoria -> categoria.isActiva() == activa)
                     .toList();
         }
 
         // Filtrado por fecha exacta o rango ("Desde-hasta" o "desde-hasta fecha actual")
         // 1. Filtrado por fecha EXACTA
         if (fechaCreacion != null) {
-            return categoriaRepository.findByFechaCreacion(fechaCreacion)
-                    .stream()
-                    .map(this::mapToOutDto)
-                    .toList();
-        }
-        // 2. Filtrado por RANGO completo: desde + hasta
-        if (desde != null && hasta != null) {
-            return categoriaRepository.findByFechaCreacionBetween(desde, hasta)
-                    .stream()
-                    .map(this::mapToOutDto)
-                    .toList();
-        }
-        // 3. Filtrado por RANGO parcialmente abierto (solo desde)
-        if (desde != null) {
-            return categoriaRepository.findByFechaCreacionBetween(desde, LocalDate.now())
-                    .stream()
-                    .map(this::mapToOutDto)
+            categorias = categorias.stream()
+                    .filter(categoria -> categoria.getFechaCreacion() != null &&
+                            categoria.getFechaCreacion().isEqual(fechaCreacion))
                     .toList();
         }
 
-        // Si no hay ningún filtro, listar todas
-        return categoriaRepository.findAll()
-                .stream()
+        // 2. Filtrado por RANGO completo (desde + hasta)
+        if (desde != null && hasta != null) {
+            categorias = categorias.stream()
+                    .filter(categoria -> categoria.getFechaCreacion() != null &&
+                            !categoria.getFechaCreacion().isBefore(desde) &&
+                            !categoria.getFechaCreacion().isAfter(hasta))
+                    .toList();
+        } else if (desde != null) { // rango abierto (desde hasta hoy)
+            LocalDate hoy = LocalDate.now();
+            categorias = categorias.stream()
+                    .filter(categoria -> categoria.getFechaCreacion() != null &&
+                            !categoria.getFechaCreacion().isBefore(desde) &&
+                            !categoria.getFechaCreacion().isAfter(hoy))
+                    .toList();
+        }
+
+        // Filtrado por rango parcialmente abierto (desde inicio hasta esa fecha)
+        else if (hasta != null) {
+            categorias = categorias.stream()
+                    .filter(c -> c.getFechaCreacion() != null &&
+                            !c.getFechaCreacion().isAfter(hasta))
+                    .toList();
+        }
+
+        // Mapear a DTOs y devolver
+        return categorias.stream()
                 .map(this::mapToOutDto)
                 .toList();
     }
