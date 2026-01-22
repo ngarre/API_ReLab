@@ -106,51 +106,41 @@ public class AlquilerService {
         log.info("Servicio: Listando alquileres con filtros: arrendadorId={}, arrendatarioId={}, productoId={}",
                 arrendadorId, arrendatarioId, productoId);
 
+        // Parto de todos los alquileres
+        List<Alquiler> alquileres = alquilerRepository.findAll();
+
         // Filtrado por arrendadorId
         if (arrendadorId != null) {
-            // Se verifica que el usuario arrendador exista
-            boolean existe = usuarioRepository.existsById(arrendadorId);
-            if (!existe) {
+            if (!usuarioRepository.existsById(arrendadorId)) {
                 throw new UsuarioNoEncontradoException();
             }
-
-            return alquilerRepository.findByArrendadorId(arrendadorId)
-                    .stream()
-                    .map(this::mapToOutDto)
+            alquileres = alquileres.stream()
+                    .filter(a -> a.getArrendador() != null && a.getArrendador().getId() == arrendadorId)
                     .toList();
         }
 
         // Filtrado por arrendatarioId
         if (arrendatarioId != null) {
-            // Se verifica que el usuario arrendatario exista
-            boolean existe = usuarioRepository.existsById(arrendatarioId);
-            if (!existe) {
+            if (!usuarioRepository.existsById(arrendatarioId)) {
                 throw new UsuarioNoEncontradoException();
             }
-
-            return alquilerRepository.findByArrendatarioId(arrendatarioId)
-                .stream()
-                .map(this::mapToOutDto)
-                .toList();
+            alquileres = alquileres.stream()
+                    .filter(a -> a.getArrendatario() != null && a.getArrendatario().getId()==arrendatarioId)
+                    .toList();
         }
 
         // Filtrado por productoid
         if (productoId != null) {
-            // Se verifica que el producto exista
-            boolean existe = productoRepository.existsById(productoId);
-            if (!existe) {
+            if (!productoRepository.existsById(productoId)) {
                 throw new ProductoNoEncontradoException();
             }
-
-            return alquilerRepository.findByProductoId(productoId)
-                    .stream()
-                    .map(this::mapToOutDto)
+            alquileres = alquileres.stream()
+                    .filter(a -> a.getProducto() != null && a.getProducto().getId() == productoId)
                     .toList();
         }
 
-        // Sin filtros → todos los alquileres
-        return alquilerRepository.findAll()
-                .stream()
+        //  Mapear a DTOs y devolver
+        return alquileres.stream()
                 .map(this::mapToOutDto)
                 .toList();
     }

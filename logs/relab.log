@@ -2085,3 +2085,56 @@
 2026-01-22 20:29:11,923 INFO c.n.r.s.UsuarioService [main] Buscando usuario por id 10
 2026-01-22 20:29:11,923 WARN c.n.r.s.UsuarioService [main] Eliminando usuario con id 10
 2026-01-22 20:29:11,939 INFO c.n.r.s.UsuarioService [main] Usuario 10 eliminado
+2026-01-22 20:35:00,296 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.3.Final
+2026-01-22 20:35:00,335 INFO o.s.b.StartupInfoLogger [main] Starting RelabApplication using Java 21.0.8 with PID 25900 (D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab\target\classes started by natal in D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab)
+2026-01-22 20:35:00,336 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2026-01-22 20:35:00,751 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-22 20:35:00,799 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 41 ms. Found 5 JPA repository interfaces.
+2026-01-22 20:35:01,155 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2026-01-22 20:35:01,163 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2026-01-22 20:35:01,165 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2026-01-22 20:35:01,165 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-01-22 20:35:01,209 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2026-01-22 20:35:01,210 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 844 ms
+2026-01-22 20:35:01,313 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-22 20:35:01,348 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-01-22 20:35:01,371 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2026-01-22 20:35:01,555 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-22 20:35:01,572 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2026-01-22 20:35:01,634 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.mariadb.jdbc.Connection@5a0f87e5
+2026-01-22 20:35:01,636 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2026-01-22 20:35:01,654 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-22 20:35:01,665 INFO o.h.e.j.e.i.JdbcEnvironmentInitiator [main] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 12.0.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-22 20:35:02,338 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-22 20:35:02,388 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-22 20:35:02,728 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-22 20:35:02,977 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2026-01-22 20:35:02,994 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2026-01-22 20:35:03,003 INFO o.s.b.StartupInfoLogger [main] Started RelabApplication in 3.117 seconds (process running for 3.325)
+2026-01-22 20:36:18,745 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-3] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-22 20:36:18,746 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-3] Initializing Servlet 'dispatcherServlet'
+2026-01-22 20:36:18,746 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-3] Completed initialization in 0 ms
+2026-01-22 20:36:18,768 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-3] GET /alquileres - Parámetros: arrendadorId=10, arrendatarioId=11, productoId=13
+2026-01-22 20:36:18,768 INFO c.n.r.s.AlquilerService [http-nio-8080-exec-3] Servicio: Listando alquileres con filtros: arrendadorId=10, arrendatarioId=11, productoId=13
+2026-01-22 20:36:19,057 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-3] Resultado: 0 alquileres encontrados
+2026-01-22 20:36:37,418 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-2] GET /alquileres - Parámetros: arrendadorId=10, arrendatarioId=11, productoId=12
+2026-01-22 20:36:37,419 INFO c.n.r.s.AlquilerService [http-nio-8080-exec-2] Servicio: Listando alquileres con filtros: arrendadorId=10, arrendatarioId=11, productoId=12
+2026-01-22 20:36:37,429 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-2] Resultado: 1 alquileres encontrados
+2026-01-22 20:40:00,875 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-6] GET /alquileres - Parámetros: arrendadorId=10, arrendatarioId=11, productoId=1200
+2026-01-22 20:40:00,875 INFO c.n.r.s.AlquilerService [http-nio-8080-exec-6] Servicio: Listando alquileres con filtros: arrendadorId=10, arrendatarioId=11, productoId=1200
+2026-01-22 20:40:00,887 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-6] Recurso no encontrado: ProductoNoEncontradoException
+2026-01-22 20:40:04,728 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-4] GET /alquileres - Parámetros: arrendadorId=10, arrendatarioId=11, productoId=12
+2026-01-22 20:40:04,728 INFO c.n.r.s.AlquilerService [http-nio-8080-exec-4] Servicio: Listando alquileres con filtros: arrendadorId=10, arrendatarioId=11, productoId=12
+2026-01-22 20:40:04,736 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-4] Resultado: 1 alquileres encontrados
+2026-01-22 20:40:28,907 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-22 20:40:28,917 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2026-01-22 20:40:28,919 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-22 20:40:28,920 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2026-01-22 20:40:28,922 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
