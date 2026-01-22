@@ -16,6 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -194,13 +195,12 @@ public class UsuarioServiceTests {
 
 
     //-- FILTRADO por NICKNAME --//
-
+    // No tiene caso de fallo porque si no hay usuarios con ese nickname, devuelve lista vacía.
     @Test
     public void testListarConFiltros_Nickname_Exito() throws UsuarioNoEncontradoException {
-        // Datos de ejemplo
         String nickname = "usuario1";
 
-        // Usuario que simula estar en la BBDD
+        // Simulo un usuario que está en la BBDD
         Usuario usuarioEnBBDD = new Usuario();
         usuarioEnBBDD.setId(1);
         usuarioEnBBDD.setNickname(nickname);
@@ -211,96 +211,79 @@ public class UsuarioServiceTests {
         outDto.setNickname(nickname);
 
         // Defino el comportamiento de los mocks
-        when(usuarioRepository.findByNickname(nickname))
-                .thenReturn(java.util.Optional.of(usuarioEnBBDD)); // Simula que el usuario se encuentra en la BBDD
-        when(modelMapper.map(usuarioEnBBDD, UsuarioOutDto.class)).thenReturn(outDto); // Simula el mapeo a OutDto
+        when(usuarioRepository.findAll())
+                .thenReturn(java.util.List.of(usuarioEnBBDD));
+        when(modelMapper.map(usuarioEnBBDD, UsuarioOutDto.class))
+                .thenReturn(outDto);
 
-        // Llamo al metodo a testear
-        java.util.List<UsuarioOutDto> resultado = usuarioService.listarConFiltros(nickname, null, null, null); // Filtro por nickname
+        List<UsuarioOutDto> resultado =
+                usuarioService.listarConFiltros(nickname, null, null, null);
 
         // Verificaciones (aserciones)
-        assertNotNull(resultado); // Compruebo que el resultado no es nulo
-        assertEquals(1, resultado.size()); // Compruebo que se devuelve un solo usuario
-        assertEquals(nickname, resultado.getFirst().getNickname()); // Compruebo que el nickname del OutDto es el esperado
+        assertNotNull(resultado);
+        assertEquals(1, resultado.size());
+        assertEquals(nickname, resultado.getFirst().getNickname());
     }
 
-    @Test
-    public void testListarConFiltros_Nickname_FallaSiNoExiste(){
-        // Datos de ejemplo
-        String nickname = "usuarioInexistente";
-
-        // Defino el comportamiento de los mocks
-        when(usuarioRepository.findByNickname(nickname))
-                .thenReturn(java.util.Optional.empty()); // Simula que el usuario NO se encuentra en la BBDD
-
-        // Llamo al metodo a testear y espero que lance la excepción
-        assertThrows(UsuarioNoEncontradoException.class,
-                () -> usuarioService.listarConFiltros(nickname, null, null, null));
-    }
 
 
     // -- FILTRADO por tipoUsuario -- //
     // No tiene caso de fallo porque si no hay usuarios de ese tipo, devuelve lista vacía.
 
     @Test
-    public void testListarConFiltros_TipoUsuario() throws UsuarioNoEncontradoException { // Es necesario declarar que lanza la excepción porque el metodo lo hace, aunque en este caso no se lance.
-        // Datos de ejemplo
+    public void testListarConFiltros_TipoUsuario() throws UsuarioNoEncontradoException {
         String tipoUsuario = "empresa";
 
-        // Usuario que simula estar en la BBDD
         Usuario usuarioEnBBDD = new Usuario();
         usuarioEnBBDD.setId(1);
         usuarioEnBBDD.setTipoUsuario(tipoUsuario);
 
-        // UsuarioOutDto que se espera como resultado
         UsuarioOutDto outDto = new UsuarioOutDto();
         outDto.setId(1);
         outDto.setTipoUsuario(tipoUsuario);
 
-        // Defino el comportamiento de los mocks
-        when(usuarioRepository.findByTipoUsuario(tipoUsuario))
-                .thenReturn(java.util.List.of(usuarioEnBBDD)); // Simula que el usuario se encuentra en la BBDD
-        when(modelMapper.map(usuarioEnBBDD, UsuarioOutDto.class)).thenReturn(outDto); // Simula el mapeo a OutDto
+        when(usuarioRepository.findAll())
+                .thenReturn(java.util.List.of(usuarioEnBBDD));
+        when(modelMapper.map(usuarioEnBBDD, UsuarioOutDto.class))
+                .thenReturn(outDto);
 
-        // Llamo al metodo a testear
-        java.util.List<UsuarioOutDto> resultado = usuarioService.listarConFiltros(null, null, tipoUsuario, null); // Filtro por tipoUsuario
+        List<UsuarioOutDto> resultado =
+                usuarioService.listarConFiltros(null, null, tipoUsuario, null);
 
-        // Verificaciones (aserciones)
-        assertNotNull(resultado); // Compruebo que el resultado no es nulo
-        assertEquals(1, resultado.size()); // Compruebo que se devuelve un solo usuario
-        assertEquals(tipoUsuario, resultado.getFirst().getTipoUsuario()); // Compruebo que el tipoUsuario del OutDto es el esperado
+        assertNotNull(resultado);
+        assertEquals(1, resultado.size());
+        assertEquals(tipoUsuario, resultado.getFirst().getTipoUsuario());
     }
 
+
     // -- FILTRADO por cuentaActiva -- //
+    // No tiene caso de fallo porque si no hay usuarios con ese estado, devuelve lista vacía.
 
     @Test
     public void testListarConFiltros_CuentaActiva() throws UsuarioNoEncontradoException {
-        // Datos de ejemplo
         boolean cuentaActiva = true;
 
-        // Usuario que simula estar en la BBDD
         Usuario usuarioEnBBDD = new Usuario();
         usuarioEnBBDD.setId(1);
         usuarioEnBBDD.setCuentaActiva(cuentaActiva);
 
-        // UsuarioOutDto que se espera como resultado
         UsuarioOutDto outDto = new UsuarioOutDto();
         outDto.setId(1);
         outDto.setCuentaActiva(cuentaActiva);
 
-        // Defino el comportamiento de los mocks
-        when(usuarioRepository.findByCuentaActiva(cuentaActiva))
-                .thenReturn(java.util.List.of(usuarioEnBBDD)); // Simula que el usuario se encuentra en la BBDD
-        when(modelMapper.map(usuarioEnBBDD, UsuarioOutDto.class)).thenReturn(outDto); // Simula el mapeo a OutDto
+        when(usuarioRepository.findAll())
+                .thenReturn(java.util.List.of(usuarioEnBBDD));
+        when(modelMapper.map(usuarioEnBBDD, UsuarioOutDto.class))
+                .thenReturn(outDto);
 
-        // Llamo al metodo a testear
-        java.util.List<UsuarioOutDto> resultado = usuarioService.listarConFiltros(null, null, null, cuentaActiva); // Filtro por cuentaActiva
+        List<UsuarioOutDto> resultado =
+                usuarioService.listarConFiltros(null, null, null, cuentaActiva);
 
-        // Verificaciones (aserciones)
-        assertNotNull(resultado); // Compruebo que el resultado no es nulo
-        assertEquals(1, resultado.size()); // Compruebo que se devuelve un solo usuario
-        assertEquals(cuentaActiva, resultado.getFirst().isCuentaActiva()); // Compruebo que el cuentaActiva del OutDto es el esperado
+        assertNotNull(resultado);
+        assertEquals(1, resultado.size());
+        assertTrue(resultado.getFirst().isCuentaActiva());
     }
+
 
     // -- SIN FILTROS --> Devuelve todos los usuarios -- //
 
