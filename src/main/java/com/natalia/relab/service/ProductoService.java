@@ -140,51 +140,53 @@ public class ProductoService {
         log.debug("Servicio: filtrando productos. nombre={}, activo={}, categoriaId={}, usuarioId={}",
                 nombre, activo, categoriaId, usuarioId);
 
-        // Filtrado por nombre --> Coincidencias parciales y sin distinguir mayúsculas y minúsculas
-        if (nombre != null && !nombre.trim().isEmpty()) { // Evito buscar con cadena vacía de cara a los tests unitarios y que no se llegue a poder hacer filtrado por categoriaId
-            return productoRepository.findByNombreContainingIgnoreCase(nombre)
-                    .stream()
-                    .map(this::mapToOutDto)
+        // Mantengo las validaciones de existencia de categoría y usuario antes de hacer las consultas
+        if (categoriaId != null && !categoriaRepository.existsById(categoriaId)) {
+            throw new CategoriaNoEncontradaException();
+        }
+
+        if (usuarioId != null && !usuarioRepository.existsById(usuarioId)) {
+            throw new UsuarioNoEncontradoException();
+        }
+
+        // Parto de todos los productos
+        List<Producto> productos = productoRepository.findAll();
+
+        // Filtro por nombre (parcial y case insensitive)
+        if (nombre != null && !nombre.trim().isEmpty()) {
+            String nombreFiltrado = nombre.trim().toLowerCase();
+            productos = productos.stream()
+                    .filter(producto -> producto.getNombre() != null &&
+                            producto.getNombre().toLowerCase().contains(nombreFiltrado))
                     .toList();
         }
 
+        // Filtro por activo
         if (activo != null) {
-            return productoRepository.findByActivo(activo)
-                    .stream()
-                    .map(this::mapToOutDto)
+            productos = productos.stream()
+                    .filter(producto -> producto.isActivo() == activo)
                     .toList();
         }
 
+        // Filtro por categoría
         if (categoriaId != null) {
-            boolean existe = categoriaRepository.existsById(categoriaId);
-            if (!existe) {
-                throw new CategoriaNoEncontradaException();
-            }
-
-            return productoRepository.findByCategoriaId(categoriaId)
-                    .stream()
-                    .map(this::mapToOutDto)
+            productos = productos.stream()
+                    .filter(producto -> producto.getCategoria() != null &&
+                            producto.getCategoria().getId() == categoriaId)
                     .toList();
         }
 
+        // Filtro por usuario
         if (usuarioId != null) {
-            boolean existe = usuarioRepository.existsById(usuarioId);
-            if (!existe) {
-                throw new UsuarioNoEncontradoException();
-            }
-
-            return productoRepository.findByUsuarioId(usuarioId)
-                    .stream()
-                    .map(this::mapToOutDto)
+            productos = productos.stream()
+                    .filter(producto -> producto.getUsuario() != null &&
+                            producto.getUsuario().getId() == usuarioId)
                     .toList();
-
         }
 
-        return productoRepository.findAll()
-                .stream()
+        return productos.stream()
                 .map(this::mapToOutDto)
                 .toList();
-
     }
 
 

@@ -1167,3 +1167,297 @@
 2026-01-22 19:35:52,342 INFO c.n.r.s.UsuarioService [main] Buscando usuario por id 10
 2026-01-22 19:35:52,346 WARN c.n.r.s.UsuarioService [main] Eliminando usuario con id 10
 2026-01-22 19:35:52,346 INFO c.n.r.s.UsuarioService [main] Usuario 10 eliminado
+2026-01-22 19:46:36,050 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.3.Final
+2026-01-22 19:46:36,084 INFO o.s.b.StartupInfoLogger [main] Starting RelabApplication using Java 21.0.8 with PID 23852 (D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab\target\classes started by natal in D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab)
+2026-01-22 19:46:36,084 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2026-01-22 19:46:36,396 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-22 19:46:36,434 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 33 ms. Found 5 JPA repository interfaces.
+2026-01-22 19:46:36,702 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2026-01-22 19:46:36,709 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2026-01-22 19:46:36,710 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2026-01-22 19:46:36,711 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-01-22 19:46:36,738 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2026-01-22 19:46:36,738 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 630 ms
+2026-01-22 19:46:36,798 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-22 19:46:36,832 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-01-22 19:46:36,838 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2026-01-22 19:46:36,958 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-22 19:46:36,970 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2026-01-22 19:46:37,022 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.mariadb.jdbc.Connection@55053f81
+2026-01-22 19:46:37,025 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2026-01-22 19:46:37,039 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-22 19:46:37,048 INFO o.h.e.j.e.i.JdbcEnvironmentInitiator [main] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 12.0.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-22 19:46:37,517 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-22 19:46:37,549 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-22 19:46:37,751 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-22 19:46:37,898 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2026-01-22 19:46:37,898 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2026-01-22 19:46:37,915 INFO o.s.b.StartupInfoLogger [main] Started RelabApplication in 2.116 seconds (process running for 2.28)
+2026-01-22 19:48:16,114 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-3] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-22 19:48:16,114 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-3] Initializing Servlet 'dispatcherServlet'
+2026-01-22 19:48:16,115 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-3] Completed initialization in 0 ms
+2026-01-22 19:48:16,139 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos - filtros: nombre=Agitador, activo=true, categoriaId=5, usuarioId=3
+2026-01-22 19:48:16,446 INFO c.n.r.c.ProductoController [http-nio-8080-exec-3] GET /productos - encontrados 0 productos
+2026-01-22 19:48:23,265 INFO c.n.r.c.ProductoController [http-nio-8080-exec-2] GET /productos - filtros: nombre=Agitador, activo=true, categoriaId=500, usuarioId=3
+2026-01-22 19:48:23,269 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-2] Recurso no encontrado: CategoriaNoEncontradaException
+2026-01-22 19:48:28,066 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos - filtros: nombre=Agitador, activo=true, categoriaId=500, usuarioId=300
+2026-01-22 19:48:28,068 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-7] Recurso no encontrado: CategoriaNoEncontradaException
+2026-01-22 19:48:52,463 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos - filtros: nombre=balanza, activo=true, categoriaId=5, usuarioId=3
+2026-01-22 19:48:52,501 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos - encontrados 1 productos
+2026-01-22 19:49:19,519 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-22 19:49:19,531 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2026-01-22 19:49:19,534 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-22 19:49:19,535 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2026-01-22 19:49:19,536 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2026-01-22 19:49:35,799 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.3.Final
+2026-01-22 19:49:35,828 INFO o.s.b.StartupInfoLogger [main] Starting AlquilerControllerTests using Java 21.0.8 with PID 13640 (started by natal in D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab)
+2026-01-22 19:49:35,828 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2026-01-22 19:49:37,610 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2026-01-22 19:49:37,614 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2026-01-22 19:49:37,614 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 0 ms
+2026-01-22 19:49:37,657 INFO o.s.b.StartupInfoLogger [main] Started AlquilerControllerTests in 2.116 seconds (process running for 2.802)
+2026-01-22 19:49:37,795 WARN c.n.r.c.AlquilerController [main] DELETE /alquileres/99 - eliminando
+2026-01-22 19:49:37,801 WARN c.n.r.c.GlobalExceptionHandler [main] Recurso no encontrado: AlquilerNoEncontradoException
+2026-01-22 19:49:37,983 INFO c.n.r.c.AlquilerController [main] POST /alquileres - creando nuevo alquiler
+2026-01-22 19:49:37,984 WARN c.n.r.c.GlobalExceptionHandler [main] Recurso no encontrado: ProductoNoEncontradoException
+2026-01-22 19:49:38,002 INFO c.n.r.c.AlquilerController [main] GET /alquileres - Parámetros: arrendadorId=99, arrendatarioId=null, productoId=null
+2026-01-22 19:49:38,003 WARN c.n.r.c.GlobalExceptionHandler [main] Recurso no encontrado: UsuarioNoEncontradoException
+2026-01-22 19:49:38,017 INFO c.n.r.c.AlquilerController [main] PUT /alquileres/99 - actualizando alquiler
+2026-01-22 19:49:38,019 WARN c.n.r.c.GlobalExceptionHandler [main] Recurso no encontrado: AlquilerNoEncontradoException
+2026-01-22 19:49:38,030 WARN c.n.r.c.AlquilerController [main] DELETE /alquileres/1 - eliminando
+2026-01-22 19:49:38,032 INFO c.n.r.c.AlquilerController [main] Alquiler con id 1 eliminado correctamente
+2026-01-22 19:49:38,058 WARN c.n.r.c.GlobalExceptionHandler [main] Error de validación detectado: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.natalia.relab.dto.AlquilerOutDto> com.natalia.relab.controller.AlquilerController.actualizarAlquiler(com.natalia.relab.dto.AlquilerUpdateDto,long) throws exception.AlquilerNoEncontradoException: [Field error in object 'alquilerUpdateDto' on field 'precio': rejected value [-10.0]; codes [Min.alquilerUpdateDto.precio,Min.precio,Min.java.lang.Float,Min]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [alquilerUpdateDto.precio,precio]; arguments []; default message [precio],0]; default message [El precio debe ser mayor que cero]] 
+2026-01-22 19:49:38,096 INFO c.n.r.c.AlquilerController [main] GET /alquileres/1 solicitado
+2026-01-22 19:49:38,097 INFO c.n.r.c.AlquilerController [main] Alquiler con id 1 encontrado
+2026-01-22 19:49:38,113 INFO c.n.r.c.AlquilerController [main] GET /alquileres/99 solicitado
+2026-01-22 19:49:38,114 WARN c.n.r.c.GlobalExceptionHandler [main] Recurso no encontrado: AlquilerNoEncontradoException
+2026-01-22 19:49:38,121 WARN c.n.r.c.GlobalExceptionHandler [main] Error de validación detectado: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.natalia.relab.dto.AlquilerOutDto> com.natalia.relab.controller.AlquilerController.agregarAlquiler(com.natalia.relab.dto.AlquilerInDto) throws exception.UsuarioNoEncontradoException,exception.ProductoNoEncontradoException with 4 errors: [Field error in object 'alquilerInDto' on field 'arrendadorId': rejected value [null]; codes [NotNull.alquilerInDto.arrendadorId,NotNull.arrendadorId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [alquilerInDto.arrendadorId,arrendadorId]; arguments []; default message [arrendadorId]]; default message [Debe especificarse el arrendador]] [Field error in object 'alquilerInDto' on field 'arrendatarioId': rejected value [null]; codes [NotNull.alquilerInDto.arrendatarioId,NotNull.arrendatarioId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [alquilerInDto.arrendatarioId,arrendatarioId]; arguments []; default message [arrendatarioId]]; default message [Debe especificarse el arrendatario]] [Field error in object 'alquilerInDto' on field 'precio': rejected value [-10.0]; codes [Min.alquilerInDto.precio,Min.precio,Min.float,Min]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [alquilerInDto.precio,precio]; arguments []; default message [precio],0]; default message [El precio debe ser mayor que cero]] [Field error in object 'alquilerInDto' on field 'productoId': rejected value [null]; codes [NotNull.alquilerInDto.productoId,NotNull.productoId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [alquilerInDto.productoId,productoId]; arguments []; default message [productoId]]; default message [Debe especificarse el producto alquilado]] 
+2026-01-22 19:49:38,127 INFO c.n.r.c.AlquilerController [main] GET /alquileres - Parámetros: arrendadorId=5, arrendatarioId=null, productoId=null
+2026-01-22 19:49:38,128 INFO c.n.r.c.AlquilerController [main] Resultado: 1 alquileres encontrados
+2026-01-22 19:49:38,145 INFO c.n.r.c.AlquilerController [main] GET /alquileres - Parámetros: arrendadorId=null, arrendatarioId=null, productoId=null
+2026-01-22 19:49:38,146 INFO c.n.r.c.AlquilerController [main] Resultado: 2 alquileres encontrados
+2026-01-22 19:49:38,152 INFO c.n.r.c.AlquilerController [main] PUT /alquileres/1 - actualizando alquiler
+2026-01-22 19:49:38,152 INFO c.n.r.c.AlquilerController [main] Alquiler con id 1 actualizado correctamente
+2026-01-22 19:49:38,158 INFO c.n.r.c.AlquilerController [main] POST /alquileres - creando nuevo alquiler
+2026-01-22 19:49:38,159 INFO c.n.r.c.AlquilerController [main] Alquiler creado con id 100
+2026-01-22 19:49:38,445 INFO c.n.r.s.AlquilerService [main] Servicio: Listando alquileres con filtros: arrendadorId=null, arrendatarioId=null, productoId=5
+2026-01-22 19:49:38,453 INFO c.n.r.s.AlquilerService [main] Servicio: buscando alquiler por ID 999
+2026-01-22 19:49:38,453 ERROR c.n.r.s.AlquilerService [main] No existe alquiler con ID 999
+2026-01-22 19:49:38,456 INFO c.n.r.s.AlquilerService [main] Agregando nuevo alquiler: productoId 1, arrendadorId 2, arrendatarioId 3
+2026-01-22 19:49:38,457 WARN c.n.r.s.AlquilerService [main] Producto con ID 1 no encontrado
+2026-01-22 19:49:38,459 INFO c.n.r.s.AlquilerService [main] Servicio: Listando alquileres con filtros: arrendadorId=null, arrendatarioId=null, productoId=999
+2026-01-22 19:49:38,463 INFO c.n.r.s.AlquilerService [main] Servicio: Listando alquileres con filtros: arrendadorId=null, arrendatarioId=null, productoId=null
+2026-01-22 19:49:38,465 WARN c.n.r.s.AlquilerService [main] Servicio: Intentando eliminar alquiler con ID 999
+2026-01-22 19:49:38,469 INFO c.n.r.s.AlquilerService [main] Servicio: Listando alquileres con filtros: arrendadorId=null, arrendatarioId=999, productoId=null
+2026-01-22 19:49:38,475 WARN c.n.r.s.AlquilerService [main] Servicio: Intentando eliminar alquiler con ID 1
+2026-01-22 19:49:38,475 INFO c.n.r.s.AlquilerService [main] Alquiler con ID 1 eliminado correctamente
+2026-01-22 19:49:38,481 INFO c.n.r.s.AlquilerService [main] Servicio: Listando alquileres con filtros: arrendadorId=999, arrendatarioId=null, productoId=null
+2026-01-22 19:49:38,484 INFO c.n.r.s.AlquilerService [main] Servicio: Listando alquileres con filtros: arrendadorId=2, arrendatarioId=null, productoId=null
+2026-01-22 19:49:38,487 INFO c.n.r.s.AlquilerService [main] Servicio: Listando alquileres con filtros: arrendadorId=null, arrendatarioId=3, productoId=null
+2026-01-22 19:49:38,490 INFO c.n.r.s.AlquilerService [main] Servicio: buscando alquiler por ID 1
+2026-01-22 19:49:38,493 INFO c.n.r.s.AlquilerService [main] Agregando nuevo alquiler: productoId 1, arrendadorId 2, arrendatarioId 3
+2026-01-22 19:49:38,494 INFO c.n.r.s.AlquilerService [main] Alquiler creado correctamente con ID 1
+2026-01-22 19:49:38,496 INFO c.n.r.s.AlquilerService [main] Servicio: Modificando alquiler con ID 1
+2026-01-22 19:49:38,497 INFO c.n.r.s.AlquilerService [main] Servicio: Alquiler actualizado correctamente con ID 1
+2026-01-22 19:49:38,502 INFO o.s.t.c.s.AnnotationConfigContextLoaderUtils [main] Could not detect default configuration classes for test class [com.natalia.relab.CategoriaControllerTests]: CategoriaControllerTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-01-22 19:49:38,512 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [main] Found @SpringBootConfiguration com.natalia.relab.RelabApplication for test class com.natalia.relab.CategoriaControllerTests
+2026-01-22 19:49:38,532 INFO o.s.b.StartupInfoLogger [main] Starting CategoriaControllerTests using Java 21.0.8 with PID 13640 (started by natal in D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab)
+2026-01-22 19:49:38,532 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2026-01-22 19:49:38,718 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2026-01-22 19:49:38,718 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2026-01-22 19:49:38,719 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 0 ms
+2026-01-22 19:49:38,724 INFO o.s.b.StartupInfoLogger [main] Started CategoriaControllerTests in 0.21 seconds (process running for 3.87)
+2026-01-22 19:49:38,729 INFO c.n.r.c.CategoriaController [main] GET /categorias/1 - Solicitando categoría por ID
+2026-01-22 19:49:38,730 INFO c.n.r.c.CategoriaController [main] GET /categorias/1 - Categoría encontrada correctamente
+2026-01-22 19:49:38,753 WARN c.n.r.c.GlobalExceptionHandler [main] Error de validación detectado: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.natalia.relab.dto.CategoriaOutDto> com.natalia.relab.controller.CategoriaController.agregarCategorias(com.natalia.relab.dto.CategoriaInDto) with 2 errors: [Field error in object 'categoriaInDto' on field 'nombre': rejected value []; codes [NotBlank.categoriaInDto.nombre,NotBlank.nombre,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [categoriaInDto.nombre,nombre]; arguments []; default message [nombre]]; default message [El nombre es un campo obligatorio]] [Field error in object 'categoriaInDto' on field 'descripcion': rejected value [abcd]; codes [Size.categoriaInDto.descripcion,Size.descripcion,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [categoriaInDto.descripcion,descripcion]; arguments []; default message [descripcion],2147483647,10]; default message [La descripción debe tener al menos 10 caracteres]] 
+2026-01-22 19:49:38,765 WARN c.n.r.c.GlobalExceptionHandler [main] Error de validación detectado: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.natalia.relab.dto.CategoriaOutDto> com.natalia.relab.controller.CategoriaController.actualizarCategoria(com.natalia.relab.dto.CategoriaUpdateDto,long) throws exception.CategoriaNoEncontradaException with 2 errors: [Field error in object 'categoriaUpdateDto' on field 'nombre': rejected value []; codes [Size.categoriaUpdateDto.nombre,Size.nombre,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [categoriaUpdateDto.nombre,nombre]; arguments []; default message [nombre],2147483647,1]; default message [El nombre no puede estar vacío]] [Field error in object 'categoriaUpdateDto' on field 'descripcion': rejected value [Corta]; codes [Size.categoriaUpdateDto.descripcion,Size.descripcion,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [categoriaUpdateDto.descripcion,descripcion]; arguments []; default message [descripcion],2147483647,10]; default message [La descripción debe tener al menos 10 caracteres]] 
+2026-01-22 19:49:38,771 WARN c.n.r.c.CategoriaController [main] DELETE /categorias/1 - Eliminación solicitada
+2026-01-22 19:49:38,773 INFO c.n.r.c.CategoriaController [main] Categoría 1 eliminada correctamente
+2026-01-22 19:49:38,780 INFO c.n.r.c.CategoriaController [main] PUT /categorias/1 - Actualización de categoría solicitada
+2026-01-22 19:49:38,781 INFO c.n.r.c.CategoriaController [main] PUT /categorias/1 - Categoría actualizada correctamente
+2026-01-22 19:49:38,787 WARN c.n.r.c.CategoriaController [main] DELETE /categorias/999 - Eliminación solicitada
+2026-01-22 19:49:38,788 WARN c.n.r.c.GlobalExceptionHandler [main] Recurso no encontrado: CategoriaNoEncontradaException
+2026-01-22 19:49:38,794 INFO c.n.r.c.CategoriaController [main] PUT /categorias/999 - Actualización de categoría solicitada
+2026-01-22 19:49:38,796 WARN c.n.r.c.GlobalExceptionHandler [main] Recurso no encontrado: CategoriaNoEncontradaException
+2026-01-22 19:49:38,800 INFO c.n.r.c.CategoriaController [main] POST /categorias - Creación de nueva categoría solicitada
+2026-01-22 19:49:38,801 INFO c.n.r.c.CategoriaController [main] POST /categorias - Nueva categoría creada con ID 1
+2026-01-22 19:49:38,806 INFO c.n.r.c.CategoriaController [main] GET /categorias/99 - Solicitando categoría por ID
+2026-01-22 19:49:38,807 WARN c.n.r.c.GlobalExceptionHandler [main] Recurso no encontrado: CategoriaNoEncontradaException
+2026-01-22 19:49:38,822 INFO c.n.r.c.CategoriaController [main] GET /categorías - filtros: nombre='Microscopios', activa=null, fechaCreacion=null, desde=null, hasta=null
+2026-01-22 19:49:38,823 INFO c.n.r.c.CategoriaController [main] Se devolvieron 1 categorias
+2026-01-22 19:49:38,829 INFO c.n.r.c.CategoriaController [main] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2026-01-22 19:49:38,830 INFO c.n.r.c.CategoriaController [main] Se devolvieron 2 categorias
+2026-01-22 19:49:38,866 INFO c.n.r.s.CategoriaService [main] Buscando categoría por ID 99
+2026-01-22 19:49:38,866 ERROR c.n.r.s.CategoriaService [main] Categoría 99 no encontrada
+2026-01-22 19:49:38,876 INFO c.n.r.s.CategoriaService [main] Intentando crear nueva categoría
+2026-01-22 19:49:38,876 INFO c.n.r.s.CategoriaService [main] Categoría creada con ID 1
+2026-01-22 19:49:38,876 INFO c.n.r.s.CategoriaService [main] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: 2025-11-23, desde: null, hasta: null
+2026-01-22 19:49:38,876 INFO c.n.r.s.CategoriaService [main] Listando categorías con filtros - nombre: null, activa: true, fechaCreacion: null, desde: null, hasta: null
+2026-01-22 19:49:38,876 WARN c.n.r.s.CategoriaService [main] Intentando eliminar categoría 1
+2026-01-22 19:49:38,876 INFO c.n.r.s.CategoriaService [main] Categoría 1 eliminada correctamente
+2026-01-22 19:49:38,890 INFO c.n.r.s.CategoriaService [main] Listando categorías con filtros - nombre: Centrífugas, activa: null, fechaCreacion: null, desde: null, hasta: null
+2026-01-22 19:49:38,895 INFO c.n.r.s.CategoriaService [main] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: 2025-11-01, hasta: 2025-11-30
+2026-01-22 19:49:38,898 INFO c.n.r.s.CategoriaService [main] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2026-01-22 19:49:38,901 WARN c.n.r.s.CategoriaService [main] Intentando eliminar categoría 99
+2026-01-22 19:49:38,902 ERROR c.n.r.s.CategoriaService [main] Categoría 99 no encontrada
+2026-01-22 19:49:38,905 INFO c.n.r.s.CategoriaService [main] Intentando modificar categoría con ID 1
+2026-01-22 19:49:38,907 INFO c.n.r.s.CategoriaService [main] Categoría 1 actualizada correctamente
+2026-01-22 19:49:38,911 INFO c.n.r.s.CategoriaService [main] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: 2025-11-01, hasta: null
+2026-01-22 19:49:38,914 INFO c.n.r.s.CategoriaService [main] Buscando categoría por ID 1
+2026-01-22 19:49:38,918 INFO c.n.r.s.CategoriaService [main] Intentando modificar categoría con ID 99
+2026-01-22 19:49:38,918 ERROR c.n.r.s.CategoriaService [main] Categoría 99 no encontrada
+2026-01-22 19:49:38,923 INFO o.s.t.c.s.AnnotationConfigContextLoaderUtils [main] Could not detect default configuration classes for test class [com.natalia.relab.CompraventaControllerTests]: CompraventaControllerTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-01-22 19:49:38,930 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [main] Found @SpringBootConfiguration com.natalia.relab.RelabApplication for test class com.natalia.relab.CompraventaControllerTests
+2026-01-22 19:49:38,945 INFO o.s.b.StartupInfoLogger [main] Starting CompraventaControllerTests using Java 21.0.8 with PID 13640 (started by natal in D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab)
+2026-01-22 19:49:38,945 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2026-01-22 19:49:39,115 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2026-01-22 19:49:39,116 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2026-01-22 19:49:39,117 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 1 ms
+2026-01-22 19:49:39,121 INFO o.s.b.StartupInfoLogger [main] Started CompraventaControllerTests in 0.189 seconds (process running for 4.267)
+2026-01-22 19:49:39,133 INFO c.n.r.c.CompraventaController [main] POST /compraventas - creando compraventa para productoId 1 entre compradorId 2 y vendedorId 3
+2026-01-22 19:49:39,134 INFO c.n.r.c.CompraventaController [main] Compraventa creada con id 1
+2026-01-22 19:49:39,142 INFO c.n.r.c.CompraventaController [main] POST /compraventas - creando compraventa para productoId 99 entre compradorId 1 y vendedorId 2
+2026-01-22 19:49:39,142 WARN c.n.r.c.GlobalExceptionHandler [main] Recurso no encontrado: ProductoNoEncontradoException
+2026-01-22 19:49:39,142 INFO c.n.r.c.CompraventaController [main] GET /compraventas - Filtros recibidos -> compradorId=null, vendedorId=null, productoId=null
+2026-01-22 19:49:39,142 INFO c.n.r.c.CompraventaController [main] Resultado: 1 compraventas encontradas
+2026-01-22 19:49:39,142 WARN c.n.r.c.CompraventaController [main] DELETE /compraventas/1 solicitado
+2026-01-22 19:49:39,142 INFO c.n.r.c.CompraventaController [main] Compraventa con id 1 eliminada correctamente
+2026-01-22 19:49:39,159 WARN c.n.r.c.CompraventaController [main] DELETE /compraventas/99 solicitado
+2026-01-22 19:49:39,159 WARN c.n.r.c.GlobalExceptionHandler [main] Recurso no encontrado: CompraventaNoEncontradaException
+2026-01-22 19:49:39,159 INFO c.n.r.c.CompraventaController [main] PUT /compraventas/1 actualizando
+2026-01-22 19:49:39,159 INFO c.n.r.c.CompraventaController [main] Compraventa con id 1 actualizada correctamente
+2026-01-22 19:49:39,176 WARN c.n.r.c.GlobalExceptionHandler [main] Error de validación detectado: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.natalia.relab.dto.CompraventaOutDto> com.natalia.relab.controller.CompraventaController.actualizarCompraventa(com.natalia.relab.dto.CompraventaUpdateDto,long) throws exception.CompraventaNoEncontradaException: [Field error in object 'compraventaUpdateDto' on field 'precioFinal': rejected value [-5.0]; codes [Min.compraventaUpdateDto.precioFinal,Min.precioFinal,Min.java.lang.Float,Min]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [compraventaUpdateDto.precioFinal,precioFinal]; arguments []; default message [precioFinal],0]; default message [El precio debe ser mayor que cero]] 
+2026-01-22 19:49:39,180 INFO c.n.r.c.CompraventaController [main] POST /compraventas - creando compraventa para productoId 1 entre compradorId 2 y vendedorId 3
+2026-01-22 19:49:39,180 WARN c.n.r.c.GlobalExceptionHandler [main] Conflicto: producto ya vendido
+2026-01-22 19:49:39,180 INFO c.n.r.c.CompraventaController [main] GET /compraventas/1 solicitado
+2026-01-22 19:49:39,180 INFO c.n.r.c.CompraventaController [main] Compraventa con id 1 encontrada
+2026-01-22 19:49:39,193 INFO c.n.r.c.CompraventaController [main] GET /compraventas/99 solicitado
+2026-01-22 19:49:39,195 WARN c.n.r.c.GlobalExceptionHandler [main] Recurso no encontrado: CompraventaNoEncontradaException
+2026-01-22 19:49:39,199 INFO c.n.r.c.CompraventaController [main] GET /compraventas - Filtros recibidos -> compradorId=99, vendedorId=null, productoId=null
+2026-01-22 19:49:39,200 WARN c.n.r.c.GlobalExceptionHandler [main] Recurso no encontrado: UsuarioNoEncontradoException
+2026-01-22 19:49:39,204 WARN c.n.r.c.GlobalExceptionHandler [main] Error de validación detectado: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.natalia.relab.dto.CompraventaOutDto> com.natalia.relab.controller.CompraventaController.agregarCompraventa(com.natalia.relab.dto.CompraventaInDto) throws exception.UsuarioNoEncontradoException,exception.ProductoNoEncontradoException,exception.ProductoYaVendidoException: [Field error in object 'compraventaInDto' on field 'productoId': rejected value [null]; codes [NotNull.compraventaInDto.productoId,NotNull.productoId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [compraventaInDto.productoId,productoId]; arguments []; default message [productoId]]; default message [Debe especificarse el producto comprado/vendido]] 
+2026-01-22 19:49:39,245 INFO c.n.r.s.CompraventaService [main] Servicio: Listar compraventas con filtros -> compradorId=null, vendedorId=null, productoId=5
+2026-01-22 19:49:39,249 INFO c.n.r.s.CompraventaService [main] Servicio: Listar compraventas con filtros -> compradorId=10, vendedorId=null, productoId=null
+2026-01-22 19:49:39,253 INFO c.n.r.s.CompraventaService [main] Servicio: Listar compraventas con filtros -> compradorId=null, vendedorId=20, productoId=null
+2026-01-22 19:49:39,256 WARN c.n.r.s.CompraventaService [main] Servicio: Eliminar compraventa 999
+2026-01-22 19:49:39,257 ERROR c.n.r.s.CompraventaService [main] Compraventa 999 no encontrada para eliminar
+2026-01-22 19:49:39,260 WARN c.n.r.s.CompraventaService [main] Servicio: Eliminar compraventa 1
+2026-01-22 19:49:39,261 INFO c.n.r.s.CompraventaService [main] Compraventa 1 eliminada correctamente
+2026-01-22 19:49:39,263 INFO c.n.r.s.CompraventaService [main] Agregando compraventa de producto id 1 entre comprador id 2 y vendedor id 3
+2026-01-22 19:49:39,264 WARN c.n.r.s.CompraventaService [main] Producto 1 ya ha sido vendido. Operación cancelada
+2026-01-22 19:49:39,267 INFO c.n.r.s.CompraventaService [main] Servicio: Listar compraventas con filtros -> compradorId=null, vendedorId=null, productoId=null
+2026-01-22 19:49:39,272 INFO c.n.r.s.CompraventaService [main] Servicio: Modificar compraventa por ID 1
+2026-01-22 19:49:39,272 INFO c.n.r.s.CompraventaService [main] Compraventa 1 actualizada correctamente
+2026-01-22 19:49:39,275 INFO c.n.r.s.CompraventaService [main] Servicio: Listar compraventas con filtros -> compradorId=null, vendedorId=null, productoId=5
+2026-01-22 19:49:39,278 INFO c.n.r.s.CompraventaService [main] Servicio: Buscar compraventa por ID 999
+2026-01-22 19:49:39,279 ERROR c.n.r.s.CompraventaService [main] Compraventa no encontrada con ID 999
+2026-01-22 19:49:39,282 INFO c.n.r.s.CompraventaService [main] Servicio: Listar compraventas con filtros -> compradorId=null, vendedorId=null, productoId=99
+2026-01-22 19:49:39,286 INFO c.n.r.s.CompraventaService [main] Servicio: Listar compraventas con filtros -> compradorId=null, vendedorId=999, productoId=null
+2026-01-22 19:49:39,290 INFO c.n.r.s.CompraventaService [main] Servicio: Buscar compraventa por ID 1
+2026-01-22 19:49:39,294 INFO c.n.r.s.CompraventaService [main] Servicio: Listar compraventas con filtros -> compradorId=999, vendedorId=null, productoId=null
+2026-01-22 19:49:39,297 INFO c.n.r.s.CompraventaService [main] Agregando compraventa de producto id 1 entre comprador id 2 y vendedor id 3
+2026-01-22 19:49:39,299 INFO c.n.r.s.CompraventaService [main] Compraventa creada correctamente. ID=1
+2026-01-22 19:49:39,305 INFO o.s.t.c.s.AnnotationConfigContextLoaderUtils [main] Could not detect default configuration classes for test class [com.natalia.relab.ProductoControllerTests]: ProductoControllerTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-01-22 19:49:39,313 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [main] Found @SpringBootConfiguration com.natalia.relab.RelabApplication for test class com.natalia.relab.ProductoControllerTests
+2026-01-22 19:49:39,329 INFO o.s.b.StartupInfoLogger [main] Starting ProductoControllerTests using Java 21.0.8 with PID 13640 (started by natal in D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab)
+2026-01-22 19:49:39,329 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2026-01-22 19:49:39,475 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2026-01-22 19:49:39,475 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2026-01-22 19:49:39,475 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 0 ms
+2026-01-22 19:49:39,475 INFO o.s.b.StartupInfoLogger [main] Started ProductoControllerTests in 0.16 seconds (process running for 4.631)
+2026-01-22 19:49:39,512 INFO c.n.r.c.ProductoController [main] POST /productos - creando nuevo producto. Nombre=Producto Test, UsuarioId=1, CategoriaId=999
+2026-01-22 19:49:39,514 WARN c.n.r.c.GlobalExceptionHandler [main] Recurso no encontrado: CategoriaNoEncontradaException
+2026-01-22 19:49:39,527 INFO c.n.r.c.ProductoController [main] PUT /productos/999 - actualización solicitada
+2026-01-22 19:49:39,529 WARN c.n.r.c.GlobalExceptionHandler [main] Recurso no encontrado: ProductoNoEncontradoException
+2026-01-22 19:49:39,533 INFO c.n.r.c.ProductoController [main] GET /productos/999 - solicitando producto por ID
+2026-01-22 19:49:39,534 WARN c.n.r.c.GlobalExceptionHandler [main] Recurso no encontrado: ProductoNoEncontradoException
+2026-01-22 19:49:39,539 INFO c.n.r.c.ProductoController [main] POST /productos - creando nuevo producto. Nombre=Producto Test, UsuarioId=999, CategoriaId=null
+2026-01-22 19:49:39,540 WARN c.n.r.c.GlobalExceptionHandler [main] Recurso no encontrado: UsuarioNoEncontradoException
+2026-01-22 19:49:39,546 INFO c.n.r.c.ProductoController [main] GET /productos - filtros: nombre=Producto Test, activo=null, categoriaId=null, usuarioId=null
+2026-01-22 19:49:39,546 INFO c.n.r.c.ProductoController [main] GET /productos - encontrados 1 productos
+2026-01-22 19:49:39,554 WARN c.n.r.c.ProductoController [main] DELETE /productos/999 - eliminación solicitada
+2026-01-22 19:49:39,556 WARN c.n.r.c.GlobalExceptionHandler [main] Recurso no encontrado: ProductoNoEncontradoException
+2026-01-22 19:49:39,560 INFO c.n.r.c.ProductoController [main] GET /productos/1 - solicitando producto por ID
+2026-01-22 19:49:39,560 INFO c.n.r.c.ProductoController [main] GET /productos/1 - producto encontrado correctamente
+2026-01-22 19:49:39,564 WARN c.n.r.c.ProductoController [main] DELETE /productos/1 - eliminación solicitada
+2026-01-22 19:49:39,565 WARN c.n.r.c.ProductoController [main] DELETE /productos/1 - producto eliminado
+2026-01-22 19:49:39,568 INFO c.n.r.c.ProductoController [main] PUT /productos/1 - actualización solicitada
+2026-01-22 19:49:39,569 INFO c.n.r.c.ProductoController [main] PUT /productos/1 - producto actualizado correctamente
+2026-01-22 19:49:39,574 INFO c.n.r.c.ProductoController [main] GET /productos - filtros: nombre=null, activo=null, categoriaId=999, usuarioId=null
+2026-01-22 19:49:39,576 WARN c.n.r.c.GlobalExceptionHandler [main] Recurso no encontrado: CategoriaNoEncontradaException
+2026-01-22 19:49:39,580 INFO c.n.r.c.ProductoController [main] POST /productos - creando nuevo producto. Nombre=Producto Test, UsuarioId=1, CategoriaId=2
+2026-01-22 19:49:39,581 INFO c.n.r.c.ProductoController [main] POST /productos - producto creado con ID 10
+2026-01-22 19:49:39,585 WARN c.n.r.c.GlobalExceptionHandler [main] Error de validación detectado: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.natalia.relab.dto.ProductoOutDto> com.natalia.relab.controller.ProductoController.actualizarProducto(com.natalia.relab.dto.ProductoUpdateDto,long) throws exception.ProductoNoEncontradoException,exception.CategoriaNoEncontradaException: [Field error in object 'productoUpdateDto' on field 'nombre': rejected value []; codes [Size.productoUpdateDto.nombre,Size.nombre,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [productoUpdateDto.nombre,nombre]; arguments []; default message [nombre],2147483647,1]; default message [El nombre no puede estar vacío]] 
+2026-01-22 19:49:39,590 WARN c.n.r.c.GlobalExceptionHandler [main] Error de validación detectado: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.natalia.relab.dto.ProductoOutDto> com.natalia.relab.controller.ProductoController.agregarProducto(com.natalia.relab.dto.ProductoInDto) throws exception.CategoriaNoEncontradaException,exception.UsuarioNoEncontradoException: [Field error in object 'productoInDto' on field 'nombre': rejected value [null]; codes [NotBlank.productoInDto.nombre,NotBlank.nombre,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [productoInDto.nombre,nombre]; arguments []; default message [nombre]]; default message [El nombre del producto es un campo obligatorio]] 
+2026-01-22 19:49:39,622 WARN c.n.r.s.ProductoService [main] Producto 999 no encontrado
+2026-01-22 19:49:39,627 WARN c.n.r.s.ProductoService [main] Servicio: eliminando producto 5
+2026-01-22 19:49:39,628 WARN c.n.r.s.ProductoService [main] Producto 5 eliminado correctamente
+2026-01-22 19:49:39,635 INFO c.n.r.s.ProductoService [main] Servicio: creando producto 'Producto1'
+2026-01-22 19:49:39,636 WARN c.n.r.s.ProductoService [main] Usuario 99 no encontrado
+2026-01-22 19:49:39,639 WARN c.n.r.s.ProductoService [main] Servicio: eliminando producto 999
+2026-01-22 19:49:39,640 WARN c.n.r.s.ProductoService [main] Producto 999 no encontrado al intentar eliminar
+2026-01-22 19:49:39,646 INFO c.n.r.s.ProductoService [main] Servicio: actualizando producto 1
+2026-01-22 19:49:39,648 INFO c.n.r.s.ProductoService [main] Producto 1 actualizado correctamente
+2026-01-22 19:49:39,655 INFO c.n.r.s.ProductoService [main] Servicio: actualizando producto 999
+2026-01-22 19:49:39,655 WARN c.n.r.s.ProductoService [main] Producto 999 no encontrado al intentar actualizar
+2026-01-22 19:49:39,667 INFO c.n.r.s.ProductoService [main] Servicio: creando producto 'Producto1'
+2026-01-22 19:49:39,668 INFO c.n.r.s.ProductoService [main] Producto creado con ID 100
+2026-01-22 19:49:39,674 INFO o.s.t.c.s.AnnotationConfigContextLoaderUtils [main] Could not detect default configuration classes for test class [com.natalia.relab.UsuarioControllerTests]: UsuarioControllerTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-01-22 19:49:39,678 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [main] Found @SpringBootConfiguration com.natalia.relab.RelabApplication for test class com.natalia.relab.UsuarioControllerTests
+2026-01-22 19:49:39,692 INFO o.s.b.StartupInfoLogger [main] Starting UsuarioControllerTests using Java 21.0.8 with PID 13640 (started by natal in D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab)
+2026-01-22 19:49:39,693 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2026-01-22 19:49:39,836 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2026-01-22 19:49:39,836 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2026-01-22 19:49:39,837 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 1 ms
+2026-01-22 19:49:39,839 INFO o.s.b.StartupInfoLogger [main] Started UsuarioControllerTests in 0.158 seconds (process running for 4.985)
+2026-01-22 19:49:39,845 INFO c.n.r.c.UsuarioController [main] GET /usuarios - filtros: nickname=user1, tipoUsuario=null, cuentaActiva=null
+2026-01-22 19:49:39,847 INFO c.n.r.c.UsuarioController [main] Resultado: 1 usuarios encontrados
+2026-01-22 19:49:39,856 INFO c.n.r.c.UsuarioController [main] GET /usuarios/99 solicitado
+2026-01-22 19:49:39,857 WARN c.n.r.c.GlobalExceptionHandler [main] Recurso no encontrado: UsuarioNoEncontradoException
+2026-01-22 19:49:39,888 INFO c.n.r.c.UsuarioController [main] POST /usuarios - creando usuario con nickname natalia
+2026-01-22 19:49:39,888 INFO c.n.r.c.UsuarioController [main] Usuario creado con id 1
+2026-01-22 19:49:39,898 INFO c.n.r.c.UsuarioController [main] PUT /usuarios/5 - actualización solicitada
+2026-01-22 19:49:39,898 INFO c.n.r.c.UsuarioController [main] Usuario 5 actualizado correctamente
+2026-01-22 19:49:39,902 INFO c.n.r.c.UsuarioController [main] GET /usuarios - filtros: nickname=inexistente, tipoUsuario=null, cuentaActiva=null
+2026-01-22 19:49:39,903 WARN c.n.r.c.GlobalExceptionHandler [main] Recurso no encontrado: UsuarioNoEncontradoException
+2026-01-22 19:49:39,906 INFO c.n.r.c.UsuarioController [main] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2026-01-22 19:49:39,907 INFO c.n.r.c.UsuarioController [main] Resultado: 2 usuarios encontrados
+2026-01-22 19:49:39,914 INFO c.n.r.c.UsuarioController [main] PUT /usuarios/5 - actualización solicitada
+2026-01-22 19:49:39,915 WARN c.n.r.c.GlobalExceptionHandler [main] Intento de creación con datos duplicados: NicknameYaExisteException
+2026-01-22 19:49:39,919 INFO c.n.r.c.UsuarioController [main] PUT /usuarios/999 - actualización solicitada
+2026-01-22 19:49:39,920 WARN c.n.r.c.GlobalExceptionHandler [main] Recurso no encontrado: UsuarioNoEncontradoException
+2026-01-22 19:49:39,923 INFO c.n.r.c.UsuarioController [main] GET /usuarios/1 solicitado
+2026-01-22 19:49:39,927 INFO c.n.r.c.UsuarioController [main] Usuario con id 1 encontrado
+2026-01-22 19:49:39,931 WARN c.n.r.c.UsuarioController [main] DELETE /usuarios/5 solicitado
+2026-01-22 19:49:39,932 INFO c.n.r.c.UsuarioController [main] Usuario 5 eliminado correctamente
+2026-01-22 19:49:39,936 WARN c.n.r.c.UsuarioController [main] DELETE /usuarios/999 solicitado
+2026-01-22 19:49:39,937 WARN c.n.r.c.GlobalExceptionHandler [main] Recurso no encontrado: UsuarioNoEncontradoException
+2026-01-22 19:49:39,943 WARN c.n.r.c.GlobalExceptionHandler [main] Error de validación detectado: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.natalia.relab.dto.UsuarioOutDto> com.natalia.relab.controller.UsuarioController.agregarUsuario(com.natalia.relab.dto.UsuarioInDto) with 3 errors: [Field error in object 'usuarioInDto' on field 'nickname': rejected value []; codes [NotBlank.usuarioInDto.nickname,NotBlank.nickname,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [usuarioInDto.nickname,nickname]; arguments []; default message [nickname]]; default message [El nickname es un campo obligatorio]] [Field error in object 'usuarioInDto' on field 'email': rejected value [email-mal]; codes [Email.usuarioInDto.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [usuarioInDto.email,email]; arguments []; default message [email],[Ljakarta.validation.constraints.Pattern$Flag;@3979c6e8,.*]; default message [El formato de email no es válido]] [Field error in object 'usuarioInDto' on field 'password': rejected value [123]; codes [Size.usuarioInDto.password,Size.password,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [usuarioInDto.password,password]; arguments []; default message [password],2147483647,4]; default message [La contraseña debe tener al menos 4 carácteres]] 
+2026-01-22 19:49:39,949 INFO c.n.r.s.UsuarioService [main] Buscando usuario por id 999
+2026-01-22 19:49:39,950 ERROR c.n.r.s.UsuarioService [main] Usuario con id 999 no encontrado
+2026-01-22 19:49:39,953 INFO c.n.r.s.UsuarioService [main] Modificando usuario con id 999
+2026-01-22 19:49:39,955 ERROR c.n.r.s.UsuarioService [main] Usuario 999 no encontrado para modificar
+2026-01-22 19:49:39,960 INFO c.n.r.s.UsuarioService [main] Agregando usuario con nickname usuarioExistente
+2026-01-22 19:49:39,961 ERROR c.n.r.s.UsuarioService [main] Error: nickname usuarioExistente ya existe
+2026-01-22 19:49:39,964 INFO c.n.r.s.UsuarioService [main] Listando usuarios con filtros nickname=null, tipoUsuario=empresa, cuentaActiva=null
+2026-01-22 19:49:39,967 INFO c.n.r.s.UsuarioService [main] Agregando usuario con nickname usuario1
+2026-01-22 19:49:39,968 INFO c.n.r.s.UsuarioService [main] Usuario creado con id 42
+2026-01-22 19:49:39,971 INFO c.n.r.s.UsuarioService [main] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=true
+2026-01-22 19:49:39,974 INFO c.n.r.s.UsuarioService [main] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2026-01-22 19:49:39,978 INFO c.n.r.s.UsuarioService [main] Modificando usuario con id 5
+2026-01-22 19:49:39,978 INFO c.n.r.s.UsuarioService [main] Usuario 5 modificado correctamente
+2026-01-22 19:49:39,981 INFO c.n.r.s.UsuarioService [main] Listando usuarios con filtros nickname=usuarioInexistente, tipoUsuario=null, cuentaActiva=null
+2026-01-22 19:49:39,983 INFO c.n.r.s.UsuarioService [main] Listando usuarios con filtros nickname=usuario1, tipoUsuario=null, cuentaActiva=null
+2026-01-22 19:49:39,986 WARN c.n.r.s.UsuarioService [main] Eliminando usuario con id 999
+2026-01-22 19:49:39,986 ERROR c.n.r.s.UsuarioService [main] No se puede eliminar, el usuario 999 no existe
+2026-01-22 19:49:39,990 INFO c.n.r.s.UsuarioService [main] Listando usuarios con filtros nickname=usuario1, tipoUsuario=null, cuentaActiva=null
+2026-01-22 19:49:39,990 INFO c.n.r.s.UsuarioService [main] Buscando usuario por id 10
+2026-01-22 19:49:39,990 WARN c.n.r.s.UsuarioService [main] Eliminando usuario con id 10
+2026-01-22 19:49:39,990 INFO c.n.r.s.UsuarioService [main] Usuario 10 eliminado
