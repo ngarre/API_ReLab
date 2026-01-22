@@ -12,10 +12,7 @@ import java.util.Optional;
 public interface UsuarioRepository extends CrudRepository<Usuario,Long> {
 
     List<Usuario> findAll();
-    Optional<Usuario> findByNickname(String nickname); // Se pone Optional porque puede existir un usuario con ese nickname o ninguno
     Optional<Usuario> findByNicknameAndPassword(String nickname, String password);
-    List<Usuario> findByTipoUsuario(String tipoUsuario);
-    List<Usuario> findByCuentaActiva(boolean cuentaActiva);
     boolean existsByNickname(String nickname); // Lanza consulta a la BBDD para comprabar si ya existe usuario con ese nickname
     boolean existsById(@NonNull Long usuarioId); // Para ver si existe ese ID de ese usuario antes de listar productos que pertenecen a ese usuario
 }
