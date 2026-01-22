@@ -75,39 +75,38 @@ public class UsuarioService {
         log.info("Listando usuarios con filtros nickname={}, tipoUsuario={}, cuentaActiva={}",
                 nickname, tipoUsuario, cuentaActiva);
 
-        // Login (nickname + password)
+        // Login (nickname + password): Caso especial para autenticación en la aplicación Android
         if (nickname != null && !nickname.isEmpty() && password != null && !password.isEmpty()) {
             Usuario usuario = usuarioRepository.findByNicknameAndPassword(nickname, password)
                     .orElseThrow(UsuarioNoEncontradoException::new);
             return List.of(mapToOutDto(usuario));
         }
 
-        // Filtrado por nickname
+        // Parto de todos los usuarios
+        List<Usuario> usuarios = usuarioRepository.findAll();
+
+        // Filtro por nickname
         if (nickname != null && !nickname.isEmpty()) {
-            Usuario usuario = usuarioRepository.findByNickname(nickname)
-                    .orElseThrow(UsuarioNoEncontradoException::new);
-            return List.of(mapToOutDto(usuario));
+            usuarios = usuarios.stream()
+                    .filter(usuario -> usuario.getNickname().equals(nickname))
+                    .toList();
         }
 
         // Filtrado por tipoUsuario
         if (tipoUsuario != null && !tipoUsuario.isEmpty()) {
-            return usuarioRepository.findByTipoUsuario(tipoUsuario)
-                    .stream()
-                    .map(this::mapToOutDto)
+            usuarios = usuarios.stream()
+                    .filter(usuario -> usuario.getTipoUsuario().equalsIgnoreCase(tipoUsuario))
                     .toList();
         }
 
         // Filtrado por cuentaActiva
         if (cuentaActiva != null) {
-            return usuarioRepository.findByCuentaActiva(cuentaActiva)
-                    .stream()
-                    .map(this::mapToOutDto)
+            usuarios = usuarios.stream()
+                    .filter(usuario -> usuario.isCuentaActiva() == cuentaActiva)
                     .toList();
         }
 
-        // Sin filtros → todos los usuarios
-        return usuarioRepository.findAll()
-                .stream()
+        return usuarios.stream()
                 .map(this::mapToOutDto)
                 .toList();
     }
