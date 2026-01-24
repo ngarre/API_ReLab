@@ -284,6 +284,65 @@ public class UsuarioServiceTests {
         assertTrue(resultado.getFirst().isCuentaActiva());
     }
 
+    // -- FILTROS COMBINADOS -- //
+    @Test
+    public void testListarConFiltros_FiltrosCombinados_Exito() throws UsuarioNoEncontradoException {
+
+        String nickname = "JuanPerez";
+        String tipoUsuario = "empresa";
+        boolean cuentaActiva = true;
+
+        // Usuario que SÍ cumple todos los filtros
+        Usuario u1 = new Usuario();
+        u1.setId(1);
+        u1.setNickname(nickname);
+        u1.setTipoUsuario(tipoUsuario);
+        u1.setCuentaActiva(true);
+
+        // Usuario que NO cumple (cuenta inactiva)
+        Usuario u2 = new Usuario();
+        u2.setId(2);
+        u2.setNickname(nickname);
+        u2.setTipoUsuario(tipoUsuario);
+        u2.setCuentaActiva(false);
+
+        // Usuario que NO cumple (otro tipo)
+        Usuario u3 = new Usuario();
+        u3.setId(3);
+        u3.setNickname(nickname);
+        u3.setTipoUsuario("particular");
+        u3.setCuentaActiva(true);
+
+
+        // UsuarioOutDto que se espera como resultado
+        UsuarioOutDto outDto = new UsuarioOutDto();
+        outDto.setId(1);
+        outDto.setNickname(nickname);
+        outDto.setTipoUsuario(tipoUsuario);
+        outDto.setCuentaActiva(true);
+
+        // Defino el comportamiento de los mocks
+        when(usuarioRepository.findAll()).thenReturn(java.util.List.of(u1, u2, u3));
+        when(modelMapper.map(u1, UsuarioOutDto.class)).thenReturn(outDto);
+
+        // Llamo al metodo a testear
+        List<UsuarioOutDto> resultado =
+                usuarioService.listarConFiltros(
+                        nickname,
+                        null,
+                        tipoUsuario,
+                        cuentaActiva
+                );
+
+        // Verificaciones
+        assertNotNull(resultado);
+        assertEquals(1, resultado.size());
+        assertEquals(nickname, resultado.getFirst().getNickname());
+        assertEquals(tipoUsuario, resultado.getFirst().getTipoUsuario());
+        assertTrue(resultado.getFirst().isCuentaActiva());
+    }
+
+
 
     // -- SIN FILTROS --> Devuelve todos los usuarios -- //
 
