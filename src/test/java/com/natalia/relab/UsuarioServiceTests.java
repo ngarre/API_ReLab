@@ -323,7 +323,19 @@ public class UsuarioServiceTests {
 
         // Defino el comportamiento de los mocks
         when(usuarioRepository.findAll()).thenReturn(java.util.List.of(u1, u2, u3));
-        when(modelMapper.map(u1, UsuarioOutDto.class)).thenReturn(outDto);
+        when(modelMapper.map(any(Usuario.class), eq(UsuarioOutDto.class)))
+                .thenAnswer(invocation -> {
+                    Usuario u = invocation.getArgument(0);
+
+                    UsuarioOutDto dto = new UsuarioOutDto();
+                    dto.setId(u.getId());
+                    dto.setNickname(u.getNickname());
+                    dto.setTipoUsuario(u.getTipoUsuario());
+                    dto.setCuentaActiva(u.isCuentaActiva());
+
+                    return dto;
+                });
+
 
         // Llamo al metodo a testear
         List<UsuarioOutDto> resultado =

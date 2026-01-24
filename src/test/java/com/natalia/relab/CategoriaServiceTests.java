@@ -126,7 +126,6 @@ public class CategoriaServiceTests {
     // No tienen caso de fallo porque si no encuentra nada, devuelve lista vacía
 
     //-- FILTRADO por NOMBRE --//
-    //-- FILTRADO por NOMBRE --//
     @Test
     public void testListarConFiltros_FiltradoPorNombre() {
         String nombre = "Centrífugas";
@@ -295,6 +294,81 @@ public class CategoriaServiceTests {
         assertEquals(1, resultados.size());
         assertEquals("Centrífugas", resultados.get(0).getNombre());
     }
+
+    // -- FILTROS COMBINADOS -- //
+    @Test
+    public void testListarConFiltros_FiltrosCombinados_Exito() {
+        String nombre = "cent";
+        boolean activa = true;
+        LocalDate desde = LocalDate.of(2025, 11, 1);
+        LocalDate hasta = LocalDate.of(2025, 11, 30);
+
+        // Categoría que CUMPLE todos los filtros
+        Categoria c1 = new Categoria();
+        c1.setId(1L);
+        c1.setNombre("Centrífugas");
+        c1.setActiva(true);
+        c1.setFechaCreacion(LocalDate.of(2025, 11, 15));
+
+        // Falla por activa = false
+        Categoria c2 = new Categoria();
+        c2.setId(2L);
+        c2.setNombre("Centrífugas");
+        c2.setActiva(false);
+        c2.setFechaCreacion(LocalDate.of(2025, 11, 15));
+
+        // Falla por nombre
+        Categoria c3 = new Categoria();
+        c3.setId(3L);
+        c3.setNombre("Microscopios");
+        c3.setActiva(true);
+        c3.setFechaCreacion(LocalDate.of(2025, 11, 15));
+
+        // Falla por fecha fuera de rango
+        Categoria c4 = new Categoria();
+        c4.setId(4L);
+        c4.setNombre("Centrífugas");
+        c4.setActiva(true);
+        c4.setFechaCreacion(LocalDate.of(2025, 12, 5));
+
+        when(categoriaRepository.findAll())
+                .thenReturn(List.of(c1, c2, c3, c4));
+
+        when(modelMapper.map(any(Categoria.class), eq(CategoriaOutDto.class)))
+                // Le decimos a Mockito: "Cuando se llame al metodo map de modelMapper,
+                // pasando cualquier objeto de tipo Categoria como primer parámetro
+                // y CategoriaOutDto.class como segundo parámetro..."
+
+                .thenAnswer(invocation -> { // ... entonces ejecuta este bloque de código
+                    // 'invocation' representa la llamada real al metodo mockeado
+
+                    Categoria c = invocation.getArgument(0);
+                    // Obtengo el primer argumento pasado al metodo map,
+                    // que en este caso es el objeto Categoria que queremos mapear.
+
+                    CategoriaOutDto dto = new CategoriaOutDto();
+                    // Creo un nuevo objeto DTO que voy a devolver como resultado
+
+                    dto.setId(c.getId());
+                    // Copio el ID de la categoría original al DTO
+
+                    dto.setNombre(c.getNombre());
+                    // Copio el nombre de la categoría original al DTO
+
+                    return dto;
+                    // Devuelvo el DTO "manual" como resultado de la llamada mockeada
+                });
+
+        // Ejecución
+        List<CategoriaOutDto> resultados =
+                categoriaService.listarConFiltros(nombre, activa, null, desde, hasta);
+
+        // Verificaciones
+        assertNotNull(resultados);
+        assertEquals(1, resultados.size());
+        assertEquals("Centrífugas", resultados.getFirst().getNombre());
+    }
+
 
     // -- SIN FILTROS --> Devuelve todas las categorías -- //
     @Test
