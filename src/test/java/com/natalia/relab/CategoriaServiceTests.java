@@ -127,84 +127,241 @@ public class CategoriaServiceTests {
 
     //-- FILTRADO por NOMBRE --//
     @Test
-    public void testListarConFiltros_FiltradoPorNombre(){
-        // Nombre por el que se quiere filtrar
+    public void testListarConFiltros_FiltradoPorNombre() {
         String nombre = "Centrífugas";
 
-        // Categoria que simula estar en la BBDD
         Categoria categoriaEnBBDD = new Categoria();
         categoriaEnBBDD.setId(1L);
-        categoriaEnBBDD.setNombre(nombre);
+        categoriaEnBBDD.setNombre("Centrífugas");
 
-        // CategoriaOutDto que se espera como resultado
-        CategoriaOutDto categoriaOutDto = new CategoriaOutDto();
-        categoriaOutDto.setId(categoriaEnBBDD.getId());
-        categoriaOutDto.setNombre(categoriaEnBBDD.getNombre());
+        Categoria categoriaOtra = new Categoria();
+        categoriaOtra.setId(2L);
+        categoriaOtra.setNombre("Microscopios");
 
-        // Defino el comportamiento de los mocks
-        when(categoriaRepository.findByNombreContainingIgnoreCase(nombre)).thenReturn(java.util.Optional.of(categoriaEnBBDD)); // Mockeo la búsqueda por nombre
-        when(modelMapper.map(categoriaEnBBDD, CategoriaOutDto.class)).thenReturn(categoriaOutDto); // Mockeo el mapeo a DTO
+        when(categoriaRepository.findAll()).thenReturn(List.of(categoriaEnBBDD, categoriaOtra));
+        when(modelMapper.map(any(Categoria.class), eq(CategoriaOutDto.class)))
+                .thenAnswer(invocation -> {
+                    Categoria c = invocation.getArgument(0);
+                    CategoriaOutDto dto = new CategoriaOutDto();
+                    dto.setId(c.getId());
+                    dto.setNombre(c.getNombre());
+                    return dto;
+                });
 
-        // Llamo al metodo a testear
-        java.util.List<CategoriaOutDto> resultados = categoriaService.listarConFiltros(nombre, null, null, null, null);
+        List<CategoriaOutDto> resultados = categoriaService.listarConFiltros(nombre, null, null, null, null);
 
-        // Verificaciones
-        assertNotNull(resultados); // Verifico que no sea nulo
-        assertEquals(1, resultados.size()); // Verifico que haya un solo resultado
-        assertEquals(nombre, resultados.getFirst().getNombre()); // Verifico que el nombre coincida
+        assertNotNull(resultados);
+        assertEquals(1, resultados.size());
+        assertEquals("Centrífugas", resultados.getFirst().getNombre());
     }
 
     //-- FILTRADO por ACTIVA --//
     @Test
     public void testListarConFiltros_FiltradoPorActiva() {
-        // Defino el filtro
-        boolean activa = true;
+        Categoria c1 = new Categoria();
+        c1.setId(1L); c1.setNombre("Centrífugas"); c1.setActiva(true);
 
-        // Categoria que simula estar en la BBDD
-        Categoria categoriaEnBBDD = new Categoria();
-        categoriaEnBBDD.setId(1L);
-        categoriaEnBBDD.setNombre("Centrífugas");
+        Categoria c2 = new Categoria();
+        c2.setId(2L); c2.setNombre("Microscopios"); c2.setActiva(false);
 
-        // CategoriaOutDto que se espera como resultado
-        CategoriaOutDto categoriaOutDto = new CategoriaOutDto();
-        categoriaOutDto.setId(categoriaEnBBDD.getId());
-        categoriaOutDto.setNombre(categoriaEnBBDD.getNombre());
+        when(categoriaRepository.findAll()).thenReturn(List.of(c1, c2));
+        when(modelMapper.map(any(Categoria.class), eq(CategoriaOutDto.class)))
+                .thenAnswer(invocation -> {
+                    Categoria c = invocation.getArgument(0);
+                    CategoriaOutDto dto = new CategoriaOutDto();
+                    dto.setId(c.getId());
+                    dto.setNombre(c.getNombre());
+                    return dto;
+                });
 
-        // Defino el comportamiento de los mocks
-        when(categoriaRepository.findByActiva(activa)).thenReturn(java.util.List.of(categoriaEnBBDD)); // Simulo que la categoria está en la BBDD
-        when(modelMapper.map(categoriaEnBBDD, CategoriaOutDto.class)).thenReturn(categoriaOutDto); // Mockeo el mapeo a DTO
+        List<CategoriaOutDto> resultados = categoriaService.listarConFiltros(null, true, null, null, null);
 
-        // Llamo al metodo a testear
-        java.util.List<CategoriaOutDto> resultados = categoriaService.listarConFiltros(null, activa, null, null, null);
-
-        // Verificaciones
-        assertNotNull(resultados); // Verifico que no sea nulo
-        assertEquals(1, resultados.size()); // Verifico que haya un solo resultado
-        assertEquals("Centrífugas", resultados.getFirst().getNombre()); // Verifico que el nombre coincida
+        assertNotNull(resultados);
+        assertEquals(1, resultados.size());
+        assertEquals("Centrífugas", resultados.getFirst().getNombre());
     }
 
-    // -- FILTRADOS por FECHA DE CREACIÓN --//
+    //-- FILTRADO por FECHA EXACTA --//
     @Test
     public void testListarConFiltros_FiltradoPorFechaExacta() {
         LocalDate fechaExacta = LocalDate.of(2025, 11, 23);
 
-        // Categoria que simula estar en la BBDD
-        Categoria categoriaEnBBDD = new Categoria();
-        categoriaEnBBDD.setId(1L);
-        categoriaEnBBDD.setNombre("Centrífugas");
-        categoriaEnBBDD.setFechaCreacion(fechaExacta);
+        Categoria c1 = new Categoria();
+        c1.setId(1L); c1.setNombre("Centrífugas"); c1.setFechaCreacion(fechaExacta);
 
-        // CategoriaOutDto esperado
-        CategoriaOutDto categoriaOutDto = new CategoriaOutDto();
-        categoriaOutDto.setId(categoriaEnBBDD.getId());
-        categoriaOutDto.setNombre(categoriaEnBBDD.getNombre());
+        Categoria c2 = new Categoria();
+        c2.setId(2L); c2.setNombre("Microscopios"); c2.setFechaCreacion(LocalDate.of(2025,11,24));
 
-        // Mockeo comportamiento del repositorio
-        when(categoriaRepository.findByFechaCreacion(fechaExacta)).thenReturn(List.of(categoriaEnBBDD));
-        when(modelMapper.map(categoriaEnBBDD, CategoriaOutDto.class)).thenReturn(categoriaOutDto);
+        when(categoriaRepository.findAll()).thenReturn(List.of(c1, c2));
+        when(modelMapper.map(any(Categoria.class), eq(CategoriaOutDto.class)))
+                .thenAnswer(invocation -> {
+                    Categoria c = invocation.getArgument(0);
+                    CategoriaOutDto dto = new CategoriaOutDto();
+                    dto.setId(c.getId());
+                    dto.setNombre(c.getNombre());
+                    return dto;
+                });
 
-        // Llamo al metodo a testear
         List<CategoriaOutDto> resultados = categoriaService.listarConFiltros(null, null, fechaExacta, null, null);
+
+        assertNotNull(resultados);
+        assertEquals(1, resultados.size());
+        assertEquals("Centrífugas", resultados.getFirst().getNombre());
+    }
+
+    //-- FILTRADO por RANGO COMPLETO --//
+    @Test
+    public void testListarConFiltros_FiltradoPorRangoCompleto() {
+        LocalDate desde = LocalDate.of(2025,11,1);
+        LocalDate hasta = LocalDate.of(2025,11,30);
+
+        Categoria c1 = new Categoria();
+        c1.setId(1L); c1.setNombre("Centrífugas"); c1.setFechaCreacion(LocalDate.of(2025,11,15));
+
+        Categoria c2 = new Categoria();
+        c2.setId(2L); c2.setNombre("Microscopios"); c2.setFechaCreacion(LocalDate.of(2025,12,1));
+
+        when(categoriaRepository.findAll()).thenReturn(List.of(c1, c2));
+        when(modelMapper.map(any(Categoria.class), eq(CategoriaOutDto.class)))
+                .thenAnswer(invocation -> {
+                    Categoria c = invocation.getArgument(0);
+                    CategoriaOutDto dto = new CategoriaOutDto();
+                    dto.setId(c.getId());
+                    dto.setNombre(c.getNombre());
+                    return dto;
+                });
+
+        List<CategoriaOutDto> resultados = categoriaService.listarConFiltros(null, null, null, desde, hasta);
+
+        assertNotNull(resultados);
+        assertEquals(1, resultados.size());
+        assertEquals("Centrífugas", resultados.getFirst().getNombre());
+    }
+
+    //-- FILTRADO por RANGO DESDE ABIERTO --//
+    @Test
+    public void testListarConFiltros_FiltradoPorRangoDesdeAbierto() {
+        LocalDate desde = LocalDate.of(2025,11,1);
+        LocalDate hoy = LocalDate.now();
+
+        Categoria c1 = new Categoria();
+        c1.setId(1L); c1.setNombre("Centrífugas"); c1.setFechaCreacion(LocalDate.of(2025,11,20));
+
+        Categoria c2 = new Categoria();
+        c2.setId(2L); c2.setNombre("Microscopios"); c2.setFechaCreacion(LocalDate.of(2025,10,20));
+
+        when(categoriaRepository.findAll()).thenReturn(List.of(c1, c2));
+        when(modelMapper.map(any(Categoria.class), eq(CategoriaOutDto.class)))
+                .thenAnswer(invocation -> {
+                    Categoria c = invocation.getArgument(0);
+                    CategoriaOutDto dto = new CategoriaOutDto();
+                    dto.setId(c.getId());
+                    dto.setNombre(c.getNombre());
+                    return dto;
+                });
+
+        List<CategoriaOutDto> resultados = categoriaService.listarConFiltros(null, null, null, desde, null);
+
+        assertNotNull(resultados);
+        assertEquals(1, resultados.size());
+        assertEquals("Centrífugas", resultados.getFirst().getNombre());
+    }
+
+    //-- FILTRADO por RANGO HASTA ABIERTO --//
+    @Test
+    public void testListarConFiltros_FiltradoPorRangoHastaAbierto() {
+        LocalDate hasta = LocalDate.of(2025,11,30);
+
+        Categoria c1 = new Categoria();
+        c1.setId(1L); c1.setNombre("Centrífugas"); c1.setFechaCreacion(LocalDate.of(2025,11,15));
+
+        Categoria c2 = new Categoria();
+        c2.setId(2L); c2.setNombre("Microscopios"); c2.setFechaCreacion(LocalDate.of(2025,12,1));
+
+        when(categoriaRepository.findAll()).thenReturn(List.of(c1, c2));
+        when(modelMapper.map(any(Categoria.class), eq(CategoriaOutDto.class)))
+                .thenAnswer(invocation -> {
+                    Categoria c = invocation.getArgument(0);
+                    CategoriaOutDto dto = new CategoriaOutDto();
+                    dto.setId(c.getId());
+                    dto.setNombre(c.getNombre());
+                    return dto;
+                });
+
+        List<CategoriaOutDto> resultados = categoriaService.listarConFiltros(null, null, null, null, hasta);
+
+        assertNotNull(resultados);
+        assertEquals(1, resultados.size());
+        assertEquals("Centrífugas", resultados.get(0).getNombre());
+    }
+
+    // -- FILTROS COMBINADOS -- //
+    @Test
+    public void testListarConFiltros_FiltrosCombinados_Exito() {
+        String nombre = "cent";
+        boolean activa = true;
+        LocalDate desde = LocalDate.of(2025, 11, 1);
+        LocalDate hasta = LocalDate.of(2025, 11, 30);
+
+        // Categoría que CUMPLE todos los filtros
+        Categoria c1 = new Categoria();
+        c1.setId(1L);
+        c1.setNombre("Centrífugas");
+        c1.setActiva(true);
+        c1.setFechaCreacion(LocalDate.of(2025, 11, 15));
+
+        // Falla por activa = false
+        Categoria c2 = new Categoria();
+        c2.setId(2L);
+        c2.setNombre("Centrífugas");
+        c2.setActiva(false);
+        c2.setFechaCreacion(LocalDate.of(2025, 11, 15));
+
+        // Falla por nombre
+        Categoria c3 = new Categoria();
+        c3.setId(3L);
+        c3.setNombre("Microscopios");
+        c3.setActiva(true);
+        c3.setFechaCreacion(LocalDate.of(2025, 11, 15));
+
+        // Falla por fecha fuera de rango
+        Categoria c4 = new Categoria();
+        c4.setId(4L);
+        c4.setNombre("Centrífugas");
+        c4.setActiva(true);
+        c4.setFechaCreacion(LocalDate.of(2025, 12, 5));
+
+        when(categoriaRepository.findAll())
+                .thenReturn(List.of(c1, c2, c3, c4));
+
+        when(modelMapper.map(any(Categoria.class), eq(CategoriaOutDto.class)))
+                // Le decimos a Mockito: "Cuando se llame al metodo map de modelMapper,
+                // pasando cualquier objeto de tipo Categoria como primer parámetro
+                // y CategoriaOutDto.class como segundo parámetro..."
+
+                .thenAnswer(invocation -> { // ... entonces ejecuta este bloque de código
+                    // 'invocation' representa la llamada real al metodo mockeado
+
+                    Categoria c = invocation.getArgument(0);
+                    // Obtengo el primer argumento pasado al metodo map,
+                    // que en este caso es el objeto Categoria que queremos mapear.
+
+                    CategoriaOutDto dto = new CategoriaOutDto();
+                    // Creo un nuevo objeto DTO que voy a devolver como resultado
+
+                    dto.setId(c.getId());
+                    // Copio el ID de la categoría original al DTO
+
+                    dto.setNombre(c.getNombre());
+                    // Copio el nombre de la categoría original al DTO
+
+                    return dto;
+                    // Devuelvo el DTO "manual" como resultado de la llamada mockeada
+                });
+
+        // Ejecución
+        List<CategoriaOutDto> resultados =
+                categoriaService.listarConFiltros(nombre, activa, null, desde, hasta);
 
         // Verificaciones
         assertNotNull(resultados);
@@ -212,96 +369,25 @@ public class CategoriaServiceTests {
         assertEquals("Centrífugas", resultados.getFirst().getNombre());
     }
 
-    @Test
-    public void testListarConFiltros_FiltradoPorRangoCompleto() {
-        LocalDate desde = LocalDate.of(2025, 11, 1);
-        LocalDate hasta = LocalDate.of(2025, 11, 30);
-
-        // Categoria que simula estar en la BBDD
-        Categoria categoriaEnBBDD = new Categoria();
-        categoriaEnBBDD.setId(2L);
-        categoriaEnBBDD.setNombre("Microscopios");
-        categoriaEnBBDD.setFechaCreacion(LocalDate.of(2025, 11, 15)); // Fecha dentro del rango
-
-        // CategoriaOutDto esperado
-        CategoriaOutDto categoriaOutDto = new CategoriaOutDto();
-        categoriaOutDto.setId(categoriaEnBBDD.getId());
-        categoriaOutDto.setNombre(categoriaEnBBDD.getNombre());
-
-        // Mockeo comportamiento del repositorio
-        when(categoriaRepository.findByFechaCreacionBetween(desde, hasta)).thenReturn(List.of(categoriaEnBBDD));
-        when(modelMapper.map(categoriaEnBBDD, CategoriaOutDto.class)).thenReturn(categoriaOutDto);
-
-        // Llamo al metodo a testear
-        List<CategoriaOutDto> resultados = categoriaService.listarConFiltros(null, null, null, desde, hasta);
-
-        // Verificaciones
-        assertNotNull(resultados);
-        assertEquals(1, resultados.size());
-        assertEquals("Microscopios", resultados.getFirst().getNombre());
-    }
-
-    @Test
-    public void testListarConFiltros_FiltradoPorRangoDesdeAbierto() {
-        LocalDate desde = LocalDate.of(2025, 11, 1);
-
-        // Categoria que simula estar en la BBDD
-        Categoria categoriaEnBBDD = new Categoria();
-        categoriaEnBBDD.setId(3L);
-        categoriaEnBBDD.setNombre("Tubos de ensayo");
-        categoriaEnBBDD.setFechaCreacion(LocalDate.of(2025, 11, 20)); // Fecha después del "desde"
-
-        // CategoriaOutDto esperado
-        CategoriaOutDto categoriaOutDto = new CategoriaOutDto();
-        categoriaOutDto.setId(categoriaEnBBDD.getId());
-        categoriaOutDto.setNombre(categoriaEnBBDD.getNombre());
-
-        // Mockeo comportamiento del repositorio
-        when(categoriaRepository.findByFechaCreacionBetween(desde, LocalDate.now()))
-                .thenReturn(List.of(categoriaEnBBDD));
-        when(modelMapper.map(categoriaEnBBDD, CategoriaOutDto.class)).thenReturn(categoriaOutDto);
-
-        // Llamo al metodo a testear
-        List<CategoriaOutDto> resultados = categoriaService.listarConFiltros(null, null, null, desde, null);
-
-        // Verificaciones
-        assertNotNull(resultados);
-        assertEquals(1, resultados.size());
-        assertEquals("Tubos de ensayo", resultados.getFirst().getNombre());
-    }
 
     // -- SIN FILTROS --> Devuelve todas las categorías -- //
-
     @Test
     public void testListarConFiltros_SinFiltros() {
+        Categoria c1 = new Categoria(); c1.setId(1L); c1.setNombre("Centrífugas");
+        Categoria c2 = new Categoria(); c2.setId(2L); c2.setNombre("Microscopios");
 
-        // Categorias que simulan estar en la BBDD
-        Categoria categoria1 = new Categoria();
-        categoria1.setId(1L);
-        categoria1.setNombre("Centrífugas");
+        when(categoriaRepository.findAll()).thenReturn(List.of(c1, c2));
+        when(modelMapper.map(any(Categoria.class), eq(CategoriaOutDto.class)))
+                .thenAnswer(invocation -> {
+                    Categoria c = invocation.getArgument(0);
+                    CategoriaOutDto dto = new CategoriaOutDto();
+                    dto.setId(c.getId());
+                    dto.setNombre(c.getNombre());
+                    return dto;
+                });
 
-        Categoria categoria2 = new Categoria();
-        categoria2.setId(2L);
-        categoria2.setNombre("Microscopios");
-
-        // CategoriaOutDto esperados
-        CategoriaOutDto categoriaOutDto1 = new CategoriaOutDto();
-        categoriaOutDto1.setId(categoria1.getId());
-        categoriaOutDto1.setNombre(categoria1.getNombre());
-
-        CategoriaOutDto categoriaOutDto2 = new CategoriaOutDto();
-        categoriaOutDto2.setId(categoria2.getId());
-        categoriaOutDto2.setNombre(categoria2.getNombre());
-
-        // Stub del repositorio y mapeos
-        when(categoriaRepository.findAll()).thenReturn(List.of(categoria1, categoria2));
-        when(modelMapper.map(categoria1, CategoriaOutDto.class)).thenReturn(categoriaOutDto1);
-        when(modelMapper.map(categoria2, CategoriaOutDto.class)).thenReturn(categoriaOutDto2);
-
-        // Llamo al metodo a testear
         List<CategoriaOutDto> resultados = categoriaService.listarConFiltros(null, null, null, null, null);
 
-        // Verificaciones
         assertNotNull(resultados);
         assertEquals(2, resultados.size());
         assertEquals("Centrífugas", resultados.get(0).getNombre());

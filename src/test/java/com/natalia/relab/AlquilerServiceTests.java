@@ -195,43 +195,38 @@ class AlquilerServiceTests {
 
     //-- FILTRADO por ARRENDADOR --//
     @Test
-    public void testListarConFiltros_FiltradoPorArrendador_Exito() throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
+    public void testListarConFiltros_FiltradoPorArrendador_Exito()
+            throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
         // Id del arrendador a filtrar
         Long arrendadorId = 2L;
-
         // Mock: existe el arrendador
         when(usuarioRepository.existsById(arrendadorId)).thenReturn(true);
 
-        // Alquiler simulado
-        Alquiler alquiler = new Alquiler();
-        alquiler.setId(1L);
-
-        // Asocio arrendador al alquiler
+        // Alquiler que SÍ coincide
+        Alquiler a1 = new Alquiler();
+        a1.setId(1L); // Alquiler con ID 1
         Usuario arrendador = new Usuario();
-        arrendador.setId(arrendadorId);
-        arrendador.setNickname("juan123");
-        alquiler.setArrendador(arrendador);
+        arrendador.setId(arrendadorId); // Mismo ID que el filtro
+        a1.setArrendador(arrendador);
 
-        // Asocio producto
-        Producto producto = new Producto();
-        producto.setId(5L);
-        producto.setNombre("Microscopio");
-        alquiler.setProducto(producto);
+        // Alquiler que NO coincide
+        Alquiler a2 = new Alquiler();
+        a2.setId(2L); // Alquiler con ID 2
+        Usuario otroArrendador = new Usuario();
+        otroArrendador.setId(99L); // Diferente ID al filtro
+        a2.setArrendador(otroArrendador);
 
-        // Stub: devuelvo lista con un alquiler
-        when(alquilerRepository.findByArrendadorId(arrendadorId)).thenReturn(java.util.List.of(alquiler));
+        // Mock: el repositorio devuelve ambos alquileres
+        when(alquilerRepository.findAll()).thenReturn(List.of(a1, a2));
 
         // Metodo a testear
         List<AlquilerOutDto> resultado =
                 alquilerService.listarConFiltros(arrendadorId, null, null);
 
-        // Verificaciones
-        assertNotNull(resultado);
-        assertEquals(1, resultado.size());
-        assertEquals(1L, resultado.getFirst().getId());
-        assertEquals(2L, resultado.getFirst().getArrendador().getId());
-        assertEquals(5L, resultado.getFirst().getProducto().getId());
+        assertEquals(1, resultado.size()); // Solo uno coincide
+        assertEquals(1L, resultado.getFirst().getId()); // Verifico que es el correcto
     }
+
 
     @Test
     public void testListarConFiltros_FiltradoPorArrendador_FallaUsuarioNoEncontrado() {
@@ -248,44 +243,35 @@ class AlquilerServiceTests {
     }
 
     //-- FILTRADO por ARRENDATARIO --//
+    // Misma lógica que el test de arrendador pero cambiando a arrendatario
     @Test
-    public void testListarConFiltros_FiltradoPorArrendatario_Exito() throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
-        // Id del arrendatario a filtrar
-        Long arrendatarioId = 3L;
+    public void testListarConFiltros_FiltradoPorArrendatario_Exito()
+            throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
 
-        // Mock: existe el arrendatario
+        Long arrendatarioId = 3L;
         when(usuarioRepository.existsById(arrendatarioId)).thenReturn(true);
 
-        // Alquiler simulado
-        Alquiler alquiler = new Alquiler();
-        alquiler.setId(1L);
-
-        // Asocio arrendatario al alquiler
+        Alquiler a1 = new Alquiler();
+        a1.setId(1L);
         Usuario arrendatario = new Usuario();
         arrendatario.setId(arrendatarioId);
-        arrendatario.setNickname("maria456");
-        alquiler.setArrendatario(arrendatario);
+        a1.setArrendatario(arrendatario);
 
-        // Asocio producto
-        Producto producto = new Producto();
-        producto.setId(5L);
-        producto.setNombre("Microscopio");
-        alquiler.setProducto(producto);
+        Alquiler a2 = new Alquiler();
+        a2.setId(2L);
+        Usuario otroArrendatario = new Usuario();
+        otroArrendatario.setId(99L);
+        a2.setArrendatario(otroArrendatario);
 
-        // Stub: devuelvo lista con un alquiler
-        when(alquilerRepository.findByArrendatarioId(arrendatarioId)).thenReturn(List.of(alquiler));
+        when(alquilerRepository.findAll()).thenReturn(List.of(a1, a2));
 
-        // Metodo a testear
         List<AlquilerOutDto> resultado =
                 alquilerService.listarConFiltros(null, arrendatarioId, null);
 
-        // Verificaciones
-        assertNotNull(resultado);
         assertEquals(1, resultado.size());
         assertEquals(1L, resultado.getFirst().getId());
-        assertEquals(3L, resultado.getFirst().getArrendatario().getId());
-        assertEquals(5L, resultado.getFirst().getProducto().getId());
     }
+
 
     @Test
     public void testListarConFiltros_FiltradoPorArrendatario_FallaUsuarioNoEncontrado() {
@@ -304,39 +290,33 @@ class AlquilerServiceTests {
 
     //-- FILTRADO por PRODUCTO --//
     @Test
-    public void testListarConFiltros_PorProducto_Exito() throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
-        // Id del producto para filtrar
-        Long productoId = 5L;
+    public void testListarConFiltros_PorProducto_Exito()
+            throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
 
-        // El producto existe
+        Long productoId = 5L;
         when(productoRepository.existsById(productoId)).thenReturn(true);
 
-        // Entidad Alquiler simulada
-        Alquiler alquiler = new Alquiler();
-        alquiler.setId(3L);
+        Alquiler a1 = new Alquiler();
+        a1.setId(3L);
+        Producto p = new Producto();
+        p.setId(productoId); // Mismo ID que el filtro
+        a1.setProducto(p);
 
-        // Asocio producto
-        Producto producto = new Producto();
-        producto.setId(5L);
-        producto.setNombre("Microscopio");
-        alquiler.setProducto(producto);
+        Alquiler a2 = new Alquiler();
+        a2.setId(4L);
+        Producto otroP = new Producto();
+        otroP.setId(99L); // Diferente ID al filtro
+        a2.setProducto(otroP);
 
-        // Asocio arrendador
-        Usuario arrendador = new Usuario();
-        arrendador.setId(10L);
-        arrendador.setNickname("juan26");
-        alquiler.setArrendador(arrendador);
+        when(alquilerRepository.findAll()).thenReturn(List.of(a1, a2));
 
-        // Mock: el alquiler devuelto por el repositorio
-        when(alquilerRepository.findByProductoId(productoId)).thenReturn(List.of(alquiler));
+        List<AlquilerOutDto> resultado =
+                alquilerService.listarConFiltros(null, null, productoId);
 
-        List<AlquilerOutDto> resultado = alquilerService.listarConFiltros(null, null, productoId);
-
-        assertNotNull(resultado); // La lista no es nula
-        assertEquals(1, resultado.size()); // La lista tiene un elemento
-        assertEquals(3L, resultado.getFirst().getId()); // El ID de la compraventa es correcto
-        assertEquals(5L, resultado.getFirst().getProducto().getId()); // El ID del producto es correcto
+        assertEquals(1, resultado.size());
+        assertEquals(3L, resultado.getFirst().getId());
     }
+
 
     @Test
     public void testListarConFiltros_PorProducto_FallaProductoNoEncontrado() {
@@ -352,6 +332,48 @@ class AlquilerServiceTests {
                     alquilerService.listarConFiltros(null, null, productoId);
                 });
     }
+
+    @Test
+    public void testListarConFiltros_FiltrosCombinados_Exito()
+            throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
+
+        Long arrendadorId = 1L;
+        Long arrendatarioId = 2L;
+        Long productoId = 10L;
+
+        when(usuarioRepository.existsById(arrendadorId)).thenReturn(true);
+        when(usuarioRepository.existsById(arrendatarioId)).thenReturn(true);
+        when(productoRepository.existsById(productoId)).thenReturn(true);
+
+        // Alquiler que coincide
+        Alquiler a1 = new Alquiler();
+        a1.setId(1L);
+
+        Usuario u = new Usuario();
+        u.setId(arrendadorId);
+        a1.setArrendador(u);
+
+        Producto p = new Producto();
+        p.setId(productoId);
+        a1.setProducto(p);
+
+        Usuario u2 = new Usuario();
+        u2.setId(arrendatarioId);
+        a1.setArrendatario(u2);
+
+        // No coincide
+        Alquiler a2 = new Alquiler();
+        a2.setId(2L);
+
+        when(alquilerRepository.findAll()).thenReturn(List.of(a1, a2));
+
+        List<AlquilerOutDto> resultado =
+                alquilerService.listarConFiltros(arrendadorId, arrendatarioId, productoId);
+
+        assertEquals(1, resultado.size());
+        assertEquals(1L, resultado.getFirst().getId());
+    }
+
 
     // -- SIN FILTROS --> Devuelve todos los alquileres -- //
 

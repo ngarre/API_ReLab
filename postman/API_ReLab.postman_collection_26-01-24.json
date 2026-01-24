@@ -1,0 +1,1514 @@
+{
+  "info": {
+    "_postman_id": "11c29ac4-04d0-4e32-9d97-588b02d3aaa0",
+    "name": "API_ReLab",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "50099138",
+    "_collection_link": "https://go.postman.co/collection/50099138-11c29ac4-04d0-4e32-9d97-588b02d3aaa0?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "usuarios",
+      "item": [
+        {
+          "name": "usuarios",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/usuarios",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "usuarios"
+              ]
+            },
+            "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+          },
+          "response": []
+        },
+        {
+          "name": "usuario",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful POST request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/usuarios/5",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "usuarios",
+                "5"
+              ]
+            },
+            "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+          },
+          "response": []
+        },
+        {
+          "name": "filtro por nickname",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"name\": \"Add your name in the body\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/usuarios?nickname=Fer34",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "usuarios"
+              ],
+              "query": [
+                {
+                  "key": "nickname",
+                  "value": "Fer34"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "filtro login",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"name\": \"Add your name in the body\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/usuarios?nickname=Fer34&password=secreto",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "usuarios"
+              ],
+              "query": [
+                {
+                  "key": "nickname",
+                  "value": "Fer34"
+                },
+                {
+                  "key": "password",
+                  "value": "secreto"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "filtro por tipoUsuario",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"name\": \"Add your name in the body\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/usuarios?tipoUsuario=empresa",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "usuarios"
+              ],
+              "query": [
+                {
+                  "key": "tipoUsuario",
+                  "value": "empresa"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "filtro por cuentaActiva",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"name\": \"Add your name in the body\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/usuarios?cuentaActiva=false",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "usuarios"
+              ],
+              "query": [
+                {
+                  "key": "cuentaActiva",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "usuario",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nickname\": \"Laura35\",\n  \"password\": \"3535\",\n  \"nombre\": \"Laura\",\n  \"apellido\": \"Alonso\",\n  \"email\": \"laura@example.com\",\n  \"fechaNacimiento\": \"1992-03-12\",\n  \"cuentaActiva\": true,\n  \"tipoUsuario\": \"particular\",\n  \"saldo\": 125.5,\n  \"latitud\": 40.4168,\n  \"longitud\": -3.7038\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/usuarios",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "usuarios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "usuario",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{  \n  \t\"nickname\": \"Laura3636\",\n  \t\"password\": \"3636\",\n    \"nombre\": \"Laura\",\n   \t\"apellido\": \"Alonso\",\n    \"email\": \"laura@example.com\",\n   \t\"fechaNacimiento\": \"1995-05-15\",\n    \"cuentaActiva\": true,\n    \"tipoUsuario\": \"Empresa\",\n    \"latitud\": 40.4168,\n    \"longitud\": -3.7038\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/usuarios/21",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "usuarios",
+                "21"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "usuario",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{  \n  \t\"nickname\": \"Laura3636\",\n  \t\"password\": \"3636\",\n    \"nombre\": \"Laura\",\n   \t\"apellido\": \"Alonso\",\n    \"email\": \"laura@example.com\",\n   \t\"fechaNacimiento\": \"1995-05-15\",\n    \"cuentaActiva\": true,\n    \"tipoUsuario\": \"Empresa\",\n    \"latitud\": 40.4168,\n    \"longitud\": -3.7038\n}\n"
+            },
+            "url": {
+              "raw": "http://localhost:8080/usuarios/21",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "usuarios",
+                "21"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "usuarios - 3 filtros",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/usuarios?nickname=Fer34&tipoUsuario=empresa&cuentaActiva=1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "usuarios"
+              ],
+              "query": [
+                {
+                  "key": "nickname",
+                  "value": "Fer34"
+                },
+                {
+                  "key": "tipoUsuario",
+                  "value": "empresa"
+                },
+                {
+                  "key": "cuentaActiva",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "productos",
+      "item": [
+        {
+          "name": "productos",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"name\": \"Add your name in the body\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/productos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "productos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "producto",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n   \t\"nombre\": \"AKTA pure\",\r\n    \"descripcion\": \"Sistema de cromatografía líquida de proteínas rápida (FPLC)\",\r\n    \"precio\": 20000,\r\n    \"activo\": true,\r\n\t\"modo\": true,\r\n    \"categoriaId\": 11,\r\n\t\"usuarioId\": 7\r\n }\r\n"
+            },
+            "url": {
+              "raw": "http://localhost:8080/productos/17",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "productos",
+                "17"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "filtro por nombre",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"name\": \"Add your name in the body\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/productos?nombre=agitador",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "productos"
+              ],
+              "query": [
+                {
+                  "key": "nombre",
+                  "value": "agitador"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "filtro por activo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/productos?activo=false",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "productos"
+              ],
+              "query": [
+                {
+                  "key": "activo",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "filtro por categoriaId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/productos?categoriaId=1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "productos"
+              ],
+              "query": [
+                {
+                  "key": "categoriaId",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "filtro por usuarioId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/productos?usuarioId=3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "productos"
+              ],
+              "query": [
+                {
+                  "key": "usuarioId",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "producto",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n   \t\"nombre\": \"AKTA pure\",\r\n    \"descripcion\": \"Sistema de cromatografía líquida de proteínas rápida (FPLC)\",\r\n    \"precio\": 20000,\r\n    \"activo\": true,\r\n\t\"modo\": true,\r\n    \"categoriaId\": 11,\r\n\t\"usuarioId\": 7\r\n }\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/productos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "productos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "producto",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": " {\r\n   \t\"nombre\": \"AKTA caro\",\r\n    \"descripcion\": \"El mismo AKTA más caro\",\r\n    \"precio\": 30000,\r\n    \"activo\": true,\r\n\t\"modo\": false,\r\n   \t\"categoriaId\": 11\r\n }\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/productos/24",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "productos",
+                "24"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "producto",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": " {\r\n   \t\"nombre\": \"AKTA caro\",\r\n    \"descripcion\": \"El mismo AKTA más caro\",\r\n    \"precio\": 30000,\r\n    \"activo\": true,\r\n\t\"modo\": false,\r\n   \t\"categoriaId\": 11\r\n }\r\n"
+            },
+            "url": {
+              "raw": "http://localhost:8080/productos/24",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "productos",
+                "24"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "productos - 4 filtros",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/productos?nombre=balanza&activo=1&categoriaId=5&usuarioId=3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "productos"
+              ],
+              "query": [
+                {
+                  "key": "nombre",
+                  "value": "balanza"
+                },
+                {
+                  "key": "activo",
+                  "value": "1"
+                },
+                {
+                  "key": "categoriaId",
+                  "value": "5"
+                },
+                {
+                  "key": "usuarioId",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "categorias",
+      "item": [
+        {
+          "name": "categorias",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": " {\r\n   \t\"nombre\": \"AKTA caro\",\r\n    \"descripcion\": \"El mismo AKTA más caro\",\r\n    \"precio\": 30000,\r\n    \"activo\": true,\r\n\t\"modo\": false,\r\n   \t\"categoriaId\": 11\r\n }\r\n"
+            },
+            "url": {
+              "raw": "http://localhost:8080/categorias",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "categorias"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "categoria",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": " {\r\n   \t\"nombre\": \"AKTA caro\",\r\n    \"descripcion\": \"El mismo AKTA más caro\",\r\n    \"precio\": 30000,\r\n    \"activo\": true,\r\n\t\"modo\": false,\r\n   \t\"categoriaId\": 11\r\n }\r\n"
+            },
+            "url": {
+              "raw": "http://localhost:8080/categorias/11",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "categorias",
+                "11"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "filtro por nombre",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": " {\r\n   \t\"nombre\": \"AKTA caro\",\r\n    \"descripcion\": \"El mismo AKTA más caro\",\r\n    \"precio\": 30000,\r\n    \"activo\": true,\r\n\t\"modo\": false,\r\n   \t\"categoriaId\": 11\r\n }\r\n"
+            },
+            "url": {
+              "raw": "http://localhost:8080/categorias?nombre=dicroismo",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "categorias"
+              ],
+              "query": [
+                {
+                  "key": "nombre",
+                  "value": "dicroismo"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "filtro por activa",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": " {\r\n   \t\"nombre\": \"AKTA caro\",\r\n    \"descripcion\": \"El mismo AKTA más caro\",\r\n    \"precio\": 30000,\r\n    \"activo\": true,\r\n\t\"modo\": false,\r\n   \t\"categoriaId\": 11\r\n }\r\n"
+            },
+            "url": {
+              "raw": "http://localhost:8080/categorias?activa=false",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "categorias"
+              ],
+              "query": [
+                {
+                  "key": "activa",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "filtro fecha 1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": " {\r\n   \t\"nombre\": \"AKTA caro\",\r\n    \"descripcion\": \"El mismo AKTA más caro\",\r\n    \"precio\": 30000,\r\n    \"activo\": true,\r\n\t\"modo\": false,\r\n   \t\"categoriaId\": 11\r\n }\r\n"
+            },
+            "url": {
+              "raw": "http://localhost:8080/categorias?fechaCreacion=2025-11-21",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "categorias"
+              ],
+              "query": [
+                {
+                  "key": "fechaCreacion",
+                  "value": "2025-11-21"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "filtro fecha 2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": " {\r\n   \t\"nombre\": \"AKTA caro\",\r\n    \"descripcion\": \"El mismo AKTA más caro\",\r\n    \"precio\": 30000,\r\n    \"activo\": true,\r\n\t\"modo\": false,\r\n   \t\"categoriaId\": 11\r\n }\r\n"
+            },
+            "url": {
+              "raw": "http://localhost:8080/categorias?desde=2025-11-16",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "categorias"
+              ],
+              "query": [
+                {
+                  "key": "desde",
+                  "value": "2025-11-16"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "filtro fecha 3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": " {\r\n   \t\"nombre\": \"AKTA caro\",\r\n    \"descripcion\": \"El mismo AKTA más caro\",\r\n    \"precio\": 30000,\r\n    \"activo\": true,\r\n\t\"modo\": false,\r\n   \t\"categoriaId\": 11\r\n }\r\n"
+            },
+            "url": {
+              "raw": "http://localhost:8080/categorias?desde=2025-11-16&hasta=2025-11-18",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "categorias"
+              ],
+              "query": [
+                {
+                  "key": "desde",
+                  "value": "2025-11-16"
+                },
+                {
+                  "key": "hasta",
+                  "value": "2025-11-18"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "categoria",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\t\"nombre\": \"Western Blot\",\r\n    \"descripcion\": \"Ültiles para western blot\",\r\n    \"activo\": true,\r\n    \"tasaComision\": 0.7\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/categorias",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "categorias"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "categoria",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\t\"nombre\": \"Western Blot NUEVO\",\r\n    \"descripcion\": \"Últiles para western blot\",\r\n    \"activo\": true,\r\n    \"tasaComision\": 0.7\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/categorias/12",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "categorias",
+                "12"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "categoria",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\t\"nombre\": \"Western Blot NUEVO\",\r\n    \"descripcion\": \"Últiles para western blot\",\r\n    \"activo\": true,\r\n    \"tasaComision\": 0.7\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/categorias/12",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "categorias",
+                "12"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "categoria - 5 filtros",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/categorias?nombre=dicroismo&activa=true&fechaCreacion=2025-10-24",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "categorias"
+              ],
+              "query": [
+                {
+                  "key": "nombre",
+                  "value": "dicroismo"
+                },
+                {
+                  "key": "activa",
+                  "value": "true"
+                },
+                {
+                  "key": "desde",
+                  "value": "2025-10-01",
+                  "disabled": true
+                },
+                {
+                  "key": "fechaCreacion",
+                  "value": "2025-10-24"
+                },
+                {
+                  "key": "hasta",
+                  "value": "2025-11-05",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "compraventas",
+      "item": [
+        {
+          "name": "compraventas",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\t\"nombre\": \"Western Blot NUEVO\",\r\n    \"descripcion\": \"Últiles para western blot\",\r\n    \"activo\": true,\r\n    \"tasaComision\": 0.7\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/compraventas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "compraventas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "compraventa",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\t\"nombre\": \"Western Blot NUEVO\",\r\n    \"descripcion\": \"Últiles para western blot\",\r\n    \"activo\": true,\r\n    \"tasaComision\": 0.7\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/compraventas/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "compraventas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "filtro por compradorId",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\t\"nombre\": \"Western Blot NUEVO\",\r\n    \"descripcion\": \"Últiles para western blot\",\r\n    \"activo\": true,\r\n    \"tasaComision\": 0.7\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/compraventas?compradorId=3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "compraventas"
+              ],
+              "query": [
+                {
+                  "key": "compradorId",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "filtro por vendedorId",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\t\"nombre\": \"Western Blot NUEVO\",\r\n    \"descripcion\": \"Últiles para western blot\",\r\n    \"activo\": true,\r\n    \"tasaComision\": 0.7\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/compraventas?vendedorId=6",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "compraventas"
+              ],
+              "query": [
+                {
+                  "key": "vendedorId",
+                  "value": "6"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "filtro por productoId",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\t\"nombre\": \"Western Blot NUEVO\",\r\n    \"descripcion\": \"Últiles para western blot\",\r\n    \"activo\": true,\r\n    \"tasaComision\": 0.7\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/compraventas?productoId=17",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "compraventas"
+              ],
+              "query": [
+                {
+                  "key": "productoId",
+                  "value": "17"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "compraventa",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"precioFinal\": 4500,\r\n    \"comentario\": \"Gran compra\",\r\n    \"devuelto\": false,\r\n  \t\"productoId\": 16, \r\n  \t\"compradorId\": 19,\r\n  \t\"vendedorId\": 20\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/compraventas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "compraventas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "compraventa",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"precioFinal\": 4500,\r\n    \"comentario\": \"Realmente no ha ido bien\",\r\n    \"devuelto\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/compraventas/7",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "compraventas",
+                "7"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "compraventa",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"precioFinal\": 4500,\r\n    \"comentario\": \"Realmente no ha ido bien\",\r\n    \"devuelto\": false\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/compraventas/7",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "compraventas",
+                "7"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "compraventas - 3 filtros",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/compraventas?compradorId=3&vendedorId=5&productoId=14",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "compraventas"
+              ],
+              "query": [
+                {
+                  "key": "compradorId",
+                  "value": "3"
+                },
+                {
+                  "key": "vendedorId",
+                  "value": "5"
+                },
+                {
+                  "key": "productoId",
+                  "value": "14"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "alquileres",
+      "item": [
+        {
+          "name": "alquileres",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "alquiler",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/alquileres/4",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "alquileres",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "filtro por arrendadorId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/alquileres?arrendadorId=10",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "alquileres"
+              ],
+              "query": [
+                {
+                  "key": "arrendadorId",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "filtro por arrendatarioId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/alquileres?arrendatarioId=11",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "alquileres"
+              ],
+              "query": [
+                {
+                  "key": "arrendatarioId",
+                  "value": "11"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "productoId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/alquileres?productoId=12",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "alquileres"
+              ],
+              "query": [
+                {
+                  "key": "productoId",
+                  "value": "12"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "alquiler",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\t\"cancelado\": false,\r\n    \"comentario\": \"Todo perfectísimo\",\r\n  \t\"fechaInicio\": \"2022-08-24\",\r\n    \"fechaFin\": \"2023-07-24\",\r\n  \t\"meses\": 11,\r\n  \t\"precio\": 20,\r\n   \t\"arrendadorId\": 12,\r\n  \t\"arrendatarioId\": 7,\r\n  \t\"productoId\": 14\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/alquileres",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "alquileres"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "alquiler",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"comentario\": \"Buen servicio\",\r\n  \t\"precio\": 400,\r\n   \t\"cancelado\": true  \t\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/alquileres/8",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "alquileres",
+                "8"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "alquiler",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"comentario\": \"Buen servicio\",\r\n  \t\"precio\": 400,\r\n   \t\"cancelado\": true  \t\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/alquileres/8",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "alquileres",
+                "8"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "alquileres - 3 filtros",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/alquileres?arrendadorId=10&arrendatarioId=11&productoId=12",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "alquileres"
+              ],
+              "query": [
+                {
+                  "key": "arrendadorId",
+                  "value": "10"
+                },
+                {
+                  "key": "arrendatarioId",
+                  "value": "11"
+                },
+                {
+                  "key": "productoId",
+                  "value": "12"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    },
+    {
+      "key": "usuarioId",
+      "value": ""
+    },
+    {
+      "key": "productoId",
+      "value": ""
+    },
+    {
+      "key": "categoriaId",
+      "value": ""
+    },
+    {
+      "key": "compraventaId",
+      "value": ""
+    },
+    {
+      "key": "alquilerId",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}

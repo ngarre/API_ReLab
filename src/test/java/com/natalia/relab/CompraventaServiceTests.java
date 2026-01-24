@@ -189,43 +189,35 @@ public class CompraventaServiceTests {
 
     //-- FILTRADO por COMPRADOR --//
     @Test
-    public void testListarConFiltros_PorComprador_Exito() throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
-        // ID del comprador para filtrar
-        Long compradorId = 10L;
+    public void testListarConFiltros_PorComprador_Exito()
+            throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
 
-        // Mock: existe comprador
+        Long compradorId = 10L;
         when(usuarioRepository.existsById(compradorId)).thenReturn(true);
 
-        // Compraventa simulada
-        Compraventa compraventa = new Compraventa();
-        compraventa.setId(1L);
-
-        // Asocio comprador
+        // Compraventa que SÍ coincide
+        Compraventa c1 = new Compraventa();
+        c1.setId(1L);
         Usuario comprador = new Usuario();
         comprador.setId(10L);
-        comprador.setNickname("juan");
-        compraventa.setComprador(comprador);
+        c1.setComprador(comprador);
 
-        // Asocio producto
-        Producto producto = new Producto();
-        producto.setId(5L);
-        producto.setNombre("Microscopio");
-        compraventa.setProducto(producto);
+        // Compraventa que NO coincide
+        Compraventa c2 = new Compraventa();
+        c2.setId(2L);
+        Usuario otro = new Usuario();
+        otro.setId(99L);
+        c2.setComprador(otro);
 
-        // Mock: la lista de compraventas devuelta por el repositorio
-        when(compraventaRepository.findByCompradorId(compradorId)).thenReturn(List.of(compraventa));
+        when(compraventaRepository.findAll()).thenReturn(List.of(c1, c2));
 
-        // Metodo a testear
         List<CompraventaOutDto> resultado =
                 compraventaService.listarConFiltros(compradorId, null, null);
 
-        // Verificaciones
-        assertNotNull(resultado); // La lista no es nula
-        assertEquals(1, resultado.size()); // La lista tiene un elemento
-        assertEquals(1L, resultado.getFirst().getId()); // El ID de la compraventa es correcto
-        assertEquals(10L, resultado.getFirst().getComprador().getId()); // El ID del comprador es correcto
-        assertEquals(5L, resultado.getFirst().getProducto().getId()); // El ID del producto es correcto
+        assertEquals(1, resultado.size());
+        assertEquals(1L, resultado.getFirst().getId());
     }
+
 
     @Test
     public void testListarConFiltros_PorComprador_FallaSiNoExiste() {
@@ -243,43 +235,30 @@ public class CompraventaServiceTests {
 
     //-- FILTRADO por VENDEDOR --//
     @Test
-    public void testListarConFiltros_PorVendedor_Exito() throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
-        // ID del vendedor para filtrar
-        Long vendedorId = 20L;
+    public void testListarConFiltros_PorVendedor_Exito()
+            throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
 
-        // Mock: existe vendedor
+        Long vendedorId = 20L;
         when(usuarioRepository.existsById(vendedorId)).thenReturn(true);
 
-        // Compraventa simulada
-        Compraventa compraventa = new Compraventa();
-        compraventa.setId(2L);
-
-        // Asocio vendedor
+        Compraventa c1 = new Compraventa();
+        c1.setId(2L);
         Usuario vendedor = new Usuario();
         vendedor.setId(20L);
-        vendedor.setNickname("maria");
-        compraventa.setVendedor(vendedor);
+        c1.setVendedor(vendedor);
 
-        // Asocio producto
-        Producto producto = new Producto();
-        producto.setId(8L);
-        producto.setNombre("Producto2");
-        compraventa.setProducto(producto);
+        Compraventa c2 = new Compraventa();
+        c2.setId(3L);
 
-        // Mock: la lista de compraventas devuelta por el repositorio
-        when(compraventaRepository.findByVendedorId(vendedorId)).thenReturn(List.of(compraventa));
+        when(compraventaRepository.findAll()).thenReturn(List.of(c1, c2));
 
-        // Metodo a testear
         List<CompraventaOutDto> resultado =
                 compraventaService.listarConFiltros(null, vendedorId, null);
 
-        // Verificaciones
-        assertNotNull(resultado); // La lista no es nula
-        assertEquals(1, resultado.size()); // La lista tiene un elemento
-        assertEquals(2L, resultado.getFirst().getId()); // El ID de la compraventa es correcto
-        assertEquals(20L, resultado.getFirst().getVendedor().getId()); // El ID del vendedor es correcto
-        assertEquals(8L, resultado.getFirst().getProducto().getId()); // El ID del producto es correcto
+        assertEquals(1, resultado.size());
+        assertEquals(2L, resultado.getFirst().getId());
     }
+
 
     @Test
     public void testListarConFiltros_PorVendedor_FallaSiNoExiste() {
@@ -299,58 +278,51 @@ public class CompraventaServiceTests {
 
     //-- FILTRADO por PRODUCTO --//
     @Test
-    public void testListarConFiltros_PorProducto_Exito() throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
-        // Id del producto para filtrar
-        Long productoId = 5L;
+    public void testListarConFiltros_PorProducto_Exito()
+            throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
 
-        // El producto existe
+        Long productoId = 5L;
         when(productoRepository.existsById(productoId)).thenReturn(true);
 
-        // Entidad Compraventa simulada
-        Compraventa compraventa = new Compraventa();
-        compraventa.setId(3L);
+        Compraventa c1 = new Compraventa();
+        c1.setId(3L);
+        Producto p = new Producto();
+        p.setId(5L);
+        c1.setProducto(p);
 
-        // Asocio producto
-        Producto producto = new Producto();
-        producto.setId(5L);
-        producto.setNombre("Microscopio");
-        compraventa.setProducto(producto);
+        Compraventa c2 = new Compraventa();
+        c2.setId(4L);
 
-        // Asocio comprador
-        Usuario comprador = new Usuario();
-        comprador.setId(10L);
-        comprador.setNickname("juan26");
-        compraventa.setComprador(comprador);
+        when(compraventaRepository.findAll()).thenReturn(List.of(c1, c2));
 
-        // Mock: la compraventa devuelta por el repositorio
-        when(compraventaRepository.findByProductoId(productoId)).thenReturn(Optional.of(compraventa));
+        List<CompraventaOutDto> resultado =
+                compraventaService.listarConFiltros(null, null, productoId);
 
-        List<CompraventaOutDto> resultado = compraventaService.listarConFiltros(null, null, productoId);
-
-        assertNotNull(resultado); // La lista no es nula
-        assertEquals(1, resultado.size()); // La lista tiene un elemento
-        assertEquals(3L, resultado.getFirst().getId()); // El ID de la compraventa es correcto
-        assertEquals(5L, resultado.getFirst().getProducto().getId()); // El ID del producto es correcto
+        assertEquals(1, resultado.size());
+        assertEquals(3L, resultado.getFirst().getId());
     }
 
+
+    // Producto existe PERO no tiene compraventa asociada
     @Test
-    public void testListarConFiltros_PorProducto_SinCompraventa() throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
+    public void testListarConFiltros_PorProducto_SinResultados()
+            throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
 
         Long productoId = 5L;
-
-        // El producto existe
         when(productoRepository.existsById(productoId)).thenReturn(true);
 
-        // PERO no tiene compraventa asociada
-        when(compraventaRepository.findByProductoId(productoId))
-                .thenReturn(Optional.empty());
+        Compraventa c1 = new Compraventa();
+        c1.setId(1L);
+
+        when(compraventaRepository.findAll()).thenReturn(List.of(c1));
 
         List<CompraventaOutDto> resultado =
                 compraventaService.listarConFiltros(null, null, productoId);
 
         assertNotNull(resultado);
-        assertEquals(0, resultado.size()); // lista vacía está OK
+        assertEquals(0, resultado.size());
     }
+
 
     @Test
     public void testListarConFiltros_PorProducto_FallaSiNoExiste() {
@@ -367,42 +339,65 @@ public class CompraventaServiceTests {
 
     // -- SIN FILTROS --> Devuelve todas las compraventas -- //
     @Test
-    public void testListarConFiltros_SinFiltros_DevuelveTodas() throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
+    public void testListarConFiltros_SinFiltros_DevuelveTodas()
+            throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
 
-        // Compraventa 1
         Compraventa c1 = new Compraventa();
         c1.setId(1L);
 
-        // Producto asociado a compraventa 1
-        Producto p1 = new Producto();
-        p1.setId(10L);
-        p1.setNombre("Micorscopio");
-        c1.setProducto(p1);
-
-        // Compraventa 2
         Compraventa c2 = new Compraventa();
         c2.setId(2L);
 
-        // Producto asociado a compraventa 2
-        Producto p2 = new Producto();
-        p2.setId(20L);
-        p2.setNombre("Centrífuga");
-        c2.setProducto(p2);
-
-        // Mock: el repositorio devuelve ambas compraventas
         when(compraventaRepository.findAll()).thenReturn(List.of(c1, c2));
 
-        // Metodo a testear
-        List<CompraventaOutDto> resultado = compraventaService.listarConFiltros(null, null, null);
+        List<CompraventaOutDto> resultado =
+                compraventaService.listarConFiltros(null, null, null);
 
-        // Verificaciones
-        assertNotNull(resultado); // La lista no es nula
-        assertEquals(2, resultado.size()); // La lista tiene dos elementos
-        assertEquals(1L, resultado.get(0).getId()); // El ID de la primera compraventa es correcto
-        assertEquals(2L, resultado.get(1).getId()); // El ID de la segunda compraventa es correcto
-        assertEquals(10L, resultado.get(0).getProducto().getId()); // El ID del producto de la primera compraventa es correcto
-        assertEquals(20L, resultado.get(1).getProducto().getId()); // El ID del producto de la segunda compraventa es correcto
+        assertEquals(2, resultado.size());
     }
+
+    // FILTROS COMBINADOS
+    @Test
+    public void testListarConFiltros_FiltrosCombinados_Exito()
+            throws UsuarioNoEncontradoException, ProductoNoEncontradoException {
+
+        Long compradorId = 1L;
+        Long vendedorId = 2L;
+        Long productoId = 10L;
+
+        when(usuarioRepository.existsById(compradorId)).thenReturn(true);
+        when(usuarioRepository.existsById(vendedorId)).thenReturn(true);
+        when(productoRepository.existsById(productoId)).thenReturn(true);
+
+        // Coincide
+        Compraventa c1 = new Compraventa();
+        c1.setId(1L);
+
+        Usuario comprador = new Usuario();
+        comprador.setId(1L);
+        c1.setComprador(comprador);
+
+        Usuario vendedor = new Usuario();
+        vendedor.setId(2L);
+        c1.setVendedor(vendedor);
+
+        Producto producto = new Producto();
+        producto.setId(10L);
+        c1.setProducto(producto);
+
+        // No coincide
+        Compraventa c2 = new Compraventa();
+        c2.setId(2L);
+
+        when(compraventaRepository.findAll()).thenReturn(List.of(c1, c2));
+
+        List<CompraventaOutDto> resultado =
+                compraventaService.listarConFiltros(compradorId, vendedorId, productoId);
+
+        assertEquals(1, resultado.size());
+        assertEquals(1L, resultado.getFirst().getId());
+    }
+
 
     // ---------------------------------------------------------
     //            TEST PUT / modificar()

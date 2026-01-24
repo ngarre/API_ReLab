@@ -181,185 +181,204 @@ public class ProductoServiceTests {
     //-- FILTRADO por NOMBRE --//
     @Test
     public void testListarConFiltradoPorNombre() throws UsuarioNoEncontradoException, CategoriaNoEncontradaException {
-        String nombre = "Prod";
+        String nombre = "Microscopio";
 
         // Productos simulados en la BBDD
-        Producto p1 = new Producto();
-        p1.setId(1L);
-        p1.setNombre("Producto1");
-        p1.setPrecio(100.0f);
+        Producto p1 = new Producto(); p1.setId(1L); p1.setNombre("Microscopio1"); p1.setPrecio(100.0f);
+        Producto p2 = new Producto(); p2.setId(2L); p2.setNombre("Microscopio2"); p2.setPrecio(100.0f);
 
+        // Mock findAll() en lugar de findByNombreContainingIgnoreCase
+        when(productoRepository.findAll()).thenReturn(List.of(p1, p2));
 
-        Producto p2 = new Producto();
-        p2.setId(2L);
-        p2.setNombre("Producto2");
-        p2.setPrecio(100.0f);
-
-        when(productoRepository.findByNombreContainingIgnoreCase(nombre))
-                .thenReturn(List.of(p1, p2));
-
+        // Llamada al metodo a testear
         List<ProductoOutDto> resultado = productoService.listarConFiltrado(nombre, null, null, null);
 
+        // Verificaciones
         assertEquals(2, resultado.size()); // Verifico que se devuelven 2 productos
         assertEquals(1L, resultado.get(0).getId()); // Verifico que el primer producto es el esperado
         assertEquals(2L, resultado.get(1).getId()); // Verifico que el segundo producto es el esperado
     }
 
+
     //-- FILTRADO por ACTIVO --//
     @Test
     public void testListarConFiltradoPorActivo() throws UsuarioNoEncontradoException, CategoriaNoEncontradaException {
-        // Creamos un Producto de ejemplo
         Producto p1 = new Producto();
-        p1.setId(1L);
-        p1.setNombre("Producto1");
-        p1.setDescripcion("Descripción 1");
-        p1.setPrecio(100.0f); // IMPORTANTE: evitar NullPointerException
-        p1.setActivo(true);
-        p1.setModo(false);
+        p1.setId(1L); p1.setNombre("Microscopio"); p1.setPrecio(100.0f); p1.setActivo(true);
 
-        // Categoria y Usuario asociados
-        Categoria c1 = new Categoria();
-        c1.setId(1L);
-        c1.setNombre("Categoria1");
+        Categoria c1 = new Categoria(); c1.setId(1L); c1.setNombre("Microscopios");
         p1.setCategoria(c1);
 
-        Usuario u1 = new Usuario();
-        u1.setId(10L);
-        u1.setNickname("usuario10");
+        Usuario u1 = new Usuario(); u1.setId(10L); u1.setNickname("Pepe");
         p1.setUsuario(u1);
 
-        // Mockeamos el repositorio para devolver solo productos activos
-        when(productoRepository.findByActivo(true)).thenReturn(List.of(p1));
+        when(productoRepository.findAll()).thenReturn(List.of(p1));
 
-        // Creamos ProductoOutDto esperado
-        ProductoOutDto dto = new ProductoOutDto();
-        dto.setId(p1.getId());
-        dto.setNombre(p1.getNombre());
-        // Si mapToOutDto también llena CategoriaSimpleDto y UsuarioSimpleDto:
-        dto.setCategoria(new CategoriaSimpleDto(c1.getId(), c1.getNombre()));
-        dto.setUsuario(new UsuarioSimpleDto(u1.getId(), u1.getNickname()));
-
-//        // Mockeamos el mapper
-//        when(modelMapper.map(p1, ProductoOutDto.class)).thenReturn(dto);
-
-        // Ejecutamos el metodo
         List<ProductoOutDto> resultado = productoService.listarConFiltrado(null, true, null, null);
 
-        // Verificaciones
         assertNotNull(resultado);
         assertEquals(1, resultado.size());
-        assertEquals("Producto1", resultado.getFirst().getNombre());
-        assertEquals(100.0f, resultado.getFirst().getPrecio()); // si mapToOutDto copia el precio
-        assertEquals("Categoria1", resultado.getFirst().getCategoria().getNombre());
-        assertEquals("usuario10", resultado.getFirst().getUsuario().getNickname());
+        assertEquals("Microscopio", resultado.getFirst().getNombre());
+        assertEquals(100.0f, resultado.getFirst().getPrecio());
+        assertEquals("Microscopios", resultado.getFirst().getCategoria().getNombre());
+        assertEquals("Pepe", resultado.getFirst().getUsuario().getNickname());
     }
 
     //-- FILTRADO por CategoriaId --//
     @Test
     public void testListarConFiltradoPorCategoria_Exito() throws CategoriaNoEncontradaException, UsuarioNoEncontradoException {
-        // Datos de prueba
         Long categoriaId = 1L;
 
-        // Categoria simulada en la BBDD
-        Categoria categoria = new Categoria();
-        categoria.setId(categoriaId);
-        categoria.setNombre("Categoria1");
+        Categoria categoria = new Categoria(); categoria.setId(categoriaId); categoria.setNombre("Microscopios");
 
-        // Producto simulados en la BBDD
-        Producto p1 = new Producto();
-        p1.setId(1L);
-        p1.setNombre("Producto1");
-        p1.setPrecio(100.0f);
-        p1.setCategoria(categoria);
+        Producto p1 = new Producto(); p1.setId(1L); p1.setNombre("Microscopio"); p1.setPrecio(100.0f); p1.setCategoria(categoria);
 
-        when(categoriaRepository.existsById(categoriaId)).thenReturn(true); // Comprobar existencia de categoria
-        when(productoRepository.findByCategoriaId(categoriaId)).thenReturn(List.of(p1)); // Devolver productos por categoria
+        when(categoriaRepository.existsById(categoriaId)).thenReturn(true);
+        when(productoRepository.findAll()).thenReturn(List.of(p1));
 
-        // Ejecución
         List<ProductoOutDto> resultado = productoService.listarConFiltrado(null, null, categoriaId, null);
 
-        // Verificaciones
-        assertNotNull(resultado); // Verifico que el resultado no es nulo
-        assertEquals(1, resultado.size()); // Verifico que se devuelve 1 producto
-        assertEquals("Producto1", resultado.getFirst().getNombre()); // Verifico que el producto es el esperado
+        assertNotNull(resultado);
+        assertEquals(1, resultado.size());
+        assertEquals("Microscopio", resultado.getFirst().getNombre());
     }
 
+
+    //-- FILTRADO por CategoriaId (no existe) --//
     @Test
     public void testListarConFiltradoPorCategoria_FallaSiNoExiste() {
         Long categoriaIdInexistente = 999L;
-
-        // Mockeo el repositorio para que la categoría no exista
         when(categoriaRepository.existsById(categoriaIdInexistente)).thenReturn(false);
 
-        // Verifico que se lanza la excepción
         assertThrows(CategoriaNoEncontradaException.class,
                 () -> productoService.listarConFiltrado(null, null, categoriaIdInexistente, null));
     }
 
+
     //-- FILTRADO por usuarioId --//
     @Test
     public void testListarConFiltradoPorUsuario_Exito() throws UsuarioNoEncontradoException, CategoriaNoEncontradaException {
-        // Datos de prueba
         Long usuarioId = 10L;
 
-        // Usuario simulado en la BBDD
-        Usuario usuario = new Usuario();
-        usuario.setId(usuarioId);
-        usuario.setNickname("usuario10");
+        Usuario usuario = new Usuario(); usuario.setId(usuarioId); usuario.setNickname("Pepe");
 
-        // Producto simulado en la BBDD
-        Producto p1 = new Producto();
-        p1.setId(1L);
-        p1.setNombre("Producto1");
-        p1.setPrecio(100.0f);
-        p1.setUsuario(usuario);
+        Producto p1 = new Producto(); p1.setId(1L); p1.setNombre("Microscopio"); p1.setPrecio(100.0f); p1.setUsuario(usuario);
 
-        when(usuarioRepository.existsById(usuarioId)).thenReturn(true); // Comprobar existencia de usuario
-        when(productoRepository.findByUsuarioId(usuarioId)).thenReturn(List.of(p1)); // Devolver productos por usuario
+        when(usuarioRepository.existsById(usuarioId)).thenReturn(true);
+        when(productoRepository.findAll()).thenReturn(List.of(p1));
 
-        // Ejecución
         List<ProductoOutDto> resultado = productoService.listarConFiltrado(null, null, null, usuarioId);
 
-        // Verificaciones
-        assertNotNull(resultado); // Verifico que el resultado no es nulo
-        assertEquals(1, resultado.size()); // Verifico que se devuelve 1 producto
-        assertEquals("Producto1", resultado.getFirst().getNombre()); // Verifico que el producto es el esperado
+        assertNotNull(resultado);
+        assertEquals(1, resultado.size());
+        assertEquals("Microscopio", resultado.getFirst().getNombre());
     }
 
+    //-- FILTRADO por usuarioId (no existe) --//
     @Test
     public void testListarConFiltradoPorUsuario_FallaSiNoExiste() {
         Long usuarioIdInexistente = 999L;
-
-        // Mockeo el repositorio para que el usuario no exista
         when(usuarioRepository.existsById(usuarioIdInexistente)).thenReturn(false);
 
-        // Verifico que se lanza la excepción
         assertThrows(UsuarioNoEncontradoException.class,
                 () -> productoService.listarConFiltrado(null, null, null, usuarioIdInexistente));
     }
 
-    // -- SIN FILTROS --> Devuelve todos los productos -- //
+    // -- FILTROS COMBINADOS --//
     @Test
-    public void testListarConFiltros_SinFiltrosDevuelveTodos() throws UsuarioNoEncontradoException, CategoriaNoEncontradaException {
-        // Productos simulados en la BBDD
+    public void testListarConFiltrado_FiltrosCombinados_Exito()
+            throws UsuarioNoEncontradoException, CategoriaNoEncontradaException {
+
+        String nombre = "micro";
+        Boolean activo = true;
+        Long categoriaId = 1L;
+        Long usuarioId = 10L;
+
+        // Categoría
+        Categoria categoriaOk = new Categoria();
+        categoriaOk.setId(categoriaId);
+        categoriaOk.setNombre("Microscopios");
+
+        Categoria categoriaNo = new Categoria();
+        categoriaNo.setId(2L);
+
+        // Usuario
+        Usuario usuarioOk = new Usuario();
+        usuarioOk.setId(usuarioId);
+        usuarioOk.setNickname("Pepe");
+
+        Usuario usuarioNo = new Usuario();
+        usuarioNo.setId(20L);
+
+        // Producto que SÍ cumple todos los filtros
         Producto p1 = new Producto();
         p1.setId(1L);
-        p1.setNombre("Producto1");
+        p1.setNombre("Microscopio profesional");
+        p1.setActivo(true);
+        p1.setCategoria(categoriaOk);
+        p1.setUsuario(usuarioOk);
         p1.setPrecio(100.0f);
 
-        Producto p2 = new Producto();
+        // Productos que NO cumplen algo
+        Producto p2 = new Producto(); // nombre no coincide
         p2.setId(2L);
-        p2.setNombre("Producto2");
-        p2.setPrecio(150.0f);
+        p2.setNombre("Telescopio");
+        p2.setActivo(true);
+        p2.setCategoria(categoriaOk);
+        p2.setUsuario(usuarioOk);
+        p2.setPrecio(200.0f);
 
-        when(productoRepository.findAll())
-                .thenReturn(List.of(p1, p2));
+        Producto p3 = new Producto(); // activo false
+        p3.setId(3L);
+        p3.setNombre("Microscopio barato");
+        p3.setActivo(false);
+        p3.setCategoria(categoriaOk);
+        p3.setUsuario(usuarioOk);
+        p3.setPrecio(300.0f);
+
+        Producto p4 = new Producto(); // categoría distinta
+        p4.setId(4L);
+        p4.setNombre("Microscopio avanzado");
+        p4.setActivo(true);
+        p4.setCategoria(categoriaNo);
+        p4.setUsuario(usuarioOk);
+        p4.setPrecio(400.0f);
+
+        Producto p5 = new Producto(); // usuario distinto
+        p5.setId(5L);
+        p5.setNombre("Microscopio X");
+        p5.setActivo(true);
+        p5.setCategoria(categoriaOk);
+        p5.setUsuario(usuarioNo);
+        p5.setPrecio(500.0f);
+
+        when(categoriaRepository.existsById(categoriaId)).thenReturn(true);
+        when(usuarioRepository.existsById(usuarioId)).thenReturn(true);
+        when(productoRepository.findAll()).thenReturn(List.of(p1, p2, p3, p4, p5));
+
+        List<ProductoOutDto> resultado =
+                productoService.listarConFiltrado(nombre, activo, categoriaId, usuarioId);
+
+        assertNotNull(resultado);
+        assertEquals(1, resultado.size());
+        assertEquals(1L, resultado.getFirst().getId());
+        assertEquals("Microscopio profesional", resultado.getFirst().getNombre());
+    }
+
+
+    //-- SIN FILTROS --//
+    @Test
+    public void testListarConFiltrado_SinFiltrosDevuelveTodos() throws UsuarioNoEncontradoException, CategoriaNoEncontradaException {
+        Producto p1 = new Producto(); p1.setId(1L); p1.setNombre("Microscopio1"); p1.setPrecio(100.0f);
+        Producto p2 = new Producto(); p2.setId(2L); p2.setNombre("Microscopio2"); p2.setPrecio(150.0f);
+
+        when(productoRepository.findAll()).thenReturn(List.of(p1, p2));
 
         List<ProductoOutDto> resultado = productoService.listarConFiltrado(null, null, null, null);
 
-        assertEquals(2, resultado.size()); // Verifico que se devuelven 2 productos
-        assertEquals(1L, resultado.get(0).getId()); // Verifico que el primer producto es el esperado
-        assertEquals(2L, resultado.get(1).getId()); // Verifico que el segundo producto es el esperado
+        assertEquals(2, resultado.size());
+        assertEquals(1L, resultado.get(0).getId());
+        assertEquals(2L, resultado.get(1).getId());
     }
 
     // ---------------------------------------------------------

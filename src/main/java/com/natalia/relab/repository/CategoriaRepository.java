@@ -13,10 +13,6 @@ import java.util.Optional;
 @Repository
 public interface CategoriaRepository  extends CrudRepository<Categoria,Long> {
     List<Categoria> findAll();
-    Optional<Categoria> findByNombreContainingIgnoreCase(String nombre); // Para filtrar por coincidencia parcial del nombre sin tener en cuenta mayúsculas o minúsculas
-    List<Categoria> findByActiva(boolean activa);
-    List<Categoria> findByFechaCreacion(LocalDate fechaCreacion); // Permite filtrar por una fecha exacta
-    List<Categoria> findByFechaCreacionBetween(LocalDate desde, LocalDate hasta); // Permite filtrar por rango de fecha
     boolean existsByNombre(String nombre);
     boolean existsById(@NonNull Long categoriaId); // Para ver si existe ese ID de categoria antes de listar productos de esa categoría
 }

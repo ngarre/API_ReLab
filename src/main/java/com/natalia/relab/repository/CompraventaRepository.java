@@ -10,9 +10,6 @@ import java.util.Optional;
 @Repository
 public interface CompraventaRepository extends CrudRepository<Compraventa, Long> {
     List<Compraventa> findAll();
-    List<Compraventa> findByCompradorId(Long id);
-    List<Compraventa> findByVendedorId(Long id);
-    Optional<Compraventa> findByProductoId(Long id); // Un mismo producto solo puede estar implicado en una transacción de compraventa
 
     // Metodo necesario para comprobar si el producto ya está vendido:
     boolean existsByProductoId(Long id);
