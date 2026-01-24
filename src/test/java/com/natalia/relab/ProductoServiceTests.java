@@ -284,6 +284,88 @@ public class ProductoServiceTests {
                 () -> productoService.listarConFiltrado(null, null, null, usuarioIdInexistente));
     }
 
+    // -- FILTROS COMBINADOS --//
+    @Test
+    public void testListarConFiltrado_FiltrosCombinados_Exito()
+            throws UsuarioNoEncontradoException, CategoriaNoEncontradaException {
+
+        String nombre = "micro";
+        Boolean activo = true;
+        Long categoriaId = 1L;
+        Long usuarioId = 10L;
+
+        // Categoría
+        Categoria categoriaOk = new Categoria();
+        categoriaOk.setId(categoriaId);
+        categoriaOk.setNombre("Microscopios");
+
+        Categoria categoriaNo = new Categoria();
+        categoriaNo.setId(2L);
+
+        // Usuario
+        Usuario usuarioOk = new Usuario();
+        usuarioOk.setId(usuarioId);
+        usuarioOk.setNickname("Pepe");
+
+        Usuario usuarioNo = new Usuario();
+        usuarioNo.setId(20L);
+
+        // Producto que SÍ cumple todos los filtros
+        Producto p1 = new Producto();
+        p1.setId(1L);
+        p1.setNombre("Microscopio profesional");
+        p1.setActivo(true);
+        p1.setCategoria(categoriaOk);
+        p1.setUsuario(usuarioOk);
+        p1.setPrecio(100.0f);
+
+        // Productos que NO cumplen algo
+        Producto p2 = new Producto(); // nombre no coincide
+        p2.setId(2L);
+        p2.setNombre("Telescopio");
+        p2.setActivo(true);
+        p2.setCategoria(categoriaOk);
+        p2.setUsuario(usuarioOk);
+        p2.setPrecio(200.0f);
+
+        Producto p3 = new Producto(); // activo false
+        p3.setId(3L);
+        p3.setNombre("Microscopio barato");
+        p3.setActivo(false);
+        p3.setCategoria(categoriaOk);
+        p3.setUsuario(usuarioOk);
+        p3.setPrecio(300.0f);
+
+        Producto p4 = new Producto(); // categoría distinta
+        p4.setId(4L);
+        p4.setNombre("Microscopio avanzado");
+        p4.setActivo(true);
+        p4.setCategoria(categoriaNo);
+        p4.setUsuario(usuarioOk);
+        p4.setPrecio(400.0f);
+
+        Producto p5 = new Producto(); // usuario distinto
+        p5.setId(5L);
+        p5.setNombre("Microscopio X");
+        p5.setActivo(true);
+        p5.setCategoria(categoriaOk);
+        p5.setUsuario(usuarioNo);
+        p5.setPrecio(500.0f);
+
+        when(categoriaRepository.existsById(categoriaId)).thenReturn(true);
+        when(usuarioRepository.existsById(usuarioId)).thenReturn(true);
+        when(productoRepository.findAll()).thenReturn(List.of(p1, p2, p3, p4, p5));
+
+        List<ProductoOutDto> resultado =
+                productoService.listarConFiltrado(nombre, activo, categoriaId, usuarioId);
+
+        assertNotNull(resultado);
+        assertEquals(1, resultado.size());
+        assertEquals(1L, resultado.getFirst().getId());
+        assertEquals("Microscopio profesional", resultado.getFirst().getNombre());
+    }
+
+
     //-- SIN FILTROS --//
     @Test
     public void testListarConFiltrado_SinFiltrosDevuelveTodos() throws UsuarioNoEncontradoException, CategoriaNoEncontradaException {
