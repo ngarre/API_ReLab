@@ -90,6 +90,10 @@ public class UsuarioService {
             usuarios = usuarios.stream()
                     .filter(usuario -> usuario.getNickname().equals(nickname))
                     .toList();
+            if (usuarios.isEmpty()) {
+                log.error("No se encontraron usuarios con nickname {}", nickname);
+                throw new UsuarioNoEncontradoException();
+            }
         }
 
         // Filtrado por tipoUsuario
