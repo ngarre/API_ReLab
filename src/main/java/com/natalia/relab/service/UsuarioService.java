@@ -76,6 +76,7 @@ public class UsuarioService {
                 nickname, tipoUsuario, cuentaActiva);
 
         // Login (nickname + password): Caso especial para autenticación en la aplicación Android
+        // Para una autenticación no tiene sentido traer una lista, pero lo hago así para reutilizar el DTO de salida
         if (nickname != null && !nickname.isEmpty() && password != null && !password.isEmpty()) {
             Usuario usuario = usuarioRepository.findByNicknameAndPassword(nickname, password)
                     .orElseThrow(UsuarioNoEncontradoException::new);
@@ -83,6 +84,7 @@ public class UsuarioService {
         }
 
         // Parto de todos los usuarios
+        // El filtrado lo haré en memoria y no en la BBDD
         List<Usuario> usuarios = usuarioRepository.findAll();
 
         // Filtro por nickname
@@ -98,6 +100,7 @@ public class UsuarioService {
 
         // Filtrado por tipoUsuario
         if (tipoUsuario != null && !tipoUsuario.isEmpty()) {
+            // Convierto la lista en un flujo de datos, aplico el filtro y vuelvo a convertirlo en lista
             usuarios = usuarios.stream()
                     .filter(usuario -> usuario.getTipoUsuario().equalsIgnoreCase(tipoUsuario))
                     .toList();
