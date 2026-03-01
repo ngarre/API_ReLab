@@ -38,7 +38,7 @@ public class JwtUtil {
                 .compact();
     }
 
-    // Valida un token JWT y devuelve sus claims (datos incluidos en el token)
+    // Validar un token JWT y devuelve sus claims (datos incluidos en el token)
     public Claims validateToken(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(key) // Configura la clave secreta para validar la firma del token
