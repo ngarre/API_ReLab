@@ -4,10 +4,12 @@ package com.natalia.relab.service;
 import com.natalia.relab.dto.UsuarioInDto;
 import com.natalia.relab.dto.UsuarioOutDto;
 import com.natalia.relab.dto.UsuarioUpdateDto;
+import com.natalia.relab.model.Producto;
 import com.natalia.relab.model.Usuario;
-import com.natalia.relab.repository.UsuarioRepository;
+import com.natalia.relab.repository.*;
 import exception.NicknameYaExisteException;
 import exception.UsuarioNoEncontradoException;
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +30,21 @@ public class UsuarioService {
 
     @Autowired                                     // Así hacemos que la capa Service pueda comunicarse con la Repository.  Crea una instancia de la clase en repository cada vez que llame a metodos de la capa service
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private ProductoRepository productoRepository;
+
+    @Autowired
+    private ReviewsRepository reviewsRepository;
+
+    @Autowired
+    private ServiciosRepository serviciosRepository;
+
+    @Autowired
+    private CompraventaRepository compraVentaRepository;
+
+    @Autowired
+    private AlquilerRepository alquilerRepository;
 
     // --- POST
     public UsuarioOutDto agregar(UsuarioInDto usuarioInDto) {
@@ -158,6 +175,41 @@ public class UsuarioService {
 
         usuarioRepository.delete(usuario);
         log.info("Usuario {} eliminado", id);
+    }
+
+    // --- DELETE de una CUENTA (o sea, eliminar usuario y datos relacionados en resto de tablas)
+    @Transactional
+    public void eliminarCuenta(Long usuarioId) throws UsuarioNoEncontradoException {
+
+        Usuario usuario = usuarioRepository.findById(usuarioId)
+                .orElseThrow(UsuarioNoEncontradoException::new);
+
+
+        // Reviews
+        reviewsRepository.deleteByUsuarioId(usuarioId);
+
+        // Servicios
+        serviciosRepository.deleteByUsuarioId(usuarioId);
+
+        // Compraventas donde el usuario es comprador
+        compraVentaRepository.deleteByCompradorId(usuarioId);
+
+        // Productos del usuario
+        List<Producto> productos = productoRepository.findByUsuarioId(usuarioId);
+
+        // Compraventas que referencian los productos del usuario
+        for (Producto p : productos) {
+            compraVentaRepository.deleteByProductoId(p.getId());
+        }
+
+        // Alquileres donde el usuario es arrendatario
+        alquilerRepository.deleteByArrendatarioId(usuarioId);
+
+        // Borrar productos del usuario
+        productoRepository.deleteByUsuarioId(usuarioId);
+
+        // Borrar usuario
+        usuarioRepository.delete(usuario);
     }
 
     // --- Metodo auxiliar privado para mapear y no repetir código: para volcar datos de usuario a usuarioOutDto
