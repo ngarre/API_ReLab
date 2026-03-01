@@ -295,3 +295,199 @@
 2026-02-02 16:34:08,979 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-02-02 16:34:08,980 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2026-02-02 16:34:08,982 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2026-02-02 16:43:32,456 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.3.Final
+2026-02-02 16:43:32,484 INFO o.s.b.StartupInfoLogger [main] Starting RelabApplication using Java 21.0.8 with PID 28856 (D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab\target\classes started by natal in D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab)
+2026-02-02 16:43:32,485 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2026-02-02 16:43:32,809 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-02 16:43:32,854 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 30 ms. Found 5 JPA repository interfaces.
+2026-02-02 16:43:33,106 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2026-02-02 16:43:33,115 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2026-02-02 16:43:33,115 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2026-02-02 16:43:33,115 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-02-02 16:43:33,151 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2026-02-02 16:43:33,151 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 640 ms
+2026-02-02 16:43:33,228 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-02 16:43:33,251 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-02-02 16:43:33,266 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2026-02-02 16:43:33,378 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-02 16:43:33,394 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2026-02-02 16:43:33,472 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.mariadb.jdbc.Connection@3dfe59d7
+2026-02-02 16:43:33,472 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2026-02-02 16:43:33,488 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-02 16:43:33,488 INFO o.h.e.j.e.i.JdbcEnvironmentInitiator [main] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 12.0.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-02 16:43:33,982 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-02 16:43:34,020 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-02 16:43:34,220 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-02 16:43:34,365 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2026-02-02 16:43:34,382 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2026-02-02 16:43:34,382 INFO o.s.b.StartupInfoLogger [main] Started RelabApplication in 2.175 seconds (process running for 2.345)
+2026-02-02 16:44:25,431 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-02 16:44:25,432 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2026-02-02 16:44:25,432 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 0 ms
+2026-02-02 16:44:25,460 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-2] GET /usuarios - filtros: nickname=Fer34, tipoUsuario=null, cuentaActiva=null
+2026-02-02 16:44:25,461 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-2] Listando usuarios con filtros nickname=Fer34, tipoUsuario=null, cuentaActiva=null
+2026-02-02 16:44:25,562 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-2] Resultado: 1 usuarios encontrados
+2026-02-02 16:44:34,296 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-3] GET /usuarios - filtros: nickname=Fer34, tipoUsuario=null, cuentaActiva=true
+2026-02-02 16:44:34,298 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-3] Listando usuarios con filtros nickname=Fer34, tipoUsuario=null, cuentaActiva=true
+2026-02-02 16:44:34,308 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-3] Resultado: 1 usuarios encontrados
+2026-02-02 16:44:38,895 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-4] GET /usuarios - filtros: nickname=null, tipoUsuario=empresa, cuentaActiva=true
+2026-02-02 16:44:38,895 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-4] Listando usuarios con filtros nickname=null, tipoUsuario=empresa, cuentaActiva=true
+2026-02-02 16:44:38,901 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-4] Resultado: 7 usuarios encontrados
+2026-02-02 16:45:09,439 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - filtros: nombre=balanza, activo=true, categoriaId=5, usuarioId=3
+2026-02-02 16:45:09,668 INFO c.n.r.c.ProductoController [http-nio-8080-exec-6] GET /productos - encontrados 1 productos
+2026-02-02 16:45:18,270 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos - filtros: nombre=balanza, activo=true, categoriaId=5, usuarioId=null
+2026-02-02 16:45:18,286 INFO c.n.r.c.ProductoController [http-nio-8080-exec-5] GET /productos - encontrados 2 productos
+2026-02-02 16:45:21,865 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos - filtros: nombre=balanza, activo=true, categoriaId=5, usuarioId=3
+2026-02-02 16:45:21,881 INFO c.n.r.c.ProductoController [http-nio-8080-exec-7] GET /productos - encontrados 1 productos
+2026-02-02 16:45:35,703 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-8] GET /categorías - filtros: nombre='dicroismo', activa=true, fechaCreacion=2025-10-24, desde=null, hasta=null
+2026-02-02 16:45:35,703 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-8] Listando categorías con filtros - nombre: dicroismo, activa: true, fechaCreacion: 2025-10-24, desde: null, hasta: null
+2026-02-02 16:45:35,710 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-8] Se devolvieron 1 categorias
+2026-02-02 16:45:42,224 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-9] GET /categorías - filtros: nombre='dicroismo', activa=true, fechaCreacion=null, desde=2025-10-01, hasta=null
+2026-02-02 16:45:42,224 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-9] Listando categorías con filtros - nombre: dicroismo, activa: true, fechaCreacion: null, desde: 2025-10-01, hasta: null
+2026-02-02 16:45:42,228 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-9] Se devolvieron 1 categorias
+2026-02-02 16:45:45,582 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-10] GET /categorías - filtros: nombre='dicroismo', activa=true, fechaCreacion=2025-10-24, desde=2025-10-01, hasta=2025-11-05
+2026-02-02 16:45:45,584 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-10] Listando categorías con filtros - nombre: dicroismo, activa: true, fechaCreacion: 2025-10-24, desde: 2025-10-01, hasta: 2025-11-05
+2026-02-02 16:45:45,590 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-10] Se devolvieron 1 categorias
+2026-02-02 16:45:49,235 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-1] GET /categorías - filtros: nombre='dicroismo', activa=true, fechaCreacion=null, desde=null, hasta=2025-11-05
+2026-02-02 16:45:49,235 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-1] Listando categorías con filtros - nombre: dicroismo, activa: true, fechaCreacion: null, desde: null, hasta: 2025-11-05
+2026-02-02 16:45:49,238 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-1] Se devolvieron 1 categorias
+2026-02-02 16:45:56,143 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-2] GET /categorías - filtros: nombre='dicroismo', activa=true, fechaCreacion=2025-10-24, desde=2025-10-01, hasta=2025-11-05
+2026-02-02 16:45:56,143 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-2] Listando categorías con filtros - nombre: dicroismo, activa: true, fechaCreacion: 2025-10-24, desde: 2025-10-01, hasta: 2025-11-05
+2026-02-02 16:45:56,146 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-2] Se devolvieron 1 categorias
+2026-02-02 16:46:08,999 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-3] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=2025-11-05
+2026-02-02 16:46:09,000 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-3] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: 2025-11-05
+2026-02-02 16:46:09,003 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-3] Se devolvieron 5 categorias
+2026-02-02 16:46:12,152 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-4] GET /categorías - filtros: nombre='null', activa=true, fechaCreacion=null, desde=null, hasta=2025-11-05
+2026-02-02 16:46:12,154 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-4] Listando categorías con filtros - nombre: null, activa: true, fechaCreacion: null, desde: null, hasta: 2025-11-05
+2026-02-02 16:46:12,160 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-4] Se devolvieron 4 categorias
+2026-02-02 16:46:41,327 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-02 16:46:41,329 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2026-02-02 16:46:41,329 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-02 16:46:41,345 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2026-02-02 16:46:41,345 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2026-02-02 20:45:21,370 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.3.Final
+2026-02-02 20:45:21,412 INFO o.s.b.StartupInfoLogger [main] Starting RelabApplication using Java 21.0.8 with PID 24788 (D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab\target\classes started by natal in D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab)
+2026-02-02 20:45:21,412 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2026-02-02 20:45:21,841 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-02 20:45:21,890 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 34 ms. Found 5 JPA repository interfaces.
+2026-02-02 20:45:22,211 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2026-02-02 20:45:22,221 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2026-02-02 20:45:22,221 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2026-02-02 20:45:22,221 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-02-02 20:45:22,268 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2026-02-02 20:45:22,268 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 824 ms
+2026-02-02 20:45:22,363 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-02 20:45:22,401 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-02-02 20:45:22,421 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2026-02-02 20:45:22,601 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-02 20:45:22,621 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2026-02-02 20:45:22,697 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.mariadb.jdbc.Connection@4be12f6c
+2026-02-02 20:45:22,701 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2026-02-02 20:45:22,722 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-02 20:45:22,731 INFO o.h.e.j.e.i.JdbcEnvironmentInitiator [main] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 12.0.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-02 20:45:23,291 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-02 20:45:23,351 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-02 20:45:23,592 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-02 20:45:23,781 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2026-02-02 20:45:23,791 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2026-02-02 20:45:23,791 INFO o.s.b.StartupInfoLogger [main] Started RelabApplication in 2.74 seconds (process running for 2.953)
+2026-02-02 20:45:42,599 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-02 20:45:42,599 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2026-02-02 20:45:42,600 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 1 ms
+2026-02-02 20:45:42,628 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-2] GET /compraventas - Filtros recibidos -> compradorId=3, vendedorId=5, productoId=14
+2026-02-02 20:45:42,628 INFO c.n.r.s.CompraventaService [http-nio-8080-exec-2] Servicio: Listar compraventas con filtros -> compradorId=3, vendedorId=5, productoId=14
+2026-02-02 20:45:43,003 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-2] Resultado: 1 compraventas encontradas
+2026-02-02 21:22:19,965 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-02 21:22:19,973 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2026-02-02 21:22:19,973 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-02 21:22:19,973 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2026-02-02 21:22:19,985 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2026-02-02 21:25:36,890 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.3.Final
+2026-02-02 21:25:36,923 INFO o.s.b.StartupInfoLogger [main] Starting RelabApplication using Java 21.0.8 with PID 17152 (D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab\target\classes started by natal in D:\DAM\Segundo\AccesoDatos\AA1\API_ReLab)
+2026-02-02 21:25:36,929 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2026-02-02 21:25:37,253 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-02 21:25:37,283 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 27 ms. Found 5 JPA repository interfaces.
+2026-02-02 21:25:37,543 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2026-02-02 21:25:37,543 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2026-02-02 21:25:37,543 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2026-02-02 21:25:37,543 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-02-02 21:25:37,588 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2026-02-02 21:25:37,588 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 632 ms
+2026-02-02 21:25:37,663 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-02 21:25:37,687 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-02-02 21:25:37,695 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2026-02-02 21:25:37,823 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-02 21:25:37,843 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2026-02-02 21:25:37,893 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.mariadb.jdbc.Connection@1d1c37d5
+2026-02-02 21:25:37,897 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2026-02-02 21:25:37,903 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-02 21:25:37,923 INFO o.h.e.j.e.i.JdbcEnvironmentInitiator [main] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 12.0.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-02 21:25:38,417 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-02 21:25:38,453 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-02 21:25:38,663 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-02 21:25:38,829 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2026-02-02 21:25:38,841 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2026-02-02 21:25:38,844 INFO o.s.b.StartupInfoLogger [main] Started RelabApplication in 2.199 seconds (process running for 2.369)
+2026-02-02 21:27:05,598 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-02 21:27:05,598 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2026-02-02 21:27:05,599 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 0 ms
+2026-02-02 21:27:05,623 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-1] GET /usuarios - filtros: nickname=null, tipoUsuario=null, cuentaActiva=null
+2026-02-02 21:27:05,624 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-1] Listando usuarios con filtros nickname=null, tipoUsuario=null, cuentaActiva=null
+2026-02-02 21:27:05,767 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-1] Resultado: 26 usuarios encontrados
+2026-02-02 21:27:21,819 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-3] GET /usuarios - filtros: nickname=null, tipoUsuario=empresa, cuentaActiva=null
+2026-02-02 21:27:21,819 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-3] Listando usuarios con filtros nickname=null, tipoUsuario=empresa, cuentaActiva=null
+2026-02-02 21:27:21,825 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-3] Resultado: 13 usuarios encontrados
+2026-02-02 21:27:33,831 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-4] GET /usuarios - filtros: nickname=null, tipoUsuario=particular, cuentaActiva=null
+2026-02-02 21:27:33,831 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-4] Listando usuarios con filtros nickname=null, tipoUsuario=particular, cuentaActiva=null
+2026-02-02 21:27:33,841 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-4] Resultado: 9 usuarios encontrados
+2026-02-02 21:27:51,619 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-5] GET /usuarios - filtros: nickname=null, tipoUsuario=particular, cuentaActiva=false
+2026-02-02 21:27:51,620 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-5] Listando usuarios con filtros nickname=null, tipoUsuario=particular, cuentaActiva=false
+2026-02-02 21:27:51,625 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-5] Resultado: 3 usuarios encontrados
+2026-02-02 21:27:57,737 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-6] GET /usuarios - filtros: nickname=null, tipoUsuario=particular, cuentaActiva=true
+2026-02-02 21:27:57,738 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-6] Listando usuarios con filtros nickname=null, tipoUsuario=particular, cuentaActiva=true
+2026-02-02 21:27:57,746 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-6] Resultado: 6 usuarios encontrados
+2026-02-02 21:28:19,217 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-7] GET /usuarios - filtros: nickname=Maria, tipoUsuario=particular, cuentaActiva=true
+2026-02-02 21:28:19,217 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-7] Listando usuarios con filtros nickname=Maria, tipoUsuario=particular, cuentaActiva=true
+2026-02-02 21:28:19,223 ERROR c.n.r.s.UsuarioService [http-nio-8080-exec-7] No se encontraron usuarios con nickname Maria
+2026-02-02 21:28:19,226 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-7] Recurso no encontrado: UsuarioNoEncontradoException
+2026-02-02 21:28:24,555 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-8] GET /usuarios - filtros: nickname=Maria22, tipoUsuario=particular, cuentaActiva=true
+2026-02-02 21:28:24,555 INFO c.n.r.s.UsuarioService [http-nio-8080-exec-8] Listando usuarios con filtros nickname=Maria22, tipoUsuario=particular, cuentaActiva=true
+2026-02-02 21:28:24,560 INFO c.n.r.c.UsuarioController [http-nio-8080-exec-8] Resultado: 1 usuarios encontrados
+2026-02-02 21:28:36,161 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-10] GET /alquileres - Parámetros: arrendadorId=null, arrendatarioId=null, productoId=null
+2026-02-02 21:28:36,162 INFO c.n.r.s.AlquilerService [http-nio-8080-exec-10] Servicio: Listando alquileres con filtros: arrendadorId=null, arrendatarioId=null, productoId=null
+2026-02-02 21:28:36,183 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-10] Resultado: 7 alquileres encontrados
+2026-02-02 21:28:51,355 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-9] GET /alquileres - Parámetros: arrendadorId=5, arrendatarioId=null, productoId=null
+2026-02-02 21:28:51,355 INFO c.n.r.s.AlquilerService [http-nio-8080-exec-9] Servicio: Listando alquileres con filtros: arrendadorId=5, arrendatarioId=null, productoId=null
+2026-02-02 21:28:51,575 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-9] Resultado: 6 alquileres encontrados
+2026-02-02 21:29:17,634 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-2] GET /alquileres - Parámetros: arrendadorId=5, arrendatarioId=null, productoId=13
+2026-02-02 21:29:17,635 INFO c.n.r.s.AlquilerService [http-nio-8080-exec-2] Servicio: Listando alquileres con filtros: arrendadorId=5, arrendatarioId=null, productoId=13
+2026-02-02 21:29:17,647 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-2] Resultado: 6 alquileres encontrados
+2026-02-02 21:29:44,045 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-1] GET /alquileres - Parámetros: arrendadorId=5, arrendatarioId=6, productoId=13
+2026-02-02 21:29:44,046 INFO c.n.r.s.AlquilerService [http-nio-8080-exec-1] Servicio: Listando alquileres con filtros: arrendadorId=5, arrendatarioId=6, productoId=13
+2026-02-02 21:29:44,056 INFO c.n.r.c.AlquilerController [http-nio-8080-exec-1] Resultado: 6 alquileres encontrados
+2026-02-02 21:30:12,603 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-02 21:30:12,619 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2026-02-02 21:30:12,622 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-02 21:30:12,622 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2026-02-02 21:30:12,622 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
