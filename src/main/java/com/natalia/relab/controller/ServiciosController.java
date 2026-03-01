@@ -27,7 +27,7 @@ public class ServiciosController {
         return serviciosService.listar();
     }
 
-    @GetMapping("/servicios/{idUsuario}")
+    @GetMapping("/servicios/usuario/{idUsuario}")
     public List<ServiciosOutDto> listarPorIdUsuario(@PathVariable Long idUsuario){
         log.info("GET /servicios/{} - solicitando servicios por ID de usuario", idUsuario);
         return serviciosService.buscarPorIdUsuario(idUsuario);
@@ -42,7 +42,7 @@ public class ServiciosController {
     }
 
     // DELETE por ID de usuario
-    @DeleteMapping("/servicios/{idUsuario}")
+    @DeleteMapping("/servicios/usuario/{idUsuario}")
     public ResponseEntity<Void> eliminarPorIdUsuario(@PathVariable Long idUsuario) throws ServicioNoEncontradoException {
         log.warn("DELETE /servicios/{} - eliminación solicitada para el servicio", idUsuario);
         serviciosService.eliminarPorIdUsuario(idUsuario);
