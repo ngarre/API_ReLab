@@ -161,19 +161,6 @@ public class ProductoService {
                     .toList();
         }
 
-        // Filtro por usuarioId y activo
-        if (usuarioId != null && activo != null) {
-            boolean existeUsuario = usuarioRepository.existsById(usuarioId);
-            if (!existeUsuario) {
-                throw new UsuarioNoEncontradoException();
-            }
-
-            return productoRepository.findByUsuarioIdAndActivo(usuarioId, activo)
-                    .stream()
-                    .map(this::mapToOutDto)
-                    .toList();
-        }
-
         // Filtro por activo
         if (activo != null) {
             productos = productos.stream()
