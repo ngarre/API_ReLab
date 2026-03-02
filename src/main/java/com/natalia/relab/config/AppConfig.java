@@ -16,8 +16,9 @@ public class AppConfig {
         ModelMapper mapper = new ModelMapper();
 
 
-        // Evita que ModelMapper sobrescriba propiedades con null. --> Esto me daba problemas con operaciones PUT (Por ejemplo, en usuario no mandaba el campo saldo al actualizar y en la BBDD ese campo se actualizaba a Null).
-        // Solo mapeará propiedades cuya fuente NO sea null.
+        // Evita que ModelMapper sobrescriba propiedades con null. --> Esto me daba problemas con operaciones PUT
+        // (Por ejemplo, en usuario no mandaba el campo saldo al actualizar y en la BBDD ese campo se actualizaba a
+        // Null).  Solo mapeará propiedades cuya fuente NO sea null.
         mapper.getConfiguration().setPropertyCondition(Conditions.isNotNull());
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 

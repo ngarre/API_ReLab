@@ -40,8 +40,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/usuarios/check-nickname").permitAll()
 
                         /*
-                              RESTO DE USUARIOS, PUT Y DELETE están cerrados y requieren
-                              seguridad por token.  Allí la app de android trabaja con los tokens.
+                              Endpoints de usuarios (GET, PUT, DELETE) están protegidos por JWT,
+                              excepto el GET de check-nickname que es público para que la app de Android pueda verificar
+                               si un nickname ya existe antes de intentar registrarse.
                          */
 
 
