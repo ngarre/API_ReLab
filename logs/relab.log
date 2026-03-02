@@ -798,3 +798,107 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
 2026-03-02 12:20:05,894 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-03-02 12:20:05,895 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2026-03-02 12:20:05,898 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2026-03-02 16:36:08,291 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.3.Final
+2026-03-02 16:36:08,334 INFO o.s.b.StartupInfoLogger [main] Starting RelabApplication using Java 21.0.8 with PID 13524 (D:\DAM\Segundo\ProyectoIntermodular\ReLab\API_ReLab\target\classes started by natal in D:\DAM\Segundo\ProyectoIntermodular\ReLab\API_ReLab)
+2026-03-02 16:36:08,335 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2026-03-02 16:36:08,789 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-02 16:36:08,823 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 36 ms. Found 7 JPA repository interfaces.
+2026-03-02 16:36:09,156 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2026-03-02 16:36:09,171 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2026-03-02 16:36:09,172 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2026-03-02 16:36:09,172 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-03-02 16:36:09,215 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2026-03-02 16:36:09,215 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 850 ms
+2026-03-02 16:36:09,317 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-02 16:36:09,354 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-03-02 16:36:09,376 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2026-03-02 16:36:09,539 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-02 16:36:09,556 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2026-03-02 16:36:09,623 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.mariadb.jdbc.Connection@72f3f14c
+2026-03-02 16:36:09,623 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2026-03-02 16:36:09,639 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-02 16:36:09,656 INFO o.h.e.j.e.i.JdbcEnvironmentInitiator [main] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 12.0.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-02 16:36:10,233 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-02 16:36:10,284 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-02 16:36:10,439 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-02 16:36:10,772 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-02 16:36:10,793 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration [main] 
+
+Using generated security password: 9e28fe67-87c2-444f-bbcb-495ec52d1a8d
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-03-02 16:36:10,793 INFO o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-03-02 16:36:11,055 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2026-03-02 16:36:11,072 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2026-03-02 16:36:11,077 INFO o.s.b.StartupInfoLogger [main] Started RelabApplication in 3.105 seconds (process running for 3.305)
+2026-03-02 16:36:47,670 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-6] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-02 16:36:47,671 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-6] Initializing Servlet 'dispatcherServlet'
+2026-03-02 16:36:47,672 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-6] Completed initialization in 1 ms
+2026-03-02 16:38:04,351 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-3] GET /compraventas - Filtros recibidos -> compradorId=null, vendedorId=null, productoId=null
+2026-03-02 16:38:04,351 INFO c.n.r.s.CompraventaService [http-nio-8080-exec-3] Servicio: Listar compraventas con filtros -> compradorId=null, vendedorId=null, productoId=null
+2026-03-02 16:38:04,444 INFO c.n.r.c.CompraventaController [http-nio-8080-exec-3] Resultado: 5 compraventas encontradas
+2026-03-02 16:39:53,894 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-02 16:39:53,911 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2026-03-02 16:39:53,911 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-02 16:39:53,911 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2026-03-02 16:39:53,911 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2026-03-02 16:47:31,464 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.3.Final
+2026-03-02 16:47:31,494 INFO o.s.b.StartupInfoLogger [main] Starting RelabApplication using Java 21.0.8 with PID 25596 (D:\DAM\Segundo\ProyectoIntermodular\ReLab\API_ReLab\target\classes started by natal in D:\DAM\Segundo\ProyectoIntermodular\ReLab\API_ReLab)
+2026-03-02 16:47:31,494 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2026-03-02 16:47:31,805 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-02 16:47:31,837 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 29 ms. Found 7 JPA repository interfaces.
+2026-03-02 16:47:32,075 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2026-03-02 16:47:32,091 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2026-03-02 16:47:32,091 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2026-03-02 16:47:32,091 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-03-02 16:47:32,107 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2026-03-02 16:47:32,123 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 588 ms
+2026-03-02 16:47:32,202 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-02 16:47:32,227 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-03-02 16:47:32,234 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2026-03-02 16:47:32,345 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-02 16:47:32,361 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2026-03-02 16:47:32,409 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.mariadb.jdbc.Connection@28fa541
+2026-03-02 16:47:32,409 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2026-03-02 16:47:32,427 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-02 16:47:32,443 INFO o.h.e.j.e.i.JdbcEnvironmentInitiator [main] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 12.0.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-02 16:47:32,904 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-02 16:47:32,942 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-02 16:47:33,054 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-02 16:47:33,341 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-02 16:47:33,357 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration [main] 
+
+Using generated security password: 19ee66f4-25ba-49b8-adf9-076e4d6d7c21
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-03-02 16:47:33,357 INFO o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-03-02 16:47:33,564 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2026-03-02 16:47:33,580 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2026-03-02 16:47:33,580 INFO o.s.b.StartupInfoLogger [main] Started RelabApplication in 2.341 seconds (process running for 2.535)
+2026-03-02 16:47:45,638 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-02 16:47:45,638 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2026-03-02 16:47:45,639 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 0 ms
+2026-03-02 16:47:45,665 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-2] GET /categorías - filtros: nombre='null', activa=null, fechaCreacion=null, desde=null, hasta=null
+2026-03-02 16:47:45,666 INFO c.n.r.s.CategoriaService [http-nio-8080-exec-2] Listando categorías con filtros - nombre: null, activa: null, fechaCreacion: null, desde: null, hasta: null
+2026-03-02 16:47:45,770 INFO c.n.r.c.CategoriaController [http-nio-8080-exec-2] Se devolvieron 11 categorias
+2026-03-02 16:47:50,452 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-02 16:47:50,452 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2026-03-02 16:47:50,452 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-02 16:47:50,468 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2026-03-02 16:47:50,468 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
