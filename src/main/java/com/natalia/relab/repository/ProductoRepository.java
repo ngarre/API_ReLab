@@ -18,6 +18,7 @@ public interface ProductoRepository extends CrudRepository<Producto,Long> {
     List<Producto> findAll(); // Es de los metodos de la interfaz CrudRepository
     boolean existsById(@NonNull Long productoId); // Para ver si existe ese ID de ese producto antes de listar alquileres de ese producto
     List<Producto> findByUsuarioId(Long usuarioId);
+    List<Producto> findByUsuarioIdAndActivo(Long usuarioId, boolean activo);
 
     @Modifying
     @Transactional
