@@ -52,6 +52,7 @@ public class SecurityConfig {
                                 "/auth/**",
                                 "/ping",
                                 "/productos/**",
+                                "/categorias/**",
                                 "/reviews/**",
                                 "/servicios/**",
                                 "/alquileres/**",
