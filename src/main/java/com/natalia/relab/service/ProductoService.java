@@ -254,6 +254,20 @@ public class ProductoService {
         return mapToOutDto(actualizado);
     }
 
+    // PUT para actualizar solo el campo Activo (Se llamará desde compras y alquileres en App Android
+    public void actualizarActivo(Long id, boolean activo) throws ProductoNoEncontradoException{
+        log.info("Servicio: actualizando producto {}", id);
+        Producto producto = productoRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.warn("Producto {} no encontrado al intentar actualizar estado activo", id);
+                    return new ProductoNoEncontradoException();
+                });
+        producto.setActivo(activo);
+        productoRepository.save(producto);
+        log.info("Producto {} actualizado correctamente. Nuevo estado activo: {}", id, activo);
+    }
+
+
 
     // --- DELETE
     public void eliminar(long id) throws ProductoNoEncontradoException {

@@ -2,6 +2,7 @@ package com.natalia.relab.controller;
 
 import com.natalia.relab.dto.ProductoInDto;
 import com.natalia.relab.dto.ProductoOutDto;
+import com.natalia.relab.dto.ProductoUpdateActivoDto;
 import com.natalia.relab.dto.ProductoUpdateDto;
 import com.natalia.relab.model.Producto;
 import com.natalia.relab.service.ProductoService;
@@ -91,6 +92,18 @@ public class ProductoController {
 //        ProductoOutDto actualizado = productoService.modificar(id, productoUpdateDto);
 //        return ResponseEntity.ok(actualizado);
 //    }
+
+
+    // PUT para actualizar solo el campo activo de productos.
+    // Necesario para cambiar solo el valor de ese campo sin tener que volver a actualizar
+    // todos los campos del registro.
+    @PutMapping("/productos/{id}/activo")
+    public ResponseEntity<Void> actualizarActivo(@PathVariable Long id, @RequestBody ProductoUpdateActivoDto dto) throws ProductoNoEncontradoException {
+        log.info("PUT /productos/{}/activo - actualización de estado activo a {}", id, dto.isActivo());
+        productoService.actualizarActivo(id, dto.isActivo());
+        log.info("PUT /productos/{}/activo - estado actualizado correctamente", id);
+        return ResponseEntity.noContent().build();
+    }
 
     // Versión que PERMITE ACTUALIZACIÓN DE IMÁGENES
     @PutMapping("/productos/{id}")
