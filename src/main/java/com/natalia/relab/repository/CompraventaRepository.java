@@ -18,7 +18,9 @@ public interface CompraventaRepository extends CrudRepository<Compraventa, Long>
     // Metodo necesario para comprobar si el producto ya está vendido:
     boolean existsByProductoId(Long id);
 
+
     @Modifying(clearAutomatically = true, flushAutomatically = true)
+    @Transactional
     @Query("DELETE FROM compraventas c WHERE c.comprador.id = :usuarioId")
     void deleteByCompradorId(@Param("usuarioId") Long usuarioId);
 

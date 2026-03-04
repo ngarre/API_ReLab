@@ -9,6 +9,8 @@ import com.natalia.relab.model.Usuario;
 import com.natalia.relab.repository.*;
 import exception.NicknameYaExisteException;
 import exception.UsuarioNoEncontradoException;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -45,6 +47,10 @@ public class UsuarioService {
 
     @Autowired
     private AlquilerRepository alquilerRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager; // Limpia memoria interna de Hibernate
+    // para evitar problemas de memoria al eliminar cuentas con muchos datos relacionados
 
     // --- POST
     public UsuarioOutDto agregar(UsuarioInDto usuarioInDto) {
@@ -208,8 +214,18 @@ public class UsuarioService {
         // Borrar productos del usuario
         productoRepository.deleteByUsuarioId(usuarioId);
 
+        entityManager.flush(); // Asegura que se ejecuten las operaciones de borrado en la base de datos antes de continuar
+        entityManager.clear(); // Limpia el contexto de persistencia para evitar problemas de memoria y referencias a entidades eliminadas
+
+        // Crear un nuevo objeto Usuario para evitar referencias a la entidad eliminada en el contexto de persistencia
+        Usuario usuarioFresco = usuarioRepository.findById(usuarioId)
+                .orElseThrow(() -> {
+                    log.error("No se puede eliminar, el usuario {} no existe", usuarioId);
+                    return new UsuarioNoEncontradoException();
+                });
+
         // Borrar usuario
-        usuarioRepository.delete(usuario);
+        usuarioRepository.delete(usuarioFresco);
     }
 
     // --- Metodo auxiliar privado para mapear y no repetir código: para volcar datos de usuario a usuarioOutDto
