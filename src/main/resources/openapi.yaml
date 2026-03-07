@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: ReLab API
-  description: API para gestionar usuarios, productos, categorías, alquileres y compraventas de ReLab
+  description: API para gestionar usuarios, productos, categorías, alquileres, compraventas, servicios y reseñas de ReLab
   version: 1.0.0
 servers:
   - url: 'http://localhost:8080'
@@ -19,6 +19,10 @@ tags:
     description: Operaciones relacionadas con las compraventas
   - name: Alquileres
     description: Operaciones relacionadas con los alquileres
+  - name: Servicios
+    description: Operaciones relacionadas con los servicios
+  - name: Reviews
+    description: Operaciones relacionadas con las reseñas
 
 
 paths:
@@ -1389,6 +1393,281 @@ paths:
 
   
   # ======================
+  #        SERVICIOS
+  # ======================
+
+  /servicios:
+
+    # ---------------- GET ----------------
+    get:
+      tags:
+        - Servicios
+      summary: Listar todos los servicios
+      description: |
+        Este endpoint permite obtener la lista de servicios registrados.
+      operationId: listarServicios
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiciosOutDto'
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+    # ---------------- POST ----------------
+    post:
+      tags:
+        - Servicios
+      summary: Dar de alta un nuevo servicio
+      description: |
+        Este endpoint permite registrar un nuevo servicio.
+
+        **Reglas:**
+        - El ID del usuario es obligatorio.
+        - El tipo de servicio debe ser 1 (Calibración), 2 (Mantenimiento) o 3 (Reparación).
+        - El precio debe ser mayor que cero.
+      operationId: crearServicio
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiciosInDto'
+
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiciosOutDto'
+
+        '400':
+          description: Bad request por validación.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+  /servicios/usuario/{idUsuario}:
+
+    # ---------------- GET BY USUARIO ----------------
+    get:
+      tags:
+        - Servicios
+      summary: Listar servicios por usuario
+      description: |
+        Este endpoint permite obtener la lista de servicios de un usuario específico.
+      operationId: listarServiciosPorUsuario
+
+      parameters:
+        - name: idUsuario
+          in: path
+          required: true
+          description: Identificador único del usuario.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiciosOutDto'
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+    # ---------------- DELETE BY USUARIO ----------------
+    delete:
+      tags:
+        - Servicios
+      summary: Eliminar servicios por usuario
+      description: |
+        Este endpoint permite eliminar todos los servicios de un usuario específico.
+      operationId: eliminarServiciosPorUsuario
+
+      parameters:
+        - name: idUsuario
+          in: path
+          required: true
+          description: Identificador único del usuario.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      responses:
+        '204':
+          description: Servicios eliminados correctamente. No se devuelve contenido.
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+  /servicios/{id}:
+
+    # ---------------- DELETE BY ID ----------------
+    delete:
+      tags:
+        - Servicios
+      summary: Eliminar servicio por ID
+      description: |
+        Este endpoint permite eliminar un servicio específico por su ID.
+      operationId: eliminarServicioPorId
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único del servicio.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      responses:
+        '204':
+          description: Servicio eliminado correctamente. No se devuelve contenido.
+
+        '404':
+          description: Servicio no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+  # ======================
+  #        REVIEWS
+  # ======================
+
+  /reviews:
+
+    # ---------------- POST ----------------
+    post:
+      tags:
+        - Reviews
+      summary: Dar de alta una nueva review
+      description: |
+        Este endpoint permite registrar una nueva reseña.
+
+        **Reglas:**
+        - El ID del usuario es obligatorio.
+        - La puntuación debe estar entre 1 y 10.
+      operationId: crearReview
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewsInDto'
+
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewsOutDto'
+
+        '400':
+          description: Bad request por validación.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+  /reviews/usuario/{idUsuario}:
+
+    # ---------------- GET BY USUARIO ----------------
+    get:
+      tags:
+        - Reviews
+      summary: Obtener reviews por usuario
+      description: |
+        Este endpoint permite obtener la lista de reseñas de un usuario específico.
+      operationId: obtenerReviewsPorUsuario
+
+      parameters:
+        - name: idUsuario
+          in: path
+          required: true
+          description: Identificador único del usuario.
+          schema:
+            type: integer
+            format: int64
+            example: 1
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReviewsOutDto'
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+  # ======================
   #       COMPONENTES
   # ======================
 components:
@@ -2094,6 +2373,137 @@ components:
           example: El producto ya ha sido vendido
 
 
+    # ---------- SERVICIOS ----------
+    ServiciosOutDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Identificador único del servicio
+          format: int64
+          example: 1
+        fecha:
+          type: string
+          description: Fecha en la que se registra el servicio
+          format: date
+          example: "2026-03-07"
+        idUsuario:
+          type: integer
+          description: Identificador del usuario que proporciona el servicio
+          format: int64
+          example: 1
+        nickname:
+          type: string
+          description: Nickname del usuario
+          example: "juan23"
+        tipoServicio:
+          type: integer
+          description: Tipo de servicio (1=Calibración, 2=Mantenimiento, 3=Reparación)
+          example: 1
+        descripcion:
+          type: string
+          description: Descripción del servicio
+          example: "Calibración de equipo"
+        comentario:
+          type: string
+          description: Comentario adicional
+          example: "Servicio realizado con éxito"
+        email:
+          type: string
+          description: Email del usuario
+          format: email
+          example: juan@example.com
+        telefono:
+          type: string
+          description: Teléfono del usuario
+          example: "123456789"
+        precio:
+          type: number
+          description: Precio del servicio
+          format: float
+          example: 1200.0
 
+    ServiciosInDto:
+      type: object
+      properties:
+        idUsuario:
+          type: integer
+          description: Identificador del usuario que proporciona el servicio
+          format: int64
+          example: 1
+        nickname:
+          type: string
+          description: Nickname del usuario
+          example: "juan23"
+        tipoServicio:
+          type: integer
+          description: Tipo de servicio (1=Calibración, 2=Mantenimiento, 3=Reparación)
+          example: 1
+        descripcion:
+          type: string
+          description: Descripción del servicio
+          example: "Calibración de equipo"
+        comentario:
+          type: string
+          description: Comentario adicional
+          example: "Servicio realizado con éxito"
+        email:
+          type: string
+          description: Email del usuario
+          format: email
+          example: juan@example.com
+        telefono:
+          type: string
+          description: Teléfono del usuario
+          example: "123456789"
+        precio:
+          type: number
+          description: Precio del servicio
+          format: float
+          example: 1200.0
 
+    # ---------- REVIEWS ----------
+    ReviewsOutDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Identificador único de la reseña
+          format: int64
+          example: 1
+        fecha:
+          type: string
+          description: Fecha en la que se registra la reseña
+          format: date
+          example: "2026-03-07"
+        idUsuario:
+          type: integer
+          description: Identificador del usuario reseñado
+          format: int64
+          example: 1
+        comentario:
+          type: string
+          description: Comentario de la reseña
+          example: "Todo estupendo"
+        puntuacion:
+          type: integer
+          description: Puntuación de la reseña (1-10)
+          example: 9
+
+    ReviewsInDto:
+      type: object
+      properties:
+        idUsuario:
+          type: integer
+          description: Identificador del usuario reseñado
+          format: int64
+          example: 1
+        comentario:
+          type: string
+          description: Comentario de la reseña
+          example: "Todo estupendo"
+        puntuacion:
+          type: integer
+          description: Puntuación de la reseña (1-10)
+          example: 9
 
