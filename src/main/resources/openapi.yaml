@@ -2256,7 +2256,7 @@ components:
           type: boolean
           description: Si el alquiler se cancela antes de que finalice el periodo acordado.
           example: false
-      
+
     AlquilerUpdateDto:
       type: Object
       properties:
@@ -2273,10 +2273,10 @@ components:
           type: boolean
           description: Si el alquiler se cancela antes de que finalice el periodo acordado.
           example: false
-    
-    
-    
-    
+
+
+
+
     # ---------- RESPUESTAS HTTP ----------
     InternalServerError:
       type: object
@@ -2506,4 +2506,5 @@ components:
           type: integer
           description: Puntuación de la reseña (1-10)
           example: 9
+
 
