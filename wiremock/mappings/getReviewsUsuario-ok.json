@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/reviews/usuario/9"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "getReviewsUsuario-ok.json"
+
+  }
+}
