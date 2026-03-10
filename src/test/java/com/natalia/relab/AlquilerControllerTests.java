@@ -3,12 +3,14 @@ package com.natalia.relab;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.natalia.relab.controller.AlquilerController;
 import com.natalia.relab.dto.*;
+import com.natalia.relab.security.JwtUtil;
 import com.natalia.relab.service.AlquilerService;
 import exception.AlquilerNoEncontradoException;
 import exception.ProductoNoEncontradoException;
 import exception.UsuarioNoEncontradoException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -24,6 +26,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(AlquilerController.class)
+@AutoConfigureMockMvc(addFilters = false)   // ← DESACTIVA SPRING SECURITY EN TESTS
 public class AlquilerControllerTests {
 
     @Autowired
@@ -31,6 +34,9 @@ public class AlquilerControllerTests {
 
     @MockitoBean
     private AlquilerService alquilerService;
+
+    @MockitoBean
+    private JwtUtil jwtUtil;
 
     @Autowired
     private ObjectMapper objectMapper;
