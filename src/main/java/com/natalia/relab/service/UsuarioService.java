@@ -2,6 +2,7 @@ package com.natalia.relab.service;
 
 
 import com.natalia.relab.dto.UsuarioInDto;
+import com.natalia.relab.dto.UsuarioMobileOutDto;
 import com.natalia.relab.dto.UsuarioOutDto;
 import com.natalia.relab.dto.UsuarioUpdateDto;
 import com.natalia.relab.model.Producto;
@@ -87,6 +88,7 @@ public class UsuarioService {
 
        return mapToOutDto(usuario);
     }
+
 
     // --- GET con FILTRADO dinámico
     public List<UsuarioOutDto> listarConFiltros(
@@ -226,6 +228,18 @@ public class UsuarioService {
 
         // Borrar usuario
         usuarioRepository.delete(usuarioFresco);
+    }
+
+    // Obtener el perfil del usuario logueado (para la app móvil) usando el userId del token JWT
+    public UsuarioMobileOutDto obtenerPerfil(Long usuarioId) throws UsuarioNoEncontradoException {
+        Usuario usuario = usuarioRepository.findById(usuarioId)
+                .orElseThrow(UsuarioNoEncontradoException::new);
+        return modelMapper.map(usuario, UsuarioMobileOutDto.class);
+    }
+
+    // Nuevo metodo para verificar si un nickname ya existe (para la app móvil)
+    public boolean nicknameExiste(String nickname) {
+        return usuarioRepository.existsByNickname(nickname);
     }
 
     // --- Metodo auxiliar privado para mapear y no repetir código: para volcar datos de usuario a usuarioOutDto
