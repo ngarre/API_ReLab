@@ -4,6 +4,7 @@ import com.natalia.relab.controller.ProductoController;
 import com.natalia.relab.dto.ProductoInDto;
 import com.natalia.relab.dto.ProductoOutDto;
 import com.natalia.relab.dto.ProductoUpdateDto;
+import com.natalia.relab.security.JwtUtil;
 import com.natalia.relab.service.ProductoService;
 import exception.CategoriaNoEncontradaException;
 import exception.ProductoNoEncontradoException;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -28,6 +30,7 @@ import java.util.List;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(ProductoController.class)
+@AutoConfigureMockMvc(addFilters = false)   // ← DESACTIVA SPRING SECURITY EN TESTS
 public class ProductoControllerTests {
 
     @Autowired
@@ -38,6 +41,9 @@ public class ProductoControllerTests {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    @MockitoBean
+    private JwtUtil jwtUtil;
 
     // ---------------------------------------------------------
     //                  TEST POST - 201

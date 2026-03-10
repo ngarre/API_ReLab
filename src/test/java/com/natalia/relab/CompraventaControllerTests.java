@@ -5,6 +5,7 @@ import com.natalia.relab.controller.CompraventaController;
 import com.natalia.relab.dto.CompraventaInDto;
 import com.natalia.relab.dto.CompraventaOutDto;
 import com.natalia.relab.dto.CompraventaUpdateDto;
+import com.natalia.relab.security.JwtUtil;
 import com.natalia.relab.service.CompraventaService;
 import exception.CompraventaNoEncontradaException;
 import exception.ProductoNoEncontradoException;
@@ -12,6 +13,7 @@ import exception.ProductoYaVendidoException;
 import exception.UsuarioNoEncontradoException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -27,6 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(CompraventaController.class)
+@AutoConfigureMockMvc(addFilters = false)   // ← DESACTIVA SPRING SECURITY EN TESTS
 public class CompraventaControllerTests {
 
     @Autowired
@@ -37,6 +40,9 @@ public class CompraventaControllerTests {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    @MockitoBean
+    private JwtUtil jwtUtil;
 
     // ---------------------------------------------------------
     //                  TEST POST - 201

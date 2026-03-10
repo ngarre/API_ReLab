@@ -89,14 +89,6 @@
 		</dependency>
 		<!-- hasta aquí para JWT
         ************************ -->
-
-		<!-- Añado esto para tests unitarios ahora que tengo JWT
-			   ************************ -->
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
 	<build>

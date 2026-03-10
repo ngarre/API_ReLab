@@ -5,10 +5,12 @@ import com.natalia.relab.controller.CategoriaController;
 import com.natalia.relab.dto.CategoriaInDto;
 import com.natalia.relab.dto.CategoriaOutDto;
 import com.natalia.relab.dto.CategoriaUpdateDto;
+import com.natalia.relab.security.JwtUtil;
 import com.natalia.relab.service.CategoriaService;
 import exception.CategoriaNoEncontradaException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -22,6 +24,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(CategoriaController.class)
+@AutoConfigureMockMvc(addFilters = false)   // ← DESACTIVA SPRING SECURITY EN TESTS
 public class CategoriaControllerTests {
 
     @Autowired
@@ -29,6 +32,9 @@ public class CategoriaControllerTests {
 
     @MockitoBean
     private CategoriaService categoriaService;
+
+    @MockitoBean
+    private JwtUtil jwtUtil;
 
     @Autowired
     private ObjectMapper objectMapper;
