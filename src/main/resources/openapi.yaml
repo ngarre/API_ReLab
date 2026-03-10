@@ -39,7 +39,7 @@ paths:
         - Usuarios
       summary: Listar todos los usuarios
       description: |
-        Este endpoint permite obtener la lista de usuarios registrados o aplicar distintos filtros según los parámetros proporcionados.
+        Este endpoint permite obtener la lista de usuarios registrados o aplicar distintos filtros según los parámetros proporcionados.  Requiere JWT del usuario.
 
         **Posibles usos:**
         - Sin parámetros → devuelve todos los usuarios (200, array vacío si no hay usuarios)  
@@ -48,6 +48,8 @@ paths:
         - `tipoUsuario` → filtrar usuarios por su tipo (200, array vacío si no hay coincidencias) 
         - `cuentaActiva` → filtrar usuarios según su estado de cuenta (200, array vacío si no hay coincidencias)
       operationId: listarUsuarios
+      security:
+        - bearerAuth: [ ]
 
       parameters:
         - name: nickname
@@ -85,13 +87,6 @@ paths:
                 items:
                   $ref: '#/components/schemas/UsuarioOutDto'
 
-        '404':
-          description: Usuario no encontrado (solo si se busca por nickname o login, nickname + passoword)
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFound'
-
         '500':
           description: Internal server error
           content:
@@ -99,12 +94,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
 
+        '401':
+          description: No autorizado (JWT inválido o ausente)'
+
 
     # ---------------- POST ----------------
     post:
       tags:
         - Usuarios
-      summary: Dar de alta un nuevo usuario
+      summary: Dar de alta un nuevo usuario.  Público.
       description: |
         Este endpoint permite registrar un nuevo usuario en la plataforma.
 
@@ -148,62 +146,21 @@ paths:
 
 
   /usuarios/{id}:
-
-    # ---------------- GET BY ID ----------------
-    get:
-      tags:
-        - Usuarios
-      summary: Obtener usuario por su ID
-      description: |
-        Este endpoint permite obtener los datos de un usuario específico a partir de su identificador único.
-      operationId: obtenerUsuarioPorId
-
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: Identificador único del usuario.
-          schema:
-            type: integer
-            format: int64
-            example: 1
-
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UsuarioOutDto'
-
-        '404':
-            description: Usuario no encontrado.
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/NotFound'
-
-        '500':
-          description: Error interno del servidor.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
-
-
   # ---------------- PUT ----------------
     put:
       tags:
         - Usuarios
       summary: Editar usuario que tiene un determinado ID
       description: |
-        Este endpoint permite modificar ciertos datos de un usuario cuyo ID ha sido proporcionado.
+        Este endpoint permite modificar ciertos datos de un usuario cuyo ID ha sido proporcionado.  Requiere JWT del usuario a modificar.
         
         **Reglas:**
         - El nickname debe ser único.
         - La contraseña no puede estar vacía y debe tener un mínimo de 4 caracteres.
         - El email debe tener un formato valido.
       operationId: editarUsuario
+      security:
+        - bearerAuth: [ ]
 
       parameters:
         - name: id
@@ -253,6 +210,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
 
+        '401':
+          description: No autorizado (JWT inválido o ausente)'
+
 
   # ---------------- DELETE ----------------
     delete:
@@ -260,12 +220,14 @@ paths:
         - Usuarios
       summary: Eliminar usuario por su ID
       description: |
-        Este endpoint permite eliminar un usuario existente en la base de datos a partir de su identificador único (**ID**).
+        Este endpoint permite eliminar un usuario existente en la base de datos a partir de su identificador único (**ID**).  Requiere JWT del usuario a eliminar.
 
         **Reglas:**
         - Si el usuario no existe, devuelve un error `404`.
         - Si la eliminación se realiza correctamente, no se devuelve contenido (`204 No Content`).Permite eliminar un determinado usuario cuyo ID ha sido proporcionado.
       operationId: eliminarUsuario
+      security:
+        - bearerAuth: [ ]
       parameters:
         - name: id
           in: path
@@ -294,6 +256,98 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
 
+        '401':
+          description: No autorizado (JWT inválido o ausente)'
+
+  /usuarios/{id}/cuenta:
+    delete:
+      tags:
+        - Usuarios
+      summary: Eliminar cuenta de usuario
+      description: Elimina un usuario y sus datos relacionados. Requiere JWT del usuario.
+      operationId: eliminarCuenta
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Cuenta eliminada correctamente. No se devuelve contenido.
+        '403':
+          description: Forbidden. Intento de eliminar otra cuenta
+        '404':
+          description: usuario no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+        '401':
+          description: No autorizado (JWT inválido o ausente)'
+
+  /usuarios/me:
+    get:
+      tags:
+        - Usuarios
+      summary: Perfil del usuario logueado
+      description: Devuelve los datos del usuario autenticado mediante JWT.
+      operationId: miPerfil
+      security:
+        - bearerAuth: [ ]
+      responses:
+        '200':
+          description: Perfil obtenido correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsuarioMobileOutDto'
+        '401':
+          description: No autorizado (JWT inválido o ausente)
+        '404':
+          description: usuario no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+  /usuarios/check-nickname:
+    get:
+      tags:
+        - Usuarios
+      summary: Verificar si un nickname ya existe
+      description: Comprueba si un nickname está registrado. Público.
+      operationId: checkNickname
+      parameters:
+        - name: nickname
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: true si existe, false si no
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
 
   # ======================
   #        PRODUCTO
@@ -1671,6 +1725,12 @@ paths:
   #       COMPONENTES
   # ======================
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
   schemas:
     # ---------- USUARIOS ----------
     UsuarioOutDto:
@@ -2506,5 +2566,50 @@ components:
           type: integer
           description: Puntuación de la reseña (1-10)
           example: 9
+
+    UsuarioMobileOutDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: identificador del usuario
+          format: int64
+          example: 1
+        nickname:
+          type: string
+          description: apodo del usuario
+          example: "juan23"
+        nombre:
+          type: string
+          description: nombre del usuario
+          example: "Juan"
+        apellido:
+          type: string
+          description: apellido del usuario
+          example: "Pérez"
+        password:
+          type: string
+          description: contraseña del usuario
+          format: password
+          example: "1234"
+        email:
+          type: string
+          description: email del usuario
+          format: email
+          example:
+        latitud:
+          type: number
+          description: latitud en la que se encuentra el usuario
+          format: double
+          example: 40.4168
+        longitud:
+            type: number
+            description: longitud en la que se encuentra el usuario
+            format: double
+            example: -3.7038
+        direccion:
+          type: string
+          description: dirección del usuario
+          example: "Calle Mayor, 1, Madrid"
 
 
