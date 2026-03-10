@@ -1,0 +1,50 @@
+[
+  {
+    "id": 7,
+    "fecha": "2026-03-08",
+    "idUsuario": 7,
+    "nickname": "eva",
+    "tipoServicio": 2,
+    "descripcion": "campana flujo laminar",
+    "comentario": "Reparación integral de campanas de flujo laminar: diagnóstico y sustitución de elementos críticos (filtros HEPA/ULPA, motor/ventilador, paneles y componentes eléctricos), limpieza y descontaminación interna",
+    "email": "eva@gmail.com",
+    "telefono": "123456789",
+    "precio": 23.0
+  },
+  {
+    "id": 8,
+    "fecha": "2026-03-08",
+    "idUsuario": 7,
+    "nickname": "eva",
+    "tipoServicio": 3,
+    "descripcion": "centrifuga",
+    "comentario": "Inspección, limpieza y lubricación de componentes; balanceo y alineación del rotor, verificación/calibración de parámetros operativos (RPM, tiempo, temperatura) y comprobación de interbloqueos y sistemas de seguridad. Entrega de informe técnico co...",
+    "email": "eva@eva.com",
+    "telefono": "123456789",
+    "precio": 23.0
+  },
+  {
+    "id": 12,
+    "fecha": "2026-03-09",
+    "idUsuario": 7,
+    "nickname": "eva",
+    "tipoServicio": 3,
+    "descripcion": "Cubeta electroforesis",
+    "comentario": "Reparación de cubetas de electroforesis mediante diagnóstico integral (eléctrico y mecánico), sustitución de electrodos, restauración de sellos y reparación de conexiones. Se realizan pruebas funcionales (fuga, continuidad y uniformidad del campo ...",
+    "email": "eva@gmail.es",
+    "telefono": "678906544",
+    "precio": 10.0
+  },
+  {
+    "id": 13,
+    "fecha": "2026-03-09",
+    "idUsuario": 7,
+    "nickname": "eva",
+    "tipoServicio": 3,
+    "descripcion": "persiana",
+    "comentario": "Diagnóstico y reparación de persianas de laboratorio: sustitución de motor/reductora, reparación de accionamiento, ajuste de topes y acondicionamiento de guías con pruebas funcionales. Incluye verificación eléctrica, calibración de recorrido, lubr...",
+    "email": "ger@ger.ger",
+    "telefono": "123456789",
+    "precio": 123.0
+  }
+]

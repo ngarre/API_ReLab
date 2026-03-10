@@ -1,0 +1,86 @@
+[
+  {
+    "id": 7,
+    "fecha": "2026-03-08",
+    "idUsuario": 7,
+    "nickname": "eva",
+    "tipoServicio": 2,
+    "descripcion": "campana flujo laminar",
+    "comentario": "Reparación integral de campanas de flujo laminar: diagnóstico y sustitución de elementos críticos (filtros HEPA/ULPA, motor/ventilador, paneles y componentes eléctricos), limpieza y descontaminación interna",
+    "email": "eva@gmail.com",
+    "telefono": "123456789",
+    "precio": 23.0
+  },
+  {
+    "id": 8,
+    "fecha": "2026-03-08",
+    "idUsuario": 7,
+    "nickname": "eva",
+    "tipoServicio": 3,
+    "descripcion": "centrifuga",
+    "comentario": "Inspección, limpieza y lubricación de componentes; balanceo y alineación del rotor, verificación/calibración de parámetros operativos (RPM, tiempo, temperatura) y comprobación de interbloqueos y sistemas de seguridad. Entrega de informe técnico co...",
+    "email": "eva@eva.com",
+    "telefono": "123456789",
+    "precio": 23.0
+  },
+  {
+    "id": 9,
+    "fecha": "2026-03-08",
+    "idUsuario": 8,
+    "nickname": "luna",
+    "tipoServicio": 2,
+    "descripcion": "akta pure",
+    "comentario": "Realizamos diagnóstico, reparación y sustitución de componentes críticos del sistema ÄKTA pure (bombas, válvulas, detectores y controladores) con repuestos originales y pruebas funcionales para garantizar rendimiento y seguridad operativa. Incluye...",
+    "email": "luna@gmail.com",
+    "telefono": "897654732",
+    "precio": 21.0
+  },
+  {
+    "id": 10,
+    "fecha": "2026-03-08",
+    "idUsuario": 8,
+    "nickname": "luna",
+    "tipoServicio": 1,
+    "descripcion": "micropipeta",
+    "comentario": "Mantenimiento preventivo y correctivo de micropipetas: limpieza y lubricación del conjunto pistón, inspección y reemplazo de juntas y sellos, pruebas de fuga y ajuste de volumen. Calibración y verificación de precisión y exactitud según ISO 8655, ...",
+    "email": "luna@gmail.com",
+    "telefono": "890786543",
+    "precio": 24.0
+  },
+  {
+    "id": 11,
+    "fecha": "2026-03-08",
+    "idUsuario": 9,
+    "nickname": "sara",
+    "tipoServicio": 1,
+    "descripcion": "microscopio electronico",
+    "comentario": "Mantenimiento preventivo y correctivo del microscopio electrónico que incluye limpieza y control de la cámara de muestras, comprobación y ajuste del sistema de vacío, inspección y sustitución de consumibles (filamentos, juntas), y verificación de ...",
+    "email": "sara@gemail.es",
+    "telefono": "789678955",
+    "precio": 25.0
+  },
+  {
+    "id": 12,
+    "fecha": "2026-03-09",
+    "idUsuario": 7,
+    "nickname": "eva",
+    "tipoServicio": 3,
+    "descripcion": "Cubeta electroforesis",
+    "comentario": "Reparación de cubetas de electroforesis mediante diagnóstico integral (eléctrico y mecánico), sustitución de electrodos, restauración de sellos y reparación de conexiones. Se realizan pruebas funcionales (fuga, continuidad y uniformidad del campo ...",
+    "email": "eva@gmail.es",
+    "telefono": "678906544",
+    "precio": 10.0
+  },
+  {
+    "id": 13,
+    "fecha": "2026-03-09",
+    "idUsuario": 7,
+    "nickname": "ger",
+    "tipoServicio": 3,
+    "descripcion": "persiana",
+    "comentario": "Diagnóstico y reparación de persianas de laboratorio: sustitución de motor/reductora, reparación de accionamiento, ajuste de topes y acondicionamiento de guías con pruebas funcionales. Incluye verificación eléctrica, calibración de recorrido, lubr...",
+    "email": "ger@gmail.com",
+    "telefono": "123456789",
+    "precio": 123.0
+  }
+]

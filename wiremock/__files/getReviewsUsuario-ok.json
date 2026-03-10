@@ -1,0 +1,30 @@
+[
+  {
+    "id": 4,
+    "fecha": "2026-03-08",
+    "idUsuario": 9,
+    "comentario": "muy bien",
+    "puntuacion": 4
+  },
+  {
+    "id": 6,
+    "fecha": "2026-03-09",
+    "idUsuario": 9,
+    "comentario": "fatal, estaba todo sucisimo",
+    "puntuacion": 1
+  },
+  {
+    "id": 7,
+    "fecha": "2026-03-09",
+    "idUsuario": 9,
+    "comentario": "ahora mucho más limpio",
+    "puntuacion": 5
+  },
+  {
+    "id": 9,
+    "fecha": "2026-03-09",
+    "idUsuario": 9,
+    "comentario": "genial genial ya no huele",
+    "puntuacion": 4
+  }
+]

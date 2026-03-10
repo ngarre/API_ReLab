@@ -21888,3 +21888,129 @@ This generated password is for development use only. Your security configuration
 2026-03-10 19:07:27,236 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-03-10 19:07:27,237 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2026-03-10 19:07:27,239 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2026-03-10 19:17:03,644 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.3.Final
+2026-03-10 19:17:03,672 INFO o.s.b.StartupInfoLogger [main] Starting RelabApplication using Java 21.0.8 with PID 36292 (D:\DAM\Segundo\ProyectoIntermodular\ReLab\API_ReLab\target\classes started by natal in D:\DAM\Segundo\ProyectoIntermodular\ReLab\API_ReLab)
+2026-03-10 19:17:03,672 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2026-03-10 19:17:04,021 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-10 19:17:04,056 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 30 ms. Found 7 JPA repository interfaces.
+2026-03-10 19:17:04,329 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2026-03-10 19:17:04,337 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2026-03-10 19:17:04,338 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2026-03-10 19:17:04,339 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-03-10 19:17:04,369 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2026-03-10 19:17:04,370 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 672 ms
+2026-03-10 19:17:04,450 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-10 19:17:04,470 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-03-10 19:17:04,485 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2026-03-10 19:17:04,606 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-10 19:17:04,621 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2026-03-10 19:17:04,669 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.mariadb.jdbc.Connection@28fa541
+2026-03-10 19:17:04,671 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2026-03-10 19:17:04,684 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-10 19:17:04,692 INFO o.h.e.j.e.i.JdbcEnvironmentInitiator [main] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 12.0.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-10 19:17:05,174 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-10 19:17:05,209 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-10 19:17:05,343 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-10 19:17:05,636 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-10 19:17:05,652 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration [main] 
+
+Using generated security password: ea1973f5-df6a-4f04-aeee-375671d07697
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-03-10 19:17:05,656 INFO o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-03-10 19:17:05,875 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2026-03-10 19:17:05,884 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2026-03-10 19:17:05,889 INFO o.s.b.StartupInfoLogger [main] Started RelabApplication in 2.476 seconds (process running for 2.643)
+2026-03-10 19:17:08,765 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-3] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-10 19:17:08,765 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-3] Initializing Servlet 'dispatcherServlet'
+2026-03-10 19:17:08,766 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-3] Completed initialization in 0 ms
+2026-03-10 19:17:08,788 INFO c.n.r.c.ServiciosController [http-nio-8080-exec-3] GET /servicios - solicitando todos los servicios
+2026-03-10 19:17:08,789 INFO c.n.r.s.ServiciosService [http-nio-8080-exec-3] Intentando listar servicios
+2026-03-10 19:19:36,356 INFO c.n.r.c.ServiciosController [http-nio-8080-exec-5] Agregando servicio ServiciosInDto(idUsuario=14, nickname=Sara, tipoServicio=1, descripcion=Servicio de calibración, comentario=muy bueno, email=contactoLaura@mail.com, telefono=689234567, precio=1200.0)
+2026-03-10 19:19:36,359 INFO c.n.r.s.ServiciosService [http-nio-8080-exec-5] Intentando crear nuevo servicio
+2026-03-10 19:19:36,391 INFO c.n.r.s.ServiciosService [http-nio-8080-exec-5] Servicio creado con ID 14
+2026-03-10 19:19:36,391 INFO c.n.r.c.ServiciosController [http-nio-8080-exec-5] POST /servicios - creando nuevo servicio con ID 14
+2026-03-10 19:22:56,025 INFO c.n.r.c.ServiciosController [http-nio-8080-exec-8] GET /servicios/7 - solicitando servicios por ID de usuario
+2026-03-10 19:22:56,025 INFO c.n.r.s.ServiciosService [http-nio-8080-exec-8] Buscando servicios por ID de usuario 7
+2026-03-10 19:30:14,515 WARN c.n.r.c.ServiciosController [http-nio-8080-exec-1] DELETE /servicios/14 - eliminación solicitada para el servicio
+2026-03-10 19:30:14,515 INFO c.n.r.s.ServiciosService [http-nio-8080-exec-1] Eliminando servicios por ID de usuario 14
+2026-03-10 19:30:14,535 INFO c.n.r.s.ServiciosService [http-nio-8080-exec-1] Servicios eliminados correctamente para el usuario 14
+2026-03-10 19:30:14,535 INFO c.n.r.c.ServiciosController [http-nio-8080-exec-1] DELETE /servicios/14 - servicios eliminados correctamente
+2026-03-10 19:36:06,548 INFO c.n.r.c.ReviewsController [http-nio-8080-exec-4] GET /reviews/usuario/90000 - solicitando reviews por ID de usuario
+2026-03-10 19:36:06,548 INFO c.n.r.s.ReviewsService [http-nio-8080-exec-4] Buscando reviews por ID de usuario 90000
+2026-03-10 19:36:15,140 INFO c.n.r.c.ReviewsController [http-nio-8080-exec-5] GET /reviews/usuario/9 - solicitando reviews por ID de usuario
+2026-03-10 19:36:15,140 INFO c.n.r.s.ReviewsService [http-nio-8080-exec-5] Buscando reviews por ID de usuario 9
+2026-03-10 19:39:34,886 INFO c.n.r.c.ReviewsController [http-nio-8080-exec-8] POST /reviews - creando nueva review con datos: ReviewsInDto(idUsuario=39, comentario=Genial, puntuacion=8)
+2026-03-10 19:39:34,888 INFO c.n.r.s.ReviewsService [http-nio-8080-exec-8] Intentando crear nueva review
+2026-03-10 19:39:34,897 INFO c.n.r.s.ReviewsService [http-nio-8080-exec-8] Review creada con ID 11
+2026-03-10 19:39:34,897 INFO c.n.r.c.ReviewsController [http-nio-8080-exec-8] Review creada con ID 11
+2026-03-10 19:40:29,233 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-10 19:40:29,244 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2026-03-10 19:40:29,246 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-10 19:40:29,248 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2026-03-10 19:40:29,250 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2026-03-10 19:50:46,936 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.3.Final
+2026-03-10 19:50:46,964 INFO o.s.b.StartupInfoLogger [main] Starting RelabApplication using Java 21.0.8 with PID 35584 (D:\DAM\Segundo\ProyectoIntermodular\ReLab\API_ReLab\target\classes started by natal in D:\DAM\Segundo\ProyectoIntermodular\ReLab\API_ReLab)
+2026-03-10 19:50:46,965 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2026-03-10 19:50:47,314 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-10 19:50:47,349 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 30 ms. Found 7 JPA repository interfaces.
+2026-03-10 19:50:47,631 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2026-03-10 19:50:47,638 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2026-03-10 19:50:47,639 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2026-03-10 19:50:47,639 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-03-10 19:50:47,671 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2026-03-10 19:50:47,672 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 684 ms
+2026-03-10 19:50:47,752 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-10 19:50:47,772 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-03-10 19:50:47,786 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2026-03-10 19:50:47,909 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-10 19:50:47,924 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2026-03-10 19:50:47,973 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.mariadb.jdbc.Connection@645ba24a
+2026-03-10 19:50:47,974 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2026-03-10 19:50:47,988 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-10 19:50:47,996 INFO o.h.e.j.e.i.JdbcEnvironmentInitiator [main] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 12.0.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-10 19:50:48,599 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-10 19:50:48,648 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-10 19:50:48,797 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-10 19:50:49,123 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-10 19:50:49,138 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration [main] 
+
+Using generated security password: 3566bc5d-b8d0-415a-b65f-7f62e971e94e
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-03-10 19:50:49,142 INFO o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-03-10 19:50:49,371 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2026-03-10 19:50:49,380 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2026-03-10 19:50:49,384 INFO o.s.b.StartupInfoLogger [main] Started RelabApplication in 2.685 seconds (process running for 2.859)
+2026-03-10 19:51:03,353 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-3] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-10 19:51:03,354 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-3] Initializing Servlet 'dispatcherServlet'
+2026-03-10 19:51:03,354 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-3] Completed initialization in 0 ms
+2026-03-10 19:51:03,376 WARN c.n.r.c.ServiciosController [http-nio-8080-exec-3] DELETE /servicios/9000 - eliminación solicitada para servicio
+2026-03-10 19:51:03,377 WARN c.n.r.s.ServiciosService [http-nio-8080-exec-3] Intentando eliminar servicio con ID 9000
+2026-03-10 19:51:03,402 ERROR c.n.r.s.ServiciosService [http-nio-8080-exec-3] Servicio con ID 9000 no encontrado para eliminación
+2026-03-10 19:51:03,404 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-3] Recurso no encontrado: ServicioNoEncontradoException
+2026-03-10 19:52:23,040 WARN c.n.r.c.ServiciosController [http-nio-8080-exec-2] DELETE /servicios/999 - eliminación solicitada para el servicio
+2026-03-10 19:52:23,041 INFO c.n.r.s.ServiciosService [http-nio-8080-exec-2] Eliminando servicios por ID de usuario 999
+2026-03-10 19:52:23,072 WARN c.n.r.s.ServiciosService [http-nio-8080-exec-2] No existen servicios para el usuario 999
+2026-03-10 19:52:23,073 WARN c.n.r.c.GlobalExceptionHandler [http-nio-8080-exec-2] Recurso no encontrado: ServicioNoEncontradoException
+2026-03-10 19:52:53,622 INFO o.s.b.w.e.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-10 19:52:53,637 INFO o.s.b.w.e.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2026-03-10 19:52:53,639 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-10 19:52:53,640 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2026-03-10 19:52:53,642 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.

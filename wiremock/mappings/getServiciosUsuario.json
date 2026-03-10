@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/servicios/usuario/7"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "getServiciosUsuario-ok.json"
+
+  }
+}
