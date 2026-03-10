@@ -28,34 +28,24 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private ModelMapper mapper;
-
     private static final Logger log = LoggerFactory.getLogger(UsuarioController.class); // Logger para la clase UsuarioController
 
-    // Nuevo endpoint para obtener el perfil del usuario logueado usando JWT
+    // Endpoint para obtener el perfil del usuario logueado usando JWT
     @GetMapping("/usuarios/me")
     public ResponseEntity<UsuarioMobileOutDto> miPerfil(Authentication authentication) throws UsuarioNoEncontradoException {
         log.info("GET /usuarios/me solicitado");
         Long usuarioId = (Long) authentication.getPrincipal(); // Se obtiene el userId del token JWT
 
-        Usuario usuario = usuarioRepository.findById(usuarioId)
-                .orElseThrow(UsuarioNoEncontradoException::new);
+        UsuarioMobileOutDto dto = usuarioService.obtenerPerfil(usuarioId);
 
-        UsuarioMobileOutDto dto = mapper.map(usuario, UsuarioMobileOutDto.class);
         log.info("Perfil del usuario {} obtenido correctamente", usuarioId);
         return ResponseEntity.ok(dto);
     }
 
-    // Nuevo endpoint para verificar si un nickname ya existe
+    // Endpoint para verificar si un nickname ya existe
     @GetMapping("/usuarios/check-nickname")
     public ResponseEntity<Boolean> checkNickname(@RequestParam("nickname") String nickname) {
-        log.info("GET /usuarios/check-nickname?nickname={} solicitado", nickname);
-        boolean exists = usuarioRepository.existsByNickname(nickname);
-        log.info("Nickname '{}' existe: {}", nickname, exists);
+        boolean exists = usuarioService.nicknameExiste(nickname);
         return ResponseEntity.ok(exists);
     }
 
@@ -79,15 +69,6 @@ public class UsuarioController {
         }
         return ResponseEntity.ok(usuarios);
     }
-
-    // Este endpoint ya no lo voy a utilizar --> Lo dejo comentado
-//    @GetMapping("/usuarios/{id}")
-//    public ResponseEntity<UsuarioOutDto> ListarPorId(@PathVariable long id) throws UsuarioNoEncontradoException {
-//        log.info("GET /usuarios/{} solicitado", id);
-//        UsuarioOutDto dto = usuarioService.buscarPorId(id);
-//        log.info("Usuario con id {} encontrado", id);
-//        return ResponseEntity.ok(dto);
-//    }
 
     @PostMapping("/usuarios")
     public ResponseEntity<UsuarioOutDto> agregarUsuario(@Valid @RequestBody UsuarioInDto usuarioInDto) {
@@ -117,17 +98,6 @@ public class UsuarioController {
         return ResponseEntity.ok(nuevoUsuario);
     }
 
-
-    // PUT SIN SEGURIDAD JWT:
-//    @PutMapping("/usuarios/{id}")
-//    public ResponseEntity<UsuarioOutDto> editarUsuario(@Valid @PathVariable long id, @RequestBody UsuarioUpdateDto usuarioUpdateDto) throws UsuarioNoEncontradoException {
-//        log.info("PUT /usuarios/{} - actualización solicitada", id);
-//        UsuarioOutDto nuevoUsuario = usuarioService.modificar(id, usuarioUpdateDto);
-//        log.info("Usuario {} actualizado correctamente", id);
-//        return ResponseEntity.ok(nuevoUsuario);
-//    }
-
-
     // Delete de un usuario con seguridad JWT
     @DeleteMapping("/usuarios/{id}")
     public ResponseEntity<Void> eliminarUsuario(
@@ -147,17 +117,6 @@ public class UsuarioController {
         log.info("Usuario {} eliminado correctamente", id);
         return ResponseEntity.noContent().build();
     }
-
-
-    // DELETE SIN SEGURIDAD JWT
-//    @DeleteMapping("/usuarios/{id}")
-//    public ResponseEntity<Void> eliminarUsuario(@PathVariable long id) throws UsuarioNoEncontradoException {
-//        log.warn("DELETE /usuarios/{} solicitado", id); // DELETE → mejor WARN
-//        usuarioService.eliminar(id);
-//        log.info("Usuario {} eliminado correctamente", id);
-//        return ResponseEntity.noContent().build();
-//    }
-
 
     // Delete de una CUENTA con seguridad JWT (o sea, eliminar usuario y datos relacionados en resto de tablas)
     @DeleteMapping("/usuarios/{id}/cuenta")
