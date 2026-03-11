@@ -1,13 +1,68 @@
-# API_ReLab
+# API ReLab
 
-API REST construida con Java, Spring Boot y Maven que se conecta a una base de datos relacional.
+![Java](https://img.shields.io/badge/Java-17-orange)
+![Spring Boot](https://img.shields.io/badge/SpringBoot-3.x-green)
+![Spring Security](https://img.shields.io/badge/Security-SpringSecurity-darkgreen)
+![JWT](https://img.shields.io/badge/Auth-JWT-blue)
+![Maven](https://img.shields.io/badge/Build-Maven-red)
+![MariaDB](https://img.shields.io/badge/Database-MariaDB-lightgrey)
+![REST API](https://img.shields.io/badge/API-REST-informational)
+![License](https://img.shields.io/badge/License-Academic-lightblue)
+
+API REST construida con Java y Spring Boot que gestiona usuarios, productos, categorías, compraventas, alquileres, servicios y valoraciones.
+La aplicación se conecta a una base de datos relacional (MariaDB/MySQL) para almacenar y recuperar información.
+
+El proyecto implementa autenticación mediante JWT (JSON Web Tokens) para proteger operaciones sensibles relacionadas con los usuarios.
 
 ## Tecnologías
 - Java 17+
 - Spring Boot
+- Spring Security
+- JWT (JSON Web Token)
 - Maven
 - Base de datos relacional (MariaDB/MySQL)
-- (Opcional) springdoc-openapi / Swagger para documentación
+- ModelMapper
+- SLF4J + Logback
+- OpenAPI / Swagger
+
+## Arquitectura del proyecto
+- `src/main/java/com/natalia/relab`: Código fuente principal
+  - `controller`: Controladores REST para manejar solicitudes HTTP
+  - `service`: Lógica de negocio y servicios de la aplicación
+  - `repository`: Interfaces para acceso a datos (Spring Data JPA)
+  - `model`: Entidades JPA que representan las tablas de la base de datos
+  - `dto`: Objetos de transferencia de datos para comunicación entre capas
+  - `config`: Configuraciones de seguridad, JWT, ModelMapper, etc.
+  - `exception`: Clases para manejo de excepciones personalizadas
+  - `security`: Clases relacionadas con la seguridad y autenticación JWT
+- `resources`:
+  - `application.properties`: Configuración de la aplicación (base de datos)
+  - `logback-spring.xml`: Configuración de logging
+  - `openapi.yaml`: Especificación OpenAPI 3.0 para la documentación de la API
+- `wiremock`: Carpeta para simulaciones de endpoints con WireMock
+- `postman_collection.json`: Colección de Postman para probar los endpoints de la API
+- `pom.xml`: Archivo de configuración de Maven con dependencias y plugins necesarios para el proyecto
+
+## Autenticación y seguridad (JWT)
+La API utiliza JWT (JSON Web Token) para autenticar operaciones sensibles sobre usuarios.
+
+### Flujo de autenticación
+1. El cliente envía una solicitud POST a `/api/auth/login` con las credenciales (nickname y contraseña).
+2. El servidor valida las credenciales y, si son correctas, devuelve un token JWT.
+3. El cliente debe incluir el token en el header de las peticiones protegidas.
+
+### Endpoints protegidos
+| Método | Endpoint                | Descripción                            |
+| ------ |-------------------------|----------------------------------------|
+| GET    | `/usuarios`             | Recuperar todos los usuarios (requiere token, pero el endpoint no usa el objeto Authentication)      |
+| GET    | `/usuarios/me`          | Obtener perfil del usuario autenticado |
+| PUT    | `/usuarios/{id}`        | Actualizar perfil                      |
+| DELETE | `/usuarios/{id}`        | Eliminar usuario                       |
+| DELETE | `/usuarios/{id}/cuenta` | Eliminar cuenta completa               |
+
+La API valida que el usuario autenticado solo pueda modificar o eliminar su propio perfil.
+Si el token es inválido o ha expirado, se devuelve un error `401 Unauthorized`.
+Si el usuario intenta acceder a recursos de otros usuarios, se devuelve un error `403 Forbidden`.
 
 ## Requisitos previos
 - JDK 17+ instalado
@@ -33,7 +88,7 @@ API REST construida con Java, Spring Boot y Maven que se conecta a una base de d
   ```bash
   mvn spring-boot:run
   ```
-* Para ejecutar los tests:
+* Para ejecutar los **tests unitarios** de las capas Controller y Service:
 
   ```bash
   mvn test
@@ -59,6 +114,8 @@ API REST construida con Java, Spring Boot y Maven que se conecta a una base de d
 * **Categorías**: CRUD de categorías con filtrado y validaciones.
 * **Compraventas**: CRUD de compraventas con filtrado y validaciones.
 * **Alquileres**: CRUD de alquileres con filtrado y validaciones.
+* **Servicios**: GET de todos los servicios, GET de servicios por ID Usuario, POST de un servicio, DELETE de un servicio por su ID y DELETE de un servicio por ID de Usuario al que pertenece.
+* **Reviews**: GET de las reviews pertenecientes a un usuario y POST de una review.
 
 ## Pruebas y Mocks
 
@@ -81,9 +138,7 @@ API REST construida con Java, Spring Boot y Maven que se conecta a una base de d
 * Logging configurado para diferenciar niveles (`INFO`, `WARN`, `ERROR`) según necesidades de desarrollo.
 
 ## Autora
-- Natalia Garré
-- Estudiante 2º curso Desarrollo de Aplicaciones Multiplataforma
-- Proyecto realizado como parte de la asignatura de Acceso a Datos
+Natalia Garré Ramo, alumna de 2º de DAM - Proyecto para el Trabajo de Fin de Grado · 2026
 
 
 
